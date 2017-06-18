@@ -55,7 +55,7 @@ table {
     padding: 1em 3em 0;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 64em) {
   .sidebar {
     position: fixed;
     top: 0;
@@ -77,9 +77,11 @@ table {
   margin-right: auto;
 }
 
-.table-scroll {
-  display:block;
-  overflow: scroll !important;
+@media (max-width: 64em) {
+  .table-scroll {
+    display:block;
+    overflow-x: auto !important;
+  }
 }
 
 .columns {
