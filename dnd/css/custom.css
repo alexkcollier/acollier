@@ -44,3 +44,12 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
+
+.columns {
+  column-count: 2;
+  column-gap: 3em;
+}
+
+.columns-span {
+  column-span: all;
+}
