@@ -14,7 +14,7 @@ h3 {
   border-bottom: 1px solid black;
 }
 
-.pure-g [class *= "pure-u"] {
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
   font-family: "bookmania", Georgia, "Times New Roman", Times, serif !important;
   font-size: 18px;
 }
