@@ -1,7 +1,8 @@
 /* Overrides! */
 
-table {
-  font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
+  font-family: "bookmania", Georgia, "Times New Roman", Times, serif !important;
+  font-size: 18px;
 }
 
 h1, h2, h3 {
@@ -14,9 +15,8 @@ h2 {
   border-bottom: 1px solid black;
 }
 
-html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
-  font-family: "bookmania", Georgia, "Times New Roman", Times, serif !important;
-  font-size: 18px;
+table {
+  font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 /* New stuff! */
@@ -38,4 +38,9 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
 .header {
   padding: 80% 2em 0;
   text-align: right;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
