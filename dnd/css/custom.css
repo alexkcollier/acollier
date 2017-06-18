@@ -9,10 +9,11 @@ h1, h2, h3 {
   font-family: 	"mrs-eaves-roman-small-caps", "bookmania", Georgia, "Times New Roman", Times, serif;
   font-variant: small-caps;
   font-weight: 400;
+  color: rgb(128,0,0);
 }
 
 h2 {
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid rgb(194,174,109);
 }
 
 table {
@@ -22,13 +23,17 @@ table {
 /* New stuff! */
 
 .sidebar {
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
   top: 0;
   bottom: 0;
   background: rgb(61,79,93);
+  color: #fff;
+}
+
+.sidebar h1 {
   color: #fff;
 }
 
