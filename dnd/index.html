@@ -5,14 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/pure-min.css">
   <link rel="stylesheet" href="css/grids-responsive.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="https://use.typekit.net/fnw1iwa.js"></script>
+  <script>
+    try { Typekit.load({ async: true }); } catch (e) { }
+  </script>
   <title>DND</title>
 </head>
 
 <body>
-  <div class="pure-g">
-    <div class="pure-u-1 pure-u-md-1-8">
+  <div id="content" class="pure-g">
+    <div class="pure-u-1 pure-u-md-1-4 sidebar">
+      <div class="header">
+        <h1>Hey There</h1>
+        <p>This is just some D&amp;D stuff. Feel free to ignore it.</p>
+      </div>
     </div>
-    <div class="pure-u-1 pure-u-md-3-4">
+    <div class="pure-u-1 pure-u-md-3-4 content">
       <h1>Races</h1>
 
       <p>All races in the D&amp;D books are available for play, except for the monstrous races. There are some slight lore differences
@@ -160,42 +169,26 @@
       <p>If you take any damage while you have 0 hit points, or fail two death saving throws, roll a d100 and consult the following
         table when you regain consciousness. </p>
 
-      <table border="1" cellspacing="0" cellpadding="0">
+      <table class="pure-table pure-table-horizontal pure-table-striped">
+        <thead>
+          <th>d100</th>
+          <th>Result</th>
+        </thead>
+
         <tbody>
           <tr>
-            <td valign="top">
-              <p>d100</p>
-            </td>
-            <td valign="top">
-              <p>Result</p>
-            </td>
+            <td>01-40</td>
+            <td>Lingering injury</td>
           </tr>
 
           <tr>
-            <td valign="top">
-              <p>01-40</p>
-            </td>
-            <td valign="top">
-              <p>Lingering injury</p>
-            </td>
+            <td>41-80</td>
+            <td>Suffer one level of exhaustion</td>
           </tr>
 
           <tr>
-            <td valign="top">
-              <p>41-80</p>
-            </td>
-            <td valign="top">
-              <p>Suffer one level of exhaustion</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td valign="top">
-              <p>81-00</p>
-            </td>
-            <td valign="top">
-              <p>Nothing happens</p>
-            </td>
+            <td>81-00</td>
+            <td>Nothing happens</td>
           </tr>
 
         </tbody>
@@ -231,334 +224,161 @@
         represents evil, this is not entirely true. The pursuit of joy has led many to fall into depraved lives, and the
         recovery from loss has formed the most celebrated heroes.</p>
 
-      <table cellpadding="0" cellspacing="0" width="100%">
+      <table class="pure-table pure-table-horizontal pure-table-striped">
+        <thead>
+          <th>Deity</th>
+          <th>Alignment</th>
+          <th>Suggested Domains</th>
+          <th>Symbol</th>
+        </thead>
         <tbody>
           <tr>
-            <td>
-              <table border="1" cellspacing="0" cellpadding="0">
-                <tbody>
-                  <tr>
-                    <td valign="top">
-                      <p>Deity</p>
-                    </td>
-                    <td valign="top">
-                      <p>Alignment</p>
-                    </td>
-                    <td valign="top">
-                      <p>Suggested Domains</p>
-                    </td>
-                    <td valign="top">
-                      <p>Symbol</p>
-                    </td>
-                  </tr>
+            <td>Asmodeus, god of tyranny</td>
+            <td>LE</td>
+            <td>Trickery</td>
+            <td>Three triangles in tight formation</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Asmodeus, god of tyranny</p>
-                    </td>
-                    <td valign="top">
-                      <p>LE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery</p>
-                    </td>
-                    <td valign="top">
-                      <p>Three triangles in tight formation</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Avandra, goddess of luck and chance</td>
+            <td>CG</td>
+            <td>Trickery</td>
+            <td>Three stacked wavy lines</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Avandra, goddess of luck and chance</p>
-                    </td>
-                    <td valign="top">
-                      <p>CG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery</p>
-                    </td>
-                    <td valign="top">
-                      <p>Three stacked wavy lines</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Bahamut, god of justice and nobility</td>
+            <td>LG</td>
+            <td>Life, War</td>
+            <td>Dragon’s head, in profile, facing left</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Bahamut, god of justice and nobility</p>
-                    </td>
-                    <td valign="top">
-                      <p>LG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Life, War</p>
-                    </td>
-                    <td valign="top">
-                      <p>Dragon’s head, in profile, facing left</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Bane, god of war and conquest</td>
+            <td>LE</td>
+            <td>War</td>
+            <td>Claw with three talons pointing down</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Bane, god of war and conquest</p>
-                    </td>
-                    <td valign="top">
-                      <p>LE</p>
-                    </td>
-                    <td valign="top">
-                      <p>War</p>
-                    </td>
-                    <td valign="top">
-                      <p>Claw with three talons pointing down</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Corellon, god of magic and the arts</td>
+            <td>CG</td>
+            <td>Light</td>
+            <td>Eight-pointed star</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Corellon, god of magic and the arts </p>
-                    </td>
-                    <td valign="top">
-                      <p>CG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Light</p>
-                    </td>
-                    <td valign="top">
-                      <p>Eight-pointed star</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Erathis, goddess of civilization and invention</td>
+            <td>LN</td>
+            <td>Knowledge</td>
+            <td>Upper half of a clockwork gear</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Erathis, goddess of civilization and invention </p>
-                    </td>
-                    <td valign="top">
-                      <p>LN</p>
-                    </td>
-                    <td valign="top">
-                      <p>Knowledge</p>
-                    </td>
-                    <td valign="top">
-                      <p>Upper half of a clockwork gear</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Gruumsh, god of destruction</td>
+            <td>CE</td>
+            <td>Tempest, War</td>
+            <td>Triangular eye with bony protrusions</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Gruumsh, god of destruction </p>
-                    </td>
-                    <td valign="top">
-                      <p>CE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Tempest, War</p>
-                    </td>
-                    <td valign="top">
-                      <p>Triangular eye with bony protrusions</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>loun, goddess of knowledge</td>
+            <td>N</td>
+            <td>Knowledge</td>
+            <td>Crook shaped like a stylized eye</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>loun, goddess of knowledge</p>
-                    </td>
-                    <td valign="top">
-                      <p>N</p>
-                    </td>
-                    <td valign="top">
-                      <p>Knowledge</p>
-                    </td>
-                    <td valign="top">
-                      <p>Crook shaped like a stylized eye</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Kord, god of strength and storms</td>
+            <td>CN</td>
+            <td>Tempest</td>
+            <td>Sword with a lightning bolt cross guard</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Kord, god of strength and storms </p>
-                    </td>
-                    <td valign="top">
-                      <p>CN</p>
-                    </td>
-                    <td valign="top">
-                      <p>Tempest</p>
-                    </td>
-                    <td valign="top">
-                      <p>Sword with a lightning bolt cross guard</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Lolth, goddess of spiders and lies</td>
+            <td>CE</td>
+            <td>Trickery</td>
+            <td>Eight-pointed star with a web motif</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Lolth, goddess of spiders and lies </p>
-                    </td>
-                    <td valign="top">
-                      <p>CE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery</p>
-                    </td>
-                    <td valign="top">
-                      <p>Eight-pointed star with a web motif</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Melora, goddess of wilderness and the sea</td>
+            <td>N</td>
+            <td>Nature, Tempest</td>
+            <td>Wavelike swirl</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Melora, goddess of wilderness and the sea</p>
-                    </td>
-                    <td valign="top">
-                      <p>N</p>
-                    </td>
-                    <td valign="top">
-                      <p>Nature, Tempest</p>
-                    </td>
-                    <td valign="top">
-                      <p>Wavelike swirl</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Moradin, god of creation</td>
+            <td>LG</td>
+            <td>Knowledge, War</td>
+            <td>Flaming anvil</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Moradin, god of creation </p>
-                    </td>
-                    <td valign="top">
-                      <p>LG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Knowledge, War</p>
-                    </td>
-                    <td valign="top">
-                      <p>Flaming anvil</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Pelor, god of the sun and agriculture</td>
+            <td>NG</td>
+            <td>Life, Light</td>
+            <td>Circle with six outwardly radiating points</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Pelor, god of the sun and agriculture </p>
-                    </td>
-                    <td valign="top">
-                      <p>NG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Life, Light</p>
-                    </td>
-                    <td valign="top">
-                      <p>Circle with six outwardly radiating points</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Raven Queen, goddess of death</td>
+            <td>LN</td>
+            <td>Life, Death</td>
+            <td>Raven’s head, in profile, facing left</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Raven Queen, goddess of death </p>
-                    </td>
-                    <td valign="top">
-                      <p>LN</p>
-                    </td>
-                    <td valign="top">
-                      <p>Life, Death</p>
-                    </td>
-                    <td valign="top">
-                      <p>Raven’s head, in profile, facing left</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Sehanine, goddess of the moon</td>
+            <td>CG</td>
+            <td>Trickery</td>
+            <td>Crescent moon</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Sehanine, goddess of the moon </p>
-                    </td>
-                    <td valign="top">
-                      <p>CG</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery</p>
-                    </td>
-                    <td valign="top">
-                      <p>Crescent moon</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Tharizdun, god of madness</td>
+            <td>CE</td>
+            <td>Trickery</td>
+            <td>Jagged counter-clockwise spiral</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Tharizdun, god of madness </p>
-                    </td>
-                    <td valign="top">
-                      <p>CE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery</p>
-                    </td>
-                    <td valign="top">
-                      <p>Jagged counter-clockwise spiral</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Tiamat, goddess of wealth, greed, and vengeance</td>
+            <td>LE</td>
+            <td>Trickery, War</td>
+            <td>Five-pointed star with curved points</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Tiamat, goddess of wealth, greed, and vengeance </p>
-                    </td>
-                    <td valign="top">
-                      <p>LE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery, War</p>
-                    </td>
-                    <td valign="top">
-                      <p>Five-pointed star with curved points</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Torog, god of the Underdark</td>
+            <td>NE</td>
+            <td>Death</td>
+            <td><i>T</i> attached to a circular shackle</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Torog, god of the Underdark </p>
-                    </td>
-                    <td valign="top">
-                      <p>NE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Death</p>
-                    </td>
-                    <td valign="top">
-                      <p><i>T</i> attached to a circular shackle</p>
-                    </td>
-                  </tr>
+          <tr>
+            <td>Vecna, god of evil secrets</td>
+            <td>NE</td>
+            <td>Death, Knowledge</td>
+            <td>Partially shattered one-eyed skull</td>
+          </tr>
 
-                  <tr>
-                    <td valign="top">
-                      <p>Vecna, god of evil secrets </p>
-                    </td>
-                    <td valign="top">
-                      <p>NE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Death, Knowledge</p>
-                    </td>
-                    <td valign="top">
-                      <p>Partially shattered one-eyed skull</p>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td valign="top">
-                      <p>Zehir, god of darkness and poison </p>
-                    </td>
-                    <td valign="top">
-                      <p>CE</p>
-                    </td>
-                    <td valign="top">
-                      <p>Trickery, Death</p>
-                    </td>
-                    <td valign="top">
-                      <p>Snake in the shape of a dagger</p>
-                    </td>
-                  </tr>
-
-                </tbody>
-              </table>
-
-            </td>
+          <tr>
+            <td>Zehir, god of darkness and poison</td>
+            <td>CE</td>
+            <td>Trickery, Death</td>
+            <td>Snake in the shape of a dagger</td>
           </tr>
 
         </tbody>
+      </table>
+
+      </td>
+      </tr>
+
+      </tbody>
       </table>
 
       <p> Clerics of the Grey Faith may belong to any domain, depending on how that manifests. Knowledge, Light, and Trickery

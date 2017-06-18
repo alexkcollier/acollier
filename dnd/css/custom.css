@@ -1,0 +1,41 @@
+/* Overrides! */
+
+table {
+  font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+h1, h2, h3 {
+  font-family: 	"mrs-eaves-roman-small-caps", "bookmania", Georgia, "Times New Roman", Times, serif;
+  font-variant: small-caps;
+  font-weight: 400;
+}
+
+h3 {
+  border-bottom: 1px solid black;
+}
+
+.pure-g [class *= "pure-u"] {
+  font-family: "bookmania", Georgia, "Times New Roman", Times, serif !important;
+  font-size: 18px;
+}
+
+/* New stuff! */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: rgb(61,79,93);
+  color: #fff;
+}
+
+.content {
+  position: relative;
+  margin-left: 25%;
+  padding: 2em 3em 0;
+}
+
+.header {
+  padding: 80% 2em 0;
+  text-align: right;
+}
