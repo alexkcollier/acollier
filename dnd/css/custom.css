@@ -77,6 +77,11 @@ table {
   margin-right: auto;
 }
 
+.table-scroll {
+  display:block;
+  overflow: scroll !important;
+}
+
 .columns {
   column-count: 2;
   column-gap: 3em;
