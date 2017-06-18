@@ -59,6 +59,7 @@ table {
 
 .content {
     padding: 1em 3em 0;
+    background-color: rgba(220,200,180,0.1);
 }
 
 @media (min-width: 64em) {
@@ -97,6 +98,10 @@ table {
 
 .columns-span {
   column-span: all;
+}
+
+.pure-table td {
+    background-color: #fff;
 }
 
 #topBtn {
