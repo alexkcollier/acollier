@@ -23,21 +23,32 @@ table {
 
 .sidebar {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   bottom: 0;
   background: rgb(61,79,93);
   color: #fff;
 }
 
+.sidebar a {
+  color: #eee;
+}
+
+.sidebar a:visited {
+  color: #000;
+}
+
+.header {
+  padding: 0 2em 0;
+  text-align: right;
+}
+
 .content {
   position: relative;
   margin-left: 25%;
   padding: 2em 3em 0;
-}
-
-.header {
-  padding: 80% 2em 0;
-  text-align: right;
 }
 
 .center {
