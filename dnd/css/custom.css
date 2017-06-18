@@ -38,12 +38,18 @@ table {
   color: #fff;
 }
 
-.sidebar a {
-  color: #eee;
+.sidebar a, .sidebar a:visited{
+  color: #ccc;
+  text-decoration: none !important;
+  padding: 11px 8px 5px 8px;
+  background-color: rgb(70,90,100);
 }
 
-.sidebar a:visited {
-  color: #000;
+.sidebar a:hover{
+  color: #ccc;
+  text-decoration: none !important;
+  padding: 11px 8px 5px 8px;
+  background-color: rgb(90,110,120);
 }
 
 .header {
