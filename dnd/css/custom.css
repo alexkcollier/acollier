@@ -5,6 +5,10 @@ html, button, input, select, textarea, .pure-g [class *= "pure-u"] {
   font-size: 18px;
 }
 
+.pure-g [class *= "pure-u"] {
+  overflow-x: hidden;
+}
+
 h1, h2, h3 {
   font-family: 	"mrs-eaves-roman-small-caps", "bookmania", Georgia, "Times New Roman", Times, serif;
   font-variant: small-caps;
@@ -26,9 +30,6 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
   background: rgb(61,79,93);
   color: #fff;
 }
@@ -47,13 +48,28 @@ table {
 
 .header {
   padding: 0 2em 0;
-  text-align: right;
+  text-align: center;
 }
 
 .content {
-  position: relative;
-  margin-left: 25%;
-  padding: 2em 3em 0;
+    padding: 2em 3em 0;
+}
+
+@media (min-width: 48em) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  .header {
+    text-align: right;
+  }
+
+  .content {
+    position: relative;
+    margin-left: 25%;
+  }
 }
 
 .center {
