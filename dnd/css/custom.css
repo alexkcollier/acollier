@@ -41,11 +41,16 @@ table {
 .sidebar a, .sidebar a:visited{
   color: #ccc;
   text-decoration: none !important;
-  padding: 11px 8px 5px 8px;
+  padding: 9px 16px 7px 16px;
+  margin-left: 5px;
+  margin-right: 5px;
   background-color: rgb(70,90,100);
   line-height: 60px;
   white-space: nowrap;
   border-radius: 4px;
+  font-variant: small-caps;
+  font-family: 	"mrs-eaves-roman-small-caps", "bookmania", Georgia, "Times New Roman", Times, serif;
+  font-size: 1.17em;
 }
 
 .sidebar a:hover {
