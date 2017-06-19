@@ -48,8 +48,13 @@ table {
   border-radius: 4px;
 }
 
-.sidebar a:hover{
+.sidebar a:hover {
   background-color: rgb(90,110,120);
+}
+
+.sidebar a:active {
+  background-color: rgb(110,130,140);
+  color: #ddd;
 }
 
 .header {
