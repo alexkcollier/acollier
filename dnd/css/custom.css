@@ -107,6 +107,10 @@ table {
   vertical-align: middle;
 }
 
+.text-center {
+  text-align: center;
+}
+
 #topBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
