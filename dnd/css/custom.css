@@ -57,6 +57,10 @@ table {
   text-align: center;
 }
 
+.header h1 {
+  font-size: 4em;
+}
+
 .content {
     padding: 1em 3em 0;
     background-color: #e5e5d9;
