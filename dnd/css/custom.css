@@ -126,6 +126,10 @@ table {
   text-align: center;
 }
 
+.text-italic {
+  font-style: italic;
+}
+
 #topBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
