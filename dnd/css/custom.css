@@ -21,7 +21,8 @@ h2 {
 }
 
 table {
-  font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: "freight-sans-pro", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-feature-settings: "lnum";
 }
 
 .pure-table thead {
@@ -135,7 +136,7 @@ table {
     padding: 15px; /* Some padding */
     border: none;
     background-color: rgba(240,240,240,0.6) !important;
-    font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-family: "freight-sans-pro", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     color: #666;
     box-shadow: 2px 12px 80px -12px #000;
     text-transform: uppercase;
