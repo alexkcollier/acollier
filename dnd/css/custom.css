@@ -45,6 +45,7 @@ table {
   background-color: rgb(70,90,100);
   line-height: 60px;
   white-space: nowrap;
+  border-radius: 4px;
 }
 
 .sidebar a:hover{
@@ -58,7 +59,7 @@ table {
 
 .content {
     padding: 1em 3em 0;
-    background-color: #eee8e2;
+    background-color: #e5e5d9;
 }
 
 @media (min-width: 64em) {
@@ -100,11 +101,7 @@ table {
 }
 
 .pure-table td {
-    background-color: #fff;
-}
-
-.pure-table thead{
-  vertical-align: middle;
+    background-color: #fefefe;
 }
 
 .text-center {
