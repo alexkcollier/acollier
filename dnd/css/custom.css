@@ -43,7 +43,8 @@ table {
   text-decoration: none !important;
   padding: 11px 8px 5px 8px;
   background-color: rgb(70,90,100);
-  line-height: 60px
+  line-height: 60px;
+  white-space: nowrap;
 }
 
 .sidebar a:hover{
