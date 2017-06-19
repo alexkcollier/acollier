@@ -103,6 +103,10 @@ table {
     background-color: #fff;
 }
 
+.pure-table thead{
+  vertical-align: middle;
+}
+
 #topBtn {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
