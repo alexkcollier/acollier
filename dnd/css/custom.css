@@ -24,6 +24,10 @@ table {
   font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
+.pure-table td {
+    background-color: #fefefe;
+}
+
 /* New stuff! */
 
 .sidebar {
@@ -112,10 +116,6 @@ table {
 
 .columns-span {
   column-span: all;
-}
-
-.pure-table td {
-    background-color: #fefefe;
 }
 
 .text-center {
