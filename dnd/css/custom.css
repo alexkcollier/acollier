@@ -24,6 +24,9 @@ table {
   font-family: "quasimoda", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
+.pure-table thead {
+  vertical-align: middle;
+}
 .pure-table td {
     background-color: #fefefe;
 }
