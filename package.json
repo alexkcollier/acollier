@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
+    "dev": "lite-server",
+    "deploy": "surge ./"
   },
   "repository": {
     "type": "git",
@@ -15,10 +16,7 @@
     "url": "https://github.com/alexkcollier/acollier/issues"
   },
   "homepage": "https://github.com/alexkcollier/acollier#readme",
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "lite-server": "^2.3.0"
   }
