@@ -12,8 +12,3 @@ For local development
 Launches lite-server
 
 `npm run dev`
-
-## Deploy
-Deploys with to surge
-
-`npm run deploy`
