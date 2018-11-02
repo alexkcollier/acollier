@@ -81,8 +81,8 @@ h2 {
 
 .name {
   animation: fadein $base-time $easing;
-  font-family: 'futura-pt', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'futura-pt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 700;
   line-height: 14vmin;
   text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.5),
@@ -104,6 +104,7 @@ h2 {
   from {
     filter: blur(5px);
   }
+
   to {
     filter: blur(0px);
   }
@@ -113,6 +114,7 @@ h2 {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -122,9 +124,11 @@ h2 {
   0% {
     opacity: 0;
   }
+
   50% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
