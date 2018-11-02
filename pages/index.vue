@@ -7,6 +7,13 @@
       <h2 class="tag">
         Make stuff.
       </h2>
+      <a
+        class="email-cta"
+        href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
+        target="_blank"
+        rel="noopener nofollow">
+        Email me
+      </a>
     </div>
   </main>
 </template>
@@ -63,7 +70,7 @@ h2 {
         rgba($color: black, $alpha: 0.05),
         rgba($color: black, $alpha: 0.05)
       ),
-      black url('~/assets/images/acollier.jpg') right center / cover no-repeat;
+      black url('~assets/images/acollier.jpg') right center / cover no-repeat;
     content: '';
     height: 100%;
     position: absolute;
@@ -98,6 +105,55 @@ h2 {
   margin-top: 3vmin;
   text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.75),
     0 0 1px rgba($color: black, $alpha: 0.5);
+}
+
+.email-cta {
+  color: $white-ish;
+  font-family: 'adobe-caslon-pro', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.5em;
+  margin-top: 3vmin;
+  padding-top: 0.5em;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.75),
+    0 0 1px rgba($color: black, $alpha: 0.5);
+
+  &::after {
+    border: 1px solid $white-ish;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    content: '';
+    height: 0.25em;
+    margin-left: 0.25em;
+    opacity: 0;
+    position: absolute;
+    top: 60%;
+    transform: translateY(-60%) rotate(45deg);
+    transition: all 100ms ease-in;
+    width: 0.25em;
+  }
+
+  &::before {
+    border: 0.5px solid $white-ish;
+    bottom: -0.25vmin;
+    content: '';
+    height: 0;
+    position: absolute;
+    width: 6vmin;
+    transition: all 100ms ease-in;
+  }
+
+  &:hover {
+    &::before {
+      bottom: -1vmin;
+      opacity: 0;
+    }
+
+    &::after {
+      margin-left: 0.5em;
+      opacity: 1;
+    }
+  }
 }
 
 @keyframes deblur {
