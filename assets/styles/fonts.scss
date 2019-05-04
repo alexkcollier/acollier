@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Bona Nova';
+  font-style: italic;
+  font-weight: normal;
+  src: url('/fonts/bona_nova-italic-webfont.woff2') format('woff2'),
+    url('/fonts/bona_nova-italic-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Noah';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/noah-regular-webfont.woff2') format('woff2'),
+    url('/fonts/noah-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Noah';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/noah-bold-webfont.woff2') format('woff2'),
+    url('/fonts/noah-bold-webfont.woff') format('woff');
+}

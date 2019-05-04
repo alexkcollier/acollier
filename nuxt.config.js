@@ -9,6 +9,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ]
   },
+  css: ['~/assets/styles/fonts.scss'],
   loading: false,
   build: {
     loaders: {
