@@ -1,20 +1,21 @@
 <template>
   <main class="container">
-    <div class="content">
-      <h1 class="name">
-        Alex<br>Collier
-      </h1>
-      <h2 class="tag">
-        Make stuff.
-      </h2>
-      <a
-        class="email-cta"
-        href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
-        target="_blank"
-        rel="noopener nofollow">
-        Email me
-      </a>
-    </div>
+    <h1 class="name">
+      Alex<br>Collier
+    </h1>
+    
+    <h2 class="tag">
+      Make stuff.
+    </h2>
+
+    <a
+      class="email-cta"
+      href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
+      target="_blank"
+      rel="noopener nofollow"
+    >
+      Email me
+    </a>
   </main>
 </template>
 
@@ -52,8 +53,7 @@ h2 {
 
   &::selection {
     background: rgb(255, 206, 206);
-    text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.25),
-      0 0 1px rgba($color: black, $alpha: 0.25);
+    text-shadow: 1px 2px 20px rgba(black, 0.25), 0 0 1px rgba(black, 0.25);
   }
 }
 
@@ -66,10 +66,7 @@ h2 {
 
   &::before {
     animation: deblur $base-time * 1.5 $easing;
-    background: linear-gradient(
-        rgba($color: black, $alpha: 0.05),
-        rgba($color: black, $alpha: 0.05)
-      ),
+    background: linear-gradient(rgba(black, 0.05), rgba(black, 0.05)),
       black url('~assets/images/acollier.jpg') right center / cover no-repeat;
     content: '';
     height: 100%;
@@ -92,8 +89,7 @@ h2 {
     Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-weight: 700;
   line-height: 14vmin;
-  text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.5),
-    0 0 1px rgba($color: black, $alpha: 0.5);
+  text-shadow: 1px 2px 20px rgba(black, 0.5), 0 0 1px rgba(black, 0.5);
   text-transform: uppercase;
 }
 
@@ -103,8 +99,7 @@ h2 {
   font-style: italic;
   font-weight: 400;
   margin-top: 3vmin;
-  text-shadow: 1px 2px 20px rgba($color: black, $alpha: 0.75),
-    0 0 1px rgba($color: black, $alpha: 0.5);
+  text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 }
 
 .email-cta {
