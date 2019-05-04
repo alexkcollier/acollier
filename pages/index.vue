@@ -42,22 +42,13 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
 html {
   background: black;
-  margin: 0;
-}
-
-body {
+  color: $white-ish;
   margin: 0;
 }
 
 h1,
 h2 {
-  color: $white-ish;
   margin: 0;
-
-  &::selection {
-    background: rgb(255, 206, 206);
-    text-shadow: 1px 2px 20px rgba(black, 0.25), 0 0 1px rgba(black, 0.25);
-  }
 }
 
 .container {
@@ -67,6 +58,11 @@ h2 {
   justify-content: center;
   margin: auto;
   width: 60%;
+
+  &::selection {
+    background: rgb(255, 206, 206);
+    text-shadow: 1px 2px 20px rgba(black, 0.25), 0 0 1px rgba(black, 0.25);
+  }
 
   // using pseudo element so filter only affects image
   &::before {
@@ -106,7 +102,7 @@ h2 {
   line-height: 14vmin;
   text-shadow: $text-contrast-shadow;
   text-transform: uppercase;
-  // fake bold; FF and Edge specifically support the `-webkit` prefix, there is no unprefixed support
+  // fake bold; FF and Edge support the `-webkit` prefix; there is no unprefixed support
   -webkit-text-stroke: 2px $white-ish;
 }
 
@@ -170,6 +166,18 @@ h2 {
   &:hover::after {
     margin-left: 0.5em;
     opacity: 1;
+  }
+
+  &:active {
+    &::before {
+      bottom: -1em;
+      opacity: 0;
+    }
+
+    &::after {
+      opacity: 0;
+      transform: translateX(0.5em) translateY(-50%) rotate(45deg);
+    }
   }
 }
 
