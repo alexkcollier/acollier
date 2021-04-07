@@ -3,7 +3,7 @@
     <h1 class="name">
       Alex<br>Collier
     </h1>
-    
+
     <h2 class="tag">
       Make stuff.
     </h2>
@@ -21,11 +21,11 @@
 
 <script>
 export default {
-  head() {
+  head () {
     return {
-      title: 'ALEX COLLIER'
+      title: 'ALEX COLLIER',
     }
-  }
+  },
 }
 </script>
 
@@ -68,10 +68,10 @@ h2 {
   &::before {
     background: linear-gradient(rgba(black, 0.05), rgba(black, 0.05)),
       black url('~assets/images/acollier.jpg') right center / cover no-repeat;
-    content: '';
-    position: absolute;
     bottom: 0;
+    content: '';
     left: 0;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: -1;
@@ -101,9 +101,9 @@ h2 {
   font-weight: 700;
   line-height: 14vmin;
   text-shadow: $text-contrast-shadow;
-  text-transform: uppercase;
   // fake bold; FF and Edge support the `-webkit` prefix; there is no unprefixed support
   -webkit-text-stroke: 2px $white-ish;
+  text-transform: uppercase;
 }
 
 .tag {
@@ -135,8 +135,8 @@ h2 {
     content: '';
     height: 0;
     position: absolute;
-    width: 6vmin;
     transition: all 100ms ease-in;
+    width: 6vmin;
 
     @media (max-aspect-ratio: 11/10) {
       display: none;
@@ -188,7 +188,7 @@ h2 {
   }
 
   to {
-    filter: blur(0px);
+    filter: blur(0);
   }
 }
 

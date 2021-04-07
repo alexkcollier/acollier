@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@acollier/stylelint-config-scss']
+  extends: ['@acollier/stylelint-config-scss'],
 }
