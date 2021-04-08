@@ -1,6 +1,10 @@
 import pkg from './package';
 
 module.exports = {
+  ssr: true,
+  target: 'static',
+  telemetry: false,
+  modern: 'client',
   head: {
     title: pkg.name,
     meta: [
@@ -12,11 +16,6 @@ module.exports = {
   css: ['~/assets/styles/_fonts.scss'],
   loading: false,
   build: {
-    loaders: {
-      scss: {
-        implementation: require('sass'),
-      },
-    },
     extend (config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
