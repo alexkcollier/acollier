@@ -1,6 +1,6 @@
 module.exports = {
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
-  extends: ['@acollier/eslint-config-vue']
-}
+  extends: ['@acollier/eslint-config-vue'],
+};

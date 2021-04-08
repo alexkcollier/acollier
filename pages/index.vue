@@ -24,9 +24,9 @@ export default {
   head () {
     return {
       title: 'ALEX COLLIER',
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">

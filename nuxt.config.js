@@ -1,4 +1,4 @@
-import pkg from './package'
+import pkg from './package';
 
 module.exports = {
   head: {
@@ -9,7 +9,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description },
     ],
   },
-  css: ['~/assets/styles/fonts.scss'],
+  css: ['~/assets/styles/_fonts.scss'],
   loading: false,
   build: {
     loaders: {
@@ -28,8 +28,8 @@ module.exports = {
           options: {
             fix: true,
           },
-        })
+        });
       }
     },
   },
-}
+};
