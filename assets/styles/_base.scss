@@ -24,18 +24,12 @@ $family-serif: 'Bona Nova', Georgia, 'Times New Roman', Times, serif;
 /**
  * Globals
  */
-html,
-body,
-#__nuxt,
-#__layout {
-  height: 100%;
-}
-
 html {
   background: var(--base-background-color);
   color: var(--base-font-color);
   font-family: var(--font-family-sans-serif);
   font-weight: 300;
+  // padding: 1rem;
 }
 
 ::selection {
