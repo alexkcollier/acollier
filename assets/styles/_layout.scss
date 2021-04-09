@@ -3,3 +3,43 @@
   max-width: 944px;
   width: 100%;
 }
+
+// TODO?: implement a grid system?
+.two-column {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9rem;
+
+  &__wide-col {
+    flex: 1 0 auto;
+    max-width: 7/12 * 100%;
+  }
+
+  &__narrow-col {
+    flex: 1 0 auto;
+    margin-left: 1rem;
+    max-width: 4/12 * 100%;
+  }
+
+  @media screen and (max-width: 760px) {
+    display: block;
+
+    &__wide-col,
+    &__narrow-col {
+      margin: 0;
+      max-width: unset;
+    }
+  }
+}
+
+.sidebar {
+  &__section {
+    margin-top: 4rem;
+
+    @media screen and (min-width: 761px) {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
