@@ -32,12 +32,12 @@
     </section>
 
     <div class="two-column about-content">
-      <main class="two-column__wide-col">
+      <main class="work-experience two-column__wide-col">
         <h2 class="heading-1">
           Experience
         </h2>
 
-        <div class="work-experience">
+        <div class="work-experience__list">
           <WorkExperienceItem
             v-for="item in workExperience"
             :key="item.position"
@@ -146,7 +146,13 @@ export default {
 }
 
 .work-experience {
-  margin-top: var(--work-spacing);
+  .heading-1 {
+    margin-left: calc((1/7 * 100%) + 1rem);
+  }
+
+  &__list {
+    margin-top: var(--work-spacing);
+  }
 }
 
 .education {
