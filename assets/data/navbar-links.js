@@ -7,5 +7,9 @@ export default [
     text: 'About',
     href: '/about/',
   },
+  {
+    text: 'Work',
+    href: '/work/',
+  },
   // TODO: other pages
 ];
