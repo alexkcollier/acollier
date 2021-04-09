@@ -1,77 +1,44 @@
 <template>
-  <main class="container">
-    <h1 class="name">
-      Alex<br>Collier
-    </h1>
-    
-    <h2 class="tag">
-      Make stuff.
-    </h2>
+  <main class="home-hero">
+    <div class="container">
+      <h1 class="name">
+        Alex Collier
+      </h1>
 
-    <a
-      class="email-cta"
-      href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
-      target="_blank"
-      rel="noopener nofollow"
-    >
-      Email me
-    </a>
+      <div class="tag">
+        Product designer in Ottawa
+      </div>
+
+      <a
+        class="email-cta"
+        href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
+        target="_blank"
+        rel="noopener nofollow"
+      >
+        Get in touch
+      </a>
+    </div>
   </main>
 </template>
-
-<script>
-export default {
-  head() {
-    return {
-      title: 'ALEX COLLIER'
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
-$white-ish: #eee;
-
-$family-sans-serif: 'Noah', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-  Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-$family-serif: 'Bona Nova', Georgia, 'Times New Roman', Times, serif;
-
 $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
-html {
-  background: black;
-  color: $white-ish;
-  margin: 0;
-}
-
-h1,
-h2 {
-  margin: 0;
-}
-
-.container {
+.home-hero {
+  align-items: center;
   display: flex;
-  flex-direction: column;
   height: 100vh;
-  justify-content: center;
-  margin: auto;
-  width: 60%;
-
-  &::selection {
-    background: rgb(255, 206, 206);
-    text-shadow: 1px 2px 20px rgba(black, 0.25), 0 0 1px rgba(black, 0.25);
-  }
 
   // using pseudo element so filter only affects image
   &::before {
     background: linear-gradient(rgba(black, 0.05), rgba(black, 0.05)),
       black url('~assets/images/acollier.jpg') right center / cover no-repeat;
-    content: '';
-    position: absolute;
     bottom: 0;
+    content: '';
     left: 0;
+    position: absolute;
     right: 0;
     top: 0;
     z-index: -1;
@@ -82,61 +49,58 @@ h2 {
     }
   }
 
+  //TODO: make this query more sane
   @media (max-aspect-ratio: 11/10) {
     text-align: center;
 
     &::before {
       align-content: center;
+      //TODO: load separate image on mobile
       // when the text is over my face, I need to increase contrast significantly
       background: linear-gradient(rgba(black, 0.3), rgba(black, 0.3)),
-        black url('~assets/images/acollier.jpg') right center / cover no-repeat;
+        black url('~assets/images/acollier.jpg') 90% center / cover no-repeat;
     }
   }
 }
 
 .name {
   animation: fadein $base-time $easing;
-  font-family: $family-sans-serif;
-  font-size: 12vmin;
+  font-size: 4rem;
   font-weight: 700;
-  line-height: 14vmin;
+  line-height: 125%;
+  margin-bottom: 1rem;
   text-shadow: $text-contrast-shadow;
-  text-transform: uppercase;
   // fake bold; FF and Edge support the `-webkit` prefix; there is no unprefixed support
-  -webkit-text-stroke: 2px $white-ish;
+  -webkit-text-stroke: 2px var(--base-font-color);
 }
 
 .tag {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.25 $easing;
-  font-family: $family-serif;
-  font-size: 10vmin;
-  font-style: italic;
-  font-weight: 400;
-  margin-top: 3vmin;
+  font-size: 2.5rem;
+  line-height: 125%;
+  margin-bottom: 6rem;
   text-shadow: $text-contrast-shadow;
 }
 
 .email-cta {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
-  color: $white-ish;
-  font-family: $family-sans-serif;
+  color: var(--base-font-color);
   font-size: 1.5em;
-  margin-top: 8vmin;
   position: relative;
   text-decoration: none;
   text-shadow: $text-contrast-shadow;
 
   // line
   &::before {
-    border: 0.5px solid $white-ish;
+    border: 0.5px solid var(--base-font-color);
     bottom: -0.35em;
     content: '';
     height: 0;
     position: absolute;
-    width: 6vmin;
     transition: all 100ms ease-in;
+    width: 1em;
 
     @media (max-aspect-ratio: 11/10) {
       display: none;
@@ -145,7 +109,7 @@ h2 {
 
   // arrow
   &::after {
-    border: 1px solid $white-ish;
+    border: 1px solid var(--base-font-color);
     border-bottom-color: transparent;
     border-left-color: transparent;
     content: '';
@@ -188,7 +152,7 @@ h2 {
   }
 
   to {
-    filter: blur(0px);
+    filter: blur(0);
   }
 }
 
