@@ -39,7 +39,7 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 .home-hero {
   align-items: center;
   display: flex;
-  height: 100vh;
+  height: 100%;
 
   // using pseudo element so filter only affects image
   &::before {

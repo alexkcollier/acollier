@@ -18,6 +18,13 @@ $family-serif: 'Bona Nova', Georgia, 'Times New Roman', Times, serif;
 /**
  * Globals
  */
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
 html {
   background: black;
   color: var(--base-font-color);
