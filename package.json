@@ -15,22 +15,22 @@
     "precommit": "yarn lint"
   },
   "dependencies": {
+    "nuxt": "^2.10.2",
+    "sanitize.css": "^12.0.1"
+  },
+  "devDependencies": {
     "@acollier/eslint-config": ">=2.2.0",
+    "@acollier/eslint-config-vue": "1.5.0",
+    "@acollier/stylelint-config-scss": "^2.1.2",
+    "babel-eslint": "^10.0.3",
+    "eslint": ">=5.16.0",
     "eslint-config-standard": "^16.0.2",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": ">=5.2.2",
-    "nuxt": "^2.10.2",
-    "sanitize.css": "^12.0.1"
-  },
-  "devDependencies": {
-    "@acollier/eslint-config-vue": "1.5.0",
-    "@acollier/stylelint-config-scss": "^2.1.2",
-    "babel-eslint": "^10.0.3",
-    "eslint": ">=5.16.0",
-    "eslint-loader": "^4.0.2",
     "sass": "^1.23.7",
     "sass-loader": "^10.0.0",
     "stylelint": "^13.12.0"
