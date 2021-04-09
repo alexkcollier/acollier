@@ -37,11 +37,9 @@ export default {
 
 <style lang="scss">
 .navbar {
-  // TODO: get rid of "magic" numbers
-  // use negative margin to ensure navbar doesn't contribute to page height
-  // 1.5rem is button font size with 100% line-height, 2rem is top + bottom padding, 1px is border
-  margin-bottom: calc(-1 * (1.5rem + 2rem + 1px));
-  position: sticky;
+  left: 0;
+  position: fixed;
+  right: 0;
   top: 0;
 
   &__button-wrapper {

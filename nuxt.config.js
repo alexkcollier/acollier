@@ -6,7 +6,7 @@ module.exports = {
   telemetry: false,
   modern: 'client',
   head: {
-    title: pkg.name,
+    titleTemplate: s => s ? `${s} | Alex Collier` : 'Alex Collier',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
