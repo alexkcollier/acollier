@@ -10,7 +10,7 @@
       </div>
 
       <a
-        class="email-cta"
+        class="link link--large link--arrow email-cta"
         href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
         target="_blank"
         rel="noopener nofollow"
@@ -30,6 +30,7 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   align-items: center;
   display: flex;
   height: 100vh;
+  margin: -1rem 0;
 
   // using pseudo element so filter only affects image
   &::before {
@@ -86,61 +87,12 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 .email-cta {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
-  color: var(--base-font-color);
-  font-size: 1.5em;
-  position: relative;
-  text-decoration: none;
   text-shadow: $text-contrast-shadow;
-
-  // line
-  &::before {
-    border: 0.5px solid var(--base-font-color);
-    bottom: -0.35em;
-    content: '';
-    height: 0;
-    position: absolute;
-    transition: all 100ms ease-in;
-    width: 1em;
-
-    @media (max-aspect-ratio: 11/10) {
-      display: none;
-    }
-  }
 
   // arrow
   &::after {
-    border: 1px solid var(--base-font-color);
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    content: '';
-    height: 0.25em;
-    margin-left: 0.25em;
-    opacity: 0;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%) rotate(45deg);
-    transition: all 100ms ease-in;
-    width: 0.25em;
-
     @media (max-aspect-ratio: 11/10) {
-      opacity: 1;
-    }
-  }
-
-  &:hover::after {
-    margin-left: 0.5em;
-    opacity: 1;
-  }
-
-  &:active {
-    &::before {
-      bottom: -1em;
-      opacity: 0;
-    }
-
-    &::after {
-      opacity: 0;
-      transform: translateX(0.5em) translateY(-50%) rotate(45deg);
+      display: none;
     }
   }
 }

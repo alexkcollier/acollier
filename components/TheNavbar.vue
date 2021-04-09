@@ -38,6 +38,7 @@ export default {
 <style lang="scss">
 .navbar {
   left: 0;
+  margin-bottom: -57px;
   position: fixed;
   right: 0;
   top: 0;

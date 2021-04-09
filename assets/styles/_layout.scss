@@ -4,11 +4,15 @@
   width: 100%;
 }
 
+// TODO: implement this better
+.top-offset {
+  margin-top: 9rem;
+}
+
 // TODO?: implement a grid system?
 .two-column {
   display: flex;
   justify-content: space-between;
-  margin-top: 9rem;
 
   &__wide-col {
     flex: 1 0 auto;
