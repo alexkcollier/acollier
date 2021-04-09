@@ -49,14 +49,16 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
     }
   }
 
+  //TODO: make this query more sane
   @media (max-aspect-ratio: 11/10) {
     text-align: center;
 
     &::before {
       align-content: center;
+      //TODO: load separate image on mobile
       // when the text is over my face, I need to increase contrast significantly
       background: linear-gradient(rgba(black, 0.3), rgba(black, 0.3)),
-        black url('~assets/images/acollier.jpg') right center / cover no-repeat;
+        black url('~assets/images/acollier.jpg') 90% center / cover no-repeat;
     }
   }
 }
