@@ -71,8 +71,6 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   line-height: 125%;
   margin-bottom: 1rem;
   text-shadow: $text-contrast-shadow;
-  // fake bold; FF and Edge support the `-webkit` prefix; there is no unprefixed support
-  -webkit-text-stroke: 2px var(--base-font-color);
 }
 
 .tag {
