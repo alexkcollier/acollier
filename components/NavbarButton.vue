@@ -1,10 +1,11 @@
 <template>
-  <a
-    :href="href"
+  <NuxtLink
+    :to="href"
+    exact
     class="navbar-button"
   >
     {{ text || $props.text }}
-  </a>
+  </NuxtLink>
 </template>
 
 <script>
@@ -35,7 +36,11 @@ export default {
 
   &:hover {
     // TODO: Extract variable, refine
-    background-color: rgba(10, 10, 10, 0.3);
+    background-color: rgba(44, 44, 44, 0.45);
+  }
+
+  &.nuxt-link-exact-active {
+    font-weight: 700;
   }
 }
 </style>
