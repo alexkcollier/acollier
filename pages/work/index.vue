@@ -6,11 +6,11 @@
 
     <div class="post-grid">
       <PostItem
-        v-for="i in 5"
-        :key="i"
-        :title="`Portfolio item ${i}`"
-        :description="`Description for item ${i}`"
-        href="/work/"
+        v-for="post in content"
+        :key="post.path"
+        :title="post.title"
+        :description="post.description"
+        :href="post.path"
       />
     </div>
   </main>
@@ -22,6 +22,23 @@ import PostItem from '~/components/PostItem.vue';
 export default {
   components: {
     PostItem,
+  },
+
+  async asyncData ({ $content, route }) {
+    const content = await $content(route.name)
+      .only([
+        'path',
+        'title',
+        'description',
+      ])
+      .fetch()
+      // swallow errors
+      // TODO: Design error/empty state in case this happens for some reason
+      .catch(() => { });
+
+    return {
+      content,
+    };
   },
 };
 </script>

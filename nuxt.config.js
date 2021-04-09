@@ -47,4 +47,7 @@ module.exports = {
       }
     },
   },
+  modules: [
+    '@nuxt/content',
+  ],
 };

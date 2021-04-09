@@ -1,7 +1,7 @@
 <template>
   <article class="post-item">
     <NuxtLink
-      to="/work/"
+      :to="href"
       class="post-item__link"
     >
       <h1 class="heading-2 post-item__heading ">
@@ -16,7 +16,7 @@
       {{ formattedDescription }}
 
       <NuxtLink
-        to="/work/"
+        :to="href"
         class="link link--arrow"
       >
         Read more
