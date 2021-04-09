@@ -68,6 +68,12 @@ export default {
       skills,
     };
   },
+
+  head () {
+    return {
+      title: 'About',
+    };
+  },
 };
 </script>
 

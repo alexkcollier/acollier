@@ -21,16 +21,6 @@
   </main>
 </template>
 
-<script>
-export default {
-  head () {
-    return {
-      title: 'ALEX COLLIER',
-    };
-  },
-};
-</script>
-
 <style lang="scss">
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
