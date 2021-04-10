@@ -35,16 +35,18 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/mixins';
+
 .tool-list {
   // manual gap since `gap` isn't supported for flexbox on Safari
   $space: 0.5rem;
 
+  @include mixins.unstyled-list;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  list-style: none;
   margin: -1 * $space;
-  padding-left: 0;
 
   &__item {
     flex-basis: 1 0 25%;
