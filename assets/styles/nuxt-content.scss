@@ -1,6 +1,18 @@
 @use 'fonts';
 
 .nuxt-content {
+  a {
+    color: var(--base-font-color);
+
+    &:visited {
+      color: #aaa;
+    }
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+
   img {
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
