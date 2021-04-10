@@ -11,6 +11,7 @@
 
 // TODO?: implement a grid system?
 .two-column {
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
 
@@ -37,6 +38,9 @@
 }
 
 .sidebar {
+  position: sticky;
+  top: 0.5rem;
+
   &__section {
     margin-top: 4rem;
 
