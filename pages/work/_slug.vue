@@ -1,11 +1,34 @@
 <template>
-  <main class="container top-offset">
-    <NuxtContent :document="content" />
-  </main>
+  <div class="container top-offset">
+    <div class="two-column">
+      <main class="two-column__wide-col">
+        <NuxtContent :document="content" />
+      </main>
+
+      <aside class="two-column__narrow-col sidebar">
+        <section
+          v-if="content.tools && content.tools.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">
+            Built with
+          </h2>
+
+          <ToolsList :tools="content.tools" />
+        </section>
+      </aside>
+    </div>
+  </div>
 </template>
 
 <script>
+import ToolsList from '~/components/ToolsList.vue';
+
 export default {
+  components: {
+    ToolsList,
+  },
+
   async asyncData ({ $content, route }) {
     const content = await $content(route.path).fetch();
 

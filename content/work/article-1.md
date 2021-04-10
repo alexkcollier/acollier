@@ -5,6 +5,7 @@ tools:
   - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }
   - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }
   - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }
+  - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }
 ---
 
 # Article 1
