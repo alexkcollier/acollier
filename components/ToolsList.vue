@@ -9,6 +9,7 @@
         :href="href"
         target="_blank"
         rel="nofollow"
+        class="tool-list__link"
       >
         <img
           :src="img"
@@ -16,6 +17,9 @@
           :title="name"
           class="tool-list__image"
         >
+        <span class="tool-list__link-text">
+          {{ name }}
+        </span>
       </a>
     </li>
   </ul>
@@ -39,23 +43,39 @@ export default {
 
 .tool-list {
   // manual gap since `gap` isn't supported for flexbox on Safari
-  $space: 0.5rem;
+  $space: 1rem;
 
   @include mixins.unstyled-list;
 
+  align-items: flex-end;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   margin: -1 * $space;
 
   &__item {
-    flex-basis: 1 0 25%;
+    flex-basis: 1 0 auto;
     margin: $space;
     text-align: center;
   }
 
   &__image {
-    width: 4rem;
+    display: block;
+    margin: 0 auto;
+    max-height: 3rem;
+    width: 3rem;
+  }
+
+  &__link {
+    color: var(--base-font-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+  }
+
+  &__link-text {
+    margin-top: 0.5rem;
   }
 }
 </style>
