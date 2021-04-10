@@ -27,7 +27,7 @@ export default {
 
   props: {
     tools: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
