@@ -4,7 +4,7 @@ module.exports = {
   ssr: true,
   target: 'static',
   telemetry: false,
-  modern: 'client',
+  modern: process.env.NODE_ENV === 'development' ? false : 'client',
   head: {
     titleTemplate: chunk => chunk ? `${chunk} | Alex Collier` : 'Alex Collier',
     meta: [
