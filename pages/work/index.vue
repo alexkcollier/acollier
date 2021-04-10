@@ -40,6 +40,12 @@ export default {
       content,
     };
   },
+
+  head () {
+    return {
+      title: 'Work',
+    };
+  },
 };
 </script>
 

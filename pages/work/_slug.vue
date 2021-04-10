@@ -30,3 +30,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@use '~/assets/styles/nuxt-content';
+</style>
