@@ -7,18 +7,33 @@
 
       <aside class="two-column__narrow-col sidebar">
         <section
-          v-if="content.tools && content.tools.length"
-          class="sidebar__section"
+          v-if="content.links && content.links.length"
+          class="sidebar__section work-links"
         >
           <h2 class="heading-1">
-            Built with
+            Links
           </h2>
 
-          <ToolsList :tools="content.tools" />
+          <ul class="work-links__list">
+            <li
+              v-for="({ path, title }) in content.links"
+              :key="path"
+              class="work-links__list-item"
+            >
+              <a
+                class="link link--arrow"
+                :href="path"
+                target="_blank"
+                rel="noopen"
+              >
+                {{ title }}
+              </a>
+            </li>
+          </ul>
         </section>
 
         <section
-          v-if="links && links.length"
+          v-if="projectLinks && projectLinks.length"
           class="sidebar__section work-links"
         >
           <h2 class="heading-1">
@@ -27,7 +42,7 @@
 
           <ul class="work-links__list">
             <li
-              v-for="({ path, title }) in links"
+              v-for="({ path, title }) in projectLinks"
               :key="path"
               class="work-links__list-item"
             >
@@ -39,6 +54,17 @@
               </NuxtLink>
             </li>
           </ul>
+        </section>
+
+        <section
+          v-if="content.tools && content.tools.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">
+            Built with
+          </h2>
+
+          <ToolsList :tools="content.tools" />
         </section>
       </aside>
     </div>
@@ -55,7 +81,7 @@ export default {
 
   async asyncData ({ $content, route }) {
     const content = await $content(route.path).fetch();
-    const links = await $content('work')
+    const projectLinks = await $content('work')
       .only([
         'path',
         'title',
@@ -68,7 +94,7 @@ export default {
 
     return {
       content,
-      links,
+      projectLinks,
     };
   },
 
@@ -94,9 +120,6 @@ export default {
 @use '~/assets/styles/utils/mixins';
 
 .work-links {
-  position: sticky;
-  top: 0.5rem;
-
   &__list {
     @include mixins.unstyled-list;
   }
