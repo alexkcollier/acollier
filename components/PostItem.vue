@@ -9,7 +9,12 @@
       </h1>
 
       <!-- TODO: replace with `<img />`, preferably lazy load -->
-      <div class="post-item__preview-image" />
+      <img
+        class="post-item__preview-image"
+        :src="featureImage"
+        :alt="formattedDescription"
+        :title="title"
+      >
     </NuxtLink>
 
     <p class="post-item__description">
@@ -39,6 +44,10 @@ export default {
       default: '',
     },
     href: {
+      type: String,
+      required: true,
+    },
+    featureImage: {
       type: String,
       required: true,
     },
@@ -77,7 +86,9 @@ export default {
   &__preview-image {
     background-color: #777;
     border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
     height: 11rem;
+    object-fit: cover;
     transition: $transition;
     width: 100%;
   }

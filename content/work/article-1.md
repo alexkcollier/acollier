@@ -1,6 +1,7 @@
 ---
 title: Article 1
 description: The first article
+featureImage: '/images/article-1/acollier.jpg'
 tools:
   - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }
   - { img: '/images/article-1/acollier.jpg', href: 'https://acollier.ca', name: 'acollier' }

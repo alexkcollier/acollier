@@ -11,6 +11,7 @@
         :title="post.title"
         :description="post.description"
         :href="post.path"
+        :feature-image="post.featureImage"
       />
     </div>
   </main>
@@ -30,6 +31,7 @@ export default {
         'path',
         'title',
         'description',
+        'featureImage',
       ])
       .fetch()
       // swallow errors
