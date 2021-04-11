@@ -16,13 +16,13 @@
 
           <ul class="work-links__list">
             <li
-              v-for="({ path, title }) in content.links"
-              :key="path"
+              v-for="({ href, title }) in content.links"
+              :key="href"
               class="work-links__list-item"
             >
               <a
                 class="link link--arrow"
-                :href="path"
+                :href="href"
                 target="_blank"
                 rel="noopen"
               >
