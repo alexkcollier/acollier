@@ -1,5 +1,3 @@
-@use 'sass:color';
-
 /**
  * SCSS Variables
  */
@@ -75,4 +73,10 @@ samp {
       padding: 0.25rem 0.5rem;
     }
   }
+}
+
+/// bold tags
+b,
+strong {
+  font-weight: 700;
 }
