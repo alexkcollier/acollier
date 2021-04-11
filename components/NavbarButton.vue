@@ -29,7 +29,7 @@ export default {
 .navbar-button {
   color: var(--base-font-color);
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 100%;
   padding: 1rem;
   text-decoration: none;
