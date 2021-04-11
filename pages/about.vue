@@ -111,12 +111,9 @@ export default {
 </script>
 
 <style lang="scss">
+//TODO: fix this naming
 :root {
   --work-spacing: 3rem;
-
-  @media screen and (max-width: 760px) {
-    --work-spacing: 1rem;
-  }
 }
 
 .about-intro {
@@ -146,12 +143,14 @@ export default {
 }
 
 .work-experience {
-  .heading-1 {
-    margin-left: calc((1/7 * 100%) + 1rem);
-  }
-
   &__list {
     margin-top: var(--work-spacing);
+  }
+
+  @media screen and (min-width: 761px) {
+    .heading-1 {
+      margin-left: calc((1 / 7 * 100%) + 1rem);
+    }
   }
 }
 

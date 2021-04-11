@@ -37,6 +37,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/mixins';
+
 .skill-list {
   margin-bottom: 1rem;
 
@@ -46,9 +48,7 @@ export default {
   }
 
   &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include mixins.unstyled-list;
   }
 }
 </style>

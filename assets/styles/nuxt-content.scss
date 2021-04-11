@@ -1,0 +1,42 @@
+@use 'fonts';
+
+.nuxt-content {
+  a {
+    color: var(--base-font-color);
+
+    &:visited {
+      color: #aaa;
+    }
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+
+  img,
+  video {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
+    display: block;
+    height: auto;
+    margin: 2rem auto;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .feature-image {
+    max-width: 100%;
+  }
+}
+
+.nuxt-content-editor {
+  background-color: #222;
+  border-radius: 0.5rem;
+  color: #ccc;
+  font-family: var(--font-family-monospaced);
+  padding: 1rem !important;
+
+  &:focus {
+    outline: none;
+  }
+}
