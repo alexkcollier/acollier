@@ -110,6 +110,12 @@ export default {
         { hid: 'twitter:title', name: 'twitter:title', content: this.content.title },
         { hid: 'twitter:description', name: 'twitter:description', content: this.content.description },
       ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;700&display=swap',
+        },
+      ],
     };
   },
 };

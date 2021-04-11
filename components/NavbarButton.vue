@@ -41,6 +41,7 @@ export default {
 
   &.nuxt-link-exact-active {
     font-weight: 700;
+    letter-spacing: var(--bold-letter-spacing);
   }
 }
 </style>
