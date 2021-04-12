@@ -42,7 +42,6 @@ export default {
   background-color: rgba(44, 44, 44, 0.1);
   border-bottom: 1px solid #555;
   left: 0;
-  margin-bottom: -57px;
   position: fixed;
   right: 0;
   top: 0;
