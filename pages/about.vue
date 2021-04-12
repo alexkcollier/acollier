@@ -68,7 +68,7 @@
             Education
           </h2>
 
-          <div class="education">
+          <div>
             <h3 class="heading-2 title">
               Carleton University
             </h3>
@@ -113,11 +113,6 @@ export default {
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;
 
-//TODO: fix this naming
-:root {
-  --work-spacing: 3rem;
-}
-
 .about-intro {
   &__links {
     align-items: flex-start;
@@ -145,14 +140,10 @@ export default {
 }
 
 .about-content {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 .work-experience {
-  &__list {
-    margin-top: var(--work-spacing);
-  }
-
   @include bp.above('md') {
     .heading-1 {
       margin-left: calc((1 / 7 * 100%) + 1rem);
@@ -160,19 +151,14 @@ export default {
   }
 }
 
-.education {
-  margin-top: var(--work-spacing);
-}
-
 .skill-list-group {
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--work-spacing);
 
   &__item {
     flex: 1 0 50%;
-    min-width: 7.5rem;
-    padding-right: 1rem;
+    min-width: 7rem;
+    padding-right: 0.5rem;
 
     @include bp.below('md') {
       flex-basis: 25%;

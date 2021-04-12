@@ -1,13 +1,22 @@
 @use 'fonts';
 
 .nuxt-content {
+  // `--heading-*` variables are from `./_typography.scss`
+  h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: var(--heading-1-bottom-margin);
+  }
+
+  h2 {
+    font-size: var(--heading-2-font-size);
+  }
+
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    letter-spacing: var(--letter-spacing-bold);
+  h2 {
+    &:not(:first-child) {
+      margin-top: var(--heading-top-margin);
+    }
   }
 
   a {
