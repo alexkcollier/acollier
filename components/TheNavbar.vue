@@ -36,6 +36,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .navbar {
   backdrop-filter: blur(16px);
   // TODO: Extract variable
@@ -47,7 +49,7 @@ export default {
   top: 0;
   z-index: 1;
 
-  @media screen and (min-width: 481px) {
+  @include bp.above('sm') {
     padding: 0 1rem;
   }
 }

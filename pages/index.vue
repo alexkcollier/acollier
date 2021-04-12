@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
 $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
@@ -50,14 +52,13 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
     top: 0;
     z-index: -1;
 
-    @media screen and (min-width: 769px) {
+    @include bp.above('md') {
       // a naive attempt to save low power devices from an animated filter
       animation: deblur $base-time * 1.5 $easing;
     }
   }
 
-  //TODO: make this query more sane
-  @media (max-aspect-ratio: 11/10) {
+  @include bp.below('md') {
     text-align: center;
 
     &::before {
@@ -93,13 +94,6 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
   text-shadow: $text-contrast-shadow;
-
-  // arrow
-  &::after {
-    @media (max-aspect-ratio: 11/10) {
-      display: none;
-    }
-  }
 }
 
 @keyframes deblur {

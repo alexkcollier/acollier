@@ -52,6 +52,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .post-grid {
   column-gap: 1rem;
   display: grid;
@@ -61,11 +63,11 @@ export default {
   margin-top: var(--work-spacing);
   row-gap: var(--work-spacing);
 
-  @media screen and (max-width: 760px) {
+  @include bp.below('md') {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media screen and (max-width: 480px) {
+  @include bp.below('sm') {
     grid-template-columns: 1fr;
   }
 }

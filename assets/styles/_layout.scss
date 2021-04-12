@@ -1,6 +1,8 @@
+@use 'utils/breakpoints' as bp;
+
 .container {
   margin: 0 auto;
-  max-width: 944px;
+  max-width: bp.$lg;
   width: 100%;
 }
 
@@ -21,7 +23,7 @@
     max-width: 4/12 * 100%;
   }
 
-  @media screen and (max-width: 760px) {
+  @include bp.below('md') {
     display: block;
 
     &__wide-col,
@@ -39,7 +41,7 @@
   &__section {
     margin-top: 4rem;
 
-    @media screen and (min-width: 761px) {
+    @include bp.above('md') {
       &:first-child {
         margin-top: 0;
       }

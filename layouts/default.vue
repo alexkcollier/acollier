@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .default-layout {
   &__content {
     --top-padding: 2rem;
@@ -27,7 +29,7 @@ export default {
     padding: var(--top-padding) var(--side-padding);
     padding-top: 8rem;
 
-    @media screen and (max-width: 480px) {
+    @include bp.below('sm') {
       --side-padding: 1rem;
     }
   }

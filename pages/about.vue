@@ -111,6 +111,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 //TODO: fix this naming
 :root {
   --work-spacing: 3rem;
@@ -133,11 +135,11 @@ export default {
     }
   }
 
-  @media screen and (min-width: 761px) {
+  @include bp.above('md') {
     max-width: 2/3 * 100%;
   }
 
-  @media screen and (min-width: 481px) {
+  @include bp.above('sm') {
     font-size: 1.5rem;
   }
 }
@@ -151,7 +153,7 @@ export default {
     margin-top: var(--work-spacing);
   }
 
-  @media screen and (min-width: 761px) {
+  @include bp.above('md') {
     .heading-1 {
       margin-left: calc((1 / 7 * 100%) + 1rem);
     }
@@ -172,7 +174,7 @@ export default {
     min-width: 7.5rem;
     padding-right: 1rem;
 
-    @media screen and (max-width: 760px) {
+    @include bp.below('md') {
       flex-basis: 25%;
     }
   }
