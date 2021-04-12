@@ -77,7 +77,6 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 .tag {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.25 $easing;
-  /* font-family: var(--font-family-serif); */
   font-size: 2.5rem;
   line-height: 125%;
   margin-bottom: 6rem;
