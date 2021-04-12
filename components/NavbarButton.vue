@@ -36,7 +36,7 @@ export default {
 
   &:hover {
     // TODO: Extract variable, refine
-    background-color: rgba(44, 44, 44, 0.45);
+    background-color: rgba(34, 34, 34, 0.45);
   }
 
   &.nuxt-link-exact-active {

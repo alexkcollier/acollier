@@ -8,7 +8,7 @@
         {{ title }}
       </h1>
 
-      <!-- TODO: replace with `<img />`, preferably lazy load -->
+      <!-- TODO: lazy load -->
       <img
         class="post-item__preview-image"
         :src="featureImage"
@@ -84,7 +84,7 @@ export default {
   }
 
   &__preview-image {
-    background-color: #777;
+    background-color: var(--color-grey-500);
     border-radius: 0.5rem;
     height: 11rem;
     object-fit: cover;

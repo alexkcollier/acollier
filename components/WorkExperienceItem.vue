@@ -78,6 +78,7 @@ export default {
 
   &__date {
     align-self: end;
+    color: var(--caption-font-color);
     grid-area: date;
     text-align: right;
 

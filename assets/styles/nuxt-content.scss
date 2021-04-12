@@ -14,11 +14,11 @@
     color: var(--base-font-color);
 
     &:visited {
-      color: #999;
+      color: var(--caption-font-color);
     }
 
     &:hover {
-      color: #bbb;
+      color: var(--color-grey-300);
     }
   }
 
@@ -38,9 +38,9 @@
 }
 
 .nuxt-content-editor {
-  background-color: #222;
+  background-color: var(--base-background-color);
   border-radius: 0.5rem;
-  color: #ccc;
+  color: var(--color-grey-200);
   font-family: var(--font-family-monospaced);
   padding: 1rem !important;
 

@@ -41,7 +41,7 @@ export default {
 .navbar {
   backdrop-filter: blur(16px);
   // TODO: Extract variable
-  background-color: rgba(44, 44, 44, 0.1);
+  background-color: rgba(34, 34, 34, 0.1);
   border-bottom: 1px solid #555;
   left: 0;
   position: fixed;

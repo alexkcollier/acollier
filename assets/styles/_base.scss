@@ -9,8 +9,14 @@
   --page-side-padding: 2rem;
 
   /// Colors
-  --base-font-color: #ddd;
+  --color-grey-100: #ddd;
+  --color-grey-200: #ccc;
+  --color-grey-300: #bbb;
+  --color-grey-400: #999;
+  --color-grey-500: #777;
   --base-background-color: #222;
+  --base-font-color: var(--color-grey-100);
+  --caption-font-color: var(--color-grey-400);
 
   /// Fonts
   --font-family-sans-serif: 'Made Evolve Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
