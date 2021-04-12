@@ -23,15 +23,8 @@ export default {
 
 .default-layout {
   &__content {
-    --top-padding: 2rem;
-    --side-padding: 2rem;
-
-    padding: var(--top-padding) var(--side-padding);
+    padding: var(--page-top-padding) var(--page-side-padding);
     padding-top: 8rem;
-
-    @include bp.below('sm') {
-      --side-padding: 1rem;
-    }
   }
 }
 </style>

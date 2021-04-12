@@ -32,18 +32,25 @@ export default {
 
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
-$text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
 .home-hero {
+  --gradient-color: transparent;
+  --bg-image: url('~assets/images/acollier.jpg');
+  --bg-x: right;
+
   align-items: center;
   display: flex;
   height: 100vh;
-  padding: 2rem;
+  padding: var(--page-top-padding) var(--page-side-padding);
+  text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
   // using pseudo element so filter only affects image
   &::before {
-    background: linear-gradient(rgba(black, 0.05), rgba(black, 0.05)),
-      black url('~assets/images/acollier.jpg') right center / cover no-repeat;
+    //TODO: load separate image on mobile
+    // when the text is over my face, I need to increase contrast significantly
+
+    background: linear-gradient(var(--gradient-color), var(--gradient-color)),
+      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover no-repeat;
     bottom: 0;
     content: '';
     left: 0;
@@ -58,42 +65,31 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
     }
   }
 
-  @include bp.below('md') {
-    text-align: center;
-
-    &::before {
-      align-content: center;
-      //TODO: load separate image on mobile
-      // when the text is over my face, I need to increase contrast significantly
-      background: linear-gradient(rgba(black, 0.5), rgba(black, 0.5)),
-        black url('~assets/images/acollier.jpg') 90% center / cover no-repeat;
-    }
+  @include bp.below('lg') {
+    --gradient-color: rgba(0, 0, 0, 0.5);
+    --bg-x: 90%;
   }
 }
 
 .name {
   animation: fadein $base-time $easing;
-  font-family: var(--font-family-serif);
   font-size: 4rem;
   font-weight: 700;
   line-height: 125%;
   margin-bottom: 1rem;
-  text-shadow: $text-contrast-shadow;
 }
 
 .tag {
   // Multiplying the animation time staggers the animations nicely
-  animation: fadein-delay $base-time * 1.25 $easing;
   font-size: 2.5rem;
   line-height: 125%;
   margin-bottom: 6rem;
-  text-shadow: $text-contrast-shadow;
 }
 
-.email-cta {
+.email-cta,
+.tag {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
-  text-shadow: $text-contrast-shadow;
 }
 
 @keyframes deblur {

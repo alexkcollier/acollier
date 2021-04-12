@@ -1,7 +1,13 @@
+@use 'utils/breakpoints' as bp;
+
 /**
  * CSS custom properties
  */
 :root {
+  /// Page
+  --page-top-padding: 2rem;
+  --page-side-padding: 2rem;
+
   /// Colors
   --base-font-color: #ddd;
   --base-background-color: #222;
@@ -13,6 +19,10 @@
     monospace;
   --letter-spacing-base: 0.02em;
   --letter-spacing-bold: 0.03em;
+
+  @include bp.below('sm') {
+    --page-side-padding: 1rem;
+  }
 }
 
 /**
@@ -30,7 +40,6 @@ html {
 
 ::selection {
   background: rgba(255, 206, 206, 0.6);
-  text-shadow: 1px 2px 20px rgba(black, 0.25), 0 0 1px rgba(black, 0.25);
 }
 
 /// Headings
