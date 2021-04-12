@@ -16,7 +16,7 @@ tools:
 
 # DMTool
 
-<img src="/images/dmtool/dmtool-window.png" class="feature-image" title="DMTool" alt="DMTool">
+<img src="/images/dmtool/dmtool-window.png" title="DMTool" alt="DMTool">
 
 Back when I was running a weekly D&D game, I got tired of flipping through all the various books to
 find whatever creature, spell, or item I needed to reference. Plus, when you have to look up

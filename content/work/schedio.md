@@ -18,7 +18,7 @@ tools:
 
 # Schedio
 
-<img src="/images/schedio/schedio-feature.png" class="feature-image" alt="schedio" title="schedio">
+<img src="/images/schedio/schedio-feature.png" alt="schedio" title="schedio">
 
 Spartan's always had a small team, but that doesn't mean formalizing design isn't beneficial. T
 increase the efficiency and consistency of our designs at Spartan, I built a Vue component library

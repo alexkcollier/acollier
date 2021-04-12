@@ -15,7 +15,7 @@ links:
 
 # acollier.ca
 
-<img src="/images/acollier-ca/acollier-feature.png" class="feature-image" title="acollier.ca" alt="acollier.ca">
+<img src="/images/acollier-ca/acollier-feature.png" title="acollier.ca" alt="acollier.ca">
 
 I built my portfolio from the ground up to showcase my skills in design, and development. When I
 started working on it, I determined the site needed to:
