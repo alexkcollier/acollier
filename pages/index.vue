@@ -21,6 +21,12 @@
   </main>
 </template>
 
+<script>
+export default {
+  layout: 'no-page-spacing',
+};
+</script>
+
 <style lang="scss">
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
@@ -30,7 +36,7 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   align-items: center;
   display: flex;
   height: 100vh;
-  margin: -1rem 0;
+  padding: 2rem;
 
   // using pseudo element so filter only affects image
   &::before {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container top-offset">
+  <div class="container">
     <div class="two-column">
       <main class="two-column__wide-col">
         <NuxtContent :document="content" />

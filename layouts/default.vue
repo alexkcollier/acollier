@@ -1,7 +1,10 @@
 <template>
   <div class="default-layout">
     <TheNavbar />
-    <Nuxt />
+
+    <div class="default-layout__content">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,16 @@ export default {
 
 <style lang="scss">
 .default-layout {
-  height: 100%;
+  &__content {
+    --top-padding: 2rem;
+    --side-padding: 2rem;
+
+    padding: var(--top-padding) var(--side-padding);
+    padding-top: 8rem;
+
+    @media screen and (max-width: 480px) {
+      --side-padding: 1rem;
+    }
+  }
 }
 </style>

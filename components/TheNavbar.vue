@@ -46,5 +46,9 @@ export default {
   right: 0;
   top: 0;
   z-index: 1;
+
+  @media screen and (min-width: 481px) {
+    padding: 0 1rem;
+  }
 }
 </style>

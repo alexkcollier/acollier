@@ -1,5 +1,5 @@
 <template>
-  <main class="container top-offset">
+  <main class="container">
     <h1 class="heading-1">
       Work
     </h1>

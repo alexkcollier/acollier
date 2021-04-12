@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <section class="about-intro top-offset">
+    <section class="about-intro">
       <h1 class="heading-1">
         About
       </h1>
@@ -118,14 +118,18 @@ export default {
 
 .about-intro {
   &__links {
+    align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
     a {
       flex: 1 0 50%;
-      margin-bottom: 2em;
       min-width: 10rem;
+
+      &:not(:last-child) {
+        margin-bottom: 1em;
+      }
     }
   }
 
