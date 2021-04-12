@@ -68,6 +68,8 @@ export default {
   $parent: &;
   $transition: all 100ms ease-in;
 
+  margin-bottom: 3rem;
+
   &__link {
     color: var(--base-font-color);
     display: block;
