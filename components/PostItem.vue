@@ -86,7 +86,6 @@ export default {
   &__preview-image {
     background-color: #777;
     border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
     height: 11rem;
     object-fit: cover;
     transition: $transition;
