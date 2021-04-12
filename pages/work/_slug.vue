@@ -7,6 +7,16 @@
 
       <aside class="two-column__narrow-col sidebar">
         <section
+          v-if="content.tools && content.tools.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">
+            Built with
+          </h2>
+
+          <ToolsList :tools="content.tools" />
+        </section>
+        <section
           v-if="content.links && content.links.length"
           class="sidebar__section work-links"
         >
@@ -54,17 +64,6 @@
               </NuxtLink>
             </li>
           </ul>
-        </section>
-
-        <section
-          v-if="content.tools && content.tools.length"
-          class="sidebar__section"
-        >
-          <h2 class="heading-1">
-            Built with
-          </h2>
-
-          <ToolsList :tools="content.tools" />
         </section>
       </aside>
     </div>
