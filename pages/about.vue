@@ -18,8 +18,8 @@
           rel="noopener nofollow"
         >
           Get in touch
-
         </a>
+
         <a
           class="link link--arrow"
           href="/docs/alex-collier-resume.pdf"
@@ -49,22 +49,6 @@
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
-            Education
-          </h2>
-
-          <div class="education">
-            <h3 class="heading-2 title">
-              Carleton University
-            </h3>
-
-            <p class="subtitle">
-              B.Comm., International Business &amp; Marketing
-            </p>
-          </div>
-        </section>
-
-        <section class="sidebar__section">
-          <h2 class="heading-1">
             Skills
           </h2>
 
@@ -76,6 +60,22 @@
               :skill-list="list"
               class="skill-list-group__item"
             />
+          </div>
+        </section>
+
+        <section class="sidebar__section">
+          <h2 class="heading-1">
+            Education
+          </h2>
+
+          <div class="education">
+            <h3 class="heading-2 title">
+              Carleton University
+            </h3>
+
+            <p class="subtitle">
+              B.Comm., International Business &amp; Marketing
+            </p>
           </div>
         </section>
       </aside>
