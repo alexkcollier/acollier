@@ -24,6 +24,7 @@
 <script>
 export default {
   layout: 'no-page-spacing',
+  transition: 'home',
 };
 </script>
 

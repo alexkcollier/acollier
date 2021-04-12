@@ -2,7 +2,7 @@
   <div class="default-layout">
     <TheNavbar />
 
-    <div class="default-layout__content">
+    <div class="content">
       <Nuxt />
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .default-layout {
-  &__content {
+  .content {
     margin-top: 4rem;
     padding: var(--page-top-padding) var(--page-side-padding);
     padding-top: 4rem;

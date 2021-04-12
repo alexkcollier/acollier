@@ -2,7 +2,9 @@
   <div>
     <TheNavbar />
 
-    <Nuxt />
+    <div class="content">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
