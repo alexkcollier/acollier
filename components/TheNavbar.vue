@@ -36,20 +36,21 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .navbar {
+  backdrop-filter: blur(16px);
+  // TODO: Extract variable
+  background-color: rgba(34, 34, 34, 0.1);
+  border-bottom: 1px solid #555;
   left: 0;
-  margin-bottom: -57px;
   position: fixed;
   right: 0;
   top: 0;
   z-index: 1;
 
-  &__button-wrapper {
-    backdrop-filter: blur(16px);
-    // TODO: Extract variable
-    background-color: rgba(44, 44, 44, 0.1);
-    border-bottom: 1px solid var(--base-font-color);
-    display: inline-block;
+  @include bp.above('sm') {
+    padding: 0 1rem;
   }
 }
 </style>

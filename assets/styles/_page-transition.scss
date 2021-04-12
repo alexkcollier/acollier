@@ -1,0 +1,30 @@
+.page {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 250ms;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+}
+
+.layout {
+  &-enter-active,
+  &-leave-active {
+    //hack to transition layouts without without transitioning the navbar
+    .content {
+      transition: opacity 250ms;
+    }
+  }
+
+  &-enter,
+  &-leave {
+    opacity: 0.9999;
+
+    .content {
+      opacity: 0;
+    }
+  }
+}

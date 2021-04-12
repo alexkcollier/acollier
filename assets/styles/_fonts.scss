@@ -1,1 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&display=swap');
+@font-face {
+  font-family: 'Made Evolve Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/made_evolve_sans_light-webfont.woff2') format('woff2'),
+    url('/fonts/made_evolve_sans_light-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Made Evolve Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/made_evolve_sans_bold-webfont.woff2') format('woff2'),
+    url('/fonts/made_evolve_sans_bold-webfont.woff') format('woff');
+}

@@ -62,6 +62,8 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .work-experience-item {
   display: grid;
   gap: 1rem;
@@ -76,6 +78,7 @@ export default {
 
   &__date {
     align-self: end;
+    color: var(--caption-font-color);
     grid-area: date;
     text-align: right;
 
@@ -85,7 +88,7 @@ export default {
       line-height: 2rem;
     }
 
-    @media screen and (min-width: 481px) {
+    @include bp.above('sm') {
       &-separator {
         display: none;
       }
@@ -94,6 +97,10 @@ export default {
 
   &__heading {
     grid-area: heading;
+
+    .subtitle {
+      color: var(--caption-font-color);
+    }
   }
 
   &__description {
@@ -105,7 +112,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @include bp.below('sm') {
     column-gap: 0;
     grid-template:
       'heading date'

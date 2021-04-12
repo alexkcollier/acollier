@@ -1,7 +1,10 @@
 <template>
   <div class="default-layout">
     <TheNavbar />
-    <Nuxt />
+
+    <div class="content">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -16,7 +19,13 @@ export default {
 </script>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .default-layout {
-  height: 100%;
+  .content {
+    margin-top: 4rem;
+    padding: var(--page-top-padding) var(--page-side-padding);
+    padding-top: 4rem;
+  }
 }
 </style>

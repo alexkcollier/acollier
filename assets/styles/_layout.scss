@@ -1,12 +1,9 @@
+@use 'utils/breakpoints' as bp;
+
 .container {
   margin: 0 auto;
-  max-width: 944px;
+  max-width: bp.$lg;
   width: 100%;
-}
-
-// TODO: implement this better
-.top-offset {
-  margin-top: 9rem;
 }
 
 // TODO?: implement a grid system?
@@ -26,7 +23,7 @@
     max-width: 4/12 * 100%;
   }
 
-  @media screen and (max-width: 760px) {
+  @include bp.below('md') {
     display: block;
 
     &__wide-col,
@@ -39,12 +36,12 @@
 
 .sidebar {
   position: sticky;
-  top: 0.5rem;
+  top: 4rem;
 
   &__section {
     margin-top: 4rem;
 
-    @media screen and (min-width: 761px) {
+    @include bp.above('md') {
       &:first-child {
         margin-top: 0;
       }

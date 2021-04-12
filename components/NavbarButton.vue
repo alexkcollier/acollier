@@ -29,18 +29,19 @@ export default {
 .navbar-button {
   color: var(--base-font-color);
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 100%;
   padding: 1rem;
   text-decoration: none;
 
   &:hover {
     // TODO: Extract variable, refine
-    background-color: rgba(44, 44, 44, 0.45);
+    background-color: rgba(34, 34, 34, 0.45);
   }
 
   &.nuxt-link-exact-active {
     font-weight: 700;
+    letter-spacing: var(--bold-letter-spacing);
   }
 }
 </style>

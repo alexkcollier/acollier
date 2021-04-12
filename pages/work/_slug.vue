@@ -1,11 +1,21 @@
 <template>
-  <div class="container top-offset">
+  <div class="container">
     <div class="two-column">
       <main class="two-column__wide-col">
         <NuxtContent :document="content" />
       </main>
 
       <aside class="two-column__narrow-col sidebar">
+        <section
+          v-if="content.tools && content.tools.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">
+            Built with
+          </h2>
+
+          <ToolsList :tools="content.tools" />
+        </section>
         <section
           v-if="content.links && content.links.length"
           class="sidebar__section work-links"
@@ -55,17 +65,6 @@
             </li>
           </ul>
         </section>
-
-        <section
-          v-if="content.tools && content.tools.length"
-          class="sidebar__section"
-        >
-          <h2 class="heading-1">
-            Built with
-          </h2>
-
-          <ToolsList :tools="content.tools" />
-        </section>
       </aside>
     </div>
   </div>
@@ -109,6 +108,12 @@ export default {
         // Twitter Card
         { hid: 'twitter:title', name: 'twitter:title', content: this.content.title },
         { hid: 'twitter:description', name: 'twitter:description', content: this.content.description },
+      ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;700&display=swap',
+        },
       ],
     };
   },

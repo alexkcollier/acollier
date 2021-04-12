@@ -21,21 +21,37 @@
   </main>
 </template>
 
+<script>
+export default {
+  layout: 'no-page-spacing',
+  transition: 'home',
+};
+</script>
+
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
-$text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
 .home-hero {
+  --gradient-color: transparent;
+  --bg-image: url('~assets/images/acollier.jpg');
+  --bg-x: right;
+
   align-items: center;
   display: flex;
   height: 100vh;
-  margin: -1rem 0;
+  padding: var(--page-top-padding) var(--page-side-padding);
+  text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
   // using pseudo element so filter only affects image
   &::before {
-    background: linear-gradient(rgba(black, 0.05), rgba(black, 0.05)),
-      black url('~assets/images/acollier.jpg') right center / cover no-repeat;
+    //TODO: load separate image on mobile
+    // when the text is over my face, I need to increase contrast significantly
+
+    background: linear-gradient(var(--gradient-color), var(--gradient-color)),
+      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover no-repeat;
     bottom: 0;
     content: '';
     left: 0;
@@ -44,23 +60,15 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
     top: 0;
     z-index: -1;
 
-    @media screen and (min-width: 769px) {
+    @include bp.above('md') {
       // a naive attempt to save low power devices from an animated filter
       animation: deblur $base-time * 1.5 $easing;
     }
   }
 
-  //TODO: make this query more sane
-  @media (max-aspect-ratio: 11/10) {
-    text-align: center;
-
-    &::before {
-      align-content: center;
-      //TODO: load separate image on mobile
-      // when the text is over my face, I need to increase contrast significantly
-      background: linear-gradient(rgba(black, 0.3), rgba(black, 0.3)),
-        black url('~assets/images/acollier.jpg') 90% center / cover no-repeat;
-    }
+  @include bp.below('lg') {
+    --gradient-color: rgba(0, 0, 0, 0.5);
+    --bg-x: 90%;
   }
 }
 
@@ -70,29 +78,19 @@ $text-contrast-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   font-weight: 700;
   line-height: 125%;
   margin-bottom: 1rem;
-  text-shadow: $text-contrast-shadow;
 }
 
 .tag {
   // Multiplying the animation time staggers the animations nicely
-  animation: fadein-delay $base-time * 1.25 $easing;
   font-size: 2.5rem;
   line-height: 125%;
   margin-bottom: 6rem;
-  text-shadow: $text-contrast-shadow;
 }
 
-.email-cta {
+.email-cta,
+.tag {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
-  text-shadow: $text-contrast-shadow;
-
-  // arrow
-  &::after {
-    @media (max-aspect-ratio: 11/10) {
-      display: none;
-    }
-  }
 }
 
 @keyframes deblur {

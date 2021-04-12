@@ -43,10 +43,6 @@
       transform: translateY(-50%) rotate(45deg);
       transition: all 100ms ease-in;
       width: 0.25em;
-
-      @media (max-aspect-ratio: 11/10) {
-        display: none;
-      }
     }
 
     &:hover::after {

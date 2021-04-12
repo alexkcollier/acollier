@@ -8,7 +8,7 @@
         {{ title }}
       </h1>
 
-      <!-- TODO: replace with `<img />`, preferably lazy load -->
+      <!-- TODO: lazy load -->
       <img
         class="post-item__preview-image"
         :src="featureImage"
@@ -68,6 +68,8 @@ export default {
   $parent: &;
   $transition: all 100ms ease-in;
 
+  margin-bottom: 3rem;
+
   &__link {
     color: var(--base-font-color);
     display: block;
@@ -84,9 +86,8 @@ export default {
   }
 
   &__preview-image {
-    background-color: #777;
+    background-color: var(--color-grey-500);
     border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
     height: 11rem;
     object-fit: cover;
     transition: $transition;

@@ -1,22 +1,39 @@
 @use 'fonts';
 
 .nuxt-content {
+  // `--heading-*` variables are from `./_typography.scss`
+  h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: var(--heading-1-bottom-margin);
+  }
+
+  h2 {
+    font-size: var(--heading-2-font-size);
+  }
+
+  h1,
+  h2 {
+    &:not(:first-child) {
+      margin-top: var(--heading-top-margin);
+    }
+  }
+
   a {
     color: var(--base-font-color);
 
     &:visited {
-      color: #aaa;
+      color: var(--caption-font-color);
     }
 
     &:hover {
-      color: #ccc;
+      color: var(--color-grey-300);
     }
   }
 
   img,
   video {
     border-radius: 0.5rem;
-    box-shadow: 0 0.25rem 1rem rgba(#2c2c2c, 0.3);
     display: block;
     height: auto;
     margin: 2rem auto;
@@ -30,9 +47,9 @@
 }
 
 .nuxt-content-editor {
-  background-color: #222;
+  background-color: var(--base-background-color);
   border-radius: 0.5rem;
-  color: #ccc;
+  color: var(--color-grey-200);
   font-family: var(--font-family-monospaced);
   padding: 1rem !important;
 

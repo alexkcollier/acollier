@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <section class="about-intro top-offset">
+    <section class="about-intro">
       <h1 class="heading-1">
         About
       </h1>
@@ -18,8 +18,8 @@
           rel="noopener nofollow"
         >
           Get in touch
-
         </a>
+
         <a
           class="link link--arrow"
           href="/docs/alex-collier-resume.pdf"
@@ -49,22 +49,6 @@
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
-            Education
-          </h2>
-
-          <div class="education">
-            <h3 class="heading-2 title">
-              Carleton University
-            </h3>
-
-            <p class="subtitle">
-              B.Comm., International Business &amp; Marketing
-            </p>
-          </div>
-        </section>
-
-        <section class="sidebar__section">
-          <h2 class="heading-1">
             Skills
           </h2>
 
@@ -76,6 +60,22 @@
               :skill-list="list"
               class="skill-list-group__item"
             />
+          </div>
+        </section>
+
+        <section class="sidebar__section">
+          <h2 class="heading-1">
+            Education
+          </h2>
+
+          <div>
+            <h3 class="heading-2 title">
+              Carleton University
+            </h3>
+
+            <p class="subtitle">
+              B.Comm., International Business &amp; Marketing
+            </p>
           </div>
         </section>
       </aside>
@@ -111,64 +111,56 @@ export default {
 </script>
 
 <style lang="scss">
-//TODO: fix this naming
-:root {
-  --work-spacing: 3rem;
-}
+@use '~/assets/styles/utils/breakpoints' as bp;
 
 .about-intro {
   &__links {
+    align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
     a {
       flex: 1 0 50%;
-      margin-bottom: 2em;
       min-width: 10rem;
+
+      &:not(:last-child) {
+        margin-bottom: 1em;
+      }
     }
   }
 
-  @media screen and (min-width: 761px) {
+  @include bp.above('md') {
     max-width: 2/3 * 100%;
   }
 
-  @media screen and (min-width: 481px) {
+  @include bp.above('sm') {
     font-size: 1.5rem;
   }
 }
 
 .about-content {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 .work-experience {
-  &__list {
-    margin-top: var(--work-spacing);
-  }
-
-  @media screen and (min-width: 761px) {
+  @include bp.above('md') {
     .heading-1 {
       margin-left: calc((1 / 7 * 100%) + 1rem);
     }
   }
 }
 
-.education {
-  margin-top: var(--work-spacing);
-}
-
 .skill-list-group {
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--work-spacing);
 
   &__item {
     flex: 1 0 50%;
-    min-width: 7.5rem;
-    padding-right: 1rem;
+    min-width: 7rem;
+    padding-right: 0.5rem;
 
-    @media screen and (max-width: 760px) {
+    @include bp.below('md') {
       flex-basis: 25%;
     }
   }

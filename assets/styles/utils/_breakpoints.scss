@@ -1,0 +1,30 @@
+@use 'sass:map';
+
+/**
+ * Responsive breakpoints
+ */
+$sm: 30rem;
+$md: 48rem;
+$lg: 60rem;
+
+$breakpoints: (
+  'sm': $sm,
+  'md': $md,
+  'lg': $lg,
+);
+
+@mixin below($breakpoint) {
+  $bp: map.get($breakpoints, $breakpoint);
+
+  @media screen and (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin above($breakpoint) {
+  $bp: map.get($breakpoints, $breakpoint);
+
+  @media screen and (min-width: $bp + 0.01) {
+    @content;
+  }
+}
