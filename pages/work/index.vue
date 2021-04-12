@@ -33,6 +33,7 @@ export default {
         'description',
         'featureImage',
       ])
+      .sortBy('createdAt', 'desc')
       .fetch()
       // swallow errors
       // TODO: Design error/empty state in case this happens for some reason

@@ -16,6 +16,7 @@
 
           <ToolsList :tools="content.tools" />
         </section>
+
         <section
           v-if="content.links && content.links.length"
           class="sidebar__section work-links"
@@ -86,7 +87,6 @@ export default {
         'title',
       ])
       .where({ path: { $ne: route.path } })
-      .limit(5)
       .fetch()
       // swallow errors
       .catch(() => { });
