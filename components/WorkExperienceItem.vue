@@ -97,6 +97,10 @@ export default {
 
   &__heading {
     grid-area: heading;
+
+    .subtitle {
+      color: var(--caption-font-color);
+    }
   }
 
   &__description {
