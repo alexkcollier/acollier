@@ -1,7 +1,7 @@
 ---
 title: Legionella mobile client
 description: Run the Spartan Legionella Test with your phone.
-featureImage: /images/legionella-mobile-client/legionella-mobile-feature.png
+featureImage: /images/legionella-mobile-client/legionella-mobile-feature.jpg
 tools:
   - { name: Adobe XD, img: /images/tools/xd.svg, href: https://www.adobe.com/ca/products/xd.html }
   - { name: Framer, img: /images/tools/framer.svg, href: https://www.framer.com/ }
@@ -12,7 +12,7 @@ links:
 
 # Legionella mobile client
 
-![Legionella mobile prototype](/images/legionella-mobile-client/legionella-mobile-feature.png 'Legionella mobile prototype')
+![Legionella mobile prototype](/images/legionella-mobile-client/legionella-mobile-feature.jpg 'Legionella mobile prototype')
 
 I worked as the sole designer with a mobile developer to bring the
 [Spartan Legionella Test](https://spartanbio.com/our-tests/spartan-legionella-test/) to mobile
@@ -66,7 +66,7 @@ short-range protocol and only connects in a 1-1 fashion.
 
 ## Structure and wireframes
 
-I began by determining the app's structure, based around the core features
+I began by determining the app's structure, based around the core features.
 
 The app's structure would end up looking like this after a couple of iterations:
 
