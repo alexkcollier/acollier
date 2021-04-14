@@ -35,8 +35,7 @@ export default {
   text-decoration: none;
 
   &:hover {
-    // TODO: #27 Extract variable
-    background-color: rgba(34, 34, 34, 0.45);
+    background-color: var(--navbar-background-color);
   }
 
   &.nuxt-link-exact-active {
