@@ -47,7 +47,7 @@ $base-time: 1500ms;
 
   // using pseudo element so filter only affects image
   &::before {
-    //TODO: load separate image on mobile
+    //TODO: #28 load separate image on mobile
     // when the text is over my face, I need to increase contrast significantly
 
     background: linear-gradient(var(--gradient-color), var(--gradient-color)),

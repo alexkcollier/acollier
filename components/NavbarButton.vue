@@ -35,7 +35,7 @@ export default {
   text-decoration: none;
 
   &:hover {
-    // TODO: Extract variable, refine
+    // TODO: #27 Extract variable
     background-color: rgba(34, 34, 34, 0.45);
   }
 

@@ -36,7 +36,7 @@ export default {
       .sortBy('createdAt', 'desc')
       .fetch()
       // swallow errors
-      // TODO: Design error/empty state in case this happens for some reason
+      // TODO: #26 Design error/empty state in case this happens for some reason
       .catch(() => { });
 
     return {
@@ -60,9 +60,6 @@ export default {
   display: grid;
   grid-auto-rows: auto;
   grid-template-columns: 1fr 1fr 1fr;
-  //TODO: fix this naming
-  margin-top: var(--work-spacing);
-  row-gap: var(--work-spacing);
 
   @include bp.below('md') {
     grid-template-columns: 1fr 1fr;

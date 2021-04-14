@@ -11,5 +11,5 @@ export default [
     text: 'Work',
     href: '/work/',
   },
-  // TODO: other pages
+  // TODO: #24 contact form
 ];

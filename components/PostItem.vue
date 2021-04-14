@@ -8,7 +8,7 @@
         {{ title }}
       </h1>
 
-      <!-- TODO: lazy load -->
+      <!-- TODO: #25 lazy load -->
       <img
         class="post-item__preview-image"
         :src="featureImage"
