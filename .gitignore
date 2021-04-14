@@ -3,6 +3,7 @@ node_modules
 
 # logs
 npm-debug.log
+ffmpeg*.log
 
 # Nuxt build
 .nuxt
