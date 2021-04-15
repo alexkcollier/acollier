@@ -28,6 +28,7 @@ export default {
   async asyncData ({ $content, route }) {
     const content = await $content(route.name)
       .only([
+        'dateCreated',
         'path',
         'title',
         'description',
