@@ -1,4 +1,5 @@
-.page {
+.page,
+.fade {
   &-enter-active,
   &-leave-active {
     transition: opacity 250ms;
