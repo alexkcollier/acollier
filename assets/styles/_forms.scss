@@ -1,0 +1,13 @@
+.form-field:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.input {
+  background: var(--color-grey-100);
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 1em var(--navbar-background-color);
+  color: var(--base-background-color);
+  margin-top: 0.5em;
+  padding: 0.5em;
+  width: 100%;
+}

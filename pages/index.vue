@@ -9,14 +9,12 @@
         Product designer in Ottawa
       </div>
 
-      <a
+      <NuxtLink
         class="link link--large link--arrow email-cta"
-        href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
-        target="_blank"
-        rel="noopener nofollow"
+        to="/contact/"
       >
         Get in touch
-      </a>
+      </NuxtLink>
     </div>
   </main>
 </template>

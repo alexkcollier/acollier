@@ -11,4 +11,11 @@ ffmpeg*.log
 # Nuxt generate
 dist
 
+# junk
 .DS_Store
+
+# env
+.env
+
+# Local Netlify folder
+.netlify
