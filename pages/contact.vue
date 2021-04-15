@@ -9,8 +9,10 @@
 
         <form
           class="contact-form"
+          aria-errormessage="form-error"
           @submit.prevent="handleSubmit"
         >
+          <!-- name -->
           <div class="form-field">
             <label for="name">
               Name
@@ -26,6 +28,7 @@
             </label>
           </div>
 
+          <!-- filter submissions -->
           <input
             v-model="form.honeypot"
             type="text"
@@ -35,6 +38,7 @@
             autocomplete="off"
           >
 
+          <!-- email address -->
           <div class="form-field">
             <label for="email">
               Email address
@@ -50,6 +54,7 @@
             </label>
           </div>
 
+          <!-- message -->
           <div class="form-field">
             <label for="message">
               Message
@@ -65,10 +70,27 @@
             </label>
           </div>
 
+          <!-- submit -->
           <div class="form-field">
             <button class="link">
               Get in touch
             </button>
+          </div>
+
+          <!-- error message -->
+          <div
+            v-if="mailError"
+            id="form-error"
+            class="form-field"
+            role="alert"
+          >
+            Something went wrong, and your message could not be sent. Try again, or connect with me
+            on <a
+              href="https://www.linkedin.com/in/alexkcollier/"
+              class="link link--arrow"
+              target="_blank"
+              rel="noopener nofollow"
+            >LinkedIn.</a>
           </div>
         </form>
       </div>
@@ -82,6 +104,7 @@ export default {
 
   data () {
     return {
+      mailError: false,
       form: {
         name: '',
         email: '',
@@ -93,6 +116,8 @@ export default {
 
   methods: {
     async handleSubmit () {
+      if (this.mailError) this.mailError = false;
+
       const res = await fetch('/.netlify/functions/mail', {
         method: 'post',
         body: JSON.stringify(this.form),
@@ -100,6 +125,8 @@ export default {
 
       if (res.ok) {
         this.resetForm();
+      } else {
+        this.mailError = true;
       }
     },
 
