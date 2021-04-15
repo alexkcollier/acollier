@@ -36,14 +36,22 @@ spacing. I also planned to document and structure these elements as
 [Theo](https://github.com/salesforce-ux/theo) was incredibly useful for this. It's powerful export
 features came in handy when actually builing the component library.
 
+<lazy-component>
+
 ![Working on colors in Theo](/images/schedio/schedio-tokens-colors.png 'Working on colors in Theo')
+
+</lazy-component>
 
 Some tokens, like transition easing and timing, are harder than others to work on without working on
 components. Once the basic tokens were done, it was time to move on to and component design. I
 started by generating static designs in XD (this was before component states were a thing). These
 were also used in future prototyping.
 
+<lazy-component>
+
 ![Components in XD](/images/schedio/schedio-xd.png 'Components in XD')
+
+</lazy-component>
 
 [Storybook](https://storybook.js.org/) provided a great sandbox for development, and I bolted on
 some documentation to save time. I had to make some workarounds since I was developing in Vue, since
@@ -51,12 +59,20 @@ some of the Storybook addons primarily supported React at the time. It wasn't to
 though, and it was worth it, both in terms of how it let me work, and how it helped our Windows
 developer better understand my design intention.
 
+<lazy-component>
+
 ![Schedio in Storybook](/images/schedio/schedio-storybook.png 'Schedio in Storybook')
+
+</lazy-component>
 
 Every component was designed to be WCAG 2.0 AA accessible. I used tests in Jest and Storybook to
 help enforce that during development.
 
+<lazy-component>
+
 ![Documentation for Schedio](/images/schedio/schedio-logo-usage.png 'Documentation for Schedio')
+
+</lazy-component>
 
 I mentioned above that I bolted on design, and I truly mean that. Storybook isn't the best place for
 non-technical documentation, like "how to use a colour", or "this is our philosophy on interaction".

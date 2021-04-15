@@ -72,7 +72,11 @@ Content: A contact form and call to action
 Once I had this, I moved on to design and prototyping. I chose to do this in Figma to get familiar
 with the application.
 
+<lazy-component>
+
 ![Prototype for acollier.ca](/images/acollier-ca/prototype-overview.png 'A later prototype for acollier.ca')
+
+</lazy-component>
 
 Before now, I had mostly worked in Adobe XD, and I wanted to see how they stack up. I missed some
 parts of XD, but I also really enjoyed working in Figma. Both programs let you _very_ quickly put
@@ -91,7 +95,11 @@ can be a concern on mobile, but when I accounted for this when I set up my type 
 Prototyping for the site was fairly minimal. Since Figma doesn't support transitioning component
 states without additional artboards yet, there wasn't much to do beyond wiring up all the links
 
+<lazy-component>
+
 ![Prototype links](/images/acollier-ca/prototype-wires.png 'Links in the prototype')
+
+</lazy-component>
 
 ## Development
 
@@ -101,7 +109,11 @@ site generator. I chose [Nuxt.js](https://nuxtjs.org) since I'm very comfortable
 [Vue](https://vuejs.org), and it's the most mature solution in that space. It also let me use data
 driven components for many of the repeated elements on the site&mdash;a huge productivity boost.
 
+<lazy-component>
+
 ![Portfolio overview with placeholder content](/images/acollier-ca/site-in-progress.png 'Working on the portfolio page')
+
+</lazy-component>
 
 After scaffolding the project, I prioritized my pages and features, and got to work. The list ended
 up looking like this:

@@ -12,11 +12,12 @@
         class="tool-list__link"
       >
         <img
-          :src="img"
+          v-lazy="img"
           :alt="name"
           :title="name"
           class="tool-list__image"
         >
+
         <span class="tool-list__link-text">
           {{ name }}
         </span>

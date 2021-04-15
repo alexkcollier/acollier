@@ -93,20 +93,36 @@ These wireframes let me quickly rule out some of the options and highlight desig
 instructions, a number of wireframes loaded key actions at the top of the screen, which can be
 difficult to reach on large devices.
 
+<lazy-component>
+
 ![Instruction screen wireframes](/images/legionella-mobile-client/instructions-wire.png 'Instruction screen wireframes')
+
+</lazy-component>
 
 I tried a standard list, a segmented list with sticky headers, a menu, and a mix of detailed recent
 results followed by summarized results. The wireframes showed me that the segmented list provided
 the best balance of ease-of-use and information density.
 
+<lazy-component>
+
 ![Log screen wireframes](/images/legionella-mobile-client/log-wire.png 'Log screen wireframes')
+
+</lazy-component>
 
 The landing screen design hinged on the navigation scheme, so I put together a prototype in Adode
 XD, loaded it on my phone, and ran some hallway tests.
 
+<lazy-component>
+
 ![Landing screen wireframes](/images/legionella-mobile-client/landing-wire.png 'Landing screen wireframes')
 
+</lazy-component>
+
+<lazy-component>
+
 <video src="/images/legionella-mobile-client/navigation.webm" controls muted style="max-height: 400px;" poster=/images/legionella-mobile-client/navigation-poster.png></video>
+
+</lazy-component>
 
 The results of this led me to move forward with bottom bar layout. Participants liked how it let you
 start the test quickly if you wanted to, and found the result log card confusing.
@@ -116,7 +132,11 @@ start the test quickly if you wanted to, and found the result log card confusing
 After the initial wireframing, I moved on to prototyping in Framer. This let me use live data, code,
 and rich interactions to enhance my prototype.
 
+<lazy-component>
+
 <video src="/images/legionella-mobile-client/prototype.webm" controls muted style="max-height: 400px;" poster=/images/legionella-mobile-client/prototype-poster.png></video>
+
+</lazy-component>
 
 The status screen was a unique challenge with the BLE connection story. BLE doesn't allow for a
 1-many connection, so staying connected to monitor Cube status wasn't an option. To make it appear
@@ -134,7 +154,11 @@ range of possible values (0-1000), and how tightly packed the meaningful values 
 the range. The plan was to simplify this filter to just the checkboxes, but this potentially could
 have been adressed by using a non-linear scal for the slider values.
 
+<lazy-component>
+
 <img src="/images/legionella-mobile-client/applied-filters.png" alt="Applied filters" title="Applied filters" style="max-width: 200px;">
+
+</lazy-component>
 
 I worked in a tight loop with our developer, handing off features using Framer's handoff tools. If a
 feature was not possible to implement, or needed revisions, he would flag it, and we would work
