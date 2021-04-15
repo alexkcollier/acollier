@@ -6,13 +6,16 @@
 
 ```bash
 # install dependencies
-$ npm install
+$ yarn install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# serve with hot reload at localhost:3000, no netlify functions
+$ yarn run dev
 
 # generate static project
-$ npm run generate
+$ yarn run generate
+
+# with `netlify-cli` installed globally, hot reload at localhost:8888 with netlify functions
+$ netlify dev
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

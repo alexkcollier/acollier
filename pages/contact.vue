@@ -7,7 +7,10 @@
           Send me a message.
         </h1>
 
-        <form class="contact-form">
+        <form
+          class="contact-form"
+          @submit.prevent="handleSubmit"
+        >
           <div class="form-field">
             <label for="name">
               Name
@@ -22,6 +25,15 @@
               >
             </label>
           </div>
+
+          <input
+            v-model="form.honeypot"
+            type="text"
+            name="a_password"
+            style="display: none !important;"
+            tabindex="-1"
+            autocomplete="off"
+          >
 
           <div class="form-field">
             <label for="email">
@@ -73,9 +85,27 @@ export default {
       form: {
         name: '',
         email: '',
+        honeypot: '',
         message: '',
       },
     };
+  },
+
+  methods: {
+    async handleSubmit () {
+      const res = await fetch('/.netlify/functions/mail', {
+        method: 'post',
+        body: JSON.stringify(this.form),
+      });
+
+      if (res.ok) {
+        this.resetForm();
+      }
+    },
+
+    resetForm () {
+      Object.keys(this.form).forEach(key => this.$set(this.form, key, ''));
+    },
   },
 };
 </script>
