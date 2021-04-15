@@ -8,10 +8,9 @@
         {{ title }}
       </h1>
 
-      <!-- TODO: #25 lazy load -->
       <img
+        v-lazy="featureImage"
         class="post-item__preview-image"
-        :src="featureImage"
         :alt="formattedDescription"
         :title="title"
       >

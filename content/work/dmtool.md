@@ -25,7 +25,11 @@ multiple things in separate books, it takes up a lot of space.
 I learned Vue and JavaScript, so it was a fantastic learning experience. I know there are things I
 didn't do quite "right", but it works well enough for my needs.
 
+<lazy-component>
+
 <video src="/images/dmtool/dmtool-demo.webm" controls preload="none" muted poster="/images/dmtool/dmtool-demo-poster.png"></video>
+
+</lazy-component>
 
 When I started out, I only intended for DMTool to be a lookup for magic items, spells, and
 creatures. The initial feature set ended up looking like this:
@@ -60,7 +64,11 @@ designed straight in code. Between Bulma, and the books, I had enough design gui
 I did make sure to consider the form-factor of the devices I was designing for, and the reality that
 I was working with a large amount of data.
 
+<lazy-component>
+
 ![DMTool uses design patterns suited to the platform it is used on](/images/dmtool/dmtool-responsive.png 'DMTool is reponsive')
+
+</lazy-component>
 
 On mobile, the primary navigation moves to the bottom for easy thumb access. The search bar also
 becomes fixed at the top of the screen. A button to return to the top of the screen appears after
@@ -75,7 +83,11 @@ to reference an item and spell at the same time.
 On the otherhand, the [dice roller](https://dmtool.acollier.ca/roll-dice) allows you to set
 everything up before the app does anything else.
 
+<lazy-component>
+
 ![DMTool dice roller](/images/dmtool/dmtool-roller.png 'Dice rolling in DMTool')
+
+</lazy-component>
 
 ## Development
 
@@ -98,7 +110,11 @@ and let me get the app running sooner, but search can be so much better.
 
 ### Offline support
 
+<lazy-component>
+
 ![DMTool installed on Android](/images/dmtool/dmtool-pwa.png 'DMTool is a progressive web application')
+
+</lazy-component>
 
 At some point I wanted to be able to use the app without relying on wifi, or my mobile data. I
 started looking for solutions that didn't require building an actual mobile app. Eventually I found

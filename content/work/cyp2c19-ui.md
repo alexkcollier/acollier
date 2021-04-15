@@ -38,7 +38,11 @@ Features this interface includes are:
 - An optional, time-based lock
 - An optional training module
 
+<lazy-component>
+
 ![CYP2C19 UI in XD](/images/cyp2c19-ui/cyp2c19-xd.png 'CYP2C19 UI in XD')
+
+</lazy-component>
 
 As this was for a medical device, design of the UI fell into Spartan's design control process. The
 features above were determined in the concept and feasibility stages, along with a number of
@@ -57,7 +61,11 @@ illustrations. For the critical and more complex task of tapping and mixing, we 
 video of how this process in the UI. You can see what we did for the text workflow in the video
 below.
 
+<lazy-component>
+
 <video src="/images/cyp2c19-ui/cyp2c19-workflow.webm" controls preload="none" muted poster="/images/cyp2c19-ui/cyp2c19-feature.png"></video>
+
+</lazy-component>
 
 ## Searchable log
 
@@ -66,10 +74,14 @@ in the future. Since there could potentially be many records in the log, we incl
 function to help users find results more easily. Click on a result in the log would show extended
 information about the test result.
 
+<lazy-component>
+
 ![Empty result log](/images/cyp2c19-ui/log-empty.png 'Empty result log')
 ![Result log populated with results](/images/cyp2c19-ui/log.png 'Result log populated with results')
 ![Log filtered to controls](/images/cyp2c19-ui/log-search.png 'Log filtered to controls')
 ![Result screen](/images/cyp2c19-ui/result.png 'Result screen')
+
+</lazy-component>
 
 Since many of our users would have their own record keeping systems, we also included an export
 feature to facilitate entering our results in their systems.
@@ -80,25 +92,41 @@ Although users of this system should be following [HIPPA](https://www.hhs.gov/hi
 guidelines, we also took steps to protect patient data. A key step was to implement user logins in
 order to access the system.
 
+<lazy-component>
+
 ![Login screen](/images/cyp2c19-ui/login.png 'Login screen')
+
+</lazy-component>
 
 The login form was designed to provide clear feedback in a secure way. Instead of entering
 credentials, users also had the ability to scan a barcode. This is common in hospital settings where
 users are able to scan their ID badges to access equipment.
 
+<lazy-component>
+
 ![Credential validation only shows something is wrong, not what is wrong](/images/cyp2c19-ui/login.png 'Invalid credentials')
+
+</lazy-component>
 
 An optional setting was included to lock the system after a certain amount of time, so users could
 be confident the system had not been tampered with. This lock was able to occur while a test was
 running, so we also added test status to the lock screen. The system works with 1 laptop controlling
 1 Cube, so it was important to show when the system is busy.
 
+<lazy-component>
+
 ![Locked system with test in progress](/images/cyp2c19-ui/lock-screen.png 'Locked system with test in progress')
+
+</lazy-component>
 
 The lockout time and users could only be configured by the system's administrator.
 
+<lazy-component>
+
 ![System settings](/images/cyp2c19-ui/settings.png 'System settings')
 ![User settings](/images/cyp2c19-ui/settings-users.png 'User settings')
+
+</lazy-component>
 
 ## Training Module
 
@@ -107,4 +135,8 @@ outlined the entire workflow, from sample collection, to running the analyzer. I
 instructions on how to perform each test. In addition to the main instructions, it also provided
 some additional pointers.
 
+<lazy-component>
+
 ![Training module](/images/cyp2c19-ui/training.png 'Training module')
+
+</lazy-component>

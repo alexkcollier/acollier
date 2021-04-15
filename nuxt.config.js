@@ -43,6 +43,9 @@ module.exports = {
       }
     },
   },
+  plugins: [
+    '~/plugins/vue-lazyload.js',
+  ],
   modules: [
     '@nuxt/content',
   ],
@@ -51,6 +54,7 @@ module.exports = {
       prism: {
         theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
       },
+      liveEdit: false,
     },
   },
 };
