@@ -84,8 +84,8 @@
             class="form-field"
             role="alert"
           >
-            Something went wrong, and your message could not be sent. Try again, or connect with me
-            on <a
+            Something went wrong, and your message could not be sent. Try again, or connect with
+            me on <a
               href="https://www.linkedin.com/in/alexkcollier/"
               class="link link--arrow"
               target="_blank"
@@ -115,8 +115,22 @@ export default {
   },
 
   methods: {
+    resetForm () {
+      Object.keys(this.form).forEach(key => this.$set(this.form, key, ''));
+    },
+
+    handleSuccess () {
+      this.resetForm();
+    },
+
     async handleSubmit () {
-      if (this.mailError) this.mailError = false;
+      if (this.form.honeypot !== '') {
+        return this.handleSuccess();
+      };
+
+      if (this.mailError) {
+        this.mailError = false;
+      };
 
       const res = await fetch('/.netlify/functions/mail', {
         method: 'post',
@@ -124,14 +138,10 @@ export default {
       });
 
       if (res.ok) {
-        this.resetForm();
-      } else {
-        this.mailError = true;
+        return this.handleSuccess();
       }
-    },
 
-    resetForm () {
-      Object.keys(this.form).forEach(key => this.$set(this.form, key, ''));
+      this.mailError = true;
     },
   },
 };
