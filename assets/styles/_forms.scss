@@ -11,3 +11,42 @@
   padding: 0.5em;
   width: 100%;
 }
+
+.submit-button {
+  &.is-loading {
+    color: transparent;
+    pointer-events: none;
+    position: relative;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      -webkit-animation: spinAround 0.5s infinite linear;
+      animation: spinAround 0.5s infinite linear;
+      border: 2px solid var(--base-font-color);
+      border-radius: 9999px;
+      border-right-color: transparent;
+      border-top-color: transparent;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1.25rem;
+      opacity: 1;
+      position: absolute;
+      top: calc(50% - (1em / 2));
+      width: 1.25rem;
+    }
+  }
+}
+
+@keyframes spinAround {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}

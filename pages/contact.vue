@@ -91,7 +91,7 @@
 
               <!-- submit -->
               <div class="form-field">
-                <button class="link link--arrow">
+                <button :class="['submit-button link link--arrow', { 'is-loading': isSending }]">
                   Get in touch
                 </button>
               </div>
@@ -130,6 +130,7 @@ export default {
     return {
       mailError: false,
       isSuccess: false,
+      isSending: false,
       form: {
         name: '',
         email: '',
@@ -158,10 +159,14 @@ export default {
         this.mailError = false;
       };
 
+      this.isSending = true;
+
       const res = await fetch('/.netlify/functions/mail', {
         method: 'post',
         body: JSON.stringify(this.form),
       });
+
+      this.isSending = false;
 
       if (res.ok) {
         return this.handleSuccess();
