@@ -11,5 +11,8 @@ export default [
     text: 'Work',
     href: '/work/',
   },
-  // TODO: #24 contact form
+  {
+    text: 'Contact',
+    href: '/contact/',
+  },
 ];
