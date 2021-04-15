@@ -11,7 +11,7 @@ exports.handler = async (event) => {
     }
 
     // verify request has body, filter honeypot
-    const data = JSON.parse(event?.body);
+    const data = JSON.parse(event.body);
 
     if (!data || data.honeypot !== '') {
       throw new Error('Invalid');
