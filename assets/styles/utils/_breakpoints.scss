@@ -6,11 +6,13 @@
 $sm: 30rem;
 $md: 48rem;
 $lg: 60rem;
+$xl: 71rem;
 
 $breakpoints: (
   'sm': $sm,
   'md': $md,
   'lg': $lg,
+  'xl': $xl,
 );
 
 @mixin below($breakpoint) {
