@@ -15,10 +15,10 @@ export default [
     list: [
       'Adobe XD',
       'Framer',
+      'Figma',
       'Photoshop',
       'Illustrator',
       'InDesign',
-      'Premiere Pro',
     ],
   },
   {
