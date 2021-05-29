@@ -10,9 +10,22 @@
 /** @type {WorkExperienceItem[]} */
 const experience = [
   {
+    position: 'UX/UI Designer',
+    company: 'Keatext',
+    startDate: 'May 2021',
+    description: [
+      'Develop and drive user experience strategy and initiatives throughout the product team and organization',
+      'Act as the voice of customers in product development',
+      'Responsible for creating a coherent user experience for products and digital platforms',
+      'Work with sketches, wireframes, and prototypes to communicate with stakeholders and validate concepts and hypotheses with end users',
+      'Collaborate with product owners and developers to drive product strategy and the development roadmap',
+    ],
+  },
+  {
     position: 'Lead UX/UI Designer',
     company: 'Spartan Bioscience Inc.',
     startDate: 'Mar 2021',
+    endDate: 'May 2021',
     description: [
       'Lead the design, implementation, and maintenance of Spartan’s customer visible product software, including multi-platform GUIs',
       'Create interactive, high fidelity prototypes for usability testing, and developer hand-off',
