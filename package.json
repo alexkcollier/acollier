@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.14.0",
-    "@sentry/node": "^6.9.0",
+    "@sentry/node": "^6.10.0",
     "@sentry/tracing": "^6.10.0",
     "domexception": "^2.0.1",
     "form-data": "^4.0.0",
