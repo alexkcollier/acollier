@@ -9469,10 +9469,10 @@ magic-string@^0.25.3, magic-string@^0.25.5, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.4"
 
-mailgun.js@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/mailgun.js/-/mailgun.js-3.5.2.tgz#c58c6d71169d1cf15ab709ddf07dd2385bcd3526"
-  integrity sha512-M42/2+XvE9o6uMCetysogaqFmA8LC85LL6b6/5Tfkk4bKECLLxEp1L/S9sZCtOhrIkGSIGhWiziRGilLLAdB6w==
+mailgun.js@^3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/mailgun.js/-/mailgun.js-3.5.3.tgz#8ae3665e34d0a69c3b4ed5700577c79c7fdbf643"
+  integrity sha512-/oeBZETXb71G40C5F8P1SImX9c2vujbM6KvZ7ezpyxJfxCbdA9Nxp+i8NOr5GSfXX62VFlIS2jUSV1W8nwcfdw==
   dependencies:
     base-64 "^1.0.0"
     bluebird "^3.7.2"
