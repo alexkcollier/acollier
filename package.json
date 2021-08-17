@@ -40,7 +40,7 @@
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": ">=7.16.0",
     "netlify-cli": "^6.2.3",
-    "sass": "^1.37.5",
+    "sass": "^1.38.0",
     "sass-loader": "^10.2.0",
     "stylelint": "^13.13.1"
   }
