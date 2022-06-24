@@ -41,7 +41,7 @@
     "eslint-plugin-vue": ">=8.5.0",
     "netlify-cli": "^9.12.3",
     "sass": "^1.49.9",
-    "sass-loader": "^10.2.0",
+    "sass-loader": "^13.0.1",
     "stylelint": "^14.5.3"
   }
 }
