@@ -6,8 +6,10 @@
       </h1>
 
       <p>
-        I'm a product designer in Ottawa, Canada, and I'm incredibly passionate about delivering
-        high-quality products that fit the users' needs, and meet business goals.
+        I'm a product designer in Ottawa, Canada, and I'm incredibly passionate
+        about delivering
+        high-quality products that fit the users' needs, and meet business
+        goals.
       </p>
 
       <div class="about-intro__links">
@@ -111,6 +113,7 @@ export default {
 </script>
 
 <style lang="scss">
+@use 'sass:math';
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .about-intro {
@@ -131,7 +134,7 @@ export default {
   }
 
   @include bp.above('md') {
-    max-width: 2/3 * 100%;
+    max-width: math.div(2, 3) * 100%;
   }
 
   @include bp.above('sm') {
@@ -146,7 +149,7 @@ export default {
 .work-experience {
   @include bp.above('md') {
     .heading-1 {
-      margin-left: calc((1 / 7 * 100%) + 1rem);
+      margin-left: calc((math.div(1, 7) * 100%) + 1rem);
     }
   }
 }

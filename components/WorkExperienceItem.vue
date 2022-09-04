@@ -62,6 +62,7 @@ export default {
 </script>
 
 <style lang="scss">
+@use 'sass:math';
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .work-experience-item {
@@ -70,7 +71,7 @@ export default {
   grid-template:
     'date heading'
     '. description'
-    / (1/7 * 100%) auto;
+    / (math.div(1, 7) * 100%) auto;
 
   & ~ & {
     margin-top: 3rem;

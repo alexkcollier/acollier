@@ -179,6 +179,7 @@ export default {
 </script>
 
 <style lang="scss">
+@use 'sass:math';
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .contact-hero {
@@ -204,7 +205,7 @@ export default {
 
 .contact-form {
   @include bp.above('md') {
-    max-width: 5/12 * 100%;
+    max-width: math.div(5,12) * 100%;
   }
 
   @include bp.below('sm') {
