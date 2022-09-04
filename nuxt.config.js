@@ -25,8 +25,7 @@ module.exports = {
     ],
   },
   css: [
-    'sanitize.css/evergreen.css',
-    'sanitize.css/forms.evergreen.css',
+    'sanitize.css/forms.css',
     'sanitize.css/assets.css',
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
