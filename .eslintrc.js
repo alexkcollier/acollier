@@ -9,6 +9,7 @@ module.exports = {
     globals: {
       definePageMeta: 'readonly',
       useRoute: 'readonly',
+      useHead: 'readonly',
       useAsyncData: 'readonly',
       queryContent: 'readonly',
     },
