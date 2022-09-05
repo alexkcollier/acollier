@@ -17,13 +17,13 @@
   --base-background-color: #222;
   --base-font-color: var(--color-grey-100);
   --caption-font-color: var(--color-grey-400);
-  --navbar-background-color: rgba(34, 34, 34, 0.5);
+  --navbar-background-color: rgb(34 34 34 / 50%);
 
   /// Fonts
   --font-family-sans-serif: 'Made Evolve Sans', -apple-system,
-    BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+    blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-family-monospaced: 'DM Mono', Menlo, Monaco, Consolas,
+  --font-family-monospaced: 'DM Mono', menlo, monaco, consolas,
     'Liberation Mono', 'Courier New', monospace;
   --letter-spacing-base: 0.02em;
   --letter-spacing-bold: 0.03em;
@@ -46,15 +46,18 @@ html {
   letter-spacing: var(--letter-spacing-base);
 }
 
+/* stylelint-disable-next-line selector-id-pattern */
 html,
 body,
+/* stylelint-disable-next-line selector-id-pattern */
 #__nuxt,
+/* stylelint-disable-next-line selector-id-pattern */
 #__layout {
   height: 100%;
 }
 
 ::selection {
-  background: rgba(255, 216, 206, 0.6);
+  background: rgb(255 216 206 / 60%);
 }
 
 /// Headings

@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['@acollier/stylelint-config-scss'],
+  extends: ['@acollier/stylelint-config-scss', 'stylelint-config-recommended-vue'],
   rules: {
     // plugin rules
     'order/order': [

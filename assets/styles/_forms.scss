@@ -23,8 +23,7 @@
     }
 
     &::after {
-      -webkit-animation: spinAround 0.5s infinite linear;
-      animation: spinAround 0.5s infinite linear;
+      animation: spin-around 0.5s infinite linear;
       border: 2px solid var(--base-font-color);
       border-radius: 9999px;
       border-right-color: transparent;
@@ -41,7 +40,7 @@
   }
 }
 
-@keyframes spinAround {
+@keyframes spin-around {
   from {
     transform: rotate(0);
   }
