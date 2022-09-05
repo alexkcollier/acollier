@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   telemetry: false,
   modern: process.env.NODE_ENV === 'development' ? false : 'client',
   meta: {
-    titleTemplate: chunk => chunk ? `${chunk} | Alex Collier` : 'Alex Collier',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
