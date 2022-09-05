@@ -1,7 +1,7 @@
 @use 'fonts';
 
 .nuxt-content {
-  // `--heading-*` variables are from `./_typography.scss`
+  /* `--heading-*` variables are from `./_typography.scss` */
   h1 {
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
@@ -38,17 +38,5 @@
     height: auto;
     margin: 2rem auto;
     width: 100%;
-  }
-}
-
-.nuxt-content-editor {
-  background-color: var(--base-background-color);
-  border-radius: 0.5rem;
-  color: var(--color-grey-200);
-  font-family: var(--font-family-monospaced);
-  padding: 1rem !important;
-
-  &:focus {
-    outline: none;
   }
 }

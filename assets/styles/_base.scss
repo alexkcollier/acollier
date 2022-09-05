@@ -4,11 +4,11 @@
  * CSS custom properties
  */
 :root {
-  /// Page
+  /* Page */
   --page-top-padding: 2rem;
   --page-side-padding: 2rem;
 
-  /// Colors
+  /* Colors */
   --color-grey-100: #ddd;
   --color-grey-200: #ccc;
   --color-grey-300: #bbb;
@@ -19,7 +19,7 @@
   --caption-font-color: var(--color-grey-400);
   --navbar-background-color: rgb(34 34 34 / 50%);
 
-  /// Fonts
+  /* Fonts */
   --font-family-sans-serif: 'Made Evolve Sans', -apple-system,
     blinkmacsystemfont, 'Segoe UI', roboto, oxygen, ubuntu, cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
@@ -37,21 +37,19 @@
  * Globals
  */
 
-/// Page
+/* Page */
 html {
   background: var(--base-background-color);
   color: var(--base-font-color);
   font-family: var(--font-family-sans-serif);
   font-weight: 300;
   letter-spacing: var(--letter-spacing-base);
+  overflow-y: scroll;
 }
 
-/* stylelint-disable-next-line selector-id-pattern */
 html,
 body,
-/* stylelint-disable-next-line selector-id-pattern */
 #__nuxt,
-/* stylelint-disable-next-line selector-id-pattern */
 #__layout {
   height: 100%;
 }
@@ -60,7 +58,7 @@ body,
   background: rgb(255 216 206 / 60%);
 }
 
-/// Headings
+/* Headings */
 h1,
 h2,
 h3,
@@ -74,10 +72,10 @@ h6 {
   }
 }
 
-/// Code and fixed-width
+/* Code and fixed-width */
 code[class*='language-'],
 pre[class*='language-'] {
-  // override small font-size set by `~prism-themes/themes/vsc-dark-plus.css`
+  /* override small font-size set by `~prism-themes/themes/vsc-dark-plus.css` */
   font-size: inherit !important;
 }
 
@@ -92,26 +90,26 @@ samp {
     letter-spacing: initial;
 
     &:not(.nuxt-content-highlight &) {
-      // color taken from `~prism-themes/themes/vsc-dark-plus.css`
+      /* color taken from `~prism-themes/themes/vsc-dark-plus.css` */
       background-color: #1e1e1e;
       padding: 0.25rem 0.5rem;
     }
   }
 }
 
-/// bold tags
+/* bold tags */
 b,
 strong {
   font-weight: 700;
   letter-spacing: var(--letter-spacing-bold);
 }
 
-/// lists
+/* lists */
 li {
   margin-bottom: 0.5em;
 }
 
-/// Forms
+/* Forms */
 input,
 select,
 textarea {

@@ -14,7 +14,7 @@
 .layout {
   &-enter-active,
   &-leave-active {
-    // hack to transition layouts without without transitioning the navbar
+    /* hack to transition layouts without without transitioning the navbar */
     .content {
       transition: opacity 250ms;
     }

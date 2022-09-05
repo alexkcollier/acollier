@@ -1,12 +1,12 @@
 import pkg from './package';
+import { defineNuxtConfig } from 'nuxt';
 
-module.exports = {
+export default defineNuxtConfig({
   ssr: true,
   target: 'static',
   telemetry: false,
   modern: process.env.NODE_ENV === 'development' ? false : 'client',
-  head: {
-    titleTemplate: chunk => chunk ? `${chunk} | Alex Collier` : 'Alex Collier',
+  meta: {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,6 +18,10 @@ module.exports = {
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;700&display=swap',
+      },
       {
         rel: 'preconnect',
         href: 'https://fonts.gstatic.com',
@@ -32,18 +36,12 @@ module.exports = {
     '~/assets/styles/styles.scss',
   ],
   loading: false,
-  plugins: [
-    '~/plugins/vue-lazyload.js',
-  ],
   modules: [
     '@nuxt/content',
   ],
   content: {
-    markdown: {
-      prism: {
-        theme: 'prism-themes/themes/prism-vsc-dark-plus.css',
-      },
-      liveEdit: false,
+    highlight: {
+      theme: 'github-dark-dimmed',
     },
   },
-};
+});

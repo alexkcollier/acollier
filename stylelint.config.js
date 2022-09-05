@@ -1,5 +1,23 @@
 module.exports = {
-  extends: ['@acollier/stylelint-config-scss', 'stylelint-config-recommended-vue'],
+  extends: [
+    '@acollier/stylelint-config-scss',
+    'stylelint-config-recommended-scss',
+    'stylelint-config-recommended-vue/scss',
+  ],
+  overrides: [
+    {
+      files: [
+        '**/*.scss',
+      ],
+      customSyntax: 'postcss-scss',
+    },
+    {
+      files: [
+        '**/*.vue',
+      ],
+      customSyntax: 'postcss-html',
+    },
+  ],
   rules: {
     // plugin rules
     'order/order': [

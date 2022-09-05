@@ -20,10 +20,10 @@
 </template>
 
 <script>
-export default {
+definePageMeta({
   layout: 'no-page-spacing',
   transition: 'home',
-};
+});
 </script>
 
 <style lang="scss">
@@ -34,7 +34,7 @@ $base-time: 1500ms;
 
 .home-hero {
   --gradient-color: transparent;
-  --bg-image: url('~assets/images/acollier.jpg');
+  --bg-image: url('~/assets/images/acollier.jpg');
   --bg-x: right;
 
   align-items: center;

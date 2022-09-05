@@ -1,5 +1,11 @@
 <template>
   <main class="container">
+    <Head>
+      <Title>
+        Work
+      </Title>
+    </Head>
+
     <h1 class="heading-1">
       Work
     </h1>
@@ -7,10 +13,10 @@
     <div class="post-grid">
       <PostItem
         v-for="post in content"
-        :key="post.path"
+        :key="post._id"
         :title="post.title"
         :description="post.description"
-        :href="post.path"
+        :href="post._path"
         :feature-image="post.featureImage"
       />
     </div>
@@ -24,33 +30,16 @@ export default {
   components: {
     PostItem,
   },
-
-  async asyncData ({ $content, route }) {
-    const content = await $content(route.name)
-      .only([
-        'dateCreated',
-        'path',
-        'title',
-        'description',
-        'featureImage',
-      ])
-      .sortBy('createdAt', 'desc')
-      .fetch()
-      // swallow errors
-      // TODO: #26 Design error/empty state in case this happens for some reason
-      .catch(() => { });
-
-    return {
-      content,
-    };
-  },
-
-  head () {
-    return {
-      title: 'Work',
-    };
-  },
 };
+</script>
+
+<script setup>
+const route = useRoute();
+// TODO: #26 Design error/empty state in case this happens for some reason
+const { data: content } = await useAsyncData('get-posts',
+  () => queryContent(route.name)
+    .sort({ title: -1 })
+    .find());
 </script>
 
 <style lang="scss">

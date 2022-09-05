@@ -8,7 +8,7 @@
   position: relative;
   text-decoration: none;
 
-  // line
+  /* line */
   &::before {
     border: 1px solid var(--base-font-color);
     bottom: -0.1em;
@@ -29,7 +29,7 @@
   }
 
   &--arrow {
-    // arrow
+    /* arrow */
     &::after {
       border: 1px solid var(--base-font-color);
       border-bottom-color: transparent;
