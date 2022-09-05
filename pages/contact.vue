@@ -1,5 +1,9 @@
 <template>
   <main class="contact-hero">
+    <Head>
+      <Title>Contact</Title>
+    </Head>
+
     <div class="container">
       <Transition
         name="fade"
