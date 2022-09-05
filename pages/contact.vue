@@ -91,7 +91,9 @@
 
               <!-- submit -->
               <div class="form-field">
-                <button :class="['submit-button link link--arrow', { 'is-loading': isSending }]">
+                <button
+                  :class="['submit-button link link--arrow', { 'is-loading': isSending }]"
+                >
                   Get in touch
                 </button>
               </div>
@@ -105,7 +107,8 @@
                   role="alert"
                   aria-live="assertive"
                 >
-                  Something went wrong, and your message could not be sent. Try again, or connect
+                  Something went wrong, and your message could not be sent. Try
+                  again, or connect
                   with me on <a
                     href="https://www.linkedin.com/in/alexkcollier/"
                     class="link link--arrow"
@@ -186,14 +189,13 @@ export default {
   --gradient-color: transparent;
   --bg-image: url('~assets/images/acollier.jpg');
   --bg-x: right;
+  --hero-y-padding: 4rem;
 
   align-items: center;
   //TODO: #28 load separate image on mobile
-  background: linear-gradient(var(--gradient-color), var(--gradient-color)),
-    var(--base-background-color) var(--bg-image) var(--bg-x) center / cover no-repeat;
   display: flex;
-  height: 100vh;
-  padding: var(--page-top-padding) var(--page-side-padding);
+  min-height: 100%;
+  padding: var(--hero-y-padding) var(--page-side-padding);
   text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
 
   @include bp.below('lg') {
@@ -201,17 +203,19 @@ export default {
     --gradient-color: rgba(0, 0, 0, 0.5);
     --bg-x: 90%;
   }
+
 }
 
 .contact-form {
   @include bp.above('md') {
-    max-width: math.div(5,12) * 100%;
+    max-width: math.div(5, 12) * 100%;
   }
 
   @include bp.below('sm') {
     font-weight: 700;
     text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   }
+
 }
 
 .thank-you-text {

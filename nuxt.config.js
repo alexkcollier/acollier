@@ -25,6 +25,7 @@ module.exports = {
     ],
   },
   css: [
+    'sanitize.css',
     'sanitize.css/forms.css',
     'sanitize.css/assets.css',
     'sanitize.css/reduce-motion.css',

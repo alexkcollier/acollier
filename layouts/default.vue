@@ -23,9 +23,10 @@ export default {
 
 .default-layout {
   .content {
-    margin-top: 4rem;
     padding: var(--page-top-padding) var(--page-side-padding);
-    padding-top: 4rem;
+    padding-top: 8rem;
   }
+
+  /* min-height: 100%; */
 }
 </style>

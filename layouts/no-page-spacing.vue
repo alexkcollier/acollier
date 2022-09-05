@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="no-spacing-layout">
     <TheNavbar />
 
     <div class="content">
@@ -17,3 +17,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.no-spacing-layout {
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+}
+</style>
