@@ -3,7 +3,7 @@
     <TheNavbar />
 
     <div class="content">
-      <Nuxt />
+      <slot />
     </div>
   </div>
 </template>

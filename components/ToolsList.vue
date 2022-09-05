@@ -12,7 +12,7 @@
         class="tool-list__link"
       >
         <img
-          v-lazy="img"
+          :src="img"
           :alt="name"
           :title="name"
           class="tool-list__image"

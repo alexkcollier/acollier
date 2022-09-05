@@ -40,15 +40,3 @@
     width: 100%;
   }
 }
-
-.nuxt-content-editor {
-  background-color: var(--base-background-color);
-  border-radius: 0.5rem;
-  color: var(--color-grey-200);
-  font-family: var(--font-family-monospaced);
-  padding: 1rem !important;
-
-  &:focus {
-    outline: none;
-  }
-}

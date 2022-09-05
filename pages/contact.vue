@@ -91,9 +91,7 @@
 
               <!-- submit -->
               <div class="form-field">
-                <button
-                  :class="['submit-button link link--arrow', { 'is-loading': isSending }]"
-                >
+                <button :class="['submit-button link link--arrow', { 'is-loading': isSending }]">
                   Get in touch
                 </button>
               </div>
@@ -126,9 +124,11 @@
 </template>
 
 <script>
-export default {
+definePageMeta({
   layout: 'no-page-spacing',
+});
 
+export default {
   data () {
     return {
       mailError: false,
@@ -187,7 +187,6 @@ export default {
 
 .contact-hero {
   --gradient-color: transparent;
-  --bg-image: url('~assets/images/acollier.jpg');
   --bg-x: right;
   --hero-y-padding: 4rem;
 

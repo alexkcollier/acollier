@@ -9,7 +9,7 @@
       </h1>
 
       <img
-        v-lazy="featureImage"
+        :src="featureImage"
         class="post-item__preview-image"
         :alt="formattedDescription"
         :title="title"
