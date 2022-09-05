@@ -10,7 +10,7 @@
 /** @type {WorkExperienceItem[]} */
 const experience = [
   {
-    position: 'UX/UI Designer',
+    position: 'UX/UI Developer',
     company: 'Keatext',
     startDate: 'May 2021',
     description: [
