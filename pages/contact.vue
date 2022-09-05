@@ -202,8 +202,10 @@ export default {
     --gradient-color: rgba(0, 0, 0, 0.5);
     --bg-x: 90%;
   }
-
+/* stylelint-disable  */
+/* something's weird with vue3 tooling */
 }
+/* stylelint-enable */
 
 .contact-form {
   @include bp.above('md') {
@@ -214,8 +216,9 @@ export default {
     font-weight: 700;
     text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
   }
-
+/* stylelint-disable */
 }
+/* stylelint-enable */
 
 .thank-you-text {
   font-size: 1.5rem;

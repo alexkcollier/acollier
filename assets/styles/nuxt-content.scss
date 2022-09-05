@@ -1,7 +1,7 @@
 @use 'fonts';
 
 .nuxt-content {
-  // `--heading-*` variables are from `./_typography.scss`
+  /* `--heading-*` variables are from `./_typography.scss` */
   h1 {
     font-size: var(--heading-1-font-size);
     line-height: var(--heading-1-line-height);
