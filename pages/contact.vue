@@ -149,7 +149,7 @@ export default {
 
   methods: {
     resetForm () {
-      Object.keys(this.form).forEach(key => this.$set(this.form, key, ''));
+      Object.keys(this.form).forEach((key) => { this.form[key] = ''; });
     },
 
     handleSuccess () {
