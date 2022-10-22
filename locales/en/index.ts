@@ -20,4 +20,15 @@ export default {
     educationHeading: 'Education',
     bcomm: 'Bachelor of Commerce, International Business & Marketing',
   },
+  contact: {
+    mainHeading: 'Want to work together? ',
+    mainHeadingLine2: 'Send me a message.',
+    thankYouHeading: 'Thank you',
+    thankYouMessage: 'Your message has been sent.',
+    thankYouMessageLine2: 'Expect a reply within 48 hours.',
+    contactFormNameLabel: 'Name',
+    contactFormEmailLabel: 'Email address',
+    contactFormMessageLabel: 'Message',
+    contactFormErrorMessage: 'Something went wrong, and your message could not be sent. Try again, or connect with me on',
+  },
 };

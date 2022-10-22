@@ -16,12 +16,12 @@
             aria-live="polite"
           >
             <h1 class="heading-1">
-              Thank you
+              {{ $t('contact.thankYouHeading') }}
             </h1>
 
             <p class="thank-you-text">
-              Your message has been sent.<br>
-              Expect a reply within 48 hours.
+              {{ $t('contact.thankYouMessage') }} <br>
+              {{ $t('contact.thankYouMessageLine2') }}
             </p>
           </div>
         </template>
@@ -29,8 +29,8 @@
         <template v-else>
           <div key="form">
             <h1 class="heading-1">
-              Want to work together?<br>
-              Send me a message.
+              {{ $t('contact.mainHeading') }} <br>
+              {{ $t('contact.mainHeadingLine2') }}
             </h1>
 
             <form
@@ -41,7 +41,7 @@
               <!-- name -->
               <div class="form-field">
                 <label for="name">
-                  Name
+                  {{ $t('contact.contactFormNameLabel') }}
                   <input
                     id="name"
                     v-model="form.name"
@@ -66,7 +66,7 @@
               <!-- email address -->
               <div class="form-field">
                 <label for="email">
-                  Email address
+                  {{ $t('contact.contactFormEmailLabel') }}
                   <input
                     id="email"
                     v-model="form.email"
@@ -81,7 +81,7 @@
               <!-- message -->
               <div class="form-field">
                 <label for="message">
-                  Message
+                  {{ $t('contact.contactFormMessageLabel') }}
                   <textarea
                     id="message"
                     v-model="form.message"
@@ -96,7 +96,7 @@
               <!-- submit -->
               <div class="form-field">
                 <button :class="['submit-button link link--arrow', { 'is-loading': isSending }]">
-                  Get in touch
+                  {{ $t('common.contact') }}
                 </button>
               </div>
 
@@ -109,9 +109,7 @@
                   role="alert"
                   aria-live="assertive"
                 >
-                  Something went wrong, and your message could not be sent. Try
-                  again, or connect
-                  with me on <a
+                  {{ $t('contact.contactFormErrorMessage') }} <a
                     href="https://www.linkedin.com/in/alexkcollier/"
                     class="link link--arrow"
                     target="_blank"

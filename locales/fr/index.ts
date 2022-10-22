@@ -21,4 +21,15 @@ export default {
     educationHeading: 'Éducation',
     bcomm: 'Baccalauréat en sciences commerciales, commerce international et marketing',
   },
+  contact: {
+    mainHeading: 'Voulez-vous travailler ensemble?',
+    mainHeadingLine2: 'Envoyez-moi un message.',
+    thankYouHeading: 'Merci',
+    thankYouMessage: 'Votre courriel a été envoyé.',
+    thankYouMessageLine2: 'Vous pouvez attendre une réponse dans 48 heures.',
+    contactFormNameLabel: 'Nom',
+    contactFormEmailLabel: 'Adresse courriel',
+    contactFormMessageLabel: 'Message',
+    contactFormErrorMessage: "Une erreur s'est produite et votre message ne peut pas être envoyé. Essayez de nouveau ou contactez-moi sur",
+  },
 };
