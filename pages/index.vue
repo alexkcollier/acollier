@@ -1,19 +1,23 @@
+<script setup>
+const localePath = useLocalePath();
+</script>
+
 <template>
   <main class="home-hero">
     <div class="container">
       <h1 class="name">
-        Alex Collier
+        {{ $t('common.name') }}
       </h1>
 
       <div class="tag">
-        Product designer in Ottawa
+        {{ $t('home.tag') }}
       </div>
 
       <NuxtLink
         class="link link--large link--arrow email-cta"
-        to="/contact/"
+        :to="localePath('/contact/')"
       >
-        Get in touch
+        {{ $t('common.contact') }}
       </NuxtLink>
     </div>
   </main>
