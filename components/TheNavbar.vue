@@ -1,3 +1,13 @@
+<script setup>
+const { locale, locales } = useI18n();
+const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+
+const availableLocales = computed(() => {
+  return locales.value.filter(l => l.code !== locale.value);
+});
+</script>
+
 <template>
   <nav
     role="primary navigation"
@@ -6,10 +16,17 @@
     <div class="container">
       <div class="navbar__button-wrapper">
         <NavbarButton
-          v-for="({ href, text }) in links"
-          :key="text"
-          :href="href"
-          :text="text"
+          v-for="({ href, key }) in links"
+          :key="key"
+          :href="localePath(href)"
+          :text="$t(`navigation.${key}`)"
+        />
+
+        <NavbarButton
+          v-for="({ code, name }) in availableLocales"
+          :key="code"
+          :href="switchLocalePath(code)"
+          :text="name"
         />
       </div>
     </div>
@@ -17,6 +34,7 @@
 </template>
 
 <script>
+/* eslint-disable import/first */
 import NavbarButton from '~/components/NavbarButton.vue';
 import links from '~/assets/data/navbar-links';
 
@@ -47,6 +65,10 @@ export default {
   right: 0;
   top: 0;
   z-index: 1;
+
+  &__button-wrapper {
+    display: flex;
+  }
 
   @include bp.above('sm') {
     padding: 0 1rem;

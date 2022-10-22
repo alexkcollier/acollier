@@ -1,18 +1,18 @@
 export default [
   {
-    text: 'AC',
+    key: 'home',
     href: '/',
   },
   {
-    text: 'About',
+    key: 'about',
     href: '/about/',
   },
   {
-    text: 'Work',
+    key: 'work',
     href: '/work/',
   },
   {
-    text: 'Contact',
+    key: 'contact',
     href: '/contact/',
   },
 ];
