@@ -126,6 +126,8 @@
 </template>
 
 <script>
+import { definePageMeta } from '#imports';
+
 definePageMeta({
   layout: 'no-page-spacing',
 });

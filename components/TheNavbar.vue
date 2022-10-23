@@ -1,4 +1,6 @@
 <script setup>
+import { useI18n, useLocalePath, useSwitchLocalePath, computed } from '#imports';
+
 const { locale, locales } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();

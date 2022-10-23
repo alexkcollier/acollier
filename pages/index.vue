@@ -1,5 +1,12 @@
 <script setup>
+import { useLocalePath, definePageMeta } from '#imports';
+
 const localePath = useLocalePath();
+
+definePageMeta({
+  layout: 'no-page-spacing',
+  transition: 'home',
+});
 </script>
 
 <template>
@@ -22,13 +29,6 @@ const localePath = useLocalePath();
     </div>
   </main>
 </template>
-
-<script>
-definePageMeta({
-  layout: 'no-page-spacing',
-  transition: 'home',
-});
-</script>
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;

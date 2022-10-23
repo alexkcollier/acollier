@@ -1,4 +1,6 @@
 <script setup>
+import { defineI18nRoute, useI18n, useLocalePath } from '#imports';
+
 const localePath = useLocalePath();
 const { locale } = useI18n();
 
@@ -93,8 +95,8 @@ defineI18nRoute({
 
 <script>
 /* eslint-disable import/first */
-import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 import workExperience from '~/assets/data/work-experience';
+import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
 export default {
   components: {
@@ -106,12 +108,6 @@ export default {
       workExperience,
     };
   },
-
-  // head () {
-  //   return {
-  //     title: 'About',
-  //   };
-  // },
 };
 </script>
 

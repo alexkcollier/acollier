@@ -1,5 +1,7 @@
 
 <script setup>
+import { useRouteBaseName, useAsyncData, queryContent, defineI18nRoute } from '#imports';
+
 const routeBaseName = useRouteBaseName();
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData('get-posts', () => {
