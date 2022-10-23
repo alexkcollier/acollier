@@ -1,7 +1,13 @@
 <script setup>
 const localePath = useLocalePath();
-
 const { locale } = useI18n();
+
+defineI18nRoute({
+  paths: {
+    en: '/about',
+    fr: '/a-propos',
+  },
+});
 </script>
 
 <template>

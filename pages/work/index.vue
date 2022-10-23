@@ -7,6 +7,13 @@ const { data: content } = await useAsyncData('get-posts', () => {
     .sort({ title: -1 })
     .find();
 });
+
+defineI18nRoute({
+  paths: {
+    en: '/work',
+    fr: '/portfolio',
+  },
+});
 </script>
 
 <template>

@@ -19,6 +19,7 @@ module.exports = {
       useI18n: 'readonly',
       useLocalePath: 'readonly',
       useSwitchLocalePath: 'readonly',
+      defineI18nRoute: 'readonly',
     },
   }],
 };
