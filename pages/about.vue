@@ -6,6 +6,12 @@ const { locale } = useI18n();
 
 <template>
   <div class="container">
+    <Head>
+      <Title>
+        {{ $t('about.metaTitle') }}
+      </Title>
+    </Head>
+
     <section class="about-intro">
       <h1 class="heading-1">
         {{ $t('about.mainHeading') }}
@@ -95,11 +101,11 @@ export default {
     };
   },
 
-  head () {
-    return {
-      title: 'About',
-    };
-  },
+  // head () {
+  //   return {
+  //     title: 'About',
+  //   };
+  // },
 };
 </script>
 

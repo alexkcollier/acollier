@@ -14,6 +14,7 @@ export default {
     tag: 'Concepteur UX à Ottawa',
   },
   about: {
+    metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb: "Je suis concepteur UX à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
     resumeDownload: 'Télécharger mon CV en anglais',
@@ -22,6 +23,7 @@ export default {
     bcomm: 'Baccalauréat en sciences commerciales, commerce international et marketing',
   },
   contact: {
+    metaTitle: 'Contact',
     mainHeading: 'Voulez-vous travailler ensemble?',
     mainHeadingLine2: 'Envoyez-moi un message.',
     thankYouHeading: 'Merci',
@@ -31,5 +33,9 @@ export default {
     contactFormEmailLabel: 'Adresse courriel',
     contactFormMessageLabel: 'Message',
     contactFormErrorMessage: "Une erreur s'est produite et votre message ne peut pas être envoyé. Essayez de nouveau ou contactez-moi sur",
+  },
+  work: {
+    metaTitle: 'Portfolio',
+    mainHeading: 'Portfolio',
   },
 };

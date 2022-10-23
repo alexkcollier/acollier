@@ -13,6 +13,7 @@ export default {
     tag: 'Product designer in Ottawa',
   },
   about: {
+    metaTitle: 'About',
     mainHeading: 'About',
     blurb: "I'm a product designer in Ottawa, Canada, and I'm incredibly passionate about delivering high-quality products that fit the users' needs, and meet business goals.",
     resumeDownload: 'Download my resume',
@@ -21,6 +22,7 @@ export default {
     bcomm: 'Bachelor of Commerce, International Business & Marketing',
   },
   contact: {
+    metaTitle: 'Contact',
     mainHeading: 'Want to work together? ',
     mainHeadingLine2: 'Send me a message.',
     thankYouHeading: 'Thank you',
@@ -30,5 +32,9 @@ export default {
     contactFormEmailLabel: 'Email address',
     contactFormMessageLabel: 'Message',
     contactFormErrorMessage: 'Something went wrong, and your message could not be sent. Try again, or connect with me on',
+  },
+  work: {
+    metaTitle: 'Work',
+    mainHeading: 'Work',
   },
 };

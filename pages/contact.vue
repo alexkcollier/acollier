@@ -1,7 +1,7 @@
 <template>
   <main class="contact-hero">
     <Head>
-      <Title>Contact</Title>
+      <Title>{{ $t('contact.metaTitle') }}</Title>
     </Head>
 
     <div class="container">
