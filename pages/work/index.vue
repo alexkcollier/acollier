@@ -1,8 +1,18 @@
 
 <script setup>
-import { useRouteBaseName, useAsyncData, queryContent, defineI18nRoute } from '#imports';
+import {
+  useRouteBaseName,
+  useAsyncData,
+  queryContent,
+  defineI18nRoute,
+  useI18n,
+  useLocalePath,
+} from '#imports';
 
 const routeBaseName = useRouteBaseName();
+const { locale } = useI18n();
+const localePath = useLocalePath();
+
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData('get-posts', () => {
   return queryContent(routeBaseName)
@@ -16,6 +26,7 @@ defineI18nRoute({
     fr: '/portfolio',
   },
 });
+
 </script>
 
 <template>
@@ -26,9 +37,18 @@ defineI18nRoute({
       </Title>
     </Head>
 
-    <h1 class="heading-1">
-      {{ $t('work.mainHeading') }}
-    </h1>
+    <div class="work-heading">
+      <h1 class="heading-1">
+        {{ $t('work.mainHeading') }}
+      </h1>
+
+      <div
+        v-if="locale === 'fr'"
+        class="missing-translation"
+      >
+        {{ $t('common.translationMissing') }}
+      </div>
+    </div>
 
     <div class="post-grid">
       <PostItem
@@ -36,7 +56,7 @@ defineI18nRoute({
         :key="post._id"
         :title="post.title"
         :description="post.description"
-        :href="post._path"
+        :href="localePath(post._path)"
         :feature-image="post.featureImage"
       />
     </div>
@@ -56,6 +76,18 @@ export default {
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;
+
+.work-heading {
+  margin-bottom: var(--heading-1-bottom-margin);
+
+  .heading-1 {
+    margin-bottom: 0;
+  }
+
+  .missing-translation {
+    margin-top: 0.5rem;
+  }
+}
 
 .post-grid {
   column-gap: 1rem;

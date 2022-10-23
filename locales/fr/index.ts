@@ -3,6 +3,7 @@ export default {
     contact: 'Contactez-moi',
     name: 'Alex Collier',
     translationMissing: "Désolé, cette section n'est pas encore disponible en français.",
+    postTranslationMissing: "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
   },
   navigation: {
     home: 'AC',

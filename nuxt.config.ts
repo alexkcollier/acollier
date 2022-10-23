@@ -44,6 +44,8 @@ export default defineNuxtConfig({
     highlight: {
       theme: 'github-dark-dimmed',
     },
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
   },
   i18n: {
     locales: [
@@ -51,13 +53,11 @@ export default defineNuxtConfig({
         code: 'en',
         name: 'English',
         iso: 'en-CA',
-        file: 'locales/en.ts',
       },
       {
         code: 'fr',
         name: 'Français',
         iso: 'fr-CA',
-        file: 'locales/fr.ts',
       },
     ],
     defaultLocale: 'en',

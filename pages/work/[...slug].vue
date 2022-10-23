@@ -1,6 +1,26 @@
+<script setup>
+import { defineI18nRoute, useI18n } from '#imports';
+
+defineI18nRoute({
+  paths: {
+    en: '/work/:slug',
+    fr: '/portfolio/:slug',
+  },
+});
+const { locale } = useI18n();
+</script>
+
 <template>
   <div class="container">
-    <ContentDoc v-slot="{ doc }">
+    <div v-if="locale === 'fr'">
+      {{ $t('common.postTranslationMissing') }}
+    </div>
+
+    <ContentDoc
+      v-slot="{ doc }"
+      key="renderer"
+      :path="`/work/${$route.params.slug}`"
+    >
       <Head>
         <Title>{{ doc.title }}</Title>
         <Meta
@@ -82,6 +102,7 @@
 </template>
 
 <script>
+/* eslint-disable import/first */
 import ToolsList from '~/components/ToolsList.vue';
 
 export default {
