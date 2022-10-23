@@ -16,10 +16,11 @@ module.exports = {
       useAsyncData: 'readonly',
       queryContent: 'readonly',
       // @nuxtjs/i18n
+      defineI18nRoute: 'readonly',
       useI18n: 'readonly',
       useLocalePath: 'readonly',
+      useRouteBaseName: 'readonly',
       useSwitchLocalePath: 'readonly',
-      defineI18nRoute: 'readonly',
     },
   }],
 };

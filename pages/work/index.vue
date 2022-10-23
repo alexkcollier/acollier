@@ -1,9 +1,9 @@
 
 <script setup>
-const route = useRoute();
+const routeBaseName = useRouteBaseName();
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData('get-posts', () => {
-  return queryContent(route.name)
+  return queryContent(routeBaseName)
     .sort({ title: -1 })
     .find();
 });
