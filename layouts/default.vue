@@ -23,6 +23,8 @@ export default {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .default-layout {
+  height: 100%;
+
   .content {
     padding: var(--page-top-padding) var(--page-side-padding);
     padding-top: 8rem;
