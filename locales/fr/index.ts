@@ -25,7 +25,7 @@ export default {
   },
   contact: {
     metaTitle: 'Contact',
-    mainHeading: 'Voulez-vous travailler ensemble?',
+    mainHeading: 'Voulez-vous travailler avec moi?',
     mainHeadingLine2: 'Envoyez-moi un message.',
     thankYouHeading: 'Merci',
     thankYouMessage: 'Votre courriel a été envoyé.',

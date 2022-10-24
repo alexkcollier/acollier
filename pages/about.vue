@@ -133,7 +133,7 @@ export default {
   }
 
   @include bp.above('md') {
-    max-width: math.div(2, 3) * 100%;
+    max-width: math.div(3, 4) * 100%;
   }
 
   @include bp.above('sm') {
