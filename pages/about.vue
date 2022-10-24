@@ -1,26 +1,41 @@
+<script setup>
+import { defineI18nRoute, useI18n, useLocalePath } from '#imports';
+
+const localePath = useLocalePath();
+const { locale } = useI18n();
+
+defineI18nRoute({
+  paths: {
+    en: '/about',
+    fr: '/a-propos',
+  },
+});
+</script>
+
 <template>
   <div class="container">
+    <Head>
+      <Title>
+        {{ $t('about.metaTitle') }}
+      </Title>
+    </Head>
+
     <section class="about-intro">
       <h1 class="heading-1">
-        About
+        {{ $t('about.mainHeading') }}
       </h1>
 
       <p>
-        I'm a product designer in Ottawa, Canada, and I'm incredibly passionate
-        about delivering
-        high-quality products that fit the users' needs, and meet business
-        goals.
+        {{ $t('about.blurb') }}
       </p>
 
       <div class="about-intro__links">
-        <a
+        <NuxtLink
+          :to="localePath('/contact/')"
           class="link link--arrow"
-          href="mailto:alexkcollier@gmail.com?subject=Getting in touch"
-          target="_blank"
-          rel="noopener nofollow"
         >
-          Get in touch
-        </a>
+          {{ $t('common.contact') }}
+        </NuxtLink>
 
         <a
           class="link link--arrow"
@@ -28,16 +43,25 @@
           target="_blank"
           rel="noopener nofollow"
         >
-          Download my resume
+          {{ $t('about.resumeDownload') }}
         </a>
       </div>
     </section>
 
     <div class="two-column about-content">
       <main class="work-experience two-column__wide-col">
-        <h2 class="heading-1">
-          Experience
-        </h2>
+        <div class="work-experience__heading">
+          <h2 class="heading-1">
+            {{ $t('about.experienceHeading') }}
+          </h2>
+
+          <div
+            v-if="locale === 'fr'"
+            class="missing-translation"
+          >
+            {{ $t('common.translationMissing') }}
+          </div>
+        </div>
 
         <div class="work-experience__list">
           <WorkExperienceItem
@@ -51,23 +75,7 @@
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
-            Skills
-          </h2>
-
-          <div class="skill-list-group">
-            <SkillList
-              v-for="({ group, list }) in skills"
-              :key="group"
-              :title="group"
-              :skill-list="list"
-              class="skill-list-group__item"
-            />
-          </div>
-        </section>
-
-        <section class="sidebar__section">
-          <h2 class="heading-1">
-            Education
+            {{ $t('about.educationHeading') }}
           </h2>
 
           <div>
@@ -76,7 +84,7 @@
             </h3>
 
             <p class="subtitle">
-              B.Comm., International Business &amp; Marketing
+              {{ $t('about.bcomm') }}
             </p>
           </div>
         </section>
@@ -86,27 +94,18 @@
 </template>
 
 <script>
-import SkillList from '~/components/SkillList.vue';
-import skills from '~/assets/data/skills';
-import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
+/* eslint-disable import/first */
 import workExperience from '~/assets/data/work-experience';
+import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
 export default {
   components: {
-    SkillList,
     WorkExperienceItem,
   },
 
   data () {
     return {
       workExperience,
-      skills,
-    };
-  },
-
-  head () {
-    return {
-      title: 'About',
     };
   },
 };
@@ -134,7 +133,7 @@ export default {
   }
 
   @include bp.above('md') {
-    max-width: math.div(2, 3) * 100%;
+    max-width: math.div(3, 4) * 100%;
   }
 
   @include bp.above('sm') {
@@ -147,24 +146,21 @@ export default {
 }
 
 .work-experience {
-  @include bp.above('md') {
+  &__heading {
+    margin-bottom: var(--heading-1-bottom-margin);
+
     .heading-1 {
-      margin-left: calc((math.div(1, 7) * 100%) + 1rem);
+      margin-bottom: 0;
     }
   }
-}
 
-.skill-list-group {
-  display: flex;
-  flex-wrap: wrap;
+  .missing-translation {
+    margin-top: 0.5rem;
+  }
 
-  &__item {
-    flex: 1 0 50%;
-    min-width: 7rem;
-    padding-right: 0.5rem;
-
-    @include bp.below('md') {
-      flex-basis: 25%;
+  @include bp.above('md') {
+    &__heading {
+      margin-left: calc((math.div(1, 7) * 100%) + 1rem);
     }
   }
 }

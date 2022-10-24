@@ -1,30 +1,34 @@
-<template>
-  <main class="home-hero">
-    <div class="container">
-      <h1 class="name">
-        Alex Collier
-      </h1>
+<script setup>
+import { useLocalePath, definePageMeta } from '#imports';
 
-      <div class="tag">
-        Product designer in Ottawa
-      </div>
+const localePath = useLocalePath();
 
-      <NuxtLink
-        class="link link--large link--arrow email-cta"
-        to="/contact/"
-      >
-        Get in touch
-      </NuxtLink>
-    </div>
-  </main>
-</template>
-
-<script>
 definePageMeta({
   layout: 'no-page-spacing',
   transition: 'home',
 });
 </script>
+
+<template>
+  <main class="home-hero">
+    <div class="container">
+      <h1 class="name">
+        {{ $t('common.name') }}
+      </h1>
+
+      <div class="tag">
+        {{ $t('home.tag') }}
+      </div>
+
+      <NuxtLink
+        class="link link--large link--arrow email-cta"
+        :to="localePath('/contact/')"
+      >
+        {{ $t('common.contact') }}
+      </NuxtLink>
+    </div>
+  </main>
+</template>
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;

@@ -28,7 +28,7 @@ export default {
 <style lang="scss">
 .navbar-button {
   color: var(--base-font-color);
-  display: inline-block;
+  display: block;
   font-size: 1.25rem;
   line-height: 100%;
   padding: 1rem;

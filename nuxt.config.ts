@@ -1,5 +1,6 @@
-import pkg from './package';
-import { defineNuxtConfig } from 'nuxt';
+import pkg from './package.json';
+import { defineNuxtConfig } from 'nuxt/config';
+import { messages } from './locales';
 
 export default defineNuxtConfig({
   ssr: true,
@@ -35,13 +36,35 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  loading: false,
   modules: [
     '@nuxt/content',
+    '@nuxtjs/i18n',
   ],
   content: {
     highlight: {
       theme: 'github-dark-dimmed',
+    },
+    locales: ['en', 'fr'],
+    defaultLocale: 'en',
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        iso: 'en-CA',
+      },
+      {
+        code: 'fr',
+        name: 'Français',
+        iso: 'fr-CA',
+      },
+    ],
+    defaultLocale: 'en',
+    vueI18n: {
+      legacy: false,
+      fallbackLocale: 'en',
+      messages,
     },
   },
 });
