@@ -17,7 +17,7 @@
   "dependencies": {
     "@nuxt/content": "^2.0.1",
     "@nuxtjs/i18n": "^8.0.0-beta.1",
-    "@sentry/node": "^7.12.1",
+    "@sentry/node": "^7.23.0",
     "@sentry/tracing": "^7.12.1",
     "domexception": "^4.0.0",
     "form-data": "^4.0.0",
