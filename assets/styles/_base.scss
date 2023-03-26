@@ -1,3 +1,4 @@
+/* stylelint-disable selector-id-pattern */
 @use 'utils/breakpoints' as bp;
 
 /**
@@ -49,7 +50,9 @@ html {
 
 html,
 body,
+/* stylelint-disable-next-line selector-id-pattern */
 #__nuxt,
+/* stylelint-disable-next-line selector-id-pattern */
 #__layout {
   height: 100%;
 }

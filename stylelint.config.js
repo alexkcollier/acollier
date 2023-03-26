@@ -1,6 +1,8 @@
 module.exports = {
+  plugins: ['stylelint-order'],
   extends: [
-    '@acollier/stylelint-config-scss',
+    'stylelint-config-standard',
+    'stylelint-config-standard-scss',
     'stylelint-config-recommended-scss',
     'stylelint-config-recommended-vue/scss',
   ],
@@ -18,7 +20,19 @@ module.exports = {
       customSyntax: 'postcss-html',
     },
   ],
+
   rules: {
+    'at-rule-empty-line-before': [
+      'always',
+      {
+        except: [
+          'first-nested',
+          'blockless-after-same-name-blockless',
+        ],
+        ignore: ['after-comment'],
+        ignoreAtRules: ['else'],
+      },
+    ],
     // plugin rules
     'order/order': [
       'custom-properties',
@@ -52,5 +66,8 @@ module.exports = {
         parameter: '(breakpoints?|bp)\\..*',
       },
     ],
+    'order/properties-alphabetical-order': true,
+    'scss/at-else-empty-line-before': 'never',
+    'scss/at-if-closing-brace-newline-after': 'always-last-in-chain',
   },
 };

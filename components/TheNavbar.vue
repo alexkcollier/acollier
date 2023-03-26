@@ -101,12 +101,9 @@ export default {
     flex-direction: column;
 
     &--open {
-      bottom: 0;
       display: flex;
-      left: 0;
+      inset: 3.5rem 0 0;
       position: static;
-      right: 0;
-      top: 3.5rem;
     }
   }
 
@@ -149,7 +146,6 @@ export default {
       &::before,
       &::after {
         // having unit enables animating this variable properly
-        /* stylelint-disable-next-line length-zero-no-unit */
         --bar-offset: 0px;
         --transform-transition-delay: #{$transition-base-time};
         --top-transition-delay: 0ms;
