@@ -45,13 +45,12 @@ $base-time: 1500ms;
   display: flex;
   min-height: calc(100% - (2 * var(--page-top-padding)));
   padding: var(--page-top-padding) var(--page-side-padding);
-  text-shadow: 1px 2px 20px rgb(black 0.95), 0 0 1px rgb(black 0.8);
+  text-shadow: 1px 2px 20px rgba(0 0 0 / 95%), 0 0 1px rgba(0 0 0 / 80%);
 
   // using pseudo element so filter only affects image
   &::before {
     // TODO: #28 load separate image on mobile
     // when the text is over my face, I need to increase contrast significantly
-
     background:
       linear-gradient(var(--gradient-color), var(--gradient-color)),
       var(--base-background-color) var(--bg-image) var(--bg-x) center / cover no-repeat;
