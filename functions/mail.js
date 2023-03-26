@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const FormData = require('form-data');
 const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(FormData);
@@ -25,6 +26,7 @@ function initSentry () {
  */
 async function reportError (err) {
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line no-console
     return console.log(err);
   }
 

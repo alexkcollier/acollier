@@ -5,9 +5,9 @@
         {{ startDate }}
       </div>
 
-      <span class="work-experience-item__date-separator">&mdash;</span>
-
-      <div>{{ endDate || 'Present' }} </div>
+      <div>
+        &nbsp;{{ endDate ? `${$t("about.toDate")} ${endDate}` : $t("about.toPresentDate") }}
+      </div>
     </div>
 
     <div class="work-experience-item__heading">
@@ -71,7 +71,7 @@ export default {
   grid-template:
     'date heading'
     '. description'
-    / (math.div(1, 7) * 100%) auto;
+    / (math.div(1, 6) * 100%) auto;
 
   & ~ & {
     margin-top: 3rem;
@@ -87,12 +87,6 @@ export default {
     // TODO: remove magic;
     &-start {
       line-height: 2rem;
-    }
-
-    @include bp.above('sm') {
-      &-separator {
-        display: none;
-      }
     }
   }
 
@@ -117,7 +111,7 @@ export default {
     column-gap: 0;
     grid-template:
       'heading date'
-      'description description'/ 1fr auto;
+      'description description' / 1fr auto;
 
     &__date {
       display: inline-flex;

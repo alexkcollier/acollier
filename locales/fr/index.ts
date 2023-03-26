@@ -21,7 +21,9 @@ export default {
     resumeDownload: 'Télécharger mon CV en anglais',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
-    bcomm: 'Baccalauréat en sciences commerciales, commerce international et marketing',
+    bcomm: 'Baccalauréat en commerce, commerce international et marketing',
+    toPresentDate: 'au présent',
+    toDate: 'à',
   },
   contact: {
     metaTitle: 'Contact',
