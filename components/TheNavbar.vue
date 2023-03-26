@@ -44,7 +44,7 @@ function setIsMenuOpen (isOpen) {
           :key="key"
           :href="localePath(href)"
           :text="$t(`navigation.${key}`)"
-          @click.native="() => setIsMenuOpen(false)"
+          @click="() => setIsMenuOpen(false)"
         />
 
         <NavbarButton
@@ -53,7 +53,7 @@ function setIsMenuOpen (isOpen) {
           class="navbar__locale-switcher"
           :href="switchLocalePath(code)"
           :text="name"
-          @click.native="() => setIsMenuOpen(false)"
+          @click="() => setIsMenuOpen(false)"
         />
       </div>
     </div>

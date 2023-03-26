@@ -160,11 +160,11 @@ export default {
     async handleSubmit () {
       if (this.form.honeypot !== '') {
         return this.handleSuccess();
-      };
+      }
 
       if (this.mailError) {
         this.mailError = false;
-      };
+      }
 
       this.isSending = true;
 

@@ -1,7 +1,11 @@
 module.exports = {
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: '@babel/eslint-parser',
-    requireConfigFile: false,
+    parser: '@typescript-eslint/parser',
   },
-  extends: ['plugin:nuxt/recommended', '@acollier/eslint-config-vue'],
+  extends: [
+    'plugin:nuxt/recommended',
+    '@nuxtjs/eslint-config-typescript',
+    '@acollier/eslint-config-vue',
+  ],
 };
