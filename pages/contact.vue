@@ -195,21 +195,19 @@ export default {
   --hero-y-padding: 4rem;
 
   align-items: center;
-  //TODO: #28 load separate image on mobile
+
+  // TODO: #28 load separate image on mobile
   display: flex;
   min-height: 100%;
   padding: var(--hero-y-padding) var(--page-side-padding);
-  text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
+  text-shadow: 1px 2px 20px rgba(0 0 0 / 75%), 0 0 1px rgba(0 0 0 / 50%);
 
   @include bp.below('lg') {
     // when the text is over my face, I need to increase contrast significantly
-    --gradient-color: rgba(0, 0, 0, 0.5);
+    --gradient-color: rgba(0 0 0 / 50%);
     --bg-x: 90%;
   }
-/* stylelint-disable  */
-/* something's weird with vue3 tooling */
 }
-/* stylelint-enable */
 
 .contact-form {
   @include bp.above('md') {
@@ -218,11 +216,9 @@ export default {
 
   @include bp.below('sm') {
     font-weight: 700;
-    text-shadow: 1px 2px 20px rgba(black, 0.75), 0 0 1px rgba(black, 0.5);
+    text-shadow: 1px 2px 20px rgba(0 0 0 / 75%), 0 0 1px rgba(0 0 0 / 50%);
   }
-/* stylelint-disable */
 }
-/* stylelint-enable */
 
 .thank-you-text {
   font-size: 1.5rem;
