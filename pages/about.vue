@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineI18nRoute, useI18n, useLocalePath } from '#imports';
 
 const localePath = useLocalePath();
@@ -54,18 +54,11 @@ defineI18nRoute({
           <h2 class="heading-1">
             {{ $t('about.experienceHeading') }}
           </h2>
-
-          <div
-            v-if="locale === 'fr'"
-            class="missing-translation"
-          >
-            {{ $t('common.translationMissing') }}
-          </div>
         </div>
 
         <div class="work-experience__list">
           <WorkExperienceItem
-            v-for="item in workExperience"
+            v-for="item in workExperience[locale as keyof typeof workExperience]"
             :key="item.position"
             v-bind="item"
           />
@@ -93,7 +86,7 @@ defineI18nRoute({
   </div>
 </template>
 
-<script>
+<script lang="ts">
 /* eslint-disable import/first */
 import workExperience from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
@@ -154,13 +147,9 @@ export default {
     }
   }
 
-  .missing-translation {
-    margin-top: 0.5rem;
-  }
-
   @include bp.above('md') {
     &__heading {
-      margin-left: calc((math.div(1, 7) * 100%) + 1rem);
+      margin-left: calc((math.div(1, 6) * 100%) + 1rem);
     }
   }
 }

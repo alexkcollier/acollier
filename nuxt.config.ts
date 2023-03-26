@@ -1,5 +1,5 @@
-import pkg from './package.json';
 import { defineNuxtConfig } from 'nuxt/config';
+import pkg from './package.json';
 import { messages } from './locales';
 
 export default defineNuxtConfig({

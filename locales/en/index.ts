@@ -20,6 +20,8 @@ export default {
     experienceHeading: 'Experience',
     educationHeading: 'Education',
     bcomm: 'Bachelor of Commerce, International Business & Marketing',
+    toPresentDate: 'to present',
+    toDate: 'to',
   },
   contact: {
     metaTitle: 'Contact',
