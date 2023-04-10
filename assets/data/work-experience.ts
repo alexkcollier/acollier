@@ -85,7 +85,7 @@ const fr: WorkExperienceItem[] = [
     endDate: 'juin 2017',
     description: [
       'Aider au design UX',
-      'Maintenir le sit eweb et serveur de la compagnie',
+      'Maintenir le site web et serveur de la compagnie',
       'Concevoir et produire les documents marketing',
       "Coordonner les conférences et la production d'affiches",
       'Faire de la photographie de produits',
