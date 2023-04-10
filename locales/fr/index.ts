@@ -18,7 +18,7 @@ export default {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb: "Je suis concepteur UX à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
-    resumeDownload: 'Télécharger mon CV en anglais',
+    resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
     bcomm: 'Baccalauréat en commerce, commerce international et marketing',
