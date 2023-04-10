@@ -12,12 +12,12 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'Concepteur UX à Ottawa',
+    tag: 'Concepteur UX & Développeur',
   },
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
-    blurb: "Je suis concepteur UX à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
+    blurb: "Je suis concepteur UX et développeur à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
