@@ -39,7 +39,7 @@ defineI18nRoute({
 
         <a
           class="link link--arrow"
-          href="/docs/alex-collier-resume.pdf"
+          :href="`/docs/${locale === 'en' ? 'alex-collier-resume' : 'cv-alex-collier'}.pdf`"
           target="_blank"
           rel="noopener nofollow"
         >
