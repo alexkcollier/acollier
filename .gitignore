@@ -6,8 +6,12 @@ npm-debug.log
 ffmpeg*.log
 
 # Nuxt build
-.nuxt
 .output
+.data
+.nuxt
+.nitro
+.cache
+dist
 
 # Nuxt generate
 dist

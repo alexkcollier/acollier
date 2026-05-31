@@ -1,0 +1,51 @@
+@use 'sass:math';
+@use 'utils/breakpoints' as bp;
+
+.container {
+  margin: 0 auto;
+  max-width: bp.$lg;
+  width: 100%;
+}
+
+/* TODO?: implement a grid system? */
+.two-column {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+
+  &__wide-col {
+    flex: 1 0 auto;
+    max-width: math.div(7, 12) * 100%;
+  }
+
+  &__narrow-col {
+    flex: 1 0 auto;
+    margin-left: 1rem;
+    max-width: math.div(4, 12) * 100%;
+  }
+
+  @include bp.below('md') {
+    display: block;
+
+    &__wide-col,
+    &__narrow-col {
+      margin: 0;
+      max-width: unset;
+    }
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: 4rem;
+
+  &__section {
+    margin-top: 4rem;
+
+    @include bp.above('md') {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use 'fonts';
+
+.nuxt-content {
+  /* `--heading-*` variables are from `./_typography.scss` */
+  h1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: var(--heading-1-bottom-margin);
+  }
+
+  h2 {
+    font-size: var(--heading-2-font-size);
+  }
+
+  h1,
+  h2 {
+    &:not(:first-child) {
+      margin-top: var(--heading-top-margin);
+    }
+  }
+
+  a {
+    color: var(--base-font-color);
+
+    &:visited {
+      color: var(--caption-font-color);
+    }
+
+    &:hover {
+      color: var(--color-grey-300);
+    }
+  }
+
+  img,
+  video {
+    border-radius: 0.5rem;
+    display: block;
+    height: auto;
+    margin: 2rem auto;
+    width: 100%;
+  }
+}
