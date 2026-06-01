@@ -6,6 +6,9 @@ import pkg from './package.json';
 export default defineNuxtConfig({
   ssr: true,
   telemetry: false,
+  devtools: {
+    enabled: true,
+  },
   app: {
     head: {
       meta: [

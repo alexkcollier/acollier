@@ -18,8 +18,12 @@ const baseRouteName = computed(() => routeBaseName(route.name));
 
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData(route.path, () => {
-  return queryCollection(baseRouteName.value).order('title', 'DESC').all();
+  return queryCollection(baseRouteName.value + '_' + locale.value)
+    .order('title', 'DESC')
+    .all();
 });
+
+console.log(baseRouteName.value);
 
 defineI18nRoute({
   paths: {

@@ -1,13 +1,34 @@
-<script setup>
-import { useI18n, useRoute } from '#imports';
+<script setup lang="ts">
+import { useI18n, useRoute, useAsyncData } from '#imports';
+import type { Collections } from '@nuxt/content';
 
 const route = useRoute();
 const { locale } = useI18n();
+
+const slug = computed(() =>
+  Array.isArray(route.params.slug)
+    ? route.params.slug.join('/')
+    : route.params.slug,
+);
+
 const { data: doc } = await useAsyncData(
-  (route.path,
-  () => {
-    return queryCollection('work').path(route.path).first();
-  }),
+  'page-' + slug.value,
+  async () => {
+    const query = (collection: keyof Collections) =>
+      queryCollection(collection)
+        .path('/' + slug.value)
+        .first();
+
+    const content = await query(('work_' + locale.value) as keyof Collections);
+
+    // Fallback if language not available
+    if (!content && locale.value !== 'en') {
+      return await query('work_en');
+    }
+
+    return content;
+  },
+  { watch: [locale] },
 );
 </script>
 
@@ -18,31 +39,31 @@ const { data: doc } = await useAsyncData(
     </div>
 
     <Head>
-      <Title>{{ doc.title }}</Title>
+      <Title>{{ doc?.title }}</Title>
       <Meta
         hid="description"
         name="description"
-        :content="doc.description"
+        :content="doc?.description"
       />
       <Meta
         hid="og:title"
         property="og:title"
-        :content="doc.title"
+        :content="doc?.title"
       />
       <Meta
         hid="og:description"
         property="og:description"
-        :content="doc.description"
+        :content="doc?.description"
       />
       <Meta
         hid="twitter:title"
         name="twitter:title"
-        :content="doc.title"
+        :content="doc?.title"
       />
       <Meta
         hid="twitter:description"
         name="twitter:description"
-        :content="doc.description"
+        :content="doc?.description"
       />
     </Head>
 
@@ -50,13 +71,14 @@ const { data: doc } = await useAsyncData(
       <main class="two-column__wide-col">
         <ContentRenderer
           class="nuxt-content"
+          v-if="doc"
           :value="doc"
         />
       </main>
 
       <aside class="two-column__narrow-col sidebar">
         <section
-          v-if="doc.tools && doc.tools.length"
+          v-if="doc?.tools && doc.tools.length"
           class="sidebar__section"
         >
           <h2 class="heading-1">Built with</h2>
@@ -65,7 +87,7 @@ const { data: doc } = await useAsyncData(
         </section>
 
         <section
-          v-if="doc.links && doc.links.length"
+          v-if="doc?.links && doc.links.length"
           class="sidebar__section work-links"
         >
           <h2 class="heading-1">Links</h2>
@@ -92,8 +114,7 @@ const { data: doc } = await useAsyncData(
   </div>
 </template>
 
-<script>
-/* eslint-disable import/first */
+<script lang="ts">
 import ToolsList from '~/components/ToolsList.vue';
 
 export default {
