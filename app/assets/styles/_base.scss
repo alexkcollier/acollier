@@ -22,10 +22,10 @@
 
   /* Fonts */
   --font-family-sans-serif:
-    'Made Evolve Sans', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
+    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
     oxygen, ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-family-monospaced:
-    'DM Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
+    'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
     monospace;
   --letter-spacing-base: 0.02em;
   --letter-spacing-bold: 0.03em;
@@ -85,6 +85,7 @@ code,
 pre,
 kbd,
 samp {
+
   &,
   &[class*='language-'] {
     border-radius: 0.5rem;
