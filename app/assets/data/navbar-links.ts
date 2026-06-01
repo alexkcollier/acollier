@@ -15,4 +15,4 @@ export default [
     key: 'contact',
     href: '/contact/',
   },
-];
+] as const;

@@ -1,6 +1,6 @@
 export default {
   common: {
-    contact: 'Contactez-moi',
+    contact: 'Contacte-moi',
     name: 'Alex Collier',
     translationMissing:
       "Désolé, cette section n'est pas encore disponible en français.",
@@ -10,17 +10,17 @@ export default {
   navigation: {
     home: 'AC',
     about: 'À propos',
-    work: 'Portfolio',
+    work: 'Projets',
     contact: 'Contact',
   },
   home: {
-    tag: 'Concepteur UX & Développeur',
+    tag: 'Ingénieur UX',
   },
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "Je suis concepteur UX et développeur à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
+      "Ingénieur UX avec plus de 9 ans d'expérience couvrant l'ensemble de la chaîne produit, des premières ébauches dans Figma jusqu'au code React + TypeScript en production. Je soigne les deux côtés du métier : un design réfléchi et un code propre. J'ai construit des systèmes de design de zéro, livré du code en production, et passé la majeure partie de ma carrière à combler l'écart entre l'intention du design et le logiciel qui en résulte.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
@@ -30,19 +30,20 @@ export default {
   },
   contact: {
     metaTitle: 'Contact',
-    mainHeading: 'Voulez-vous travailler avec moi?',
-    mainHeadingLine2: 'Envoyez-moi un message.',
+    mainHeading: 'Envie de collaborer ?',
+    mainHeadingLine2: 'Écris-moi.',
     thankYouHeading: 'Merci',
-    thankYouMessage: 'Votre courriel a été envoyé.',
-    thankYouMessageLine2: 'Vous pouvez attendre une réponse dans 48 heures.',
+    thankYouMessage: 'Ton message à été envoyé',
+    thankYouMessageLine2: 'Je reviendrai vers toi dans les prochaines 48h.',
     contactFormNameLabel: 'Nom',
     contactFormEmailLabel: 'Adresse courriel',
     contactFormMessageLabel: 'Message',
     contactFormErrorMessage:
-      "Une erreur s'est produite et votre message ne peut pas être envoyé. Essayez de nouveau ou contactez-moi sur",
+      "Une erreur s'est produite et ton message n'a pas pu être envoyé. Essaie de nouveau ou contacte-moi sur",
+    send: 'Envoyer',
   },
   work: {
-    metaTitle: 'Portfolio',
-    mainHeading: 'Portfolio',
+    metaTitle: 'Projets',
+    mainHeading: 'Projets',
   },
 };

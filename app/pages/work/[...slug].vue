@@ -33,7 +33,7 @@ definePageMeta({
   i18n: {
     paths: {
       en: '/work/[slug]',
-      fr: '/portfolio/[slug]',
+      fr: '/projets/[slug]',
     },
   },
 });
