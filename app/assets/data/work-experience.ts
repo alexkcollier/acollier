@@ -57,14 +57,14 @@ const fr: WorkExperienceItem[] = [
     startDate: 'Mai 2021',
     description: [
       "Direction de la stratégie UX et les initiatives produit au sein de l'équipe et de l'organisation",
-      "Conception, développement et maintenance des composants React + TypeScript de qualité production, avec la fidélité d'interaction et l'accessibilité au cœur de la démarche",
+      "Conception, développement et maintenance de composants React + TypeScript de qualité production, avec la fidélité d'interaction et l'accessibilité au cœur de la démarche",
       'Mise en place des flux de travail design-vers-développement réduisant les cycles de transfert et les interfaces ponctuelles non réutilisables',
-      "Transformation d'une interface fragmentée en système de composants réutilisables et cohérents avec des API claires, fondés sur des tokens de design",
+      "Transformation d'une interface fragmentée en système de composants réutilisables et cohérents avec des API claires, fondé sur des tokens de design",
       'Collaboration avec les chefs de produit et les ingénieurs pour définir la stratégie et la feuille de route de développement',
     ],
   },
   {
-    position: 'Chef de design UX/UI',
+    position: 'Concepteur UX/UI principal',
     company: 'Spartan Bioscience',
     startDate: 'Juin 2017',
     endDate: 'Mai 2021',
