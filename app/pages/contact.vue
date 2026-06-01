@@ -1,3 +1,11 @@
+<script setup>
+import { definePageMeta } from '#imports';
+
+definePageMeta({
+  layout: 'no-page-spacing',
+});
+</script>
+
 <template>
   <main class="contact-hero">
     <Head>
@@ -20,7 +28,7 @@
             </h1>
 
             <p class="thank-you-text">
-              {{ $t('contact.thankYouMessage') }} <br>
+              {{ $t('contact.thankYouMessage') }} <br />
               {{ $t('contact.thankYouMessageLine2') }}
             </p>
           </div>
@@ -29,7 +37,7 @@
         <template v-else>
           <div key="form">
             <h1 class="heading-1">
-              {{ $t('contact.mainHeading') }} <br>
+              {{ $t('contact.mainHeading') }} <br />
               {{ $t('contact.mainHeadingLine2') }}
             </h1>
 
@@ -49,7 +57,7 @@
                     class="input"
                     type="text"
                     required
-                  >
+                  />
                 </label>
               </div>
 
@@ -58,10 +66,10 @@
                 v-model="form.honeypot"
                 type="text"
                 name="a_password"
-                style="display: none !important;"
+                style="display: none !important"
                 tabindex="-1"
                 autocomplete="off"
-              >
+              />
 
               <!-- email address -->
               <div class="form-field">
@@ -74,7 +82,7 @@
                     class="input"
                     type="email"
                     required
-                  >
+                  />
                 </label>
               </div>
 
@@ -95,7 +103,12 @@
 
               <!-- submit -->
               <div class="form-field">
-                <button :class="['submit-button link link--arrow', { 'is-loading': isSending }]">
+                <button
+                  :class="[
+                    'submit-button link link--arrow',
+                    { 'is-loading': isSending },
+                  ]"
+                >
                   {{ $t('common.contact') }}
                 </button>
               </div>
@@ -109,12 +122,14 @@
                   role="alert"
                   aria-live="assertive"
                 >
-                  {{ $t('contact.contactFormErrorMessage') }} <a
+                  {{ $t('contact.contactFormErrorMessage') }}
+                  <a
                     href="https://www.linkedin.com/in/alexkcollier/"
                     class="link link--arrow"
                     target="_blank"
                     rel="noopener nofollow"
-                  >LinkedIn.</a>
+                    >LinkedIn.</a
+                  >
                 </div>
               </Transition>
             </form>
@@ -126,14 +141,8 @@
 </template>
 
 <script>
-import { definePageMeta } from '#imports';
-
-definePageMeta({
-  layout: 'no-page-spacing',
-});
-
 export default {
-  data () {
+  data() {
     return {
       mailError: false,
       isSuccess: false,
@@ -148,16 +157,18 @@ export default {
   },
 
   methods: {
-    resetForm () {
-      Object.keys(this.form).forEach((key) => { this.form[key] = ''; });
+    resetForm() {
+      Object.keys(this.form).forEach((key) => {
+        this.form[key] = '';
+      });
     },
 
-    handleSuccess () {
+    handleSuccess() {
       this.resetForm();
       this.isSuccess = true;
     },
 
-    async handleSubmit () {
+    async handleSubmit() {
       if (this.form.honeypot !== '') {
         return this.handleSuccess();
       }
@@ -200,11 +211,13 @@ export default {
   display: flex;
   min-height: 100%;
   padding: var(--hero-y-padding) var(--page-side-padding);
-  text-shadow: 1px 2px 20px rgba(0 0 0 / 75%), 0 0 1px rgba(0 0 0 / 50%);
+  text-shadow:
+    1px 2px 20px rgb(0 0 0 / 75%),
+    0 0 1px rgb(0 0 0 / 50%);
 
   @include bp.below('lg') {
     // when the text is over my face, I need to increase contrast significantly
-    --gradient-color: rgba(0 0 0 / 50%);
+    --gradient-color: rgb(0 0 0 / 50%);
     --bg-x: 90%;
   }
 }
@@ -216,7 +229,9 @@ export default {
 
   @include bp.below('sm') {
     font-weight: 700;
-    text-shadow: 1px 2px 20px rgba(0 0 0 / 75%), 0 0 1px rgba(0 0 0 / 50%);
+    text-shadow:
+      1px 2px 20px rgb(0 0 0 / 75%),
+      0 0 1px rgb(0 0 0 / 50%);
   }
 }
 

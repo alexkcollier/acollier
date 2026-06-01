@@ -6,13 +6,13 @@
 
 ```bash
 # install dependencies
-$ yarn install
+$ npm install
 
 # serve with hot reload at localhost:3000, no netlify functions
-$ yarn run dev
+$ npm run dev
 
 # generate static project
-$ yarn run generate
+$ npm run generate
 
 # with `netlify-cli` installed globally, hot reload at localhost:8888 with netlify functions
 $ netlify dev

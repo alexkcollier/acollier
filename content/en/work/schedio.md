@@ -1,6 +1,6 @@
 ---
 title: Schedio
-featureImage: /images/schedio/schedio-feature.png
+featureImage: '/images/schedio/schedio-feature.png'
 description: A design system and component library for Spartan Bio
 links:
   - { title: Schedio, href: https://spartanbio-design.netlify.app }

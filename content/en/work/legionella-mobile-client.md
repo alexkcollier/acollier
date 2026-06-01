@@ -1,7 +1,7 @@
 ---
 title: Legionella mobile client
 description: Run the Spartan Legionella Test with your phone.
-featureImage: /images/legionella-mobile-client/legionella-mobile-feature.jpg
+featureImage: '/images/legionella-mobile-client/legionella-mobile-feature.jpg'
 tools:
   - {
       name: Adobe XD,

@@ -1,7 +1,7 @@
 ---
 title: DMTool
 description: A tool to make running Dungeons & Dragons easier.
-featureImage: /images/dmtool/dmtool-feature.png
+featureImage: '/images/dmtool/dmtool-feature.png'
 links:
   - { title: DMTool, href: https://dmtool.acollier.ca }
   - { title: Code on GitHub, href: https://github.com/alexkcollier/dmtool }

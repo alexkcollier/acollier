@@ -45,7 +45,9 @@ $base-time: 1500ms;
   display: flex;
   min-height: calc(100% - (2 * var(--page-top-padding)));
   padding: var(--page-top-padding) var(--page-side-padding);
-  text-shadow: 1px 2px 20px rgba(0 0 0 / 95%), 0 0 1px rgba(0 0 0 / 80%);
+  text-shadow:
+    1px 2px 20px rgb(0 0 0 / 95%),
+    0 0 1px rgb(0 0 0 / 80%);
 
   // using pseudo element so filter only affects image
   &::before {
@@ -53,7 +55,8 @@ $base-time: 1500ms;
     // when the text is over my face, I need to increase contrast significantly
     background:
       linear-gradient(var(--gradient-color), var(--gradient-color)),
-      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover no-repeat;
+      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover
+        no-repeat;
     content: '';
     inset: 0;
     position: absolute;

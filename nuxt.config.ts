@@ -1,33 +1,51 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path="./node_modules/@nuxtjs/i18n/dist/types.d.mts" />
 import { defineNuxtConfig } from 'nuxt/config';
 import pkg from './package.json';
-import { messages } from './locales';
 
 export default defineNuxtConfig({
   ssr: true,
-  target: 'static',
   telemetry: false,
-  modern: process.env.NODE_ENV === 'development' ? false : 'client',
-  meta: {
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
-    ],
-    link: [
-      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-      { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;700&display=swap',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://fonts.gstatic.com',
-      },
-    ],
+  devtools: {
+    enabled: true,
+  },
+  app: {
+    head: {
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: pkg.description },
+      ],
+      link: [
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
+        { rel: 'manifest', href: '/site.webmanifest' },
+        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;700&display=swap',
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+        },
+      ],
+    },
   },
   css: [
     'sanitize.css',
@@ -36,35 +54,32 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-  ],
-  content: {
-    highlight: {
-      theme: 'github-dark-dimmed',
+  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint'],
+  typescript: {
+    typeCheck: true,
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
     },
-    locales: ['en', 'fr'],
-    defaultLocale: 'en',
   },
   i18n: {
+    customRoutes: 'meta',
     locales: [
       {
         code: 'en',
         name: 'English',
-        iso: 'en-CA',
+        language: 'en-CA',
+        file: 'en/index.ts',
       },
       {
         code: 'fr',
         name: 'Français',
-        iso: 'fr-CA',
+        language: 'fr-CA',
+        file: 'fr/index.ts',
       },
     ],
     defaultLocale: 'en',
-    vueI18n: {
-      legacy: false,
-      fallbackLocale: 'en',
-      messages,
-    },
+    strategy: 'prefix_except_default',
   },
 });

@@ -1,4 +1,5 @@
-module.exports = {
+/** @type {import('stylelint').Config} */
+export default {
   plugins: ['stylelint-order'],
   extends: [
     'stylelint-config-standard',
@@ -8,15 +9,11 @@ module.exports = {
   ],
   overrides: [
     {
-      files: [
-        '**/*.scss',
-      ],
+      files: ['**/*.scss'],
       customSyntax: 'postcss-scss',
     },
     {
-      files: [
-        '**/*.vue',
-      ],
+      files: ['**/*.vue'],
       customSyntax: 'postcss-html',
     },
   ],
@@ -25,10 +22,7 @@ module.exports = {
     'at-rule-empty-line-before': [
       'always',
       {
-        except: [
-          'first-nested',
-          'blockless-after-same-name-blockless',
-        ],
+        except: ['first-nested', 'blockless-after-same-name-blockless'],
         ignore: ['after-comment'],
         ignoreAtRules: ['else'],
       },

@@ -2,8 +2,10 @@ export default {
   common: {
     contact: 'Contactez-moi',
     name: 'Alex Collier',
-    translationMissing: "Désolé, cette section n'est pas encore disponible en français.",
-    postTranslationMissing: "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
+    translationMissing:
+      "Désolé, cette section n'est pas encore disponible en français.",
+    postTranslationMissing:
+      "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
   },
   navigation: {
     home: 'AC',
@@ -17,7 +19,8 @@ export default {
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
-    blurb: "Je suis concepteur UX et développeur à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
+    blurb:
+      "Je suis concepteur UX et développeur à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
@@ -35,7 +38,8 @@ export default {
     contactFormNameLabel: 'Nom',
     contactFormEmailLabel: 'Adresse courriel',
     contactFormMessageLabel: 'Message',
-    contactFormErrorMessage: "Une erreur s'est produite et votre message ne peut pas être envoyé. Essayez de nouveau ou contactez-moi sur",
+    contactFormErrorMessage:
+      "Une erreur s'est produite et votre message ne peut pas être envoyé. Essayez de nouveau ou contactez-moi sur",
   },
   work: {
     metaTitle: 'Portfolio',

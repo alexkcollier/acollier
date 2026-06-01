@@ -4,7 +4,7 @@
       :to="href"
       class="post-item__link"
     >
-      <h1 class="heading-2 post-item__heading ">
+      <h1 class="heading-2 post-item__heading">
         {{ title }}
       </h1>
 
@@ -13,7 +13,7 @@
         class="post-item__preview-image"
         :alt="formattedDescription"
         :title="title"
-      >
+      />
     </NuxtLink>
 
     <p class="post-item__description">
@@ -53,10 +53,12 @@ export default {
   },
 
   computed: {
-    formattedDescription () {
+    formattedDescription() {
       if (!this.description) return '';
 
-      return this.description.endsWith('.') ? this.description : `${this.description}.`;
+      return this.description.endsWith('.')
+        ? this.description
+        : `${this.description}.`;
     },
   },
 };

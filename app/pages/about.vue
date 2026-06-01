@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { defineI18nRoute, useI18n, useLocalePath } from '#imports';
+import { definePageMeta, useI18n, useLocalePath } from '#imports';
 
 const localePath = useLocalePath();
 const { locale } = useI18n();
 
-defineI18nRoute({
-  paths: {
-    en: '/about',
-    fr: '/a-propos',
+definePageMeta({
+  i18n: {
+    paths: {
+      en: '/about',
+      fr: '/a-propos',
+    },
   },
 });
 </script>
@@ -58,7 +60,9 @@ defineI18nRoute({
 
         <div class="work-experience__list">
           <WorkExperienceItem
-            v-for="item in workExperience[locale as keyof typeof workExperience]"
+            v-for="item in workExperience[
+              locale as keyof typeof workExperience
+            ]"
             :key="item.position"
             v-bind="item"
           />
@@ -72,9 +76,7 @@ defineI18nRoute({
           </h2>
 
           <div>
-            <h3 class="heading-2 title">
-              Carleton University
-            </h3>
+            <h3 class="heading-2 title">Carleton University</h3>
 
             <p class="subtitle">
               {{ $t('about.bcomm') }}
@@ -87,7 +89,6 @@ defineI18nRoute({
 </template>
 
 <script lang="ts">
-/* eslint-disable import/first */
 import workExperience from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
@@ -96,7 +97,7 @@ export default {
     WorkExperienceItem,
   },
 
-  data () {
+  data() {
     return {
       workExperience,
     };
