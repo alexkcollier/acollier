@@ -1,4 +1,3 @@
- 
 const FormData = require('form-data');
 const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(FormData);
@@ -29,7 +28,6 @@ function initSentry() {
  */
 async function reportError(err) {
   if (process.env.NODE_ENV !== 'production') {
-     
     return console.log(err);
   }
 

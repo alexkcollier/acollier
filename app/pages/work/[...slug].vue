@@ -12,14 +12,12 @@ const slug = computed(() =>
 );
 
 const { data: doc } = await useAsyncData(
-  'page-' + slug.value,
+  `page-${slug.value}`,
   async () => {
     const query = (collection: keyof Collections) =>
-      queryCollection(collection)
-        .path('/' + slug.value)
-        .first();
+      queryCollection(collection).path(`/${slug.value}`).first();
 
-    const content = await query(('work_' + locale.value) as keyof Collections);
+    const content = await query(`work_${locale.value}` as keyof Collections);
 
     // Fallback if language not available
     if (!content && locale.value !== 'en') {
@@ -70,8 +68,8 @@ const { data: doc } = await useAsyncData(
     <div class="two-column">
       <main class="two-column__wide-col">
         <ContentRenderer
-          class="nuxt-content"
           v-if="doc"
+          class="nuxt-content"
           :value="doc"
         />
       </main>

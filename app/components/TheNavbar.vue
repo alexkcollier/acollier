@@ -67,7 +67,7 @@ function setIsMenuOpen(isOpen) {
 </template>
 
 <script>
-/* eslint-disable import/first */
+ 
 import NavbarButton from '~/components/NavbarButton.vue';
 import links from '~/assets/data/navbar-links';
 

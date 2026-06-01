@@ -18,7 +18,7 @@ const baseRouteName = computed(() => routeBaseName(route.name));
 
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData(route.path, () => {
-  return queryCollection(baseRouteName.value + '_' + locale.value)
+  return queryCollection(`${baseRouteName.value}_${locale.value}`)
     .order('title', 'DESC')
     .all();
 });
@@ -68,7 +68,7 @@ defineI18nRoute({
 </template>
 
 <script>
-/* eslint-disable import/first */
+ 
 import PostItem from '~/components/PostItem.vue';
 
 export default {

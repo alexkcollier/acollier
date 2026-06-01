@@ -87,7 +87,7 @@ defineI18nRoute({
 </template>
 
 <script lang="ts">
-/* eslint-disable import/first */
+ 
 import workExperience from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
