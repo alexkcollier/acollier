@@ -1,4 +1,5 @@
-import { defineNuxtConfig } from "nuxt/config";
+/// <reference path="./node_modules/@nuxtjs/i18n/dist/types.d.mts" />
+import { defineNuxtConfig } from 'nuxt/config';
 import pkg from './package.json';
 
 export default defineNuxtConfig({
