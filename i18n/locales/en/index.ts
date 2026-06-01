@@ -10,13 +10,13 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'UX Designer & Developer',
+    tag: 'UX Engineer',
   },
   about: {
     metaTitle: 'About',
     mainHeading: 'About',
     blurb:
-      "I'm a UX designer and developer in Ottawa, Canada, and I'm incredibly passionate about delivering high-quality products that fit the users' needs, and meet business goals.",
+      "UX engineer with 9+ years working across the full product stack, from early concepts in Figma to production React + TypeScript. I care about the craft on both sides: design that's intentional and code that's clean. I've built design systems from scratch, shipped production code, and spent most of my career closing the gap between design intent and working software.",
     resumeDownload: 'Download my resume',
     experienceHeading: 'Experience',
     educationHeading: 'Education',

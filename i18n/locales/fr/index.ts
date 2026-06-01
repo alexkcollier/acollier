@@ -14,13 +14,13 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'Concepteur UX & Développeur',
+    tag: 'Ingénieur UX',
   },
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "Je suis concepteur UX et développeur à Ottawa, Canada, très passioné par la réalisation des produits de haute qualité qui conviennent aux besoins des utilisateurs et atteignent également aux objectifs de l'entreprise.",
+      "Ingénieur UX avec plus de 9 ans d'expérience couvrant l'ensemble de la chaîne produit, des premières ébauches dans Figma jusqu'au code React + TypeScript en production. Je soigne les deux côtés du métier : un design réfléchi et un code propre. J'ai construit des systèmes de design de zéro, livré du code en production dans une startup SaaS B2B, et passé la majeure partie de ma carrière à combler l'écart entre l'intention du design et le logiciel qui en résulte.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
