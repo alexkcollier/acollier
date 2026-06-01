@@ -46,8 +46,8 @@ $base-time: 1500ms;
   min-height: calc(100% - (2 * var(--page-top-padding)));
   padding: var(--page-top-padding) var(--page-side-padding);
   text-shadow:
-    1px 2px 20px rgba(0 0 0 / 95%),
-    0 0 1px rgba(0 0 0 / 80%);
+    1px 2px 20px rgb(0 0 0 / 95%),
+    0 0 1px rgb(0 0 0 / 80%);
 
   // using pseudo element so filter only affects image
   &::before {

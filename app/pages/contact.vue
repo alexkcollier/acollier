@@ -210,12 +210,12 @@ export default {
   min-height: 100%;
   padding: var(--hero-y-padding) var(--page-side-padding);
   text-shadow:
-    1px 2px 20px rgba(0 0 0 / 75%),
-    0 0 1px rgba(0 0 0 / 50%);
+    1px 2px 20px rgb(0 0 0 / 75%),
+    0 0 1px rgb(0 0 0 / 50%);
 
   @include bp.below('lg') {
     // when the text is over my face, I need to increase contrast significantly
-    --gradient-color: rgba(0 0 0 / 50%);
+    --gradient-color: rgb(0 0 0 / 50%);
     --bg-x: 90%;
   }
 }
@@ -228,8 +228,8 @@ export default {
   @include bp.below('sm') {
     font-weight: 700;
     text-shadow:
-      1px 2px 20px rgba(0 0 0 / 75%),
-      0 0 1px rgba(0 0 0 / 50%);
+      1px 2px 20px rgb(0 0 0 / 75%),
+      0 0 1px rgb(0 0 0 / 50%);
   }
 }
 
