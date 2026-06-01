@@ -1,17 +1,31 @@
 ---
 title: 'acollier.ca'
-description:
-  'My portfolio. Designed for you in Figma, built with Vue, Nuxt, and Markdown.'
+description: 'My portfolio. Designed for you in Figma, built with Vue, Nuxt, and Markdown.'
 featureImage: '/images/acollier-ca/acollier-feature.png'
 tools:
-  - { name: 'Figma', img: '/images/tools/figma.svg', href: 'https://www.figma.com' }
+  - {
+      name: 'Figma',
+      img: '/images/tools/figma.svg',
+      href: 'https://www.figma.com',
+    }
   - { name: 'Vue.js', img: '/images/tools/vue.svg', href: 'https://vuejs.org' }
-  - { name: 'Nuxt.js', img: '/images/tools/nuxt.svg', href: 'https://nuxtjs.org' }
-  - { name: 'Sass', img: '/images/tools/sass.svg', href: 'https://sass-lang.com' }
+  - {
+      name: 'Nuxt.js',
+      img: '/images/tools/nuxt.svg',
+      href: 'https://nuxtjs.org',
+    }
+  - {
+      name: 'Sass',
+      img: '/images/tools/sass.svg',
+      href: 'https://sass-lang.com',
+    }
 links:
   - title: 'Figma prototype'
     href: 'https://www.figma.com/file/SzBKZkJd3AlJD6ywgT66Yv/acollier.ca?node-id=28%3A206'
-  - { title: 'Code on GitHub', href: 'https://github.com/alexkcollier/acollier' }
+  - {
+      title: 'Code on GitHub',
+      href: 'https://github.com/alexkcollier/acollier',
+    }
 ---
 
 # acollier.ca

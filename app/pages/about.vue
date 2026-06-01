@@ -58,7 +58,9 @@ defineI18nRoute({
 
         <div class="work-experience__list">
           <WorkExperienceItem
-            v-for="item in workExperience[locale as keyof typeof workExperience]"
+            v-for="item in workExperience[
+              locale as keyof typeof workExperience
+            ]"
             :key="item.position"
             v-bind="item"
           />
@@ -72,9 +74,7 @@ defineI18nRoute({
           </h2>
 
           <div>
-            <h3 class="heading-2 title">
-              Carleton University
-            </h3>
+            <h3 class="heading-2 title">Carleton University</h3>
 
             <p class="subtitle">
               {{ $t('about.bcomm') }}
@@ -96,7 +96,7 @@ export default {
     WorkExperienceItem,
   },
 
-  data () {
+  data() {
     return {
       workExperience,
     };

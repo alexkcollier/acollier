@@ -1,17 +1,23 @@
 <script setup>
-import { useI18n, useLocalePath, useSwitchLocalePath, computed, ref } from '#imports';
+import {
+  useI18n,
+  useLocalePath,
+  useSwitchLocalePath,
+  computed,
+  ref,
+} from '#imports';
 
 const { locale, locales } = useI18n();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 
 const availableLocales = computed(() => {
-  return locales.value.filter(l => l.code !== locale.value);
+  return locales.value.filter((l) => l.code !== locale.value);
 });
 
 const isMenuOpen = ref(false);
 
-function setIsMenuOpen (isOpen) {
+function setIsMenuOpen(isOpen) {
   isMenuOpen.value = isOpen;
 
   document.documentElement.style.overflowY = isOpen ? 'hidden' : 'auto';
@@ -40,7 +46,7 @@ function setIsMenuOpen (isOpen) {
         ]"
       >
         <NavbarButton
-          v-for="({ href, key }) in links"
+          v-for="{ href, key } in links"
           :key="key"
           :href="localePath(href)"
           :text="$t(`navigation.${key}`)"
@@ -48,7 +54,7 @@ function setIsMenuOpen (isOpen) {
         />
 
         <NavbarButton
-          v-for="({ code, name }) in availableLocales"
+          v-for="{ code, name } in availableLocales"
           :key="code"
           class="navbar__locale-switcher"
           :href="switchLocalePath(code)"
@@ -72,7 +78,7 @@ export default {
     NavbarButton,
   },
 
-  data () {
+  data() {
     return {
       links,
     };
@@ -129,7 +135,8 @@ export default {
       top: calc(50% + var(--bar-offset));
       transform: translate(-50%, -50%) rotate(var(--rotation));
       transition:
-        transform var(--transition-time) ease-in-out var(--transform-transition-delay),
+        transform var(--transition-time) ease-in-out
+          var(--transform-transition-delay),
         top var(--transition-time) ease-in-out var(--top-transition-delay);
       width: 1.5rem;
     }

@@ -2,7 +2,10 @@
 const FormData = require('form-data');
 const Mailgun = require('mailgun.js');
 const mailgun = new Mailgun(FormData);
-const mg = mailgun.client({ username: 'api', key: process.env.MG_API_KEY || 'key-yourkeyhere' });
+const mg = mailgun.client({
+  username: 'api',
+  key: process.env.MG_API_KEY || 'key-yourkeyhere',
+});
 const Sentry = require('@sentry/node');
 
 const response500 = {
@@ -14,7 +17,7 @@ let sentryInitialized = false;
 /**
  * Initializes sentry
  */
-function initSentry () {
+function initSentry() {
   Sentry.init({ dsn: process.env.SENTRY_DSN });
   sentryInitialized = true;
 }
@@ -24,7 +27,7 @@ function initSentry () {
  * @param {Error|string} err Error
  * @returns {Promise<boolean>|void}
  */
-async function reportError (err) {
+async function reportError(err) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     return console.log(err);
@@ -34,7 +37,9 @@ async function reportError (err) {
     return;
   }
 
-  typeof err === 'string' ? Sentry.captureMessage(err) : Sentry.captureException(err);
+  typeof err === 'string'
+    ? Sentry.captureMessage(err)
+    : Sentry.captureException(err);
   return Sentry.flush();
 }
 
@@ -43,7 +48,7 @@ async function reportError (err) {
  * @param {{ name: string, email: string, message: string }} data message data
  * @returns {Promise<string>} response message
  */
-async function sendMail (data) {
+async function sendMail(data) {
   const body = `
 ===
 Name: ${data.name}

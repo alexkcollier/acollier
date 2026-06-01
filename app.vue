@@ -8,6 +8,7 @@
 import { useHead } from '#imports';
 
 useHead({
-  titleTemplate: chunk => chunk ? `${chunk} | Alex Collier` : 'Alex Collier',
+  titleTemplate: (chunk) =>
+    chunk ? `${chunk} | Alex Collier` : 'Alex Collier',
 });
 </script>

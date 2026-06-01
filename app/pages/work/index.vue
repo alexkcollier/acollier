@@ -10,7 +10,7 @@ import {
   computed,
 } from '#imports';
 
-const route = useRoute()
+const route = useRoute();
 const routeBaseName = useRouteBaseName();
 const { locale } = useI18n();
 const localePath = useLocalePath();
@@ -18,11 +18,8 @@ const baseRouteName = computed(() => routeBaseName(route.name));
 
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData(route.path, () => {
-  return queryCollection(baseRouteName.value)
-    .order('title', 'DESC')
-    .all();
+  return queryCollection(baseRouteName.value).order('title', 'DESC').all();
 });
-
 
 defineI18nRoute({
   paths: {
@@ -30,12 +27,10 @@ defineI18nRoute({
     fr: '/portfolio',
   },
 });
-
 </script>
 
 <template>
   <main class="container">
-
     <Head>
       <Title>
         {{ $t('work.metaTitle') }}
@@ -47,14 +42,23 @@ defineI18nRoute({
         {{ $t('work.mainHeading') }}
       </h1>
 
-      <div v-if="locale === 'fr'" class="missing-translation">
+      <div
+        v-if="locale === 'fr'"
+        class="missing-translation"
+      >
         {{ $t('common.translationMissing') }}
       </div>
     </div>
 
     <div class="post-grid">
-      <PostItem v-for="post in content" :key="post._id" :title="post.title" :description="post.description"
-        :href="localePath(post.path)" :feature-image="post.featureImage" />
+      <PostItem
+        v-for="post in content"
+        :key="post._id"
+        :title="post.title"
+        :description="post.description"
+        :href="localePath(post.path)"
+        :feature-image="post.featureImage"
+      />
     </div>
   </main>
 </template>

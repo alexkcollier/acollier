@@ -1,7 +1,7 @@
 <template>
   <ul class="tool-list">
     <li
-      v-for="({ href, img, name}) in tools"
+      v-for="{ href, img, name } in tools"
       :key="name"
       class="tool-list__item"
     >
@@ -16,7 +16,7 @@
           :alt="name"
           :title="name"
           class="tool-list__image"
-        >
+        />
 
         <span class="tool-list__link-text">
           {{ name }}

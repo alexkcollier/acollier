@@ -6,7 +6,11 @@
       </div>
 
       <div>
-        &nbsp;{{ endDate ? `${$t("about.toDate")} ${endDate}` : $t("about.toPresentDate") }}
+        &nbsp;{{
+          endDate
+            ? `${$t('about.toDate')} ${endDate}`
+            : $t('about.toPresentDate')
+        }}
       </div>
     </div>
 

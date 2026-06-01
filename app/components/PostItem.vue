@@ -1,17 +1,28 @@
 <template>
   <article class="post-item">
-    <NuxtLink :to="href" class="post-item__link">
-      <h1 class="heading-2 post-item__heading ">
+    <NuxtLink
+      :to="href"
+      class="post-item__link"
+    >
+      <h1 class="heading-2 post-item__heading">
         {{ title }}
       </h1>
 
-      <img :src="featureImage" class="post-item__preview-image" :alt="formattedDescription" :title="title">
+      <img
+        :src="featureImage"
+        class="post-item__preview-image"
+        :alt="formattedDescription"
+        :title="title"
+      />
     </NuxtLink>
 
     <p class="post-item__description">
       {{ formattedDescription }}
 
-      <NuxtLink :to="href" class="link link--arrow">
+      <NuxtLink
+        :to="href"
+        class="link link--arrow"
+      >
         Read more
       </NuxtLink>
     </p>
@@ -45,7 +56,9 @@ export default {
     formattedDescription() {
       if (!this.description) return '';
 
-      return this.description.endsWith('.') ? this.description : `${this.description}.`;
+      return this.description.endsWith('.')
+        ? this.description
+        : `${this.description}.`;
     },
   },
 };

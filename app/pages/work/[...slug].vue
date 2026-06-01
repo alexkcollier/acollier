@@ -1,11 +1,14 @@
 <script setup>
 import { useI18n, useRoute } from '#imports';
 
-const route = useRoute()
+const route = useRoute();
 const { locale } = useI18n();
-const { data: doc } = await useAsyncData((route.path, () => {
-  return queryCollection('work').path(route.path).first()
-}))
+const { data: doc } = await useAsyncData(
+  (route.path,
+  () => {
+    return queryCollection('work').path(route.path).first();
+  }),
+);
 </script>
 
 <template>
@@ -14,38 +17,71 @@ const { data: doc } = await useAsyncData((route.path, () => {
       {{ $t('common.postTranslationMissing') }}
     </div>
 
-
     <Head>
       <Title>{{ doc.title }}</Title>
-      <Meta hid="description" name="description" :content="doc.description" />
-      <Meta hid="og:title" property="og:title" :content="doc.title" />
-      <Meta hid="og:description" property="og:description" :content="doc.description" />
-      <Meta hid="twitter:title" name="twitter:title" :content="doc.title" />
-      <Meta hid="twitter:description" name="twitter:description" :content="doc.description" />
+      <Meta
+        hid="description"
+        name="description"
+        :content="doc.description"
+      />
+      <Meta
+        hid="og:title"
+        property="og:title"
+        :content="doc.title"
+      />
+      <Meta
+        hid="og:description"
+        property="og:description"
+        :content="doc.description"
+      />
+      <Meta
+        hid="twitter:title"
+        name="twitter:title"
+        :content="doc.title"
+      />
+      <Meta
+        hid="twitter:description"
+        name="twitter:description"
+        :content="doc.description"
+      />
     </Head>
 
     <div class="two-column">
       <main class="two-column__wide-col">
-        <ContentRenderer class="nuxt-content" :value="doc" />
+        <ContentRenderer
+          class="nuxt-content"
+          :value="doc"
+        />
       </main>
 
       <aside class="two-column__narrow-col sidebar">
-        <section v-if="doc.tools && doc.tools.length" class="sidebar__section">
-          <h2 class="heading-1">
-            Built with
-          </h2>
+        <section
+          v-if="doc.tools && doc.tools.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">Built with</h2>
 
           <ToolsList :tools="doc.tools" />
         </section>
 
-        <section v-if="doc.links && doc.links.length" class="sidebar__section work-links">
-          <h2 class="heading-1">
-            Links
-          </h2>
+        <section
+          v-if="doc.links && doc.links.length"
+          class="sidebar__section work-links"
+        >
+          <h2 class="heading-1">Links</h2>
 
           <ul class="work-links__list">
-            <li v-for="({ href, title }) in doc.links" :key="href" class="work-links__list-item">
-              <a class="link link--arrow" :href="href" target="_blank" rel="noopen">
+            <li
+              v-for="{ href, title } in doc.links"
+              :key="href"
+              class="work-links__list-item"
+            >
+              <a
+                class="link link--arrow"
+                :href="href"
+                target="_blank"
+                rel="noopen"
+              >
                 {{ title }}
               </a>
             </li>
