@@ -1,34 +1,45 @@
-<script setup>
+<script setup lang="ts">
 import {
   useRouteBaseName,
   useRoute,
   useAsyncData,
   queryCollection,
-  defineI18nRoute,
+  definePageMeta,
   useI18n,
   useLocalePath,
   computed,
 } from '#imports';
+import type { Collections } from '@nuxt/content';
 
 const route = useRoute();
 const routeBaseName = useRouteBaseName();
 const { locale } = useI18n();
 const localePath = useLocalePath();
-const baseRouteName = computed(() => routeBaseName(route.name));
+const baseRouteName = computed(() =>
+  String(routeBaseName(route.name as string)),
+);
 
 // TODO: #26 Design error/empty state in case this happens for some reason
-const { data: content } = await useAsyncData(route.path, () => {
-  return queryCollection(`${baseRouteName.value}_${locale.value}`)
-    .order('title', 'DESC')
-    .all();
+const { data: content } = await useAsyncData(route.path, async () => {
+  const queryAll = (collection: keyof Collections) =>
+    queryCollection(collection).order('title', 'DESC').all();
+
+  const localeCollection =
+    `${baseRouteName.value}_${locale.value}` as keyof Collections;
+  const fallbackCollection = `${baseRouteName.value}_en` as keyof Collections;
+  const content = await queryAll(localeCollection);
+
+  if (!content.length && locale.value !== 'en') {
+    return await queryAll(fallbackCollection);
+  }
 });
 
-console.log(baseRouteName.value);
-
-defineI18nRoute({
-  paths: {
-    en: '/work',
-    fr: '/portfolio',
+definePageMeta({
+  i18n: {
+    paths: {
+      en: '/work',
+      fr: '/portfolio',
+    },
   },
 });
 </script>
@@ -57,7 +68,7 @@ defineI18nRoute({
     <div class="post-grid">
       <PostItem
         v-for="post in content"
-        :key="post._id"
+        :key="post.id"
         :title="post.title"
         :description="post.description"
         :href="localePath(post.path)"
@@ -67,8 +78,7 @@ defineI18nRoute({
   </main>
 </template>
 
-<script>
- 
+<script lang="ts">
 import PostItem from '~/components/PostItem.vue';
 
 export default {

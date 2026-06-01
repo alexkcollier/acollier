@@ -24,16 +24,15 @@ export default defineContentConfig({
     work_en: defineCollection({
       type: 'page',
       source: {
-        include: 'work/**',
-        prefix: '',
+        include: 'en/**',
+        prefix: '/',
       },
       schema: commonSchema,
     }),
     work_fr: defineCollection({
       type: 'page',
       source: {
-        include: 'work/**',
-        prefix: 'fr',
+        include: 'fr/**',
       },
       schema: commonSchema,
     }),

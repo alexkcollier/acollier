@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { defineI18nRoute, useI18n, useLocalePath } from '#imports';
+import { definePageMeta, useI18n, useLocalePath } from '#imports';
 
 const localePath = useLocalePath();
 const { locale } = useI18n();
 
-defineI18nRoute({
-  paths: {
-    en: '/about',
-    fr: '/a-propos',
+definePageMeta({
+  i18n: {
+    paths: {
+      en: '/about',
+      fr: '/a-propos',
+    },
   },
 });
 </script>
@@ -87,7 +89,6 @@ defineI18nRoute({
 </template>
 
 <script lang="ts">
- 
 import workExperience from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 

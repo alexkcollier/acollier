@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useI18n, useRoute, useAsyncData } from '#imports';
+import { useI18n, useRoute, useAsyncData, definePageMeta } from '#imports';
 import type { Collections } from '@nuxt/content';
 
 const route = useRoute();
@@ -15,7 +15,7 @@ const { data: doc } = await useAsyncData(
   `page-${slug.value}`,
   async () => {
     const query = (collection: keyof Collections) =>
-      queryCollection(collection).path(`/${slug.value}`).first();
+      queryCollection(collection).path(`/work/${slug.value}`).first();
 
     const content = await query(`work_${locale.value}` as keyof Collections);
 
@@ -26,8 +26,17 @@ const { data: doc } = await useAsyncData(
 
     return content;
   },
-  { watch: [locale] },
+  { watch: [locale, slug] },
 );
+
+definePageMeta({
+  i18n: {
+    paths: {
+      en: '/work/[slug]',
+      fr: '/portfolio/[slug]',
+    },
+  },
+});
 </script>
 
 <template>

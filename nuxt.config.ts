@@ -64,6 +64,7 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
+    customRoutes: 'meta',
     locales: [
       {
         code: 'en',

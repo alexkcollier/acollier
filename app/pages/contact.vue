@@ -1,3 +1,11 @@
+<script setup>
+import { definePageMeta } from '#imports';
+
+definePageMeta({
+  layout: 'no-page-spacing',
+});
+</script>
+
 <template>
   <main class="contact-hero">
     <Head>
@@ -133,12 +141,6 @@
 </template>
 
 <script>
-import { definePageMeta } from '#imports';
-
-definePageMeta({
-  layout: 'no-page-spacing',
-});
-
 export default {
   data() {
     return {
