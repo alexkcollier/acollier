@@ -24,14 +24,9 @@ const { data: content } = await useAsyncData(route.path, async () => {
   const queryAll = (collection: keyof Collections) =>
     queryCollection(collection).order('title', 'DESC').all();
 
-  const localeCollection =
-    `${baseRouteName.value}_${locale.value}` as keyof Collections;
   const fallbackCollection = `${baseRouteName.value}_en` as keyof Collections;
-  const content = await queryAll(localeCollection);
 
-  if (!content.length && locale.value !== 'en') {
-    return await queryAll(fallbackCollection);
-  }
+  return queryAll(fallbackCollection);
 });
 
 definePageMeta({
