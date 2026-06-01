@@ -26,7 +26,7 @@ export default {
   },
   contact: {
     metaTitle: 'Contact',
-    mainHeading: 'Want to work together? ',
+    mainHeading: 'Want to work together?',
     mainHeadingLine2: 'Send me a message.',
     thankYouHeading: 'Thank you',
     thankYouMessage: 'Your message has been sent.',
@@ -36,6 +36,7 @@ export default {
     contactFormMessageLabel: 'Message',
     contactFormErrorMessage:
       'Something went wrong, and your message could not be sent. Try again, or connect with me on',
+    send: 'Send',
   },
   work: {
     metaTitle: 'Work',

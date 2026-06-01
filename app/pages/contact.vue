@@ -109,7 +109,7 @@ definePageMeta({
                     { 'is-loading': isSending },
                   ]"
                 >
-                  {{ $t('common.contact') }}
+                  {{ $t('contact.send') }}
                 </button>
               </div>
 

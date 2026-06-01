@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   useI18n,
   useLocalePath,
@@ -17,7 +17,7 @@ const availableLocales = computed(() => {
 
 const isMenuOpen = ref(false);
 
-function setIsMenuOpen(isOpen) {
+function setIsMenuOpen(isOpen: boolean) {
   isMenuOpen.value = isOpen;
 
   document.documentElement.style.overflowY = isOpen ? 'hidden' : 'auto';
@@ -58,7 +58,7 @@ function setIsMenuOpen(isOpen) {
           :key="code"
           class="navbar__locale-switcher"
           :href="switchLocalePath(code)"
-          :text="name"
+          :text="name!"
           @click="() => setIsMenuOpen(false)"
         />
       </div>
@@ -66,8 +66,7 @@ function setIsMenuOpen(isOpen) {
   </nav>
 </template>
 
-<script>
- 
+<script lang="ts">
 import NavbarButton from '~/components/NavbarButton.vue';
 import links from '~/assets/data/navbar-links';
 
