@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./node_modules/@nuxtjs/i18n/dist/types.d.mts" />
 import { defineNuxtConfig } from 'nuxt/config';
 import pkg from './package.json';
@@ -13,9 +14,23 @@ export default defineNuxtConfig({
         { name: 'description', content: pkg.description },
       ],
       link: [
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon-32x32.png',
+        },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '16x16',
+          href: '/favicon-16x16.png',
+        },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' },
         {
@@ -36,20 +51,14 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-  ],
+  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint'],
   typescript: {
     typeCheck: true,
   },
   vite: {
     optimizeDeps: {
-      include: [
-        '@vue/devtools-core',
-        '@vue/devtools-kit',
-      ]
-    }
+      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+    },
   },
   i18n: {
     locales: [
@@ -57,13 +66,13 @@ export default defineNuxtConfig({
         code: 'en',
         name: 'English',
         language: 'en-CA',
-        file: 'en/index.ts'
+        file: 'en/index.ts',
       },
       {
         code: 'fr',
         name: 'Français',
         language: 'fr-CA',
-        file: 'fr/index.ts'
+        file: 'fr/index.ts',
       },
     ],
     defaultLocale: 'en',
