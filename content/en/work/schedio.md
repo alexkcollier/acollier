@@ -4,14 +4,17 @@ featureImage: '/images/schedio/schedio-feature.png'
 description: A design system and component library for Spartan Bio
 links:
   - { title: Schedio, href: https://spartanbio-design.netlify.app }
-  - { title: Schedio on GitHub, href: https://github.com/spartanbio/schedio }
+  - {
+      title: Schedio fork on GitHub,
+      href: https://github.com/alexkcollier/schedio,
+    }
   - {
       title: Schedio Tokens,
       href: https://spartanbio.github.io/schedio-tokens/,
     }
   - {
-      title: Schedio Tokens on GitHub,
-      href: https://github.com/spartanbio/schedio-tokens,
+      title: Schedio Tokens fork on GitHub,
+      href: https://github.com/alexkcollier/schedio-tokens,
     }
 tools:
   - {
