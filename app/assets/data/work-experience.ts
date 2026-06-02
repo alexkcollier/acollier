@@ -17,11 +17,11 @@ const en: WorkExperienceItem[] = [
     company: 'Keatext',
     startDate: 'May 2021',
     description: [
-      'Led UX strategy and product initiatives across the team and organization',
-      'Designed, built and maintained production-grade React + TypeScript components with interaction fidelity and accessibility at their core',
-      'Established design-to-development workflows that reduced handoff loops and bespoke one-off UI',
-      'Converted fragmented UI work into reusable system components with clear APIs, built on design tokens',
+      'Led product design while playing a central role in front-end direction and implementation',
       'Partnered with product owners and engineers to shape strategy and the development roadmap',
+      'Established design-to-development workflows that reduced handoff loops and bespoke one-off UI',
+      'Designed, built and maintained production-grade React + TypeScript components with interaction fidelity and accessibility at their core',
+      'Converted fragmented UI work into reusable system components with clear APIs, built on design tokens',
     ],
   },
   {
@@ -30,8 +30,8 @@ const en: WorkExperienceItem[] = [
     startDate: 'June 2017',
     endDate: 'May 2021',
     description: [
-      'Built a design system from the ground up with full documentation in Storybook',
       'Designed and built interactive, high-fidelity prototypes and production interfaces for medical software and training products',
+      'Built a design system from the ground up with full documentation in Storybook',
       'Developed and maintained a web-based customer support portal and corporate site with headless CMS integration',
       'Collaborated with cross-functional teams spanning engineering, management, and executive leadership',
       'Synthesized multi-channel feedback into iterative design revisions, maintaining a single source of truth',
@@ -56,11 +56,11 @@ const fr: WorkExperienceItem[] = [
     company: 'Keatext',
     startDate: 'Mai 2021',
     description: [
-      "Direction de la stratégie UX et les initiatives produit au sein de l'équipe et de l'organisation",
-      "Conception, développement et maintenance de composants React + TypeScript de qualité production, avec la fidélité d'interaction et l'accessibilité au cœur de la démarche",
-      'Mise en place des flux de travail design-vers-développement réduisant les cycles de transfert et les interfaces ponctuelles non réutilisables',
-      "Transformation d'une interface fragmentée en système de composants réutilisables et cohérents avec des API claires, fondé sur des tokens de design",
-      'Collaboration avec les chefs de produit et les ingénieurs pour définir la stratégie et la feuille de route de développement',
+      "Direction du design produit, avec un rôle central dans l'orientation et l'implémentation front-end",
+      'Collaboration avec les chefs de produit et les ingénieurs pour définir la stratégie et la feuille de route',
+      'Mise en place de flux de travail design-vers-développement réduisant les cycles de transfert',
+      "Conception, développement et maintenance de composants React + TypeScript centrés sur l'accessibilité et la fidélité d'interaction",
+      "Transformation d'éléments d'interface fragmentés en composants système réutilisables avec des API claires, fondés sur des tokens de design",
     ],
   },
   {
