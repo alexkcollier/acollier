@@ -72,6 +72,19 @@ definePageMeta({
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
+            {{ $t('about.skillsHeading') }}
+          </h2>
+
+          <ul class="about-skills">
+            <li
+              v-for="(skill, index) in skills[locale]"
+              :key="index"
+            >
+              {{ skill }}
+            </li>
+          </ul>
+
+          <h2 class="heading-1">
             {{ $t('about.educationHeading') }}
           </h2>
 
@@ -90,6 +103,7 @@ definePageMeta({
 
 <script lang="ts">
 import workExperience from '~/assets/data/work-experience';
+import { skills } from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
 export default {
@@ -137,6 +151,11 @@ export default {
 
 .about-content {
   margin-top: 5rem;
+}
+
+.about-skills {
+  list-style: none;
+  padding-left: 0;
 }
 
 .work-experience {

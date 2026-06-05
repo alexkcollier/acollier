@@ -10,19 +10,20 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'UX Engineer',
+    tag: 'Design Engineer',
   },
   about: {
     metaTitle: 'About',
     mainHeading: 'About',
     blurb:
-      "UX engineer with 9+ years working across the full product stack, from early concepts in Figma to production React + TypeScript. I care about the craft on both sides: design that's intentional and code that's clean. I've built design systems from scratch, shipped production code, and spent most of my career closing the gap between design intent and working software.",
+      'Design Engineer bridging design and front-end engineering, with deep experience designing and shipping production interfaces for AI products, including conversational and LLM-based interactions.',
     resumeDownload: 'Download my resume',
     experienceHeading: 'Experience',
     educationHeading: 'Education',
     bcomm: 'Bachelor of Commerce, International Business & Marketing',
     toPresentDate: 'to present',
     toDate: 'to',
+    skillsHeading: 'Skills',
   },
   contact: {
     metaTitle: 'Contact',

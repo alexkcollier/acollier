@@ -14,19 +14,20 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'Ingénieur UX',
+    tag: 'Design Engineer',
   },
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "Ingénieur UX avec plus de 9 ans d'expérience couvrant l'ensemble de la chaîne produit, des premières ébauches dans Figma jusqu'au code React + TypeScript en production. Je soigne les deux côtés du métier : un design réfléchi et un code propre. J'ai construit des systèmes de design de zéro, livré du code en production, et passé la majeure partie de ma carrière à combler l'écart entre l'intention du design et le logiciel qui en résulte.",
+      "Design Engineer à la croisée du design et de l'ingénierie front-end, avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA, incluant les interactions conversationnelles et fondées sur des LLM.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
     bcomm: 'Baccalauréat en commerce, commerce international et marketing',
     toPresentDate: 'au présent',
     toDate: 'à',
+    skillsHeading: 'Compétences',
   },
   contact: {
     metaTitle: 'Contact',
