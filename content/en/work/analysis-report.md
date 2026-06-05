@@ -29,7 +29,7 @@ tools:
 
 Designed and led frontend development of the Analysis Report, the most technically ambitious feature shipped during my time at Keatext. The report takes a CSV through the NLP pipeline and an LLM to generate a detailed written analysis: an overall summary, breakdown of key topics, recommendations, and a short implementation roadmap. It also included a filtering workflow, in-browser PDF export, multi-language generation, and an agentic chat interface for querying the dataset. A marquee demo feature that generated strong excitement with prospective customers.
 
-<!-- ASSET: Hero screenshot or short screen recording of the full report: showing the written report content, the chart, and ideally the agent panel open alongside it. -->
+<video src="/images/analysis-report/analysis-report.webm" controls preload="none" muted poster="/images/analysis-report/analysis-report-feature.png"></video>
 
 ## Context
 
@@ -45,7 +45,7 @@ The Analysis Report was the centrepiece of a longer-running initiative to turn K
 
 The project started from scratch, built around the upload of a single CSV containing any number of text and metadata fields. Unlike previous implementations that required users to manually configure the satisfaction field, the Analysis Report detected it automatically in the backend. Users could correct a mis-identified field, but in most cases the setup required nothing from them. The question driving the project was how much of the analytical workflow we could hand off to the model.
 
-_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](#)._
+_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](/work/focus-recommendations)
 
 ## What I did
 
@@ -69,7 +69,7 @@ The core constraint was that the agent panel needed to be resizable but not coll
 
 I landed on a horizontal layout for the filters, positioned above the table rather than in a side panel. This freed up the horizontal space the table needed, reduced the total number of competing panels, and established a reusable pattern for additional configuration options in future screens.
 
-<!-- ASSET: The report configuration screen showing the horizontal filter layout above the data table: before/after if available, or the final layout at minimum. -->
+![Layers are now laid out above the table, saving critical horizontal space](/images/analysis-report/report-creation-filters.png "Report configuration screen with horizontal filters")
 
 ### Communicating impact
 
@@ -81,7 +81,9 @@ The net elasticity value (positive minus negative) was visualised as a meter. Th
 
 Sorting introduced a subtler problem. Sorting topics by net elasticity alone would misrepresent volatile topics; a subject with strong positive and negative elasticity would produce a small net value and drop toward the bottom of the list, despite being highly significant. I used total magnitude (the sum of positive and negative elasticity) as the sort key instead, surfacing the most impactful topics regardless of direction. Total magnitude was not exposed directly to users; it informed the order without requiring explanation.
 
-<!-- ASSET: The impact meter: showing the collapsed (net) and expanded (positive/negative breakdown) states. The chart would also work well here. -->
+![The impact meter could be expanded to access raw stats](/images/analysis-report/impact-meter-states.png "Impact meter, collapsed and expanded")
+
+![The impact chart classifies topics as strengths, weaknesses, or nice to have](/images/analysis-report/impact-chart.png "Impact vs. Satisfaction chart")
 
 ### The agent interface
 
@@ -91,7 +93,7 @@ The design focus for the agent was microinteractions. In a data-heavy applicatio
 
 I implemented subtle animations and transitions throughout: elements easing in rather than snapping, and a bouncing dot animation during agent responses, the same pattern chat applications use to show a contact is typing. The effect is small but meaningful: it signals that work is being done, maintains the sense of a live exchange, and gives the interface a quality of responsiveness that the underlying latency would otherwise undermine.
 
-<!-- ASSET: Screen recording of the agent panel: showing a message being sent, the bouncing dot loading state, and a response appearing. Even a short GIF captures this better than a screenshot. -->
+<video src="/images/analysis-report/chat-interaction.webm" style="width: 380px;" controls preload="none" muted poster="/images/analysis-report/chat-interaction.png"></video>
 
 ## Additional technical work
 
@@ -103,7 +105,7 @@ I implemented subtle animations and transitions throughout: elements easing in r
 
 **AI-assisted development:** I used AI tooling throughout the project for early iteration, prototyping, and implementation. On a feature of this scope, it meaningfully compressed the implementation timeline.
 
-<!-- ASSET: A screenshot of the exported PDF: showing the report content rendered cleanly with the rich text formatting intact. -->
+![The quality of the in-browser PDF generation allowed it to be easily shared with stakeholder](/images/analysis-report/pdf-report-example.png "Page preview from the PDF export")
 
 ## Shipping incrementally
 
