@@ -46,7 +46,7 @@ The Analysis Report was the centrepiece of a longer-running initiative to turn K
 
 The project started from scratch, built around the upload of a single CSV containing any number of text and metadata fields. Unlike previous implementations that required users to manually configure the satisfaction field, the Analysis Report detected it automatically in the backend. Users could correct a mis-identified field, but in most cases the setup required nothing from them. The question driving the project was how much of the analytical workflow we could hand off to the model.
 
-\_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](/work/focus-recommendations)
+_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](/work/focus-recommendations)_
 
 ## What I did
 
