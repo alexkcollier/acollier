@@ -133,6 +133,8 @@ definePageMeta({
                 </div>
               </Transition>
             </form>
+
+            <SocialLinks class="social-links--contact" />
           </div>
         </template>
       </Transition>
@@ -201,19 +203,30 @@ export default {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .contact-hero {
-  --gradient-color: transparent;
+  --gradient-color: rgb(0 0 0 / 20%);
   --bg-x: right;
   --hero-y-padding: 4rem;
+  --bg-image: url('~/assets/images/acollier.jpg');
 
   align-items: center;
 
-  // TODO: #28 load separate image on mobile
   display: flex;
   min-height: 100%;
   padding: var(--hero-y-padding) var(--page-side-padding);
   text-shadow:
     1px 2px 20px rgb(0 0 0 / 75%),
     0 0 1px rgb(0 0 0 / 50%);
+
+  &::before {
+    background:
+      linear-gradient(var(--gradient-color), var(--gradient-color)),
+      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover
+        no-repeat;
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: -1;
+  }
 
   @include bp.below('lg') {
     // when the text is over my face, I need to increase contrast significantly
@@ -233,6 +246,10 @@ export default {
       1px 2px 20px rgb(0 0 0 / 75%),
       0 0 1px rgb(0 0 0 / 50%);
   }
+}
+
+.social-links--contact {
+  margin-block-start: 3rem;
 }
 
 .thank-you-text {

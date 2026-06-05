@@ -13,15 +13,15 @@ interface WorkExperienceItem {
 
 const en: WorkExperienceItem[] = [
   {
-    position: 'UX Engineer',
+    position: 'Design Engineer',
     company: 'Keatext',
     startDate: 'May 2021',
     description: [
-      'Led product design while playing a central role in front-end direction and implementation',
-      'Partnered with product owners and engineers to shape strategy and the development roadmap',
-      'Established design-to-development workflows that reduced handoff loops and bespoke one-off UI',
-      'Designed, built and maintained production-grade React + TypeScript components with interaction fidelity and accessibility at their core',
-      'Converted fragmented UI work into reusable system components with clear APIs, built on design tokens',
+      'Owned product design and front-end direction, serving as the bridge between design and engineering.',
+      "Redesigned the core user experience for conversational AI that traditional UI patterns didn't address",
+      'Partnered with product owners and engineers to shape roadmap and strategy, establishing design-to-development workflows that cut handoff loops',
+      'Designed, built, and maintained production React + TypeScript components with interaction fidelity and accessibility at their core',
+      'Converted fragmented UI work into a reusable component system with clear APIs, built on design tokens',
     ],
   },
   {
@@ -52,15 +52,15 @@ const en: WorkExperienceItem[] = [
 
 const fr: WorkExperienceItem[] = [
   {
-    position: 'Ingénieur UX',
+    position: 'Design Engineer',
     company: 'Keatext',
     startDate: 'Mai 2021',
     description: [
-      "Direction du design produit, avec un rôle central dans l'orientation et l'implémentation front-end",
-      'Collaboration avec les chefs de produit et les ingénieurs pour définir la stratégie et la feuille de route',
-      'Mise en place de flux de travail design-vers-développement réduisant les cycles de transfert',
-      "Conception, développement et maintenance de composants React + TypeScript centrés sur l'accessibilité et la fidélité d'interaction",
-      "Transformation d'éléments d'interface fragmentés en composants système réutilisables avec des API claires, fondés sur des tokens de design",
+      'Responsable du design produit et de la direction front-end, assurant la liaison entre design et ingénierie.',
+      "Refondu l'expérience utilisateur principale pour l'IA conversationnelle, que les patterns d'interface traditionnels ne prenaient pas en charge",
+      'Collaboré avec les product owners et les ingénieurs pour façonner la feuille de route et la stratégie, en établissant des workflows design-développement réduisant les allers-retours de handoff',
+      "Conçu, développé et maintenu des composants React + TypeScript de production, avec la fidélité des interactions et l'accessibilité au cœur",
+      'Transformé une interface fragmenté en un système de composants réutilisables aux API claires, fondé sur des design tokens',
     ],
   },
   {
@@ -88,6 +88,37 @@ const fr: WorkExperienceItem[] = [
     ],
   },
 ];
+
+export const skills = {
+  en: [
+    'Agentic and LLM Interface Design',
+    'Conversational UI',
+    'Design Systems',
+    'UX Design',
+    'Accessibility',
+    'React',
+    'Figma',
+    'TypeScript/JavaScript',
+    'CSS',
+    'Prototyping',
+    'English (native)',
+    'French',
+  ],
+  fr: [
+    "Conception d'interfaces agentiques",
+    'UI conversationnelle',
+    'Systèmes de design',
+    'Design UX',
+    'Accessibilité',
+    'React',
+    'Figma',
+    'TypeScript/JavaScript',
+    'CSS',
+    'Prototypage',
+    'Anglais (natif)',
+    'Français',
+  ],
+};
 
 export default {
   en,

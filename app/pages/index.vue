@@ -37,7 +37,7 @@ $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
 
 .home-hero {
-  --gradient-color: transparent;
+  --gradient-color: rgb(0 0 0 / 20%);
   --bg-image: url('~/assets/images/acollier.jpg');
   --bg-x: right;
 
@@ -51,8 +51,6 @@ $base-time: 1500ms;
 
   // using pseudo element so filter only affects image
   &::before {
-    // TODO: #28 load separate image on mobile
-    // when the text is over my face, I need to increase contrast significantly
     background:
       linear-gradient(var(--gradient-color), var(--gradient-color)),
       var(--base-background-color) var(--bg-image) var(--bg-x) center / cover
