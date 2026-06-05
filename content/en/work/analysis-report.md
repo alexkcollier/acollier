@@ -25,11 +25,11 @@ tools:
 
 # Analysis Report
 
+<video src="/images/analysis-report/analysis-report.webm" controls preload="none" muted poster="/images/analysis-report/analysis-report-feature.png"></video>
+
 ## TL;DR
 
 Designed and led frontend development of the Analysis Report, the most technically ambitious feature shipped during my time at Keatext. The report takes a CSV through the NLP pipeline and an LLM to generate a detailed written analysis: an overall summary, breakdown of key topics, recommendations, and a short implementation roadmap. It also included a filtering workflow, in-browser PDF export, multi-language generation, and an agentic chat interface for querying the dataset. A marquee demo feature that generated strong excitement with prospective customers.
-
-<video src="/images/analysis-report/analysis-report.webm" controls preload="none" muted poster="/images/analysis-report/analysis-report-feature.png"></video>
 
 ## Context
 
