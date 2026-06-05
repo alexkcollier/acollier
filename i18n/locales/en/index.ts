@@ -10,7 +10,7 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'Design Engineer',
+    tag: 'Design Engineer, crafting for AI',
   },
   about: {
     metaTitle: 'About',

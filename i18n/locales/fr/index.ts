@@ -18,7 +18,7 @@ export default <LangSchema>{
     contact: 'Contact',
   },
   home: {
-    tag: 'Design Engineer',
+    tag: "Design Engineer qui donne form à L'IA",
   },
   about: {
     metaTitle: 'À propos',
