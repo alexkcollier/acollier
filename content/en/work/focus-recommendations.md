@@ -15,7 +15,7 @@ tools:
 
 # Focus Recommendations
 
-![Focus Recommendations provided key insights on what needs attention, now](/images/focus-recommendations/focus-recommendations-feature.png "The Focus Recommendations page")
+![Focus Recommendations provided key insights on what needs attention, now](/images/focus-recommendations/focus-recommendations-feature.png 'The Focus Recommendations page')
 
 ## TL;DR
 
@@ -43,11 +43,11 @@ Three design problems defined the project.
 
 The four-quadrant chart handled the big picture; plotting topics by correlation and average satisfaction score made priorities immediately clear. The harder problem was the table view: communicating the same information at a topic level, in a single icon, without requiring users to understand what correlation means.
 
-![The chart allows quick identification of what really needs attention](/images/focus-recommendations/focus-recommendations-feature.png "Close up on the chart")
+![The chart allows quick identification of what really needs attention](/images/focus-recommendations/focus-recommendations-feature.png 'Close up on the chart')
 
 I landed on a target-like icon: three concentric rings, where more rings filled indicated stronger impact. Positive or negative impact was communicated through color (green for positive, red for negative), deliberately breaking from our praise/problem palette, since this analysis is based on satisfaction scores rather than our sentiment categories. An arrow icon and correlation percentage reinforced the direction for users with color blindness.
 
-![Impact icons expressed magnitude and polarity](/images/focus-recommendations/target-icons.png "Target icon variants")
+![Impact icons expressed magnitude and polarity](/images/focus-recommendations/target-icons.png 'Target icon variants')
 
 ![The table view shows a bit more detail](/images/focus-recommendations/table-view.png)
 
@@ -59,7 +59,7 @@ The initial release supported a single NPS response-question pair, the most comm
 
 We extended coverage in stages. First, a modal that let users order any field (numeric, or non-numeric, a Likert scale, for example) from least to most satisfied and use it as the response variable. Then support for multiple rating-response pairs, enabling analysis of surveys containing several question sets, a meaningful unlock for enterprise clients running complex research.
 
-![Ratings could be easily re-ordered in terms of satisfaction](/images/focus-recommendations/ratings-configuration.png "The ratings configuration dialog")
+![Ratings could be easily re-ordered in terms of satisfaction](/images/focus-recommendations/ratings-configuration.png 'The ratings configuration dialog')
 
 ### Actionable Insights
 
@@ -69,7 +69,7 @@ The recommendations appeared as paginated cards above the chart, each covering a
 
 The list of key opinions in the table view was also migrated to an AI-generated summary around this time, reducing noise and improving readability.
 
-![Actionable Insights provide real recommendations to improve satisfaction](/images/focus-recommendations/actionable-insights.png "The Actionable Insights cards")
+![Actionable Insights provide real recommendations to improve satisfaction](/images/focus-recommendations/actionable-insights.png 'The Actionable Insights cards')
 
 ## What came next
 
@@ -79,7 +79,7 @@ The gap was narrow but real: the Analysis Report did not yet support non-NPS fie
 
 This was not a decision made at the outset; it was a product judgment call I made as the two features converged, close to the end of the Analysis Report beta.
 
-_The dashboard widget that brought Focus Recommendations into the broader product is described in the [Dashboard case study ->](#)._
+_The dashboard widget that brought Focus Recommendations into the broader product is described in the [Customizable Dashboard case study ->](/work/customizable-dashboard)._
 
 ## Outcome
 

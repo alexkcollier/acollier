@@ -45,7 +45,7 @@ The Analysis Report was the centrepiece of a longer-running initiative to turn K
 
 The project started from scratch, built around the upload of a single CSV containing any number of text and metadata fields. Unlike previous implementations that required users to manually configure the satisfaction field, the Analysis Report detected it automatically in the backend. Users could correct a mis-identified field, but in most cases the setup required nothing from them. The question driving the project was how much of the analytical workflow we could hand off to the model.
 
-_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](/work/focus-recommendations)
+\_Focus Recommendations, which the Analysis Report largely superseded, is covered in a [separate case study ->](/work/focus-recommendations)
 
 ## What I did
 
@@ -69,7 +69,7 @@ The core constraint was that the agent panel needed to be resizable but not coll
 
 I landed on a horizontal layout for the filters, positioned above the table rather than in a side panel. This freed up the horizontal space the table needed, reduced the total number of competing panels, and established a reusable pattern for additional configuration options in future screens.
 
-![Layers are now laid out above the table, saving critical horizontal space](/images/analysis-report/report-creation-filters.png "Report configuration screen with horizontal filters")
+![Layers are now laid out above the table, saving critical horizontal space](/images/analysis-report/report-creation-filters.png 'Report configuration screen with horizontal filters')
 
 ### Communicating impact
 
@@ -81,9 +81,9 @@ The net elasticity value (positive minus negative) was visualised as a meter. Th
 
 Sorting introduced a subtler problem. Sorting topics by net elasticity alone would misrepresent volatile topics; a subject with strong positive and negative elasticity would produce a small net value and drop toward the bottom of the list, despite being highly significant. I used total magnitude (the sum of positive and negative elasticity) as the sort key instead, surfacing the most impactful topics regardless of direction. Total magnitude was not exposed directly to users; it informed the order without requiring explanation.
 
-![The impact meter could be expanded to access raw stats](/images/analysis-report/impact-meter-states.png "Impact meter, collapsed and expanded")
+![The impact meter could be expanded to access raw stats](/images/analysis-report/impact-meter-states.png 'Impact meter, collapsed and expanded')
 
-![The impact chart classifies topics as strengths, weaknesses, or nice to have](/images/analysis-report/impact-chart.png "Impact vs. Satisfaction chart")
+![The impact chart classifies topics as strengths, weaknesses, or nice to have](/images/analysis-report/impact-chart.png 'Impact vs. Satisfaction chart')
 
 ### The agent interface
 
@@ -105,7 +105,7 @@ I implemented subtle animations and transitions throughout: elements easing in r
 
 **AI-assisted development:** I used AI tooling throughout the project for early iteration, prototyping, and implementation. On a feature of this scope, it meaningfully compressed the implementation timeline.
 
-![The quality of the in-browser PDF generation allowed it to be easily shared with stakeholder](/images/analysis-report/pdf-report-example.png "Page preview from the PDF export")
+![The quality of the in-browser PDF generation allowed it to be easily shared with stakeholder](/images/analysis-report/pdf-report-example.png 'Page preview from the PDF export')
 
 ## Shipping incrementally
 
