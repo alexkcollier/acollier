@@ -43,19 +43,16 @@ export default {
 @use '~/assets/styles/utils/mixins';
 
 .tool-list {
-  // manual gap since `gap` isn't supported for flexbox on Safari
-  $space: 1rem;
+  $space: 2rem;
 
   @include mixins.unstyled-list;
 
   align-items: flex-end;
-  display: flex;
-  flex-wrap: wrap;
-  margin: -1 * $space;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $space;
 
   &__item {
-    flex-basis: 1 0 auto;
-    margin: $space;
     text-align: center;
   }
 
