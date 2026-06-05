@@ -133,6 +133,8 @@ definePageMeta({
                 </div>
               </Transition>
             </form>
+
+            <SocialLinks class="social-links--contact" />
           </div>
         </template>
       </Transition>
@@ -233,6 +235,10 @@ export default {
       1px 2px 20px rgb(0 0 0 / 75%),
       0 0 1px rgb(0 0 0 / 50%);
   }
+}
+
+.social-links--contact {
+  margin-block-start: 3rem;
 }
 
 .thank-you-text {

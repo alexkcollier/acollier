@@ -54,7 +54,7 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint'],
+  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint', 'nuxt-svgo'],
   typescript: {
     typeCheck: true,
   },

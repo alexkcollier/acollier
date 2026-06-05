@@ -1,4 +1,8 @@
-export default {
+import type en from '../en';
+
+type LangSchema = typeof en;
+
+export default <LangSchema>{
   common: {
     contact: 'Contacte-moi',
     name: 'Alex Collier',
@@ -28,6 +32,7 @@ export default {
     toPresentDate: 'au présent',
     toDate: 'à',
     skillsHeading: 'Compétences',
+    linksHeading: 'Liens',
   },
   contact: {
     metaTitle: 'Contact',

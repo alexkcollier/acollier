@@ -24,6 +24,7 @@ export default {
     toPresentDate: 'to present',
     toDate: 'to',
     skillsHeading: 'Skills',
+    linksHeading: 'Links',
   },
   contact: {
     metaTitle: 'Contact',

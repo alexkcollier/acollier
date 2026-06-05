@@ -72,6 +72,12 @@ definePageMeta({
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
+            {{ $t('about.linksHeading') }}
+          </h2>
+
+          <SocialLinks />
+
+          <h2 class="heading-1">
             {{ $t('about.skillsHeading') }}
           </h2>
 
