@@ -1,5 +1,6 @@
 ---
 title: Analysis Report
+order: 0
 featureImage: '/images/analysis-report/analysis-report-feature.png'
 description: AI-generated CX report including an agentic chat interface
 tools:

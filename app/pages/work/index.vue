@@ -22,7 +22,10 @@ const baseRouteName = computed(() =>
 // TODO: #26 Design error/empty state in case this happens for some reason
 const { data: content } = await useAsyncData(route.path, async () => {
   const queryAll = (collection: keyof Collections) =>
-    queryCollection(collection).order('title', 'DESC').all();
+    queryCollection(collection)
+      .order('order', 'ASC')
+      .order('title', 'ASC')
+      .all();
 
   const fallbackCollection = `${baseRouteName.value}_en` as keyof Collections;
 

@@ -1,5 +1,6 @@
 ---
 title: Legionella mobile client
+order: 5
 description: Run the Spartan Legionella Test with your phone.
 featureImage: '/images/legionella-mobile-client/legionella-mobile-feature.jpg'
 tools:
@@ -23,7 +24,6 @@ tools:
       img: /images/tools/theo.png,
       href: https://github.com/salesforce-ux/theo,
     }
-links:
 ---
 
 # Legionella mobile client

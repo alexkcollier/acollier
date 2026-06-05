@@ -1,5 +1,6 @@
 ---
 title: CYP2C19 UI
+order: 7
 description: A medical device user interface designed for ease of use.
 featureImage: '/images/cyp2c19-ui/cyp2c19-feature.png'
 tools:

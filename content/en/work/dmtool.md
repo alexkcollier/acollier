@@ -1,5 +1,6 @@
 ---
 title: DMTool
+order: 6
 description: A tool to make running Dungeons & Dragons easier.
 featureImage: '/images/dmtool/dmtool-feature.png'
 links:

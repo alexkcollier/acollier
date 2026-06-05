@@ -1,5 +1,6 @@
 ---
 title: Schedio
+order: 4
 featureImage: '/images/schedio/schedio-feature.png'
 description: A design system and component library for Spartan Bio
 links:

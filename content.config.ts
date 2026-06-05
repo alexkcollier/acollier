@@ -4,6 +4,7 @@ const commonSchema = z.object({
   title: z.string(),
   description: z.string(),
   featureImage: z.string(),
+  order: z.optional(z.number()),
   tools: z.array(
     z.object({
       name: z.string(),
@@ -11,11 +12,13 @@ const commonSchema = z.object({
       href: z.string(),
     }),
   ),
-  links: z.array(
-    z.object({
-      title: z.string(),
-      href: z.string(),
-    }),
+  links: z.optional(
+    z.array(
+      z.object({
+        title: z.string(),
+        href: z.string(),
+      }),
+    ),
   ),
 });
 
