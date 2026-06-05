@@ -30,7 +30,7 @@ tools:
 
 ![Legionella mobile prototype](/images/legionella-mobile-client/legionella-mobile-feature.jpg 'Legionella mobile prototype')
 
-I was the sole designer on a mobile client for Spartan's [Legionella Test](https://spartanbio.com/our-tests/spartan-legionella-test/), working with a mobile developer to bring a laptop-based system to iOS and Android. Most core features were designed and built before the project was cancelled when the company wound down.
+I was the sole designer on a mobile client for Spartan's Legionella Test, working with a mobile developer to bring a laptop-based system to iOS and Android. Most core features were designed and built before the project was cancelled when the company wound down.
 
 ## The problem
 
