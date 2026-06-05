@@ -42,59 +42,32 @@ tools:
 
 <img src="/images/schedio/schedio-feature.png" alt="schedio" title="schedio">
 
-Spartan's always had a small team, but that doesn't mean formalizing design
-isn't beneficial. T increase the efficiency and consistency of our designs at
-Spartan, I built a Vue component library and design system. It informed the
-design of our laptop interfaces, as well as much of our marketing design at the
-time. I named it Schedio, since Google Translate told me that's the Greek word
-for design (_schédio_, anyways), and Spartan likes Greek themes.
+Schedio is a Vue component library and design system I built for Spartan Bio. The goal was to formalize design at a small company where efficiency and consistency mattered more, not less, because of the team's size. I initiated it independently, shipped v1 over a couple of months, and maintained it for two years. The name comes from the Greek word for design (schédio, more or less); Spartan likes Greek themes.
 
-I read _a lot_ of design guidelines before putting this together. Reading
-through them, I found Shopify's
-[Polaris](https://github.com/Shopify/polaris-react/). I really like the approach
-used, so mine was influenced by it.
+## Design tokens
 
-The first step in putting this together, was to determine its basic elements,
-like font, colors, spacing. I also planned to document and structure these
-elements as
-[design tokens](https://www.lightningdesignsystem.com/design-tokens/).
-[Theo](https://github.com/salesforce-ux/theo) was incredibly useful for this.
-It's powerful export features came in handy when actually builing the component
-library.
+The first step was defining the system's foundational elements: type, colour, spacing, motion. I structured these as [design tokens](https://www.lightningdesignsystem.com/design-tokens/) using [Theo](https://github.com/salesforce-ux/theo), which provided a single source of truth exportable in multiple formats. The tokens ended up informing work not just in Vue, but across our Windows (WPF) and React Native platforms, even where the components themselves couldn't be consumed directly.
 
 ![Working on colors in Theo](/images/schedio/schedio-tokens-colors.png 'Working on colors in Theo')
 
-Some tokens, like transition easing and timing, are harder than others to work
-on without working on components. Once the basic tokens were done, it was time
-to move on to and component design. I started by generating static designs in XD
-(this was before component states were a thing). These were also used in future
-prototyping.
+Some tokens, like transition easing and timing, only make sense in the context of components. I worked through the foundational tokens first, then developed them further alongside the component work.
+
+## Component library
+
+I designed components in Adobe XD (Figma was new at the time and XD had better tooling for what I needed), generating static designs before building. [Storybook](https://storybook.js.org/) provided the development sandbox and documentation layer. Some addons primarily supported React at the time, which required workarounds for Vue; none were significant, and the tradeoff was worth it. Our Windows developer could reference Storybook to understand design intent even when he couldn't consume the components directly.
 
 ![Components in XD](/images/schedio/schedio-xd.png 'Components in XD')
 
-[Storybook](https://storybook.js.org/) provided a great sandbox for development,
-and I bolted on some documentation to save time. I had to make some workarounds
-since I was developing in Vue, since some of the Storybook addons primarily
-supported React at the time. It wasn't too bad to get working though, and it was
-worth it, both in terms of how it let me work, and how it helped our Windows
-developer better understand my design intention.
-
 ![Schedio in Storybook](/images/schedio/schedio-storybook.png 'Schedio in Storybook')
 
-Every component was designed to be WCAG 2.0 AA accessible. I used tests in Jest
-and Storybook to help enforce that during development.
+Every component was designed to WCAG 2.0 AA. I used Jest and Storybook to enforce accessibility standards during development rather than audit after the fact.
+
+## Documentation
+
+Storybook is not ideal for non-technical documentation (usage guidelines, interaction philosophy, colour application). I needed somewhere to put it and didn't have the bandwidth to build a separate documentation site, so it stayed in Storybook alongside the components. For a small, mostly technical team, it worked. The limitation was a conscious tradeoff for the scale we were at.
 
 ![Documentation for Schedio](/images/schedio/schedio-logo-usage.png 'Documentation for Schedio')
 
-I mentioned above that I bolted on design, and I truly mean that. Storybook
-isn't the best place for non-technical documentation, like "how to use a
-colour", or "this is our philosophy on interaction". But I needed to put it
-_somehwere_, and I didn't have the time or resources to build another site. I
-would definitely try and separate them more in the future. Given the small size
-of our team, however, it wasn't a big issue, and could be fixed as we scaled.
+## Outcome
 
-The outputs from Schedio were incredibly useful in supporting future product
-design. I used its components for customer-facing website, and some internal
-tools. The XD prototypes were reused as inputs for our product prototypes, and
-our Windows developer appreciated having this as a reference, even if he
-couldn't consume them.
+Schedio shipped as the foundation for Spartan's Vue corporate site and was used across internal tools. Its design tokens and interaction patterns informed work on our WPF and React Native platforms. Shopify's [Polaris](https://github.com/Shopify/polaris-react/) was a significant influence on the approach, particularly its thinking on how a design system should serve a product team without constraining it.
