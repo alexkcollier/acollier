@@ -15,11 +15,11 @@ tools:
 
 # Focus Recommendations
 
+![Focus Recommendations provided key insights on what needs attention, now](/images/focus-recommendations/focus-recommendations-feature.png "The Focus Recommendations page")
+
 ## TL;DR
 
 Designed Focus Recommendations, the application's approach to Key Driver Analysis, from the ground up. The feature translated complex correlation and satisfaction data from our NLP/stats team into actionable insight for CX professionals: which topics were driving their scores, and where to focus efforts. It shipped in August 2022, later gained AI-generated recommendations, and became a key demo feature and factor in closing clients. As the product matured, I identified that a newer feature had superseded most of its functionality, and contributed to the roadmap to retire it.
-
-<!-- ASSET: Hero screenshot of the full Focus Recommendations page: the one showing recommendation cards above the four-quadrant chart is ideal. -->
 
 ## Context
 
@@ -43,11 +43,13 @@ Three design problems defined the project.
 
 The four-quadrant chart handled the big picture; plotting topics by correlation and average satisfaction score made priorities immediately clear. The harder problem was the table view: communicating the same information at a topic level, in a single icon, without requiring users to understand what correlation means.
 
-<!-- ASSET: The four-quadrant chart: ideally a clean crop showing all four quadrants and a spread of topics plotted across them. -->
+![The chart allows quick identification of what really needs attention](/images/focus-recommendations/focus-recommendations-feature.png "Close up on the chart")
 
 I landed on a target-like icon: three concentric rings, where more rings filled indicated stronger impact. Positive or negative impact was communicated through color (green for positive, red for negative), deliberately breaking from our praise/problem palette, since this analysis is based on satisfaction scores rather than our sentiment categories. An arrow icon and correlation percentage reinforced the direction for users with color blindness.
 
-<!-- ASSET: The impact icon: showing the ring states (1, 2, 3 rings filled) and both positive/negative variants. The table view with icons in context would work well here. -->
+![Impact icons expressed magnitude and polarity](/images/focus-recommendations/target-icons.png "Target icon variants")
+
+![The table view shows a bit more detail](/images/focus-recommendations/table-view.png)
 
 The first version used an absolute threshold to determine how many rings to fill. Testing revealed the problem: datasets vary significantly across clients, and absolute thresholds produced wildly inconsistent results: some clients seeing mostly three-ring topics, others mostly one. We moved to a relative calculation, setting thresholds against the distribution of results within each dataset. The icon became stable and meaningful regardless of dataset characteristics. Labelling went through similar iteration; the language describing quadrants and impact levels needed to be precise without requiring a statistics background.
 
@@ -55,9 +57,9 @@ The first version used an absolute threshold to determine how many rings to fill
 
 The initial release supported a single NPS response-question pair, the most common case but one that excluded clients using other satisfaction scales or running complex surveys with multiple rating-response pairs.
 
-We extended coverage in stages. First, a modal that let users order any non-numeric field (a Likert scale, for example) from least to most satisfied and use it as the response variable. Then support for multiple rating-response pairs, enabling analysis of surveys containing several question sets, a meaningful unlock for enterprise clients running complex research.
+We extended coverage in stages. First, a modal that let users order any field (numeric, or non-numeric, a Likert scale, for example) from least to most satisfied and use it as the response variable. Then support for multiple rating-response pairs, enabling analysis of surveys containing several question sets, a meaningful unlock for enterprise clients running complex research.
 
-<!-- ASSET: The non-NPS configuration modal: showing the field ordering interaction or the response variable selector. -->
+![Ratings could be easily re-ordered in terms of satisfaction](/images/focus-recommendations/ratings-configuration.png "The ratings configuration dialog")
 
 ### Actionable Insights
 
@@ -67,7 +69,7 @@ The recommendations appeared as paginated cards above the chart, each covering a
 
 The list of key opinions in the table view was also migrated to an AI-generated summary around this time, reducing noise and improving readability.
 
-<!-- ASSET: The recommendation cards: showing pagination, card content, and the dismiss control. A close-up of the cards section from the FR page works well here. -->
+![Actionable Insights provide real recommendations to improve satisfaction](/images/focus-recommendations/actionable-insights.png "The Actionable Insights cards")
 
 ## What came next
 
