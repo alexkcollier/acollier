@@ -8,11 +8,13 @@
         {{ title }}
       </h1>
 
-      <img
+      <NuxtImg
         :src="featureImage"
         class="post-item__preview-image"
         :alt="formattedDescription"
         :title="title"
+        :placeholder="60"
+        height="300"
       />
     </NuxtLink>
 
@@ -89,7 +91,7 @@ export default {
   &__preview-image {
     background-color: var(--color-grey-500);
     border-radius: 0.5rem;
-    height: 11rem;
+    height: 300px;
     object-fit: cover;
     transition: $transition;
     width: 100%;
