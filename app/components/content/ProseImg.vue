@@ -59,7 +59,7 @@ html:has(.lightbox[open]) {
   background: none;
   border: none;
   box-sizing: border-box;
-  color: currentColor;
+  color: currentcolor;
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -76,8 +76,8 @@ html:has(.lightbox[open]) {
   width: 100dvw;
 
   &::backdrop {
-    background-color: rgb(0 0 0 / 50%);
     backdrop-filter: blur(4px) brightness(60%);
+    background-color: rgb(0 0 0 / 50%);
     transition: var(--base-transition);
   }
 
@@ -101,8 +101,8 @@ html:has(.lightbox[open]) {
   }
 
   &__preview {
-    margin-top: 0;
     margin-bottom: 0.25rem;
+    margin-top: 0;
   }
 
   &__hint {
@@ -111,8 +111,8 @@ html:has(.lightbox[open]) {
 
   &__image {
     flex: 1 1 0;
-    max-width: 100%;
     margin: 0.25rem auto;
+    max-width: 100%;
     min-height: 0;
     object-fit: scale-down;
   }
@@ -122,8 +122,8 @@ html:has(.lightbox[open]) {
     text-align: center;
 
     button: {
-      margin: 0 auto;
       display: block;
+      margin: 0 auto;
     }
   }
 }

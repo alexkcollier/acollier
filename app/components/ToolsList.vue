@@ -49,8 +49,8 @@ export default {
 
   align-items: flex-end;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: $space;
+  grid-template-columns: 1fr 1fr 1fr;
 
   &__item {
     text-align: center;

@@ -134,7 +134,7 @@ definePageMeta({
               </Transition>
             </form>
 
-            <SocialLinks class="social-links--contact" />
+            <SocialLinks class="social-links-contact" />
           </div>
         </template>
       </Transition>
@@ -209,7 +209,6 @@ export default {
   --bg-image: url('~/assets/images/acollier.jpg');
 
   align-items: center;
-
   display: flex;
   min-height: 100%;
   padding: var(--hero-y-padding) var(--page-side-padding);
@@ -248,7 +247,7 @@ export default {
   }
 }
 
-.social-links--contact {
+.social-links-contact {
   margin-block-start: 3rem;
 }
 
