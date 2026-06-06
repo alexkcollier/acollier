@@ -43,5 +43,7 @@ export default {
   work: {
     metaTitle: 'Work',
     mainHeading: 'Work',
+    clickToZoom: 'Click to zoom 🔎',
+    clickAnywhereToClose: 'Click anywhere or press ESC to close ❌',
   },
 };

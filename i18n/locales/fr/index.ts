@@ -51,5 +51,7 @@ export default <LangSchema>{
   work: {
     metaTitle: 'Projets',
     mainHeading: 'Projets',
+    clickToZoom: 'Cliquer pour développer 🔎',
+    clickAnywhereToClose: 'Cliquer ou ESC pour fermer ❌',
   },
 };
