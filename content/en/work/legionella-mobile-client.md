@@ -59,7 +59,7 @@ Navigation was an open question. I built a prototype in Adobe XD, loaded it on m
 
 ![Landing screen wireframes](/images/legionella-mobile-client/landing-wire.png 'Landing screen wireframes')
 
-<video src="/images/legionella-mobile-client/navigation.webm" controls muted style="max-height: 400px;" poster=/images/legionella-mobile-client/navigation-poster.png></video>
+<video src="/images/legionella-mobile-client/navigation.webm" controls muted style="max-height: 400px;" poster="/images/legionella-mobile-client/navigation-poster.png"></video>
 
 ## Design and prototype
 
@@ -69,7 +69,7 @@ After wireframing I moved to Framer, writing a fully interactive prototype with 
 
 The Cube status screen required a workaround for BLE's fundamental limitation: Bluetooth only connects 1-to-1, which would have broken multi-Cube monitoring entirely. Working with the developer, we landed on reading the advertising packets Cubes broadcast passively rather than maintaining a continuous connection. For a running test, we combined a timer (tests take just under an hour) with any packet updates available when in range. Users out of range when a test completed got a notification; those nearby received the result from the BLE advertisement directly. Cubes could also be given meaningful names, and the result log supported filtering.
 
-<img src="/images/legionella-mobile-client/applied-filters.png" alt="Applied filters" title="Applied filters" style="max-width: 200px;">
+<img src="/images/legionella-mobile-client/applied-filters.png" alt="Applied filters" title="Applied filters" />
 
 One problem that wasn't resolved before the project ended: the result filter's double slider. The range of meaningful values was tightly clustered at the low end of a 0-1000 scale, making it difficult to use precisely. The fix was planned (replacing it with checkboxes) but wasn't scheduled before cancellation.
 
