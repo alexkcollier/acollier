@@ -15,6 +15,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
         v-bind="$attrs"
         loading="lazy"
         class="lightbox__preview"
+        height="400"
       />
 
       <small
