@@ -22,8 +22,8 @@
 
   /* Fonts */
   --font-family-sans-serif:
-    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto,
-    oxygen, ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
+    ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-family-monospaced:
     'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
     monospace;
@@ -57,7 +57,7 @@ body,
 }
 
 ::selection {
-  background: rgb(255 216 206 / 60%);
+  background: rgb(180 180 180 / 30%);
 }
 
 /* Headings */
@@ -85,7 +85,6 @@ code,
 pre,
 kbd,
 samp {
-
   &,
   &[class*='language-'] {
     border-radius: 0.5rem;
