@@ -91,6 +91,7 @@ export default {
   &__preview-image {
     background-color: var(--color-bg-subtle);
     border-radius: var(--radius-md);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 20%);
     height: 300px;
     object-fit: cover;
     transition: $transition;
