@@ -18,14 +18,31 @@
   }
 
   a {
-    color: var(--color-text);
-
-    &:visited {
-      color: var(--color-text-muted);
-    }
+    color: var(--color-link);
+    display: inline-block;
+    font-family: var(--font-family-monospaced);
 
     &:hover {
       color: var(--color-link-hover);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: var(--space-24);
+
+    a {
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+
+      &:visited {
+        color: var(--color-text);
+      }
     }
   }
 
