@@ -16,7 +16,10 @@ export default {
     contact: 'Contact',
   },
   home: {
-    tag: 'Design Engineer, crafting for AI',
+    tag: "I'm Alex. I build {0} digital experiences.",
+    experienceType: 'thoughtful',
+    description:
+      'Bridging design and front-end engineering. Deep experience designing and shipping production interfaces for AI products, including conversational and LLM-based interactions.',
   },
   about: {
     metaTitle: 'About',

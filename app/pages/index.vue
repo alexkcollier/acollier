@@ -12,20 +12,27 @@ definePageMeta({
 <template>
   <main class="home-hero">
     <div class="container">
-      <h1 class="name">
-        {{ $t('common.name') }}
-      </h1>
+      <div class="home-content">
+        <i18n-t
+          keypath="home.tag"
+          scope="global"
+          tag="div"
+          class="tag"
+        >
+          <span class="tag__highlight">{{ $t('home.experienceType') }}</span>
+        </i18n-t>
 
-      <div class="tag">
-        {{ $t('home.tag') }}
+        <p>
+          {{ $t('home.description') }}
+        </p>
+
+        <NuxtLink
+          class="link link--large link--arrow email-cta"
+          :to="localePath('/contact/')"
+        >
+          {{ $t('common.contact') }}
+        </NuxtLink>
       </div>
-
-      <NuxtLink
-        class="link link--large link--arrow email-cta"
-        :to="localePath('/contact/')"
-      >
-        {{ $t('common.contact') }}
-      </NuxtLink>
     </div>
   </main>
 </template>
@@ -43,23 +50,46 @@ $base-time: 1500ms;
   animation: deblur $base-time * 1.5 $easing;
 }
 
-.name {
-  animation: fadein $base-time $easing;
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 125%;
-  margin-bottom: 1rem;
+.home-content {
+  font-size: var(--text-xl);
+  max-width: 90%;
+
+  * + * {
+    margin-block: var(--space-12) 0;
+  }
+
+  @include bp.above('sm') {
+    max-width: 60%;
+  }
+
+  @include bp.above('md') {
+    max-width: 60%;
+  }
+
+  @include bp.above('lg') {
+    max-width: 55%;
+  }
 }
 
 .tag {
-  // Multiplying the animation time staggers the animations nicely
-  font-size: 2.5rem;
-  line-height: 125%;
-  margin-bottom: 6rem;
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+
+  &__highlight {
+    color: var(--color-text-primary);
+  }
+
+  @include bp.above('sm') {
+    font-size: var(--text-5xl);
+  }
+  @include bp.above('md') {
+    font-size: var(--text-6xl);
+  }
 }
 
 .email-cta,
-.tag {
+.home-content {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
 }

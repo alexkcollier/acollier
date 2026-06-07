@@ -4,7 +4,7 @@ type LangSchema = typeof en;
 
 export default <LangSchema>{
   common: {
-    contact: 'Contacte-moi',
+    contact: 'Travaillons ensemble',
     name: 'Alex Collier',
     translationMissing:
       "Désolé, cette section n'est pas encore disponible en français.",
@@ -24,7 +24,10 @@ export default <LangSchema>{
     contact: 'Contact',
   },
   home: {
-    tag: "Design Engineer qui donne form à L'IA",
+    tag: "Moi, c'est Alex. Je donne forme aux expèriences {0}.",
+    experienceType: 'réfléchies',
+    description:
+      "À la croisée du design et du développment frontend. Une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA, incluant les interactions conversationnelles et fondées sur des LLM.",
   },
   about: {
     metaTitle: 'À propos',
