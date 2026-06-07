@@ -12,6 +12,11 @@ export default <LangSchema>{
       "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
     title: 'Design Engineer',
   },
+  colorSwitcher: {
+    switchToMode: 'Passer en mode {mode}',
+    dark: 'sombre',
+    light: 'clair',
+  },
   navigation: {
     home: 'AC',
     about: 'À propos',

@@ -82,17 +82,26 @@ function handleClickOutside(event: MouseEvent) {
         {{ $t(`navigation.${key}`) }}
       </NavbarButton>
 
-      <NavbarButton
-        v-for="{ code, name } in availableLocales"
-        :key="code"
-        class="navbar__locale-switcher"
-        :href="switchLocalePath(code)"
-        @click="() => setIsMenuOpen(false)"
+      <div
+        class="navbar-divider"
+        aria-hidden
       >
-        {{ name }}
-      </NavbarButton>
+        |
+      </div>
 
-      <ColorSwitcher />
+      <div class="navbar-utils">
+        <NavbarButton
+          v-for="{ code, name } in availableLocales"
+          :key="code"
+          class="navbar__locale-switcher"
+          :href="switchLocalePath(code)"
+          @click="() => setIsMenuOpen(false)"
+        >
+          {{ name }}
+        </NavbarButton>
+
+        <ColorSwitcher />
+      </div>
     </div>
   </nav>
 </template>
@@ -223,6 +232,28 @@ function handleClickOutside(event: MouseEvent) {
     color: var(--color-text);
     font-family: var(--font-mono);
     font-weight: 300;
+  }
+}
+
+.navbar-divider {
+  align-items: center;
+  color: var(--color-text-muted);
+  display: none;
+  padding-left: var(--space-2);
+  padding-right: var(--space-2);
+  pointer-events: none;
+
+  @include bp.above('sm') {
+    display: flex;
+  }
+}
+
+.navbar-utils {
+  display: flex;
+  justify-content: space-between;
+
+  @include bp.above('sm') {
+    justify-content: flex-start;
   }
 }
 </style>

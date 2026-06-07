@@ -4,6 +4,11 @@ export default {
     name: 'Alex Collier',
     title: 'Design Engineer',
   },
+  colorSwitcher: {
+    switchToMode: 'Switch to {mode} mode',
+    dark: 'dark',
+    light: 'light',
+  },
   navigation: {
     home: 'Alex Collier',
     about: 'About',

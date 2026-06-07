@@ -26,10 +26,14 @@ function toggleTheme() {
 
 <template>
   <button
-    class="navbar-button color-switcher"
-    :aria-label="`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`"
+    class="navbar-button"
+    :aria-label="
+      $t('colorSwitcher.switchToMode', {
+        mode: $t(`colorSwitcher.${theme === 'light' ? 'dark' : 'light'}`),
+      })
+    "
     @click="toggleTheme"
   >
-    {{ theme === 'light' ? '☾' : '☀' }}
+    {{ theme === 'light' ? '🌛' : '🌞' }}
   </button>
 </template>
