@@ -11,6 +11,7 @@ export default <LangSchema>{
     postTranslationMissing:
       "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
     title: 'Design Engineer',
+    seeMyWork: 'Voir mes projets',
   },
   colorSwitcher: {
     switchToMode: 'Passer en mode {mode}',
@@ -27,7 +28,7 @@ export default <LangSchema>{
     tag: "Moi, c'est Alex. Je donne forme aux expèriences {0}.",
     experienceType: 'réfléchies',
     description:
-      "À la croisée du design et du développment frontend. Une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA, incluant les interactions conversationnelles et fondées sur des LLM.",
+      "Ancré à la croisée du design et du développement frontend avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA—incluant les interactions conversationnelles et fondées sur des LLM.",
   },
   about: {
     metaTitle: 'À propos',

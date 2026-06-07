@@ -3,6 +3,7 @@ export default {
     contact: 'Get in touch',
     name: 'Alex Collier',
     title: 'Design Engineer',
+    seeMyWork: 'See my work',
   },
   colorSwitcher: {
     switchToMode: 'Switch to {mode} mode',
@@ -19,7 +20,7 @@ export default {
     tag: "I'm Alex. I build {0} digital experiences.",
     experienceType: 'thoughtful',
     description:
-      'Bridging design and front-end engineering. Deep experience designing and shipping production interfaces for AI products, including conversational and LLM-based interactions.',
+      'Fluent across design and frontend engineering with deep experience designing and shipping production interfaces for AI products—including conversational and LLM-based interactions.',
   },
   about: {
     metaTitle: 'About',

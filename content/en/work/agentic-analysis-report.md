@@ -1,7 +1,7 @@
 ---
-title: Analysis Report
+title: Agentic Analysis Report
 order: 0
-featureImage: '/images/analysis-report/analysis-report-feature.png'
+featureImage: '/images/agentic-analysis-report/analysis-report-feature.png'
 description: AI-generated CX report including an agentic chat interface
 tools:
   - { name: Figma, img: /images/tools/figma.svg, href: https://www.figma.com }
@@ -26,7 +26,7 @@ tools:
 
 # Analysis Report
 
-<video src="/images/analysis-report/analysis-report.webm" controls preload="none" muted poster="/images/analysis-report/analysis-report-feature.png"></video>
+<video src="/images/agentic-analysis-report/analysis-report.webm" controls preload="none" muted poster="/images/agentic-analysis-report/analysis-report-feature.png"></video>
 
 ## TL;DR
 
@@ -70,7 +70,7 @@ The core constraint was that the agent panel needed to be resizable but not coll
 
 I landed on a horizontal layout for the filters, positioned above the table rather than in a side panel. This freed up the horizontal space the table needed, reduced the total number of competing panels, and established a reusable pattern for additional configuration options in future screens.
 
-![Layers are now laid out above the table, saving critical horizontal space](/images/analysis-report/report-creation-filters.png 'Report configuration screen with horizontal filters')
+![Layers are now laid out above the table, saving critical horizontal space](/images/agentic-analysis-report/report-creation-filters.png 'Report configuration screen with horizontal filters')
 
 ### Communicating impact
 
@@ -82,9 +82,9 @@ The net elasticity value (positive minus negative) was visualised as a meter. Th
 
 Sorting introduced a subtler problem. Sorting topics by net elasticity alone would misrepresent volatile topics; a subject with strong positive and negative elasticity would produce a small net value and drop toward the bottom of the list, despite being highly significant. I used total magnitude (the sum of positive and negative elasticity) as the sort key instead, surfacing the most impactful topics regardless of direction. Total magnitude was not exposed directly to users; it informed the order without requiring explanation.
 
-![The impact meter could be expanded to access raw stats](/images/analysis-report/impact-meter-states.png 'Impact meter, collapsed and expanded')
+![The impact meter could be expanded to access raw stats](/images/agentic-analysis-report/impact-meter-states.png 'Impact meter, collapsed and expanded')
 
-![The impact chart classifies topics as strengths, weaknesses, or nice to have](/images/analysis-report/impact-chart.png 'Impact vs. Satisfaction chart')
+![The impact chart classifies topics as strengths, weaknesses, or nice to have](/images/agentic-analysis-report/impact-chart.png 'Impact vs. Satisfaction chart')
 
 ### The agent interface
 
@@ -94,7 +94,7 @@ The design focus for the agent was microinteractions. In a data-heavy applicatio
 
 I implemented subtle animations and transitions throughout: elements easing in rather than snapping, and a bouncing dot animation during agent responses, the same pattern chat applications use to show a contact is typing. The effect is small but meaningful: it signals that work is being done, maintains the sense of a live exchange, and gives the interface a quality of responsiveness that the underlying latency would otherwise undermine.
 
-<video src="/images/analysis-report/chat-interaction.webm" style="width: 380px;" controls preload="none" muted poster="/images/analysis-report/chat-interaction.png"></video>
+<video src="/images/agentic-analysis-report/chat-interaction.webm" style="width: 380px;" controls preload="none" muted poster="/images/agentic-analysis-report/chat-interaction.png"></video>
 
 ## Additional technical work
 
@@ -106,7 +106,7 @@ I implemented subtle animations and transitions throughout: elements easing in r
 
 **AI-assisted development:** I used AI tooling throughout the project for early iteration, prototyping, and implementation. On a feature of this scope, it meaningfully compressed the implementation timeline.
 
-![The quality of the in-browser PDF generation allowed it to be easily shared with stakeholder](/images/analysis-report/pdf-report-example.png 'Page preview from the PDF export')
+![The quality of the in-browser PDF generation allowed it to be easily shared with stakeholder](/images/agentic-analysis-report/pdf-report-example.png 'Page preview from the PDF export')
 
 ## Shipping incrementally
 
