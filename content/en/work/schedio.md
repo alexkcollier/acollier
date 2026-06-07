@@ -1,5 +1,5 @@
 ---
-title: Schedio
+title: 'Schedio: A Vue design system'
 order: 4
 featureImage: '/images/schedio/schedio-feature.png'
 description: A design system and component library for Spartan Bio
@@ -38,7 +38,7 @@ tools:
   - { name: Jest, img: /images/tools/jest.png, href: https://jestjs.io/ }
 ---
 
-# Schedio
+# Schedio: A Vue design system
 
 <img src="/images/schedio/schedio-feature.png" alt="schedio" title="schedio">
 

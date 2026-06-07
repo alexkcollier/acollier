@@ -74,14 +74,14 @@ The list of key opinions in the table view was also migrated to an AI-generated 
 
 ## What came next
 
-As the Analysis Report neared the end of beta, I recognised that the two features had converged significantly. The Analysis Report used elasticity (surfaced to users as "impact" to keep the language accessible) and organised its quadrants differently: strengths, weaknesses, nice-to-have, and a fourth left intentionally unlabelled. It did almost everything Focus Recommendations did, in more detail and with better methodology.
+As the Agentic Analysis Report neared the end of beta, I recognised that the two features had converged significantly. The Agentic Analysis Report used elasticity (surfaced to users as "impact" to keep the language accessible) and organised its quadrants differently: strengths, weaknesses, nice-to-have, and a fourth left intentionally unlabelled. It did almost everything Focus Recommendations did, in more detail and with better methodology.
 
-The gap was narrow but real: the Analysis Report did not yet support non-NPS fields or complex multi-pair surveys. I wrote up a roadmap to bring the two features to parity and retire Focus Recommendations, presented it to the product owner, validated the approach, and turned the items into prioritized backlog tickets. The main gaps to close were support for non-NPS fields and complex multi-pair surveys in the Analysis Report, and bringing its impact-satisfaction chart to the dashboard. Reusable, saveable filtersets were smaller but also on the list.
+The gap was narrow but real: the Agentic Analysis Report did not yet support non-NPS fields or complex multi-pair surveys. I wrote up a roadmap to bring the two features to parity and retire Focus Recommendations, presented it to the product owner, validated the approach, and turned the items into prioritized backlog tickets. The main gaps to close were support for non-NPS fields and complex multi-pair surveys in the Agentic Analysis Report, and bringing its impact-satisfaction chart to the dashboard. Reusable, saveable filtersets were smaller but also on the list.
 
-This was not a decision made at the outset; it was a product judgment call I made as the two features converged, close to the end of the Analysis Report beta.
+This was not a decision made at the outset; it was a product judgment call I made as the two features converged, close to the end of the Agentic Analysis Report beta.
 
 _The dashboard widget that brought Focus Recommendations into the broader product is described in the [Customizable Dashboard case study ->](/work/customizable-dashboard)._
 
 ## Outcome
 
-Focus Recommendations shipped in August 2022 and became a key demo feature and a factor in closing at least one client. It represented a meaningful expansion of the product value proposition, from surfacing what customers were saying to telling clients what to do about it. The approach it validated was carried forward and improved in the Analysis Report.
+Focus Recommendations shipped in August 2022 and became a key demo feature and a factor in closing at least one client. It represented a meaningful expansion of the product value proposition, from surfacing what customers were saying to telling clients what to do about it. The approach it validated was carried forward and improved in the Agentic Analysis Report.
