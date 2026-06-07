@@ -1,3 +1,5 @@
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 @mixin unstyled-list {
   list-style: none;
   margin: 0;
@@ -5,5 +7,20 @@
 
   &:not(:last-child) {
     margin-bottom: inherit;
+  }
+}
+
+@mixin face-hero {
+  --bg-image: url('~/assets/images/acollier.png');
+  --bg-size: 55%;
+
+  align-items: center;
+  background: var(--bg-image) 103% bottom / 55% no-repeat;
+  display: flex;
+  height: 100%;
+  padding: var(--page-top-padding) var(--page-side-padding);
+
+  @include bp.below('md') {
+    --bg-size: 80%;
   }
 }

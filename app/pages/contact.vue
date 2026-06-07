@@ -201,36 +201,10 @@ export default {
 <style lang="scss">
 @use 'sass:math';
 @use '~/assets/styles/utils/breakpoints' as bp;
+@use '~/assets/styles/utils/mixins';
 
 .contact-hero {
-  --gradient-color: rgb(0 0 0 / 20%);
-  --bg-x: right;
-  --hero-y-padding: 4rem;
-  --bg-image: url('~/assets/images/acollier.jpg');
-
-  align-items: center;
-  display: flex;
-  min-height: 100%;
-  padding: var(--hero-y-padding) var(--page-side-padding);
-  text-shadow:
-    1px 2px 20px rgb(0 0 0 / 75%),
-    0 0 1px rgb(0 0 0 / 50%);
-
-  &::before {
-    background:
-      linear-gradient(var(--gradient-color), var(--gradient-color)),
-      var(--color-bg) var(--bg-image) var(--bg-x) center / cover no-repeat;
-    content: '';
-    inset: 0;
-    position: absolute;
-    z-index: -1;
-  }
-
-  @include bp.below('lg') {
-    // when the text is over my face, I need to increase contrast significantly
-    --gradient-color: rgb(0 0 0 / 50%);
-    --bg-x: 90%;
-  }
+  @include mixins.face-hero;
 }
 
 .contact-form {

@@ -32,44 +32,15 @@ definePageMeta({
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;
+@use '~/assets/styles/utils/mixins';
 
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
 
 .home-hero {
-  --gradient-color: rgb(0 0 0 / 20%);
-  --bg-image: url('~/assets/images/acollier.jpg');
-  --bg-x: right;
+  @include mixins.face-hero;
 
-  align-items: center;
-  display: flex;
-  min-height: calc(100% - (2 * var(--page-top-padding)));
-  padding: var(--page-top-padding) var(--page-side-padding);
-  text-shadow:
-    1px 2px 20px rgb(0 0 0 / 95%),
-    0 0 1px rgb(0 0 0 / 80%);
-
-  // using pseudo element so filter only affects image
-  &::before {
-    background:
-      linear-gradient(var(--gradient-color), var(--gradient-color)),
-      var(--color-bg) var(--bg-image) var(--bg-x) center / cover
-        no-repeat;
-    content: '';
-    inset: 0;
-    position: absolute;
-    z-index: -1;
-
-    @include bp.above('md') {
-      // a naive attempt to save low power devices from an animated filter
-      animation: deblur $base-time * 1.5 $easing;
-    }
-  }
-
-  @include bp.below('lg') {
-    --gradient-color: rgb(0 0 0 / 50%);
-    --bg-x: 90%;
-  }
+  animation: deblur $base-time * 1.5 $easing;
 }
 
 .name {
