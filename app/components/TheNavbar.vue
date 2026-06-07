@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import NavbarButton from '~/components/NavbarButton.vue';
+import ColorSwitcher from '~/components/ColorSwitcher.vue';
 import links from '~/assets/data/navbar-links';
 import {
   useI18n,
@@ -90,6 +91,8 @@ function handleClickOutside(event: MouseEvent) {
       >
         {{ name }}
       </NavbarButton>
+
+      <ColorSwitcher />
     </div>
   </nav>
 </template>

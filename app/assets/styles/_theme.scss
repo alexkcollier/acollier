@@ -87,7 +87,7 @@
 /* ── Light theme ─────────────────────────────────── */
 
 :root,
-[data-theme='light'] {
+:root[data-theme='light'] {
   // bg
   --color-bg: var(--stone-50);
   --color-bg-subtle: var(--stone-100);
@@ -153,7 +153,7 @@
   --color-input-placeholder: var(--stone-400);
 }
 
-[data-theme='dark'] {
+:root[data-theme='dark'] {
   @include dark-theme;
 }
 
