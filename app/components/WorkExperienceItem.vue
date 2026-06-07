@@ -84,14 +84,10 @@ export default {
   &__date {
     align-self: end;
     color: var(--color-text-muted);
+    font-size: var(--text-sm);
     grid-area: date;
     text-align: right;
-
-    // roughly aligns start date with post title
-    // TODO: remove magic;
-    &-start {
-      line-height: 2rem;
-    }
+    line-height: 1.8;
   }
 
   &__heading {

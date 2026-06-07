@@ -34,7 +34,7 @@ export default <LangSchema>{
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "Design Engineer à la croisée du design et de l'ingénierie front-end, avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA, incluant les interactions conversationnelles et fondées sur des LLM.",
+      "À l'aise dans les environnements complexes, j'ai près de 10 ans d'expérience en conception, notamment pour les tests médicaux et scientifiques, et pour des expériences agentiques.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',

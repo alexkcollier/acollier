@@ -26,7 +26,7 @@ export default {
     metaTitle: 'About',
     mainHeading: 'About',
     blurb:
-      'Design Engineer bridging design and front-end engineering, with deep experience designing and shipping production interfaces for AI products, including conversational and LLM-based interactions.',
+      'I thrive in high-complexity environments, with nearly 10 years of experience including designing for medical and scientific testing, and shipping agentic experiences.',
     resumeDownload: 'Download my resume',
     experienceHeading: 'Experience',
     educationHeading: 'Education',
