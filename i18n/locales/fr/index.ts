@@ -10,6 +10,7 @@ export default <LangSchema>{
       "Désolé, cette section n'est pas encore disponible en français.",
     postTranslationMissing:
       "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
+    title: 'Design Engineer',
   },
   navigation: {
     home: 'AC',

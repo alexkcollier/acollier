@@ -2,9 +2,10 @@ export default {
   common: {
     contact: 'Get in touch',
     name: 'Alex Collier',
+    title: 'Design Engineer',
   },
   navigation: {
-    home: 'AC',
+    home: 'Alex Collier',
     about: 'About',
     work: 'Work',
     contact: 'Contact',

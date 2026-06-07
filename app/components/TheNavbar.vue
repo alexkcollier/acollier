@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NavbarButton from '~/components/NavbarButton.vue';
+import links from '~/assets/data/navbar-links';
 import {
   useI18n,
   useLocalePath,
@@ -29,61 +31,50 @@ function setIsMenuOpen(isOpen: boolean) {
     role="primary navigation"
     class="navbar"
   >
-    <div class="container">
-      <button
-        :class="[
-          'navbar-button',
-          'navbar__menu-button',
-          { 'navbar__menu-button--open': isMenuOpen },
-        ]"
-        @click="() => setIsMenuOpen(!isMenuOpen)"
-      />
+    <NavbarButton
+      :href="localePath('/')"
+      class="navbar-brand"
+    >
+      <div class="navbar-brand__name">{{ $t('common.name') }}</div>
+      <div class="navbar-brand__title">{{ $t('common.title') }}</div>
+    </NavbarButton>
 
-      <div
-        :class="[
-          'navbar__button-wrapper',
-          { 'navbar__button-wrapper--open': isMenuOpen },
-        ]"
+    <button
+      :class="[
+        'navbar-button',
+        'navbar__menu-button',
+        { 'navbar__menu-button--open': isMenuOpen },
+      ]"
+      @click="() => setIsMenuOpen(!isMenuOpen)"
+    />
+
+    <div
+      :class="[
+        'navbar__button-wrapper',
+        { 'navbar__button-wrapper--open': isMenuOpen },
+      ]"
+    >
+      <NavbarButton
+        v-for="{ href, key } in links"
+        :key="key"
+        :href="localePath(href)"
+        @click="() => setIsMenuOpen(false)"
       >
-        <NavbarButton
-          v-for="{ href, key } in links"
-          :key="key"
-          :href="localePath(href)"
-          :text="$t(`navigation.${key}`)"
-          @click="() => setIsMenuOpen(false)"
-        />
+        {{ $t(`navigation.${key}`) }}
+      </NavbarButton>
 
-        <NavbarButton
-          v-for="{ code, name } in availableLocales"
-          :key="code"
-          class="navbar__locale-switcher"
-          :href="switchLocalePath(code)"
-          :text="name!"
-          @click="() => setIsMenuOpen(false)"
-        />
-      </div>
+      <NavbarButton
+        v-for="{ code, name } in availableLocales"
+        :key="code"
+        class="navbar__locale-switcher"
+        :href="switchLocalePath(code)"
+        @click="() => setIsMenuOpen(false)"
+      >
+        {{ name }}
+      </NavbarButton>
     </div>
   </nav>
 </template>
-
-<script lang="ts">
-import NavbarButton from '~/components/NavbarButton.vue';
-import links from '~/assets/data/navbar-links';
-
-export default {
-  name: 'TheNavbar',
-
-  components: {
-    NavbarButton,
-  },
-
-  data() {
-    return {
-      links,
-    };
-  },
-};
-</script>
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;
@@ -91,9 +82,13 @@ export default {
 .navbar {
   $transition-base-time: 100ms;
 
+  align-items: stretch;
   backdrop-filter: blur(16px);
   background-color: var(--navbar-background-color);
-  border-bottom: 1px solid #555;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   left: 0;
   position: fixed;
   right: 0;
@@ -103,6 +98,7 @@ export default {
   &__button-wrapper {
     align-items: stretch;
     display: none;
+    flex-basis: 100%;
     flex-direction: column;
 
     &--open {
@@ -168,10 +164,11 @@ export default {
   }
 
   @include bp.above('sm') {
-    padding: 0 1rem;
+    padding: 0 var(--space-4);
 
     &__button-wrapper {
       display: flex;
+      flex-basis: auto;
       flex-direction: row;
     }
 
@@ -183,6 +180,20 @@ export default {
       display: none;
       margin-left: auto;
     }
+  }
+}
+
+.navbar-brand {
+  &__name {
+    color: var(--color-text);
+    font-weight: 700;
+    margin-block-end: var(--space-1);
+  }
+
+  &__title {
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: 300;
   }
 }
 </style>
