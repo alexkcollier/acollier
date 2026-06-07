@@ -37,12 +37,27 @@
 
     a {
       display: inline-block;
+      font-family: var(--font-sans-serif);
       position: relative;
       text-decoration: none;
 
+      &,
       &:visited {
         color: var(--color-text);
       }
+
+      &::after {
+        color: var(--color-text-muted);
+        content: '#';
+        font-family: var(--font-mono);
+        margin-inline-start: 0.35em;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+    }
+
+    &:hover a::after {
+      opacity: 1;
     }
   }
 
