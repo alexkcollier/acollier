@@ -5,6 +5,8 @@ import {
   useI18n,
   useLocalePath,
   useSwitchLocalePath,
+  useTemplateRef,
+  nextTick,
   computed,
   ref,
 } from '#imports';
@@ -18,11 +20,26 @@ const availableLocales = computed(() => {
 });
 
 const isMenuOpen = ref(false);
+const menuRef = useTemplateRef<HTMLElement>('menuRef');
 
 function setIsMenuOpen(isOpen: boolean) {
   isMenuOpen.value = isOpen;
 
-  document.documentElement.style.overflowY = isOpen ? 'hidden' : 'auto';
+  nextTick(() => {
+    document.documentElement.style.overflowY = isOpen ? 'hidden' : 'auto';
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+    } else {
+      document.removeEventListener('click', handleClickOutside);
+    }
+  });
+}
+
+function handleClickOutside(event: MouseEvent) {
+  if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
+    isMenuOpen.value = false;
+  }
 }
 </script>
 
@@ -45,10 +62,11 @@ function setIsMenuOpen(isOpen: boolean) {
         'navbar__menu-button',
         { 'navbar__menu-button--open': isMenuOpen },
       ]"
-      @click="() => setIsMenuOpen(!isMenuOpen)"
+      @click.stop="() => setIsMenuOpen(!isMenuOpen)"
     />
 
     <div
+      ref="menuRef"
       :class="[
         'navbar__button-wrapper',
         { 'navbar__button-wrapper--open': isMenuOpen },
@@ -80,7 +98,7 @@ function setIsMenuOpen(isOpen: boolean) {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .navbar {
-  $transition-base-time: 100ms;
+  --transition-time: 100ms;
 
   align-items: stretch;
   backdrop-filter: blur(16px);
@@ -100,22 +118,29 @@ function setIsMenuOpen(isOpen: boolean) {
     display: none;
     flex-basis: 100%;
     flex-direction: column;
+    opacity: 0;
+    transition:
+      display var(--transition-time) allow-discrete,
+      opacity var(--transition-time);
 
     &--open {
       display: flex;
       inset: 3.5rem 0 0;
+      opacity: 1;
       position: static;
+
+      @starting-style {
+        opacity: 0;
+      }
     }
   }
 
   &__menu-button {
-    --transition-time: #{$transition-base-time};
     --transform-transition-delay: 0ms;
-    --top-transition-delay: #{$transition-base-time};
+    --top-transition-delay: var(--transition-time);
     --rotation: 0deg;
 
     display: flex;
-    height: 3.5rem;
     margin-left: auto;
     position: relative;
     width: 3.5rem;
@@ -149,7 +174,7 @@ function setIsMenuOpen(isOpen: boolean) {
       &::after {
         // having unit enables animating this variable properly
         --bar-offset: 0px;
-        --transform-transition-delay: #{$transition-base-time};
+        --transform-transition-delay: var(--transition-time);
         --top-transition-delay: 0ms;
       }
 
@@ -170,6 +195,7 @@ function setIsMenuOpen(isOpen: boolean) {
       display: flex;
       flex-basis: auto;
       flex-direction: row;
+      opacity: 1;
     }
 
     &__locale-switcher {

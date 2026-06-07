@@ -29,13 +29,13 @@ defineProps({
   text-decoration: none;
 
   &:hover {
-    color: var(--color-link-hover);
     background-color: var(--navbar-background-color);
+    color: var(--color-link-hover);
   }
 
   &.router-link-exact-active {
-    font-weight: 700;
     color: var(--color-link);
+    font-weight: 700;
     letter-spacing: var(--bold-letter-spacing);
   }
 }
