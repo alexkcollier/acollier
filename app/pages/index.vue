@@ -26,12 +26,21 @@ definePageMeta({
           {{ $t('home.description') }}
         </p>
 
-        <NuxtLink
-          class="link link--large link--arrow email-cta"
-          :to="localePath('/contact/')"
-        >
-          {{ $t('common.contact') }}
-        </NuxtLink>
+        <div class="home-links">
+          <NuxtLink
+            class="link link--large link--button link--button-filled"
+            :to="localePath('/work/')"
+          >
+            {{ $t('common.seeMyWork') }}
+          </NuxtLink>
+
+          <NuxtLink
+            class="link link--large link--button"
+            :to="localePath('/contact/')"
+          >
+            {{ $t('common.contact') }}
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </main>
@@ -51,10 +60,12 @@ $base-time: 1500ms;
 }
 
 .home-content {
+  // Multiplying the animation time staggers the animations nicely
+  animation: fadein-delay $base-time * 1.5 $easing;
   font-size: var(--text-xl);
   max-width: 90%;
 
-  * + * {
+  > * + * {
     margin-block: var(--space-12) 0;
   }
 
@@ -88,10 +99,10 @@ $base-time: 1500ms;
   }
 }
 
-.email-cta,
-.home-content {
-  // Multiplying the animation time staggers the animations nicely
-  animation: fadein-delay $base-time * 1.5 $easing;
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 @keyframes deblur {

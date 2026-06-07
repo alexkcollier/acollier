@@ -91,13 +91,13 @@ function handleClickOutside(event: MouseEvent) {
 
       <div class="navbar-utils">
         <NavbarButton
-          v-for="{ code, name } in availableLocales"
+          v-for="{ code } in availableLocales"
           :key="code"
           class="navbar__locale-switcher"
           :href="switchLocalePath(code)"
           @click="() => setIsMenuOpen(false)"
         >
-          {{ name }}
+          {{ code }}
         </NavbarButton>
 
         <ColorSwitcher />
@@ -212,6 +212,7 @@ function handleClickOutside(event: MouseEvent) {
 
     &__locale-switcher {
       margin-left: auto;
+      text-transform: uppercase;
     }
 
     &__menu-button {

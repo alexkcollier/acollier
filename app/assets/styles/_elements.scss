@@ -1,34 +1,44 @@
 .link {
   color: var(--color-link);
   display: inline-block;
-  margin: -0.25em;
-  margin-right: -0.5rem;
-  padding: 0.25em;
-  padding-right: 0.5rem;
-  position: relative;
+  font-family: var(--font-family-monospaced);
   text-decoration: none;
 
-  /* line */
-  &::before {
-    border: 1px solid var(--color-link);
-    bottom: -0.1em;
-    content: '';
-    height: 0;
-    position: absolute;
-    transition: all 100ms ease-in;
-    width: 1em;
-  }
-
-  &:active::before {
-    bottom: -1em;
-    opacity: 0;
-  }
-
   &--large {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
+  }
+
+  &--button {
+    border: 1px solid currentColor;
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    padding-block: var(--space-1);
+    transition: background-color 100ms ease;
+    white-space: nowrap;
+
+    &:active {
+      background-color: rgb(from currentColor r g b / 10%);
+    }
+
+    &-filled {
+      background-color: var(--color-bg-primary);
+      border-color: var(--color-bg-primary);
+      color: var(--color-text-on-primary);
+
+      &:active {
+        background-color: hsl(from var(--color-bg-primary) h s calc(l * 0.9));
+      }
+    }
+  }
+
+  &--button:is(&--large) {
+    padding: var(--space-4);
+    padding-block: var(--space-2);
   }
 
   &--arrow {
+    position: relative;
+
     /* arrow */
     &::after {
       border: 1px solid var(--color-link);

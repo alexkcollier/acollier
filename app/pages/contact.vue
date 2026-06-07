@@ -105,7 +105,7 @@ definePageMeta({
               <div class="form-field">
                 <button
                   :class="[
-                    'submit-button link link--arrow',
+                    'submit-button link link--button link--button-filled',
                     { 'is-loading': isSending },
                   ]"
                 >
@@ -210,13 +210,6 @@ export default {
 .contact-form {
   @include bp.above('md') {
     max-width: math.div(5, 12) * 100%;
-  }
-
-  @include bp.below('sm') {
-    font-weight: 700;
-    text-shadow:
-      1px 2px 20px rgb(0 0 0 / 75%),
-      0 0 1px rgb(0 0 0 / 50%);
   }
 }
 

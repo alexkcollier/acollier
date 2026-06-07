@@ -92,7 +92,7 @@
   // bg
   --color-bg: var(--stone-50);
   --color-bg-subtle: var(--stone-100);
-  --color-bg-primary: var(--green-500);
+  --color-bg-primary: var(--green-700);
   --color-bg-accent: var(--amber-500);
 
   // text
@@ -108,7 +108,7 @@
   --color-border-primary: var(--green-300);
 
   // links
-  --color-link: var(--green-500, var(--color-text));
+  --color-link: var(--green-700, var(--color-text));
   --color-link-hover: var(--green-700);
   --color-focus-ring: var(--green-300);
 
@@ -126,13 +126,13 @@
   // bg
   --color-bg: var(--stone-900);
   --color-bg-subtle: var(--stone-700);
-  --color-bg-primary: var(--green-500);
+  --color-bg-primary: var(--green-600);
   --color-bg-accent: var(--amber-500);
 
   // text
   --color-text: var(--stone-50);
   --color-text-muted: var(--stone-300);
-  --color-text-primary: var(--green-100);
+  --color-text-primary: var(--green-300);
   --color-text-on-primary: #fff;
   --color-text-accent: var(--amber-200);
 
