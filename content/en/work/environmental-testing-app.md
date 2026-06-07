@@ -1,8 +1,8 @@
 ---
-title: Legionella mobile client
+title: Environmental Testing App
 order: 5
 description: Run the Spartan Legionella Test with your phone.
-featureImage: '/images/legionella-mobile-client/legionella-mobile-feature.jpg'
+featureImage: '/images/environmental-testing-app/legionella-mobile-feature.jpg'
 tools:
   - {
       name: Adobe XD,
@@ -26,9 +26,9 @@ tools:
     }
 ---
 
-# Legionella mobile client
+# Environmental Testing App
 
-![Legionella mobile prototype](/images/legionella-mobile-client/legionella-mobile-feature.jpg 'Legionella mobile prototype')
+![Environmental Testing App](/images/environmental-testing-app/legionella-mobile-feature.jpg 'Environmental Testing App')
 
 I was the sole designer on a mobile client for Spartan's Legionella Test, working with a mobile developer to bring a laptop-based system to iOS and Android. Most core features were designed and built before the project was cancelled when the company wound down.
 
@@ -51,25 +51,25 @@ I began by mapping the app's structure around use cases rather than data types, 
 
 Wireframes followed for the key screens. The instruction screen needed primary actions reachable without stretching on large phones, which ruled out several top-heavy layouts early. For the result log, I worked through four approaches before the wireframes showed that a segmented list with sticky headers gave the best balance of information density and ease of use.
 
-![Instruction screen wireframes](/images/legionella-mobile-client/instructions-wire.png 'Instruction screen wireframes')
+![Instruction screen wireframes](/images/environmental-testing-app/instructions-wire.png 'Instruction screen wireframes')
 
-![Log screen wireframes](/images/legionella-mobile-client/log-wire.png 'Log screen wireframes')
+![Log screen wireframes](/images/environmental-testing-app/log-wire.png 'Log screen wireframes')
 
 Navigation was an open question. I built a prototype in Adobe XD, loaded it on my phone, and ran hallway tests. The bottom bar layout won; participants liked the quick path to starting a test, and found the result log card on the landing screen confusing.
 
-![Landing screen wireframes](/images/legionella-mobile-client/landing-wire.png 'Landing screen wireframes')
+![Landing screen wireframes](/images/environmental-testing-app/landing-wire.png 'Landing screen wireframes')
 
-<video src="/images/legionella-mobile-client/navigation.webm" controls muted style="max-height: 400px;" poster=/images/legionella-mobile-client/navigation-poster.png></video>
+<video src="/images/environmental-testing-app/navigation.webm" controls muted style="max-height: 400px;" poster="/images/environmental-testing-app/navigation-poster.png"></video>
 
 ## Design and prototype
 
 After wireframing I moved to Framer, writing a fully interactive prototype with live data and coded interactions. This was the primary handoff tool; the developer flagged anything that couldn't be implemented or needed revision, and we worked through it together.
 
-<video src="/images/legionella-mobile-client/prototype.webm" controls muted style="max-height: 400px;" poster=/images/legionella-mobile-client/prototype-poster.png></video>
+<video src="/images/environmental-testing-app/prototype.webm" controls muted style="max-height: 400px;" poster=/images/environmental-testing-app/prototype-poster.png></video>
 
 The Cube status screen required a workaround for BLE's fundamental limitation: Bluetooth only connects 1-to-1, which would have broken multi-Cube monitoring entirely. Working with the developer, we landed on reading the advertising packets Cubes broadcast passively rather than maintaining a continuous connection. For a running test, we combined a timer (tests take just under an hour) with any packet updates available when in range. Users out of range when a test completed got a notification; those nearby received the result from the BLE advertisement directly. Cubes could also be given meaningful names, and the result log supported filtering.
 
-<img src="/images/legionella-mobile-client/applied-filters.png" alt="Applied filters" title="Applied filters" style="max-width: 200px;">
+<img src="/images/environmental-testing-app/applied-filters.png" alt="Applied filters" title="Applied filters" />
 
 One problem that wasn't resolved before the project ended: the result filter's double slider. The range of meaningful values was tightly clustered at the low end of a 0-1000 scale, making it difficult to use precisely. The fix was planned (replacing it with checkboxes) but wasn't scheduled before cancellation.
 

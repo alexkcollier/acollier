@@ -97,19 +97,15 @@ export default {
   }
 
   .missing-translation {
-    margin-top: 0.5rem;
+    margin-top: var(--space-2);
   }
 }
 
 .post-grid {
-  column-gap: 1rem;
+  column-gap: var(--space-8);
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr;
-
-  @include bp.below('md') {
-    grid-template-columns: 1fr 1fr;
-  }
+  grid-template-columns: 1fr 1fr;
 
   @include bp.below('sm') {
     grid-template-columns: 1fr;

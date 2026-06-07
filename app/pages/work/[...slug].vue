@@ -142,7 +142,7 @@ export default {
 
   &__list-item {
     &:not(:last-child) {
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--space-6);
     }
   }
 }

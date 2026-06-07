@@ -12,85 +12,97 @@ definePageMeta({
 <template>
   <main class="home-hero">
     <div class="container">
-      <h1 class="name">
-        {{ $t('common.name') }}
-      </h1>
+      <div class="home-content">
+        <i18n-t
+          keypath="home.tag"
+          scope="global"
+          tag="div"
+          class="tag"
+        >
+          <span class="tag__highlight">{{ $t('home.experienceType') }}</span>
+        </i18n-t>
 
-      <div class="tag">
-        {{ $t('home.tag') }}
+        <p>
+          {{ $t('home.description') }}
+        </p>
+
+        <div class="home-links">
+          <NuxtLink
+            class="link link--large link--button link--button-filled"
+            :to="localePath('/work/')"
+          >
+            {{ $t('common.seeMyWork') }}
+          </NuxtLink>
+
+          <NuxtLink
+            class="link link--large link--button"
+            :to="localePath('/contact/')"
+          >
+            {{ $t('common.contact') }}
+          </NuxtLink>
+        </div>
       </div>
-
-      <NuxtLink
-        class="link link--large link--arrow email-cta"
-        :to="localePath('/contact/')"
-      >
-        {{ $t('common.contact') }}
-      </NuxtLink>
     </div>
   </main>
 </template>
 
 <style lang="scss">
 @use '~/assets/styles/utils/breakpoints' as bp;
+@use '~/assets/styles/utils/mixins';
 
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
 
 .home-hero {
-  --gradient-color: rgb(0 0 0 / 20%);
-  --bg-image: url('~/assets/images/acollier.jpg');
-  --bg-x: right;
+  @include mixins.face-hero;
 
-  align-items: center;
-  display: flex;
-  min-height: calc(100% - (2 * var(--page-top-padding)));
-  padding: var(--page-top-padding) var(--page-side-padding);
-  text-shadow:
-    1px 2px 20px rgb(0 0 0 / 95%),
-    0 0 1px rgb(0 0 0 / 80%);
-
-  // using pseudo element so filter only affects image
-  &::before {
-    background:
-      linear-gradient(var(--gradient-color), var(--gradient-color)),
-      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover
-        no-repeat;
-    content: '';
-    inset: 0;
-    position: absolute;
-    z-index: -1;
-
-    @include bp.above('md') {
-      // a naive attempt to save low power devices from an animated filter
-      animation: deblur $base-time * 1.5 $easing;
-    }
-  }
-
-  @include bp.below('lg') {
-    --gradient-color: rgb(0 0 0 / 50%);
-    --bg-x: 90%;
-  }
+  animation: deblur $base-time * 1.5 $easing;
 }
 
-.name {
-  animation: fadein $base-time $easing;
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 125%;
-  margin-bottom: 1rem;
-}
-
-.tag {
-  // Multiplying the animation time staggers the animations nicely
-  font-size: 2.5rem;
-  line-height: 125%;
-  margin-bottom: 6rem;
-}
-
-.email-cta,
-.tag {
+.home-content {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
+  font-size: var(--text-xl);
+  max-width: 90%;
+
+  > * + * {
+    margin-block: var(--space-12) 0;
+  }
+
+  @include bp.above('sm') {
+    max-width: 60%;
+  }
+
+  @include bp.above('md') {
+    max-width: 60%;
+  }
+
+  @include bp.above('lg') {
+    max-width: 55%;
+  }
+}
+
+.tag {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+
+  &__highlight {
+    color: var(--color-text-primary);
+  }
+
+  @include bp.above('sm') {
+    font-size: var(--text-5xl);
+  }
+  @include bp.above('md') {
+    font-size: var(--text-6xl);
+  }
+}
+
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 @keyframes deblur {

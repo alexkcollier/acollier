@@ -3,13 +3,17 @@
 }
 
 .input {
-  background: var(--color-grey-100);
+  background: var(--color-input-bg);
   border-radius: 0.5em;
   box-shadow: 0 0.25em 1em var(--navbar-background-color);
-  color: var(--base-background-color);
+  color: var(--color-input-text);
   margin-top: 0.5em;
   padding: 0.5em;
   width: 100%;
+
+  &:focus {
+    background: var(--color-input-bg-focus);
+  }
 }
 
 .submit-button {
@@ -24,8 +28,8 @@
 
     &::after {
       animation: spin-around 0.5s infinite linear;
-      border: 2px solid var(--base-font-color);
-      border-radius: 9999px;
+      border: 2px solid var(--color-text);
+      border-radius: var(--radius-full);
       border-right-color: transparent;
       border-top-color: transparent;
       bottom: 0;

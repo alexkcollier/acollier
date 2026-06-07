@@ -1,9 +1,5 @@
 export default [
   {
-    key: 'home',
-    href: '/',
-  },
-  {
     key: 'about',
     href: '/about/',
   },

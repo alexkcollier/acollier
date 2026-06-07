@@ -2,21 +2,31 @@ export default {
   common: {
     contact: 'Get in touch',
     name: 'Alex Collier',
+    title: 'Design Engineer',
+    seeMyWork: 'See my work',
+  },
+  colorSwitcher: {
+    switchToMode: 'Switch to {mode} mode',
+    dark: 'dark',
+    light: 'light',
   },
   navigation: {
-    home: 'AC',
+    home: 'Alex Collier',
     about: 'About',
     work: 'Work',
     contact: 'Contact',
   },
   home: {
-    tag: 'Design Engineer, crafting for AI',
+    tag: "I'm Alex. I build {0} digital experiences.",
+    experienceType: 'thoughtful',
+    description:
+      'Fluent across design and frontend engineering with deep experience designing and shipping production interfaces for AI products—including conversational and LLM-based interactions.',
   },
   about: {
     metaTitle: 'About',
     mainHeading: 'About',
     blurb:
-      'Design Engineer bridging design and front-end engineering, with deep experience designing and shipping production interfaces for AI products, including conversational and LLM-based interactions.',
+      'I thrive in high-complexity environments, with nearly 10 years of experience including designing for medical and scientific testing, and shipping agentic experiences.',
     resumeDownload: 'Download my resume',
     experienceHeading: 'Experience',
     educationHeading: 'Education',
@@ -43,5 +53,7 @@ export default {
   work: {
     metaTitle: 'Work',
     mainHeading: 'Work',
+    clickToZoom: 'Click to zoom 🔎',
+    clickAnywhereToClose: 'Click anywhere or press ESC to close ❌',
   },
 };

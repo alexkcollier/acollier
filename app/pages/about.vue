@@ -108,8 +108,7 @@ definePageMeta({
 </template>
 
 <script lang="ts">
-import workExperience from '~/assets/data/work-experience';
-import { skills } from '~/assets/data/work-experience';
+import workExperience, { skills } from '~/assets/data/work-experience';
 import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
 export default {

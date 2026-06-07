@@ -39,12 +39,12 @@ import LinkedinIcon from '~/assets/icons/linkedin.svg';
 }
 
 .social-link {
-  color: var(--base-font-color);
+  color: var(--color-text);
   display: flex;
   text-shadow: none;
 
   &:hover {
-    color: var(--base-font-color);
+    color: var(--color-text);
   }
 }
 </style>

@@ -4,12 +4,19 @@ type LangSchema = typeof en;
 
 export default <LangSchema>{
   common: {
-    contact: 'Contacte-moi',
+    contact: 'Travaillons ensemble',
     name: 'Alex Collier',
     translationMissing:
       "Désolé, cette section n'est pas encore disponible en français.",
     postTranslationMissing:
       "Désolé, cet article n'est pas encore disponible en français. Voici la version anglaise.",
+    title: 'Design Engineer',
+    seeMyWork: 'Voir mes projets',
+  },
+  colorSwitcher: {
+    switchToMode: 'Passer en mode {mode}',
+    dark: 'sombre',
+    light: 'clair',
   },
   navigation: {
     home: 'AC',
@@ -18,13 +25,16 @@ export default <LangSchema>{
     contact: 'Contact',
   },
   home: {
-    tag: "Design Engineer qui donne form à L'IA",
+    tag: "Moi, c'est Alex. Je donne forme aux expèriences {0}.",
+    experienceType: 'réfléchies',
+    description:
+      "Ancré à la croisée du design et du développement frontend avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA—incluant les interactions conversationnelles et fondées sur des LLM.",
   },
   about: {
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "Design Engineer à la croisée du design et de l'ingénierie front-end, avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA, incluant les interactions conversationnelles et fondées sur des LLM.",
+      "À l'aise dans les environnements complexes, j'ai près de 10 ans d'expérience en conception, notamment pour les tests médicaux et scientifiques, et pour des expériences agentiques.",
     resumeDownload: 'Télécharger mon CV',
     experienceHeading: 'Expérience professionelle',
     educationHeading: 'Éducation',
@@ -51,5 +61,7 @@ export default <LangSchema>{
   work: {
     metaTitle: 'Projets',
     mainHeading: 'Projets',
+    clickToZoom: 'Cliquer pour développer 🔎',
+    clickAnywhereToClose: 'Cliquer ou ESC pour fermer ❌',
   },
 };

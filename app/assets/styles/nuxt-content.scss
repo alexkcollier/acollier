@@ -1,5 +1,4 @@
 .nuxt-content {
-
   /* `--heading-*` variables are from `./_typography.scss` */
   h1 {
     font-size: var(--heading-1-font-size);
@@ -19,23 +18,56 @@
   }
 
   a {
-    color: var(--base-font-color);
-
-    &:visited {
-      color: var(--caption-font-color);
-    }
+    color: var(--color-link);
+    display: inline-block;
+    font-family: var(--font-family-monospaced);
 
     &:hover {
-      color: var(--color-grey-300);
+      color: var(--color-link-hover);
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    scroll-margin-top: var(--space-24);
+
+    a {
+      display: inline-block;
+      font-family: var(--font-sans-serif);
+      position: relative;
+      text-decoration: none;
+
+      &,
+      &:visited {
+        color: var(--color-text);
+      }
+
+      &::after {
+        color: var(--color-text-muted);
+        content: '#';
+        font-family: var(--font-mono);
+        margin-inline-start: 0.35em;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+    }
+
+    &:hover a::after {
+      opacity: 1;
     }
   }
 
   img,
   video {
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     display: block;
+    filter: drop-shadow(0 4px 4px rgb(0 0 0 / 20%));
     height: auto;
-    margin: 2rem auto;
+    margin: var(--space-8) auto;
     max-width: 100%;
   }
 }

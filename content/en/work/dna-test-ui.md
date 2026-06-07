@@ -1,8 +1,8 @@
 ---
-title: CYP2C19 UI
+title: DNA Test UI, FDA Cleared
 order: 7
 description: A medical device user interface designed for ease of use.
-featureImage: '/images/cyp2c19-ui/cyp2c19-feature.png'
+featureImage: '/images/dna-test-ui/cyp2c19-feature.png'
 tools:
   - {
       name: Adobe XD,
@@ -11,11 +11,11 @@ tools:
     }
 ---
 
-# CYP2C19 UI
+# DNA Test UI, FDA Cleared
 
-![Spartan's CYP2C19 UI](/images/cyp2c19-ui/cyp2c19-feature.png "Spartan's CYP2C19 UI")
+![DNA Test UI, FDA Cleared](/images/dna-test-ui/cyp2c19-feature.png 'DNA Test UI, FDA Cleared')
 
-The CYP2C19 UI is the software component of Spartan Bio's CYP2C19, a rapid DNA test run on the Spartan Cube analyser. I led the design with another designer, holding final approval on decisions, through Spartan's formal design control process. The product received FDA clearance and is still being marketed by the company that acquired Spartan's assets.
+The DNA Test UI is the software component of Spartan Bio's CYP2C19, a rapid DNA test run on the Spartan Cube analyser. I led the design with another designer, holding final approval on decisions, through Spartan's formal design control process. The product received FDA clearance and is still being marketed by the company that acquired Spartan's assets.
 
 ## The challenge
 
@@ -33,46 +33,46 @@ Features were defined in the concept and feasibility stages alongside regulatory
 
 We built prototypes in XD and used its handoff features in a tight loop with our Windows developer, refining requirements continuously through the process.
 
-![CYP2C19 UI in XD](/images/cyp2c19-ui/cyp2c19-xd.png 'CYP2C19 UI in XD')
+![DNA Test UI in XD](/images/dna-test-ui/cyp2c19-xd.png 'DNA Test UI in XD')
 
 ## Guided workflows
 
 Ensuring users could successfully run the test every time was central to the product's value. The guided workflow provided step-by-step instructions and illustrations at every stage, so users never had to guess what came next. For the most critical and complex step (tapping and mixing the sample), we included a video directly in the interface.
 
-<video src="/images/cyp2c19-ui/cyp2c19-workflow.webm" controls preload="none" muted poster="/images/cyp2c19-ui/cyp2c19-feature.png"></video>
+<video src="/images/dna-test-ui/cyp2c19-workflow.webm" controls preload="none" muted poster="/images/dna-test-ui/cyp2c19-feature.png"></video>
 
 ## Result log
 
 The log gave users access to all past test and control results, searchable for when records accumulated. Selecting a result showed extended detail. An export feature supported users who maintained their own records systems outside the device.
 
-![Empty result log](/images/cyp2c19-ui/log-empty.png 'Empty result log')
-![Result log populated with results](/images/cyp2c19-ui/log.png 'Result log populated with results')
-![Log filtered to controls](/images/cyp2c19-ui/log-search.png 'Log filtered to controls')
-![Result screen](/images/cyp2c19-ui/result.png 'Result screen')
+![Empty result log](/images/dna-test-ui/log-empty.png 'Empty result log')
+![Result log populated with results](/images/dna-test-ui/log.png 'Result log populated with results')
+![Log filtered to controls](/images/dna-test-ui/log-search.png 'Log filtered to controls')
+![Result screen](/images/dna-test-ui/result.png 'Result screen')
 
 ## Logins and security
 
 User logins protected potentially sensitive patient data. The login form gave clear feedback on failed attempts without revealing which credential was wrong. Users could also scan a barcode to authenticate, a common pattern in clinical settings where staff scan ID badges to access equipment.
 
-![Login screen](/images/cyp2c19-ui/login.png 'Login screen')
+![Login screen](/images/dna-test-ui/login.png 'Login screen')
 
-![Credential validation only shows something is wrong, not what is wrong](/images/cyp2c19-ui/login.png 'Invalid credentials')
+![Credential validation only shows something is wrong, not what is wrong](/images/dna-test-ui/login.png 'Invalid credentials')
 
 An optional time-based lock let users secure the system when away from it. Since the device can run a test while locked, we added test status to the lock screen; with one laptop per Cube, it was important to show whether the system was busy.
 
-![Locked system with test in progress](/images/cyp2c19-ui/lock-screen.png 'Locked system with test in progress')
+![Locked system with test in progress](/images/dna-test-ui/lock-screen.png 'Locked system with test in progress')
 
 Lock settings and user management were restricted to the system administrator.
 
-![System settings](/images/cyp2c19-ui/settings.png 'System settings')
-![User settings](/images/cyp2c19-ui/settings-users.png 'User settings')
+![System settings](/images/dna-test-ui/settings.png 'System settings')
+![User settings](/images/dna-test-ui/settings-users.png 'User settings')
 
 ## Training module
 
 A built-in training module walked users through the entire workflow from sample collection to running the analyser, with clear instructions and supplementary guidance at each step. This supported the goal of minimising the training burden for new users.
 
-![Training module](/images/cyp2c19-ui/training.png 'Training module')
+![Training module](/images/dna-test-ui/training.png 'Training module')
 
 ## Outcome
 
-The CYP2C19 UI received FDA clearance. The CLIA waived designation we designed toward wasn't achieved (a function of the test chemistry, not the software), but the design approach held up through the regulatory process. A version of the product is still being marketed by the company that acquired Spartan's assets.
+The DNA testing platform received FDA clearance. The CLIA waived designation we designed toward wasn't achieved (a function of the test chemistry, not the software), but the design approach held up through the regulatory process. A version of the product is still being marketed by the company that acquired Spartan's assets.
