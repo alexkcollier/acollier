@@ -64,7 +64,7 @@ export default {
   }
 
   &__link {
-    color: var(--base-font-color);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
     height: 100%;

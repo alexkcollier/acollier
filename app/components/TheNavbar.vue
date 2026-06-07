@@ -126,7 +126,7 @@ export default {
 
     &::before,
     &::after {
-      border-bottom: 1px solid var(--base-font-color);
+      border-bottom: 1px solid var(--color-text);
       content: '';
       left: 50%;
       margin: auto;

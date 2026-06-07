@@ -18,23 +18,24 @@
   }
 
   a {
-    color: var(--base-font-color);
+    color: var(--color-text);
 
     &:visited {
-      color: var(--caption-font-color);
+      color: var(--color-text-muted);
     }
 
     &:hover {
-      color: var(--color-grey-300);
+      color: var(--color-link-hover);
     }
   }
 
   img,
   video {
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     display: block;
+    filter: drop-shadow(0 4px 4px rgb(0 0 0 / 20%));
     height: auto;
-    margin: 2rem auto;
+    margin: var(--space-8) auto;
     max-width: 100%;
   }
 }

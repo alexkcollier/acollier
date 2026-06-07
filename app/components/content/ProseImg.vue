@@ -60,18 +60,18 @@ html:has(.lightbox[open]) {
   background: none;
   border: none;
   box-sizing: border-box;
-  color: currentcolor;
+  color: var(--color-text-on-dark);
   display: flex;
   flex-direction: column;
   font-weight: 500;
-  gap: 1rem;
+  gap: var(--space-4);
   height: 100dvh;
   inset: 0;
   justify-content: center;
   margin: auto;
   max-width: 100dvw;
   overflow: hidden;
-  padding: 2rem;
+  padding: var(--space-8);
   position: fixed;
   transition: var(--base-transition);
   width: 100dvw;
@@ -102,7 +102,7 @@ html:has(.lightbox[open]) {
   }
 
   &__preview {
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-1);
     margin-top: 0;
   }
 
@@ -112,14 +112,14 @@ html:has(.lightbox[open]) {
 
   &__image {
     flex: 1 1 0;
-    margin: 0.25rem auto;
+    margin: var(--space-1) auto;
     max-width: 100%;
     min-height: 0;
     object-fit: scale-down;
   }
 
   &-wrapper {
-    margin: 3rem auto;
+    margin: var(--space-12) auto;
     text-align: center;
 
     button: {

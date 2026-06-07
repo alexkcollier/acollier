@@ -1,10 +1,9 @@
 :root {
-  --heading-top-margin: 2rem;
-  --heading-bottom-margin: 1rem;
-  --heading-1-bottom-margin: 3rem;
-  --heading-1-font-size: 2rem;
-  --heading-1-line-height: 1.25;
-  --heading-2-font-size: 1.5rem;
+  --heading-1-font-size: var(--text-3xl);
+  --heading-2-font-size: var(--text-2xl);
+  --heading-top-margin: var(--space-8);
+  --heading-bottom-margin: var(--space-4);
+  --heading-1-bottom-margin: var(--space-12);
 }
 
 .heading {

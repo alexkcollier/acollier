@@ -1,0 +1,164 @@
+/* ── Base tokens ─────────────────────────────────── */
+:root {
+  /* Color ramps */
+  // green
+  --green-50: #eaf4e8;
+  --green-100: #b6ddb1;
+  --green-200: #96cc90;
+  --green-300: #72b86a;
+  --green-400: #559e4d;
+  --green-500: #3a7d35; /* primary */
+  --green-600: #2e6629;
+  --green-700: #245720;
+  --green-800: #1a4317;
+  --green-900: #13300f;
+
+  // stone
+  --stone-50: #fafaf8;
+  --stone-100: #edede8;
+  --stone-200: #d6d6cf;
+  --stone-300: #c4c4bc;
+  --stone-400: #a4a49c;
+  --stone-500: #7e7e76;
+  --stone-600: #5c5c56;
+  --stone-700: #3c3c38;
+  --stone-800: #2a2a27;
+  --stone-900: #1a1a18;
+
+  // amber
+  --amber-50: #fbf2e0;
+  --amber-200: #f5d48a;
+  --amber-500: #c28a1a; /* accent */
+  --amber-700: #7a5310;
+
+  /* Typography */
+  // families
+  --font-family-serif: 'Playfair Display', georgia, serif;
+  --font-family-sans-serif:
+    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
+    ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-monospaced:
+    'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+
+  // display faces
+  --font-display: var(--font-family-serif);
+  --font-body: var(--font-family-sans-serif);
+  --font-mono: var(--font-family-monospaced);
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-6xl: 3.75rem;
+
+  /* Line heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing */
+  --letter-spacing-base: 0.02em;
+  --letter-spacing-bold: 0.03em;
+
+  /* Spacing */
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+/* ── Light theme ─────────────────────────────────── */
+
+:root,
+[data-theme='light'] {
+  // bg
+  --color-bg: var(--stone-50);
+  --color-bg-subtle: var(--stone-100);
+  --color-bg-primary: var(--green-500);
+  --color-bg-accent: var(--amber-500);
+
+  // text
+  --color-text: var(--stone-900);
+  --color-text-muted: var(--stone-500);
+  --color-text-primary: var(--green-700);
+  --color-text-on-primary: #fff;
+  --color-text-accent: var(--amber-700);
+  --color-text-on-dark: var(--stone-50);
+
+  // border
+  --color-border: var(--stone-300);
+  --color-border-primary: var(--green-300);
+
+  // links
+  --color-link: var(--green-500, var(--color-text));
+  --color-link-hover: var(--green-700);
+  --color-focus-ring: var(--green-300);
+
+  // inputs
+  --color-input-bg: var(--stone-100);
+  --color-input-bg-focus: var(--stone-50);
+  --color-input-border: var(--stone-300);
+  --color-input-border-focus: var(--orange-500);
+  --color-input-text: var(--stone-900);
+  --color-input-placeholder: var(--stone-500);
+}
+
+/* ── Dark theme ──────────────────────────────────── */
+@mixin dark-theme {
+  // bg
+  --color-bg: var(--stone-900);
+  --color-bg-subtle: var(--stone-700);
+  --color-bg-primary: var(--green-500);
+  --color-bg-accent: var(--amber-500);
+
+  // text
+  --color-text: var(--stone-50);
+  --color-text-muted: var(--stone-300);
+  --color-text-primary: var(--green-100);
+  --color-text-on-primary: #fff;
+  --color-text-accent: var(--amber-200);
+
+  // border
+  --color-border: var(--stone-700);
+  --color-border-primary: var(--green-700);
+
+  // color
+  --color-link: var(--green-300, var(--color-text));
+  --color-link-hover: var(--green-100);
+  --color-focus-ring: var(--green-700);
+
+  // input
+  --color-input-bg: var(--stone-700);
+  --color-input-bg-focus: var(--stone-600);
+  --color-input-border: var(--stone-600);
+  --color-input-border-focus: var(--orange-200);
+  --color-input-text: var(--stone-50);
+  --color-input-placeholder: var(--stone-400);
+}
+
+[data-theme='dark'] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark-theme;
+  }
+}

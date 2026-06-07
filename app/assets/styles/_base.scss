@@ -6,32 +6,11 @@
  */
 :root {
   /* Page */
-  --page-top-padding: 2rem;
-  --page-side-padding: 2rem;
-
-  /* Colors */
-  --color-grey-100: #ddd;
-  --color-grey-200: #ccc;
-  --color-grey-300: #bbb;
-  --color-grey-400: #999;
-  --color-grey-500: #777;
-  --base-background-color: #222;
-  --base-font-color: var(--color-grey-100);
-  --caption-font-color: var(--color-grey-400);
-  --navbar-background-color: rgb(34 34 34 / 50%);
-
-  /* Fonts */
-  --font-family-sans-serif:
-    'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
-    ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-family-monospaced:
-    'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
-    monospace;
-  --letter-spacing-base: 0.02em;
-  --letter-spacing-bold: 0.03em;
+  --page-top-padding: var(--space-8);
+  --page-side-padding: var(--space-8);
 
   @include bp.below('sm') {
-    --page-side-padding: 1rem;
+    --page-side-padding: var(--space-4);
   }
 }
 
@@ -41,9 +20,9 @@
 
 /* Page */
 html {
-  background: var(--base-background-color);
-  color: var(--base-font-color);
-  font-family: var(--font-family-sans-serif);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
   font-weight: 300;
   letter-spacing: var(--letter-spacing-base);
   overflow-y: scroll;
@@ -57,7 +36,7 @@ body,
 }
 
 ::selection {
-  background: rgb(180 180 180 / 30%);
+  background: rgb(from var(--color-bg-primary) r g b / 30%);
 }
 
 /* Headings */
@@ -87,8 +66,8 @@ kbd,
 samp {
   &,
   &[class*='language-'] {
-    border-radius: 0.5rem;
-    font-family: var(--font-family-monospaced);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
     letter-spacing: initial;
 
     &:not(.nuxt-content-highlight &) {
@@ -108,14 +87,14 @@ strong {
 
 /* lists */
 li {
-  margin-bottom: 0.5em;
+  margin-bottom: var(--space-2);
 }
 
 /* Forms */
 input,
 select,
 textarea {
-  border-color: var(--color-grey-100);
+  border-color: var(--color-border);
 }
 
 button {

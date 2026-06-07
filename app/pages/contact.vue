@@ -219,8 +219,7 @@ export default {
   &::before {
     background:
       linear-gradient(var(--gradient-color), var(--gradient-color)),
-      var(--base-background-color) var(--bg-image) var(--bg-x) center / cover
-        no-repeat;
+      var(--color-bg) var(--bg-image) var(--bg-x) center / cover no-repeat;
     content: '';
     inset: 0;
     position: absolute;

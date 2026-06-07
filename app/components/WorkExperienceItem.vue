@@ -83,7 +83,7 @@ export default {
 
   &__date {
     align-self: end;
-    color: var(--caption-font-color);
+    color: var(--color-text-muted);
     grid-area: date;
     text-align: right;
 
@@ -98,7 +98,7 @@ export default {
     grid-area: heading;
 
     .subtitle {
-      color: var(--caption-font-color);
+      color: var(--color-text-muted);
     }
   }
 
