@@ -32,7 +32,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
       class="lightbox"
       @click="dialogEl?.close()"
     >
-      <NuxtImg
+      <img
         v-bind="$attrs"
         loading="lazy"
         class="lightbox__image"
@@ -112,9 +112,9 @@ html:has(.lightbox[open]) {
 
   &__image {
     flex: 1 1 0;
-    margin: var(--space-1) auto;
-    max-width: 100%;
     min-height: 0;
+    width: 100%;
+    max-width: 100%;
     object-fit: scale-down;
   }
 
