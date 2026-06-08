@@ -200,6 +200,10 @@ function handleClickOutside(event: MouseEvent) {
     }
   }
 
+  &__locale-switcher {
+    text-transform: uppercase;
+  }
+
   @include bp.above('sm') {
     padding: 0 var(--space-4);
 
@@ -208,11 +212,6 @@ function handleClickOutside(event: MouseEvent) {
       flex-basis: auto;
       flex-direction: row;
       opacity: 1;
-    }
-
-    &__locale-switcher {
-      margin-left: auto;
-      text-transform: uppercase;
     }
 
     &__menu-button {

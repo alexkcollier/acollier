@@ -25,7 +25,7 @@ export default <LangSchema>{
     contact: 'Contact',
   },
   home: {
-    tag: "Moi, c'est Alex. Je donne forme aux expèriences {0}.",
+    tag: "Moi, c'est Alex. Je donne forme aux expériences {0}.",
     experienceType: 'réfléchies',
     description:
       "Ancré à la croisée du design et du développement frontend avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA—incluant les interactions conversationnelles et fondées sur des LLM.",
