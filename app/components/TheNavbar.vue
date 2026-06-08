@@ -114,7 +114,7 @@ function handleClickOutside(event: MouseEvent) {
 
   align-items: stretch;
   backdrop-filter: blur(16px);
-  background-color: var(--navbar-background-color);
+  background-color: rgb(from var(--navbar-background-color) r g b / 50%);
   border-bottom: 1px solid var(--color-border);
   display: flex;
   flex-wrap: wrap;

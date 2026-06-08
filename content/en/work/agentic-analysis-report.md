@@ -1,7 +1,7 @@
 ---
 title: Agentic Analysis Report
 order: 0
-featureImage: '/images/agentic-analysis-report/analysis-report-feature.png'
+featureImage: '/images/agentic-analysis-report/agentic-report-thumbnail.png'
 description: AI-generated CX report including an agentic chat interface
 tools:
   - { name: Figma, img: /images/tools/figma.svg, href: https://www.figma.com }

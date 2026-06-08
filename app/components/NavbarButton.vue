@@ -29,7 +29,6 @@ defineProps({
   text-decoration: none;
 
   &:hover {
-    background-color: var(--navbar-background-color);
     color: var(--color-link-hover);
   }
 

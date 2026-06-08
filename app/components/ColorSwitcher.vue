@@ -34,6 +34,6 @@ function toggleTheme() {
     "
     @click="toggleTheme"
   >
-    {{ theme === 'light' ? '🌛' : '🌞' }}
+    <Icon :name="theme === 'light' ? 'lucide:moon' : 'lucide:sun'" />
   </button>
 </template>
