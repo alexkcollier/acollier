@@ -12,6 +12,8 @@
   @include bp.below('sm') {
     --page-side-padding: var(--space-4);
   }
+
+  --navbar-background-color: var(--color-bg);
 }
 
 /**
@@ -63,6 +65,7 @@ code,
 pre,
 kbd,
 samp {
+
   &,
   &[class*='language-'] {
     border-radius: var(--radius-md);
