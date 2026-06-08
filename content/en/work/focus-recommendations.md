@@ -1,7 +1,7 @@
 ---
 title: Focus Recommendations
 order: 1
-featureImage: '/images/focus-recommendations/focus-recommendations-feature.png'
+featureImage: '/images/focus-recommendations/focus-recommendations-thumbnail.png'
 description: Key driver analysis tool for CX satisfaction scores
 tools:
   - { name: Figma, img: /images/tools/figma.svg, href: https://www.figma.com }
@@ -44,7 +44,7 @@ Three design problems defined the project.
 
 The four-quadrant chart handled the big picture; plotting topics by correlation and average satisfaction score made priorities immediately clear. The harder problem was the table view: communicating the same information at a topic level, in a single icon, without requiring users to understand what correlation means.
 
-![The chart allows quick identification of what really needs attention](/images/focus-recommendations/focus-recommendations-feature.png 'Close up on the chart')
+![The chart allows quick identification of what really needs attention](/images/focus-recommendations/focus-recommendations-chart.png 'Close up on the chart')
 
 I landed on a target-like icon: three concentric rings, where more rings filled indicated stronger impact. Positive or negative impact was communicated through color (green for positive, red for negative), deliberately breaking from our praise/problem palette, since this analysis is based on satisfaction scores rather than our sentiment categories. An arrow icon and correlation percentage reinforced the direction for users with color blindness.
 
