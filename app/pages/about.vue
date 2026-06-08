@@ -72,12 +72,6 @@ definePageMeta({
       <aside class="two-column__narrow-col sidebar">
         <section class="sidebar__section">
           <h2 class="heading-1">
-            {{ $t('about.linksHeading') }}
-          </h2>
-
-          <SocialLinks />
-
-          <h2 class="heading-1">
             {{ $t('about.skillsHeading') }}
           </h2>
 
@@ -94,13 +88,17 @@ definePageMeta({
             {{ $t('about.educationHeading') }}
           </h2>
 
-          <div>
-            <h3 class="heading-2 title">Carleton University</h3>
+          <h3 class="heading-2 title">Carleton University</h3>
 
-            <p class="subtitle">
-              {{ $t('about.bcomm') }}
-            </p>
-          </div>
+          <p class="subtitle">
+            {{ $t('about.bcomm') }}
+          </p>
+
+          <h2 class="heading-1">
+            {{ $t('about.linksHeading') }}
+          </h2>
+
+          <SocialLinks />
         </section>
       </aside>
     </div>
@@ -159,8 +157,19 @@ export default {
 }
 
 .about-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
   list-style: none;
   padding-left: 0;
+
+  li {
+    background-color: var(--color-bg-subtle);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    line-height: 1;
+    padding: var(--space-2) var(--space-3);
+  }
 }
 
 .work-experience {

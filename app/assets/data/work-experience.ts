@@ -13,15 +13,16 @@ interface WorkExperienceItem {
 
 const en: WorkExperienceItem[] = [
   {
-    position: 'Design Engineer',
+    position: 'UX Engineer',
     company: 'Keatext',
     startDate: 'May 2021',
+    endDate: 'May 2026',
     description: [
-      'Owned product design and front-end direction, serving as the bridge between design and engineering.',
+      'Owned product design and front-end direction, serving as the bridge between design and engineering',
       "Redesigned the core user experience for conversational AI that traditional UI patterns didn't address",
       'Partnered with product owners and engineers to shape roadmap and strategy, establishing design-to-development workflows that cut handoff loops',
-      'Designed, built, and maintained production React + TypeScript components with interaction fidelity and accessibility at their core',
-      'Converted fragmented UI work into a reusable component system with clear APIs, built on design tokens',
+      'Designed, built, and maintained production React + TypeScript components with  interaction fidelity and accessibility at their core',
+      'Converted fragmented UI into a reusable component system built on design tokens',
     ],
   },
   {
@@ -31,7 +32,7 @@ const en: WorkExperienceItem[] = [
     endDate: 'May 2021',
     description: [
       'Designed and built interactive, high-fidelity prototypes and production interfaces for medical software and training products',
-      'Built a design system from the ground up with full documentation in Storybook',
+      'Built a design system from the ground up with full documentation',
       'Developed and maintained a web-based customer support portal and corporate site with headless CMS integration',
       'Collaborated with cross-functional teams spanning engineering, management, and executive leadership',
       'Synthesized multi-channel feedback into iterative design revisions, maintaining a single source of truth',
@@ -45,7 +46,7 @@ const en: WorkExperienceItem[] = [
     description: [
       'Contributed to UX and product design alongside the core team',
       'Managed the company WordPress site and server infrastructure',
-      'Designed marketing collateral, training documentation, and conference materials',
+      'Designed marketing collateral and training documentation',
     ],
   },
 ];
@@ -54,23 +55,24 @@ const fr: WorkExperienceItem[] = [
   {
     position: 'Design Engineer',
     company: 'Keatext',
-    startDate: 'Mai 2021',
+    startDate: 'mai 2021',
+    endDate: 'mai 2026',
     description: [
-      'Responsable du design produit et de la direction front-end, assurant la liaison entre design et ingénierie.',
+      'Responsable du design produit et de la direction front-end, assurant la liaison entre design et ingénierie',
       "Refondu l'expérience utilisateur principale pour l'IA conversationnelle, que les patterns d'interface traditionnels ne prenaient pas en charge",
-      'Collaboré avec les product owners et les ingénieurs pour façonner la feuille de route et la stratégie, en établissant des workflows design-développement réduisant les allers-retours de handoff',
+      'Collaboré avec les product owners et les ingénieurs pour façonner la feuille de route et la stratégie, en établissant des workflows design-développement efficaces',
       "Conçu, développé et maintenu des composants React + TypeScript de production, avec la fidélité des interactions et l'accessibilité au cœur",
-      'Transformé une interface fragmenté en un système de composants réutilisables aux API claires, fondé sur des design tokens',
+      'Transformé une interface fragmentée en système de composants réutilisables basé sur des design tokens',
     ],
   },
   {
     position: 'Concepteur UX/UI principal',
     company: 'Spartan Bioscience',
-    startDate: 'Juin 2017',
-    endDate: 'Mai 2021',
+    startDate: 'juin 2017',
+    endDate: 'mai 2021',
     description: [
-      "Développement d'un système de design de zéro avec une documentation complète dans Storybook",
       'Création de prototypes interactifs et hautes-fidélités ainsi que des interfaces de production pour des logiciels médicaux et leurs produits de formation',
+      "Développement d'un système de design de zéro avec une documentation complète",
       "Mise en œuvre et maintenance d'un portail d'assistance client et d'un site corporatif avec intégration CMS headless",
       'Collaboration avec des équipes transversales regroupant ingénierie, gestion et direction générale',
       'Synthétisation de retours multicanaux en révisions itératives, en maintenant une source de vérité unique',
@@ -79,12 +81,12 @@ const fr: WorkExperienceItem[] = [
   {
     position: 'Coordinateur marketing',
     company: 'Spartan Bioscience',
-    startDate: 'Avril 2015',
-    endDate: 'Juin 2017',
+    startDate: 'avril 2015',
+    endDate: 'juin 2017',
     description: [
       "Participation aux initiatives de design UX et produit aux côtés de l'équipe principale",
       "Gestion du site WordPress de l'entreprise et l'infrastructure serveur",
-      'Production de supports marketing, de documentation de formation et de matériaux de conférence',
+      'Production de supports marketing et de documentation de formation',
     ],
   },
 ];
