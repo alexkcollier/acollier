@@ -17,7 +17,7 @@
   align-items: center;
   background: var(--bg-image) 103% bottom / 55% no-repeat;
   display: flex;
-  height: 100%;
+  min-height: 100%;
   padding: var(--page-top-padding) var(--page-side-padding);
 
   @include bp.below('md') {

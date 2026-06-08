@@ -8,6 +8,7 @@
   }
 
   &--button {
+    background-color: var(--color-bg);
     border: 1px solid currentColor;
     border-radius: var(--radius-md);
     padding: var(--space-2);
