@@ -54,7 +54,15 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint', 'nuxt-svgo', '@nuxt/image', '@nuxt/icon'],
+  modules: [
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    '@nuxt/eslint',
+    'nuxt-svgo',
+    '@nuxt/image',
+    '@nuxt/icon',
+    'nuxt-gtag',
+  ],
   typescript: {
     typeCheck: true,
   },
@@ -81,5 +89,9 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
+  },
+  gtag: {
+    id: 'G-G07YCE0VSK',
+    enabled: process.env.NODE_ENV === 'production',
   },
 });
