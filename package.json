@@ -19,7 +19,7 @@
     "@nuxt/icon": "^2.2.3",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/i18n": "^10.4.0",
-    "@sentry/node": "^7.12.1",
+    "@sentry/node": "^10.56.0",
     "@sentry/tracing": "^7.12.1",
     "better-sqlite3": "^12.10.0",
     "domexception": "^4.0.0",
