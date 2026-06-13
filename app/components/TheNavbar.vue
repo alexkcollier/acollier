@@ -39,11 +39,17 @@ function setIsMenuOpen(isOpen: boolean) {
 
 function handleClickOutside(event: MouseEvent) {
   if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
-    isMenuOpen.value = false;
-    document.documentElement.style.overflowY = 'auto';
-    document.removeEventListener('click', handleClickOutside);
+    resetMenu();
   }
 }
+
+function resetMenu() {
+  isMenuOpen.value = false;
+  document.documentElement.style.overflowY = 'auto';
+  document.removeEventListener('click', handleClickOutside);
+}
+
+window.addEventListener('resize', resetMenu);
 </script>
 
 <template>
