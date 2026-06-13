@@ -74,7 +74,7 @@ definePageMeta({
       />
     </Head>
 
-    <div class="two-column">
+    <div class="content-container two-column">
       <main class="two-column__wide-col">
         <ContentRenderer
           v-if="doc"
@@ -90,7 +90,10 @@ definePageMeta({
         >
           <h2 class="heading-1">Contents</h2>
 
-          <WorkToc :links="doc.body.toc.links" />
+          <WorkToc
+            :links="doc.body.toc.links"
+            :depth="doc.body.toc.depth"
+          />
         </section>
 
         <section
@@ -143,6 +146,12 @@ export default {
 <style lang="scss">
 @use '~/assets/styles/nuxt-content';
 @use '~/assets/styles/utils/mixins';
+@use '~/assets/styles/utils/breakpoints' as bp;
+
+.content-container {
+  margin-inline: auto;
+  max-width: bp.$xl;
+}
 
 .work-links {
   &__list {
