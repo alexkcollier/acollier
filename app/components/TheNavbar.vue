@@ -206,7 +206,7 @@ function handleClickOutside(event: MouseEvent) {
     text-transform: uppercase;
   }
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     padding: 0 var(--space-4);
 
     &__button-wrapper {
@@ -245,7 +245,7 @@ function handleClickOutside(event: MouseEvent) {
   padding-right: var(--space-2);
   pointer-events: none;
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     display: flex;
   }
 }
@@ -254,7 +254,7 @@ function handleClickOutside(event: MouseEvent) {
   display: flex;
   justify-content: space-between;
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     justify-content: flex-start;
   }
 }

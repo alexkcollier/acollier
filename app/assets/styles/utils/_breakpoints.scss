@@ -3,13 +3,20 @@
 /**
  * Responsive breakpoints
  */
-$sm: 30rem;
-$md: 48rem;
-$lg: 60rem;
+$xs: 0px;
+$sm: 480px;
+$md: 768px;
+$lg: 960px;
+$xl: 1200px;
+$xxl: 1440px;
+
 $breakpoints: (
+  'xs': $xs,
   'sm': $sm,
   'md': $md,
   'lg': $lg,
+  'xl': $xl,
+  'xxl': $xxl,
 );
 
 @mixin below($breakpoint) {

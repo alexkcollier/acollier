@@ -102,13 +102,19 @@ export default {
 }
 
 .post-grid {
+  --col-number: 1;
+
   column-gap: var(--space-8);
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(var(--col-number), 1fr);
 
-  @include bp.below('sm') {
-    grid-template-columns: 1fr;
+  @include bp.above('md') {
+    --col-number: 2;
+  }
+
+  @include bp.above('xl') {
+    --col-number: 3;
   }
 }
 </style>
