@@ -86,9 +86,9 @@ definePageMeta({
       <aside class="two-column__narrow-col sidebar">
         <section
           v-if="doc?.body?.toc?.links?.length"
-          class="sidebar__section"
+          class="sidebar__section toc-sidebar"
         >
-          <h2 class="heading-1">Contents</h2>
+          <h2 class="heading-1">On this page</h2>
 
           <WorkToc
             :links="doc.body.toc.links"
@@ -151,6 +151,12 @@ export default {
 .content-container {
   margin-inline: auto;
   max-width: bp.$xl;
+}
+
+.toc-sidebar {
+  @include bp.below('md') {
+    display: none;
+  }
 }
 
 .work-links {
