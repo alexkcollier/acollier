@@ -147,7 +147,7 @@ export default {
 
   @include bp.above('md') {
     font-size: var(--text-2xl);
-    margin-inline: (math.div(1, 9) * 100%);
+    margin-inline: calc(math.div(1, 9) * 100% + 1rem);
     max-width: math.div(3, 4) * 100%;
   }
 }

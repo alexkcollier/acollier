@@ -116,10 +116,6 @@ export default {
     &__date {
       display: inline-flex;
       justify-content: flex-end;
-
-      &-start {
-        line-height: 1.5;
-      }
     }
   }
 }
