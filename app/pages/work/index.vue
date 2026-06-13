@@ -71,6 +71,7 @@ definePageMeta({
         :description="post.description"
         :href="localePath(post.path)"
         :feature-image="post.featureImage"
+        :tags="post.tags"
       />
     </div>
   </main>

@@ -80,7 +80,7 @@ definePageMeta({
               v-for="(skill, index) in skills[locale]"
               :key="index"
             >
-              {{ skill }}
+              <BaseChip>{{ skill }}</BaseChip>
             </li>
           </ul>
 
@@ -167,13 +167,6 @@ export default {
   list-style: none;
   padding-left: 0;
 
-  li {
-    background-color: var(--color-bg-subtle);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-sm);
-    line-height: 1;
-    padding: var(--space-2) var(--space-3);
-  }
 }
 
 .work-experience {

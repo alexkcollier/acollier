@@ -1,3 +1,23 @@
+<script setup lang="ts">
+const props = defineProps<{
+  title: string;
+  description: string;
+  href: string;
+  featureImage: string;
+  tags: string[];
+}>();
+
+const formattedDescription = computed(() => {
+  if (!props.description) {
+    return '';
+  }
+
+  return props.description.endsWith('.')
+    ? props.description
+    : `${props.description}.`;
+});
+</script>
+
 <template>
   <article class="post-item">
     <NuxtLink
@@ -18,53 +38,32 @@
       />
     </NuxtLink>
 
-    <p class="post-item__description">
-      {{ formattedDescription }}
-
-      <NuxtLink
-        :to="href"
-        class="link link--arrow"
+    <div class="post-item__footer">
+      <ul
+        v-if="tags?.length"
+        class="post-item__tags"
       >
-        Read more
-      </NuxtLink>
-    </p>
+        <li
+          v-for="tag in tags"
+          :key="tag"
+        >
+          <BaseChip>{{ tag }}</BaseChip>
+        </li>
+      </ul>
+
+      <p class="post-item__description">
+        {{ formattedDescription }}
+
+        <NuxtLink
+          :to="href"
+          class="link link--arrow"
+        >
+          Read more
+        </NuxtLink>
+      </p>
+    </div>
   </article>
 </template>
-
-<script>
-export default {
-  name: 'PostItem',
-
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    href: {
-      type: String,
-      required: true,
-    },
-    featureImage: {
-      type: String,
-      required: true,
-    },
-  },
-
-  computed: {
-    formattedDescription() {
-      if (!this.description) return '';
-
-      return this.description.endsWith('.')
-        ? this.description
-        : `${this.description}.`;
-    },
-  },
-};
-</script>
 
 <style lang="scss">
 .post-item {
@@ -87,6 +86,20 @@ export default {
       transform: scale(103%);
     }
   }
+
+  &__footer {
+    margin-top: var(--space-4);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+  }
+
 
   &__preview-image {
     background-color: var(--color-bg-subtle);

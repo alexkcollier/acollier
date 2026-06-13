@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {
   useI18n,
+  useLocalePath,
   useRoute,
   useAsyncData,
   definePageMeta,
@@ -26,6 +27,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateProgress));
 
 const route = useRoute();
 const { locale } = useI18n();
+const localePath = useLocalePath();
 
 const slug = computed(() =>
   Array.isArray(route.params.slug)
@@ -67,11 +69,8 @@ definePageMeta({
       class="reading-progress"
       :style="{ transform: `scaleX(${progress})` }"
     />
-    <div class="container">
-      <div v-if="locale === 'fr'">
-        {{ $t('common.postTranslationMissing') }}
-      </div>
 
+    <div class="container">
       <Head>
         <Title>{{ doc?.title }}</Title>
         <Meta
@@ -102,7 +101,22 @@ definePageMeta({
       </Head>
 
       <div class="content-container two-column">
-        <main class="two-column__wide-col">
+        <main
+          class="two-column__wide-col"
+          style="margin-top: -3rem"
+        >
+          <NuxtLink
+            :to="localePath('/work')"
+            class="slug-back link"
+          >
+            <Icon name="lucide:arrow-left" />
+            {{ $t('navigation.work') }}
+          </NuxtLink>
+
+          <div v-if="locale === 'fr'">
+            {{ $t('common.postTranslationMissing') }}
+          </div>
+
           <ContentRenderer
             v-if="doc"
             class="nuxt-content"
@@ -115,7 +129,7 @@ definePageMeta({
             v-if="doc?.body?.toc?.links?.length"
             class="sidebar__section toc-sidebar"
           >
-            <h2 class="heading-1">On this page</h2>
+            <h2 class="heading-2">On this page</h2>
 
             <WorkToc
               :links="doc.body.toc.links"
@@ -124,10 +138,25 @@ definePageMeta({
           </section>
 
           <section
+            v-if="doc?.tags?.length"
+            class="sidebar__section"
+          >
+            <h2 class="heading-2">Tags</h2>
+            <ul class="slug-tags">
+              <li
+                v-for="tag in doc.tags"
+                :key="tag"
+              >
+                <BaseChip>{{ tag }}</BaseChip>
+              </li>
+            </ul>
+          </section>
+
+          <section
             v-if="doc?.tools && doc.tools.length"
             class="sidebar__section"
           >
-            <h2 class="heading-1">Built with</h2>
+            <h2 class="heading-2">Built with</h2>
 
             <ToolsList :tools="doc.tools" />
           </section>
@@ -191,7 +220,24 @@ export default {
 
 .content-container {
   margin-inline: auto;
+  margin-block-start: var(--space-4);
   max-width: bp.$xl;
+}
+
+.slug-back {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--space-2);
+  margin-block: var(--space-3) var(--space-2);
+}
+
+.slug-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin-block-start: 0;
+  padding: 0;
 }
 
 .toc-sidebar {

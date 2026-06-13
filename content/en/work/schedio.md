@@ -1,6 +1,7 @@
 ---
 title: 'Schedio: A Vue design system'
 order: 4
+tags: [Design, Development, 'Design System']
 featureImage: '/images/schedio/schedio-feature.png'
 description: A design system and component library for Spartan Bio
 links:
