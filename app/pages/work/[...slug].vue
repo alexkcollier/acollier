@@ -85,6 +85,15 @@ definePageMeta({
 
       <aside class="two-column__narrow-col sidebar">
         <section
+          v-if="doc?.body?.toc?.links?.length"
+          class="sidebar__section"
+        >
+          <h2 class="heading-1">Contents</h2>
+
+          <WorkToc :links="doc.body.toc.links" />
+        </section>
+
+        <section
           v-if="doc?.tools && doc.tools.length"
           class="sidebar__section"
         >

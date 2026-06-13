@@ -9,6 +9,8 @@ import {
   useTemplateRef,
   nextTick,
   computed,
+  onMounted,
+  onUnmounted,
   ref,
 } from '#imports';
 
@@ -49,7 +51,8 @@ function resetMenu() {
   document.removeEventListener('click', handleClickOutside);
 }
 
-window.addEventListener('resize', resetMenu);
+onMounted(() => window.addEventListener('resize', resetMenu));
+onUnmounted(() => window.removeEventListener('resize', resetMenu));
 </script>
 
 <template>
