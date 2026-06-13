@@ -134,7 +134,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 
   &__button-wrapper {
     align-items: stretch;

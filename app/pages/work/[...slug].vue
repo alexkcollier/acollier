@@ -1,6 +1,28 @@
 <script setup lang="ts">
-import { useI18n, useRoute, useAsyncData, definePageMeta } from '#imports';
+import {
+  useI18n,
+  useRoute,
+  useAsyncData,
+  definePageMeta,
+  onMounted,
+  onUnmounted,
+  ref,
+} from '#imports';
 import type { Collections } from '@nuxt/content';
+
+const progress = ref(0);
+
+function updateProgress() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  progress.value = scrollable > 0 ? window.scrollY / scrollable : 0;
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+});
+
+onUnmounted(() => window.removeEventListener('scroll', updateProgress));
 
 const route = useRoute();
 const { locale } = useI18n();
@@ -40,95 +62,101 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="container">
-    <div v-if="locale === 'fr'">
-      {{ $t('common.postTranslationMissing') }}
-    </div>
+  <div>
+    <div
+      class="reading-progress"
+      :style="{ transform: `scaleX(${progress})` }"
+    />
+    <div class="container">
+      <div v-if="locale === 'fr'">
+        {{ $t('common.postTranslationMissing') }}
+      </div>
 
-    <Head>
-      <Title>{{ doc?.title }}</Title>
-      <Meta
-        hid="description"
-        name="description"
-        :content="doc?.description"
-      />
-      <Meta
-        hid="og:title"
-        property="og:title"
-        :content="doc?.title"
-      />
-      <Meta
-        hid="og:description"
-        property="og:description"
-        :content="doc?.description"
-      />
-      <Meta
-        hid="twitter:title"
-        name="twitter:title"
-        :content="doc?.title"
-      />
-      <Meta
-        hid="twitter:description"
-        name="twitter:description"
-        :content="doc?.description"
-      />
-    </Head>
-
-    <div class="content-container two-column">
-      <main class="two-column__wide-col">
-        <ContentRenderer
-          v-if="doc"
-          class="nuxt-content"
-          :value="doc"
+      <Head>
+        <Title>{{ doc?.title }}</Title>
+        <Meta
+          hid="description"
+          name="description"
+          :content="doc?.description"
         />
-      </main>
+        <Meta
+          hid="og:title"
+          property="og:title"
+          :content="doc?.title"
+        />
+        <Meta
+          hid="og:description"
+          property="og:description"
+          :content="doc?.description"
+        />
+        <Meta
+          hid="twitter:title"
+          name="twitter:title"
+          :content="doc?.title"
+        />
+        <Meta
+          hid="twitter:description"
+          name="twitter:description"
+          :content="doc?.description"
+        />
+      </Head>
 
-      <aside class="two-column__narrow-col sidebar">
-        <section
-          v-if="doc?.body?.toc?.links?.length"
-          class="sidebar__section toc-sidebar"
-        >
-          <h2 class="heading-1">On this page</h2>
-
-          <WorkToc
-            :links="doc.body.toc.links"
-            :depth="doc.body.toc.depth"
+      <div class="content-container two-column">
+        <main class="two-column__wide-col">
+          <ContentRenderer
+            v-if="doc"
+            class="nuxt-content"
+            :value="doc"
           />
-        </section>
+        </main>
 
-        <section
-          v-if="doc?.tools && doc.tools.length"
-          class="sidebar__section"
-        >
-          <h2 class="heading-1">Built with</h2>
+        <aside class="two-column__narrow-col sidebar">
+          <section
+            v-if="doc?.body?.toc?.links?.length"
+            class="sidebar__section toc-sidebar"
+          >
+            <h2 class="heading-1">On this page</h2>
 
-          <ToolsList :tools="doc.tools" />
-        </section>
+            <WorkToc
+              :links="doc.body.toc.links"
+              :depth="doc.body.toc.depth"
+            />
+          </section>
 
-        <section
-          v-if="doc?.links && doc.links.length"
-          class="sidebar__section work-links"
-        >
-          <h2 class="heading-1">Links</h2>
+          <section
+            v-if="doc?.tools && doc.tools.length"
+            class="sidebar__section"
+          >
+            <h2 class="heading-1">Built with</h2>
 
-          <ul class="work-links__list">
-            <li
-              v-for="{ href, title } in doc.links"
-              :key="href"
-              class="work-links__list-item"
-            >
-              <a
-                class="link link--arrow"
-                :href="href"
-                target="_blank"
-                rel="noopen"
+            <ToolsList :tools="doc.tools" />
+          </section>
+
+          <section
+            v-if="doc?.links && doc.links.length"
+            class="sidebar__section work-links"
+          >
+            <h2 class="heading-1">Links</h2>
+
+            <ul class="work-links__list">
+              <li
+                v-for="{ href, title } in doc.links"
+                :key="href"
+                class="work-links__list-item"
               >
-                {{ title }}
-              </a>
-            </li>
-          </ul>
-        </section>
-      </aside>
+                <a
+                  class="link link--arrow"
+                  :href="href"
+                  target="_blank"
+                  rel="noopen"
+                >
+                  {{ title }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </aside>
+      </div>
     </div>
   </div>
 </template>
@@ -147,6 +175,19 @@ export default {
 @use '~/assets/styles/nuxt-content';
 @use '~/assets/styles/utils/mixins';
 @use '~/assets/styles/utils/breakpoints' as bp;
+
+.reading-progress {
+  background-color: var(--color-bg-accent);
+  border-bottom-right-radius: var(--radius-full);
+  border-top-right-radius: var(--radius-full);
+  height: 4px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 68px;
+  transform-origin: left;
+  z-index: 1;
+}
 
 .content-container {
   margin-inline: auto;
