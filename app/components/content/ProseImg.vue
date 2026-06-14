@@ -13,7 +13,6 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
     >
       <NuxtImg
         v-bind="$attrs"
-        loading="lazy"
         class="lightbox__preview"
         height="400"
       />
