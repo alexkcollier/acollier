@@ -219,8 +219,8 @@ export default {
 }
 
 .content-container {
-  margin-inline: auto;
   margin-block-start: var(--space-4);
+  margin-inline: auto;
   max-width: bp.$xl;
 }
 

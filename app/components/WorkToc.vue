@@ -274,8 +274,8 @@ onUnmounted(() => {
 
   &__link {
     color: var(--color-text-muted);
-    text-decoration: none;
     position: relative;
+    text-decoration: none;
     transition: color 150ms ease-in-out;
 
     &--active,
@@ -288,7 +288,7 @@ onUnmounted(() => {
 
       &::before {
         animation: toc-marker-in 150ms ease-out both;
-        background-color: currentColor;
+        background-color: currentcolor;
         border-radius: var(--radius-full);
         content: '';
         display: inline-block;
@@ -298,13 +298,14 @@ onUnmounted(() => {
 
       @keyframes toc-marker-in {
         from {
-          opacity: 0;
           margin-inline-end: 0;
+          opacity: 0;
           transform: scaleY(0);
         }
+
         to {
-          opacity: 1;
           margin-inline-end: var(--space-3);
+          opacity: 1;
           transform: scaleY(1);
         }
       }
@@ -313,13 +314,9 @@ onUnmounted(() => {
 }
 
 .toc-mobile {
-  @include bp.above('md') {
-    display: none;
-  }
-
   &__overlay {
-    background-color: rgb(0 0 0 / 20%);
     backdrop-filter: blur(4px);
+    background-color: rgb(0 0 0 / 20%);
     inset: 0;
     position: fixed;
     z-index: 10;
@@ -356,11 +353,11 @@ onUnmounted(() => {
   }
 
   &__fab {
+    align-items: center;
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-6);
-    align-items: center;
     box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
     color: var(--color-link);
     cursor: pointer;
@@ -384,6 +381,10 @@ onUnmounted(() => {
     &-icon {
       flex-shrink: 0;
     }
+  }
+
+  @include bp.above('md') {
+    display: none;
   }
 }
 

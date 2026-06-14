@@ -71,9 +71,9 @@ export default {
   }
 
   &__link-text {
-    margin-top: 0.5rem;
     font-family: var(--font-mono);
     font-size: var(--text-sm);
+    margin-top: 0.5rem;
   }
 }
 </style>

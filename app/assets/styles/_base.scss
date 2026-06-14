@@ -8,12 +8,11 @@
   /* Page */
   --page-top-padding: var(--space-24);
   --page-side-padding: var(--space-8);
+  --navbar-background-color: var(--color-bg);
 
   @include bp.below('sm') {
     --page-side-padding: var(--space-4);
   }
-
-  --navbar-background-color: var(--color-bg);
 }
 
 /**

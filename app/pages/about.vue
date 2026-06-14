@@ -166,7 +166,6 @@ export default {
   gap: var(--space-2);
   list-style: none;
   padding-left: 0;
-
 }
 
 .work-experience {

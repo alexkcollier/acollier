@@ -111,10 +111,10 @@ html:has(.lightbox[open]) {
 
   &__image {
     flex: 1 1 0;
-    min-height: 0;
-    width: 100%;
     max-width: 100%;
+    min-height: 0;
     object-fit: scale-down;
+    width: 100%;
   }
 
   &-wrapper {
