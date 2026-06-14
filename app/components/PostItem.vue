@@ -33,7 +33,8 @@ const formattedDescription = computed(() => {
         class="post-item__preview-image"
         :alt="formattedDescription"
         :title="title"
-        :placeholder="60"
+        :placeholder="[100, 50, 75, 4]"
+        placeholder-class="post-item__preview-image--placeholder"
         height="400"
       />
     </NuxtLink>
@@ -126,6 +127,10 @@ const formattedDescription = computed(() => {
     @include bp.above('xl') {
       height: 400px;
     }
+  }
+
+  &__preview-image--placeholder {
+    filter: blur(8px);
   }
 }
 </style>
