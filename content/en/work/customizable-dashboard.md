@@ -1,6 +1,7 @@
 ---
 title: Customizable Dashboard
 order: 2
+tags: [Design, Development, Data]
 featureImage: '/images/customizable-dashboard/dashboard-feature.png'
 description: Customizable analytics dashboard with a drag-and-drop editor
 tools:

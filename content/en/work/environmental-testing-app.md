@@ -1,6 +1,7 @@
 ---
 title: Environmental Testing App
 order: 5
+tags: [Design, Mobile]
 description: Run the Spartan Legionella Test with your phone.
 featureImage: '/images/environmental-testing-app/legionella-mobile-feature.jpg'
 tools:

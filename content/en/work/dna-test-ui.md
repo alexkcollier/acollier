@@ -1,6 +1,7 @@
 ---
 title: DNA Test UI, FDA Cleared
 order: 7
+tags: [Design, Medical]
 description: A medical device user interface designed for ease of use.
 featureImage: '/images/dna-test-ui/cyp2c19-feature.png'
 tools:

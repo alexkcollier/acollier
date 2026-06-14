@@ -71,6 +71,7 @@ definePageMeta({
         :description="post.description"
         :href="localePath(post.path)"
         :feature-image="post.featureImage"
+        :tags="post.tags"
       />
     </div>
   </main>
@@ -102,13 +103,15 @@ export default {
 }
 
 .post-grid {
-  column-gap: var(--space-8);
+  --col-number: 1;
+
+  column-gap: var(--space-16);
   display: grid;
   grid-auto-rows: auto;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(var(--col-number), 1fr);
 
-  @include bp.below('sm') {
-    grid-template-columns: 1fr;
+  @include bp.above('md') {
+    --col-number: 2;
   }
 }
 </style>

@@ -71,6 +71,15 @@ export default defineNuxtConfig({
       include: ['@vue/devtools-core', '@vue/devtools-kit'],
     },
   },
+  content: {
+    build: {
+      markdown: {
+        toc: {
+          depth: 1,
+        },
+      },
+    },
+  },
   i18n: {
     customRoutes: 'meta',
     locales: [

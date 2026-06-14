@@ -80,7 +80,7 @@ definePageMeta({
               v-for="(skill, index) in skills[locale]"
               :key="index"
             >
-              {{ skill }}
+              <BaseChip>{{ skill }}</BaseChip>
             </li>
           </ul>
 
@@ -127,33 +127,37 @@ export default {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .about-intro {
+  font-size: var(--text-lg);
+
   &__links {
     align-items: flex-start;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: var(--space-4);
+    justify-content: flex-start;
 
-    a {
-      flex: 1 0 50%;
-      min-width: 10rem;
-
-      &:not(:last-child) {
-        margin-bottom: 1em;
-      }
+    @include bp.above('md') {
+      gap: var(--space-4) var(--space-24);
     }
   }
 
-  @include bp.above('md') {
-    max-width: math.div(3, 4) * 100%;
+  @include bp.above('sm') {
+    font-size: var(--text-xl);
   }
 
-  @include bp.above('sm') {
-    font-size: 1.5rem;
+  @include bp.above('md') {
+    font-size: var(--text-2xl);
+    margin-inline: calc(math.div(1, 9) * 100% + 1rem);
+    max-width: math.div(3, 4) * 100%;
   }
 }
 
 .about-content {
-  margin-top: 5rem;
+  margin-block-start: var(--space-12);
+
+  @include bp.above('md') {
+    margin-block-start: 5rem;
+  }
 }
 
 .about-skills {
@@ -162,14 +166,6 @@ export default {
   gap: var(--space-2);
   list-style: none;
   padding-left: 0;
-
-  li {
-    background-color: var(--color-bg-subtle);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-sm);
-    line-height: 1;
-    padding: var(--space-2) var(--space-3);
-  }
 }
 
 .work-experience {

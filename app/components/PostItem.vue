@@ -1,3 +1,23 @@
+<script setup lang="ts">
+const props = defineProps<{
+  title: string;
+  description: string;
+  href: string;
+  featureImage: string;
+  tags: string[];
+}>();
+
+const formattedDescription = computed(() => {
+  if (!props.description) {
+    return '';
+  }
+
+  return props.description.endsWith('.')
+    ? props.description
+    : `${props.description}.`;
+});
+</script>
+
 <template>
   <article class="post-item">
     <NuxtLink
@@ -13,60 +33,42 @@
         class="post-item__preview-image"
         :alt="formattedDescription"
         :title="title"
-        :placeholder="60"
-        height="300"
+        :placeholder="[100, 50, 75, 4]"
+        placeholder-class="post-item__preview-image--placeholder"
+        height="400"
       />
     </NuxtLink>
 
-    <p class="post-item__description">
-      {{ formattedDescription }}
-
-      <NuxtLink
-        :to="href"
-        class="link link--arrow"
+    <div class="post-item__footer">
+      <ul
+        v-if="tags?.length"
+        class="post-item__tags"
       >
-        Read more
-      </NuxtLink>
-    </p>
+        <li
+          v-for="tag in tags"
+          :key="tag"
+        >
+          <BaseChip>{{ tag }}</BaseChip>
+        </li>
+      </ul>
+
+      <p class="post-item__description">
+        {{ formattedDescription }}
+
+        <NuxtLink
+          :to="href"
+          class="link link--arrow"
+        >
+          Read more
+        </NuxtLink>
+      </p>
+    </div>
   </article>
 </template>
 
-<script>
-export default {
-  name: 'PostItem',
-
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    href: {
-      type: String,
-      required: true,
-    },
-    featureImage: {
-      type: String,
-      required: true,
-    },
-  },
-
-  computed: {
-    formattedDescription() {
-      if (!this.description) return '';
-
-      return this.description.endsWith('.')
-        ? this.description
-        : `${this.description}.`;
-    },
-  },
-};
-</script>
-
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .post-item {
   $parent: &;
   $transition: all 100ms ease-in;
@@ -88,6 +90,19 @@ export default {
     }
   }
 
+  &__footer {
+    margin-top: var(--space-4);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin-block-start: var(--space-6);
+    padding: 0;
+  }
+
   &__preview-image {
     background-color: var(--color-bg-subtle);
     border-radius: var(--radius-md);
@@ -96,6 +111,26 @@ export default {
     object-fit: cover;
     transition: $transition;
     width: 100%;
+
+    @include bp.above('sm') {
+      height: 360px;
+    }
+
+    @include bp.above('md') {
+      height: 260px;
+    }
+
+    @include bp.above('lg') {
+      height: 300px;
+    }
+
+    @include bp.above('xl') {
+      height: 400px;
+    }
+  }
+
+  &__preview-image--placeholder {
+    filter: blur(8px);
   }
 }
 </style>

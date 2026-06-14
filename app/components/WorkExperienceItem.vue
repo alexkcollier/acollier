@@ -86,8 +86,8 @@ export default {
     color: var(--color-text-muted);
     font-size: var(--text-sm);
     grid-area: date;
-    text-align: right;
     line-height: 1.8;
+    text-align: right;
   }
 
   &__heading {
@@ -116,10 +116,6 @@ export default {
     &__date {
       display: inline-flex;
       justify-content: flex-end;
-
-      &-start {
-        line-height: 1.5;
-      }
     }
   }
 }

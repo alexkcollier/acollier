@@ -7,7 +7,9 @@
   --green-200: #96cc90;
   --green-300: #72b86a;
   --green-400: #559e4d;
-  --green-500: #3a7d35; /* primary */
+  --green-500: #3a7d35;
+
+  /* primary */
   --green-600: #2e6629;
   --green-700: #245720;
   --green-800: #1a4317;
@@ -28,7 +30,9 @@
   // amber
   --amber-50: #fbf2e0;
   --amber-200: #f5d48a;
-  --amber-500: #c28a1a; /* accent */
+  --amber-500: #c28a1a;
+
+  /* accent */
   --amber-700: #7a5310;
 
   /* Typography */
@@ -69,15 +73,33 @@
   --letter-spacing-bold: 0.03em;
 
   /* Spacing */
-  --space-1: 0.25rem; /* 4px  */
-  --space-2: 0.5rem; /* 8px  */
-  --space-3: 0.75rem; /* 12px */
-  --space-4: 1rem; /* 16px */
-  --space-6: 1.5rem; /* 24px */
-  --space-8: 2rem; /* 32px */
-  --space-12: 3rem; /* 48px */
-  --space-16: 4rem; /* 64px */
-  --space-24: 6rem; /* 96px */
+  --space-1: 0.25rem;
+
+  /* 4px  */
+  --space-2: 0.5rem;
+
+  /* 8px  */
+  --space-3: 0.75rem;
+
+  /* 12px */
+  --space-4: 1rem;
+
+  /* 16px */
+  --space-6: 1.5rem;
+
+  /* 24px */
+  --space-8: 2rem;
+
+  /* 32px */
+  --space-12: 3rem;
+
+  /* 48px */
+  --space-16: 4rem;
+
+  /* 64px */
+  --space-24: 6rem;
+
+  /* 96px */
 
   /* Radius */
   --radius-sm: 4px;

@@ -94,6 +94,7 @@ $base-time: 1500ms;
   @include bp.above('sm') {
     font-size: var(--text-5xl);
   }
+
   @include bp.above('md') {
     font-size: var(--text-6xl);
   }

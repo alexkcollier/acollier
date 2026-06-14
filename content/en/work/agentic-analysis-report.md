@@ -1,6 +1,7 @@
 ---
 title: Agentic Analysis Report
 order: 0
+tags: [Design, Development, AI]
 featureImage: '/images/agentic-analysis-report/agentic-report-thumbnail.png'
 description: AI-generated CX report including an agentic chat interface
 tools:

@@ -1,6 +1,7 @@
 ---
 title: Focus Recommendations
 order: 1
+tags: [Design, Development, Data]
 featureImage: '/images/focus-recommendations/focus-recommendations-thumbnail.png'
 description: Key driver analysis tool for CX satisfaction scores
 tools:

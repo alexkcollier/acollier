@@ -9,6 +9,8 @@ import {
   useTemplateRef,
   nextTick,
   computed,
+  onMounted,
+  onUnmounted,
   ref,
 } from '#imports';
 
@@ -39,11 +41,18 @@ function setIsMenuOpen(isOpen: boolean) {
 
 function handleClickOutside(event: MouseEvent) {
   if (menuRef.value && !menuRef.value.contains(event.target as Node)) {
-    isMenuOpen.value = false;
-    document.documentElement.style.overflowY = 'auto';
-    document.removeEventListener('click', handleClickOutside);
+    resetMenu();
   }
 }
+
+function resetMenu() {
+  isMenuOpen.value = false;
+  document.documentElement.style.overflowY = 'auto';
+  document.removeEventListener('click', handleClickOutside);
+}
+
+onMounted(() => window.addEventListener('resize', resetMenu));
+onUnmounted(() => window.removeEventListener('resize', resetMenu));
 </script>
 
 <template>
@@ -125,7 +134,7 @@ function handleClickOutside(event: MouseEvent) {
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 3;
 
   &__button-wrapper {
     align-items: stretch;
@@ -206,7 +215,7 @@ function handleClickOutside(event: MouseEvent) {
     text-transform: uppercase;
   }
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     padding: 0 var(--space-4);
 
     &__button-wrapper {
@@ -245,7 +254,7 @@ function handleClickOutside(event: MouseEvent) {
   padding-right: var(--space-2);
   pointer-events: none;
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     display: flex;
   }
 }
@@ -254,7 +263,7 @@ function handleClickOutside(event: MouseEvent) {
   display: flex;
   justify-content: space-between;
 
-  @include bp.above('sm') {
+  @include bp.above('md') {
     justify-content: flex-start;
   }
 }
