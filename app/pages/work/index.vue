@@ -105,17 +105,13 @@ export default {
 .post-grid {
   --col-number: 1;
 
-  column-gap: var(--space-8);
+  column-gap: var(--space-16);
   display: grid;
   grid-auto-rows: auto;
   grid-template-columns: repeat(var(--col-number), 1fr);
 
   @include bp.above('md') {
     --col-number: 2;
-  }
-
-  @include bp.above('xl') {
-    --col-number: 3;
   }
 }
 </style>

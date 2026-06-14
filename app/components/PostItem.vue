@@ -34,7 +34,7 @@ const formattedDescription = computed(() => {
         :alt="formattedDescription"
         :title="title"
         :placeholder="60"
-        height="300"
+        height="400"
       />
     </NuxtLink>
 
@@ -66,6 +66,8 @@ const formattedDescription = computed(() => {
 </template>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .post-item {
   $parent: &;
   $transition: all 100ms ease-in;
@@ -96,10 +98,9 @@ const formattedDescription = computed(() => {
     flex-wrap: wrap;
     gap: var(--space-2);
     list-style: none;
-    margin: 0 0 var(--space-3);
+    margin-block-start: var(--space-6);
     padding: 0;
   }
-
 
   &__preview-image {
     background-color: var(--color-bg-subtle);
@@ -109,6 +110,22 @@ const formattedDescription = computed(() => {
     object-fit: cover;
     transition: $transition;
     width: 100%;
+
+    @include bp.above('sm') {
+      height: 360px;
+    }
+
+    @include bp.above('md') {
+      height: 260px;
+    }
+
+    @include bp.above('lg') {
+      height: 300px;
+    }
+
+    @include bp.above('xl') {
+      height: 400px;
+    }
   }
 }
 </style>
