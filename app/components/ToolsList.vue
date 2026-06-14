@@ -43,13 +43,11 @@ export default {
 @use '~/assets/styles/utils/mixins';
 
 .tool-list {
-  $space: 2rem;
-
   @include mixins.unstyled-list;
 
   align-items: flex-end;
   display: grid;
-  gap: $space;
+  gap: var(--space-8);
   grid-template-columns: 1fr 1fr 1fr;
 
   &__item {
@@ -74,6 +72,8 @@ export default {
 
   &__link-text {
     margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
   }
 }
 </style>
