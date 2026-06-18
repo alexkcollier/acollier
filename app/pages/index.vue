@@ -163,6 +163,7 @@ $base-time: 1500ms;
 
 .description {
   font-size: var(--text-xl);
+  margin-block: var(--space-12);
 }
 
 .featured-work {
