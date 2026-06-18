@@ -33,7 +33,7 @@ The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mai
 
 ### Styling
 
-Styles use **SCSS with CSS custom properties** — no utility-class framework. The design system is defined in `app/assets/styles/_theme.scss` as CSS custom properties (color ramps, spacing scale, type scale, radius tokens). Dark/light mode is toggled via a `data-theme` attribute on `:root`, with a `prefers-color-scheme` media query fallback. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific at-rule ordering (`@extend` → `@include` → declarations → nested rules → `@media`). Breakpoint mixins are in `app/assets/styles/utils/_breakpoints.scss`.
+Styles use **SCSS with CSS custom properties** — no utility-class framework. The design system is defined in `app/assets/styles/_theme.scss` as CSS custom properties (color ramps, spacing scale, type scale, radius tokens). Dark/light mode is toggled via a `data-theme` attribute on `:root`, with a `prefers-color-scheme` media query fallback. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific at-rule ordering (`@extend` → `@include` → declarations → nested rules → `@media`).
 
 ### Static Assets (`public/`)
 
