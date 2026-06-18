@@ -4,6 +4,7 @@ export default {
     name: 'Alex Collier',
     title: 'Design Engineer',
     seeMyWork: 'See my work',
+    viewAllWork: 'View all work',
   },
   colorSwitcher: {
     switchToMode: 'Switch to {mode} mode',
@@ -21,6 +22,7 @@ export default {
     experienceType: 'thoughtful',
     description:
       'Fluent across design and frontend engineering with deep experience designing and shipping production interfaces for AI products—including conversational and LLM-based interactions.',
+    featuredWork: 'Featured Work',
   },
   about: {
     metaTitle: 'About',

@@ -6,6 +6,7 @@ const commonSchema = z.object({
   featureImage: z.string(),
   order: z.optional(z.number()),
   tags: z.array(z.string()),
+  featured: z.optional(z.boolean()),
   tools: z.array(
     z.object({
       name: z.string(),

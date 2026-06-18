@@ -1,5 +1,11 @@
-<script setup>
-import { useLocalePath, definePageMeta } from '#imports';
+<script setup lang="ts">
+import PostItem from '~/components/PostItem.vue';
+import {
+  useLocalePath,
+  definePageMeta,
+  useAsyncData,
+  queryCollection,
+} from '#imports';
 
 const localePath = useLocalePath();
 
@@ -7,42 +13,79 @@ definePageMeta({
   layout: 'no-page-spacing',
   transition: 'home',
 });
+
+const { data: featuredWork } = await useAsyncData('featured-work', () =>
+  queryCollection('work_en')
+    .where('featured', '=', true)
+    .order('order', 'ASC')
+    .limit(3)
+    .all(),
+);
 </script>
 
 <template>
-  <main class="home-hero">
-    <div class="container">
-      <div class="home-content">
-        <i18n-t
-          keypath="home.tag"
-          scope="global"
-          tag="div"
-          class="tag"
-        >
-          <span class="tag__highlight">{{ $t('home.experienceType') }}</span>
-        </i18n-t>
-
-        <p>
-          {{ $t('home.description') }}
-        </p>
-
-        <div class="home-links">
-          <NuxtLink
-            class="link link--large link--button link--button-filled"
-            :to="localePath('/work/')"
+  <main class="home-page">
+    <section class="home-hero">
+      <div class="container">
+        <div class="home-content">
+          <i18n-t
+            keypath="home.tag"
+            scope="global"
+            tag="div"
+            class="tag"
           >
-            {{ $t('common.seeMyWork') }}
-          </NuxtLink>
+            <span class="tag__highlight">{{ $t('home.experienceType') }}</span>
+          </i18n-t>
 
-          <NuxtLink
-            class="link link--large link--button"
-            :to="localePath('/contact/')"
-          >
-            {{ $t('common.contact') }}
-          </NuxtLink>
+          <p>
+            {{ $t('home.description') }}
+          </p>
+
+          <div class="home-links">
+            <NuxtLink
+              class="link link--large link--button link--button-filled"
+              :to="localePath('/work/')"
+            >
+              {{ $t('common.seeMyWork') }}
+            </NuxtLink>
+
+            <NuxtLink
+              class="link link--large link--button"
+              :to="localePath('/contact/')"
+            >
+              {{ $t('common.contact') }}
+            </NuxtLink>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="featured-work">
+      <div class="container">
+        <h2 class="heading-1 featured-work__heading">
+          {{ $t('home.featuredWork') }}
+        </h2>
+
+        <div class="featured-work__grid">
+          <PostItem
+            v-for="post in featuredWork"
+            :key="post.id"
+            :title="post.title"
+            :description="post.description"
+            :href="localePath(post.path)"
+            :feature-image="post.featureImage"
+            :tags="post.tags"
+          />
+        </div>
+
+        <NuxtLink
+          class="link link--large link--button link--button-filled"
+          :to="localePath('/work/')"
+        >
+          {{ $t('common.viewAllWork') }}
+        </NuxtLink>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -53,10 +96,17 @@ definePageMeta({
 $easing: cubic-bezier(0.6, 0, 0.7, 1);
 $base-time: 1500ms;
 
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .home-hero {
   @include mixins.face-hero;
 
   animation: deblur $base-time * 1.5 $easing;
+  min-height: 80%;
 }
 
 .home-content {
@@ -104,6 +154,29 @@ $base-time: 1500ms;
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2) var(--space-4);
+}
+
+.featured-work {
+  flex: 1;
+  padding: var(--space-12) var(--page-side-padding) var(--page-top-padding);
+
+  &__heading {
+    margin-bottom: var(--heading-1-bottom-margin);
+  }
+
+  &__grid {
+    column-gap: var(--space-8);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include bp.below('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include bp.below('sm') {
+      grid-template-columns: 1fr;
+    }
+  }
 }
 
 @keyframes deblur {
