@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PostItem from '~/components/PostItem.vue';
+import WorkListItem from '~/components/WorkListItem.vue';
 import {
   useLocalePath,
   definePageMeta,
@@ -62,24 +62,30 @@ const { data: featuredWork } = await useAsyncData('featured-work', () =>
 
     <section class="featured-work">
       <div class="container">
-        <h2 class="heading-1 featured-work__heading">
-          {{ $t('home.featuredWork') }}
-        </h2>
+        <div class="featured-work__heading">
+          <span class="featured-work__heading-label">{{
+            $t('home.featuredWork')
+          }}</span>
+          <span
+            class="featured-work__heading-rule"
+            aria-hidden="true"
+          ></span>
+        </div>
 
-        <div class="featured-work__grid">
-          <PostItem
-            v-for="post in featuredWork"
+        <div class="featured-work__list">
+          <WorkListItem
+            v-for="(post, index) in featuredWork"
             :key="post.id"
+            :index="index"
             :title="post.title"
             :description="post.description"
             :href="localePath(post.path)"
-            :feature-image="post.featureImage"
-            :tags="post.tags"
+            compact
           />
         </div>
 
         <NuxtLink
-          class="link link--large link--button link--button-filled"
+          class="link link--arrow"
           :to="localePath('/work/')"
         >
           {{ $t('common.viewAllWork') }}
@@ -161,21 +167,29 @@ $base-time: 1500ms;
   padding: var(--space-12) var(--page-side-padding) var(--page-top-padding);
 
   &__heading {
-    margin-bottom: var(--heading-1-bottom-margin);
+    align-items: center;
+    display: flex;
+    gap: var(--space-4);
   }
 
-  &__grid {
-    column-gap: var(--space-8);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  &__heading-label {
+    color: var(--color-text-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
 
-    @include bp.below('md') {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  &__heading-rule {
+    background: var(--color-border);
+    flex: 1;
+    height: 1px;
+  }
 
-    @include bp.below('sm') {
-      grid-template-columns: 1fr;
-    }
+  &__list {
+    margin-block-end: var(--space-4);
   }
 }
 

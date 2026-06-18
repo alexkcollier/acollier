@@ -6,26 +6,30 @@ const props = defineProps<{
   title: string;
   description: string;
   href: string;
-  featureImage: string;
-  tags: string[];
+  featureImage?: string;
+  tags?: string[];
+  compact?: boolean;
 }>();
 
 const formattedIndex = computed(() => String(props.index + 1).padStart(2, '0'));
 
 const formattedDescription = computed(() => {
   if (!props.description) return '';
-  return props.description.endsWith('.') ? props.description : `${props.description}.`;
+  return props.description.endsWith('.')
+    ? props.description
+    : `${props.description}.`;
 });
 </script>
 
 <template>
   <NuxtLink
     :to="href"
-    class="work-list-item"
+    :class="['work-list-item', { 'work-list-item--compact': compact }]"
   >
     <span class="work-list-item__index">{{ formattedIndex }}</span>
 
     <NuxtImg
+      v-if="!compact"
       :src="featureImage"
       class="work-list-item__image"
       :alt="formattedDescription"
@@ -53,7 +57,8 @@ const formattedDescription = computed(() => {
     <span
       class="work-list-item__arrow"
       aria-hidden="true"
-    >↗</span>
+      >↗</span
+    >
   </NuxtLink>
 </template>
 
@@ -156,6 +161,37 @@ const formattedDescription = computed(() => {
       font-family: var(--font-mono);
       font-size: var(--text-lg);
       padding-top: var(--space-1);
+    }
+  }
+
+  &--compact {
+    align-items: flex-start;
+    background: transparent;
+    flex-direction: row;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+
+    .work-list-item__index {
+      flex: none;
+      padding-top: 3px;
+    }
+
+    .work-list-item__content {
+      flex: 1;
+    }
+
+    .work-list-item__title {
+      font-size: var(--text-xl);
+    }
+
+    .work-list-item__arrow {
+      align-self: flex-start;
+      color: var(--color-text-primary);
+      display: block;
+      flex: none;
+      font-family: var(--font-mono);
+      font-size: var(--text-base);
+      padding-top: 3px;
     }
   }
 }
