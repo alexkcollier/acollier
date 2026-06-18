@@ -43,7 +43,7 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="container">
+  <main class="container container--narrow">
     <Head>
       <Title>
         {{ $t('work.metaTitle') }}

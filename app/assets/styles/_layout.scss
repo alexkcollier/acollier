@@ -5,6 +5,10 @@
   margin: 0 auto;
   max-width: bp.$xxl;
   width: 100%;
+
+  &--narrow {
+    max-width: bp.$xl;
+  }
 }
 
 /* TODO?: implement a grid system? */
