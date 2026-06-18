@@ -1,6 +1,16 @@
 @use 'sass:math';
 @use 'utils/breakpoints' as bp;
 
+:root {
+  /* Page */
+  --page-top-padding: var(--space-24);
+  --page-side-padding: var(--space-8);
+
+  @include bp.below('sm') {
+    --page-side-padding: var(--space-4);
+  }
+}
+
 .container {
   margin: 0 auto;
   max-width: bp.$xxl;

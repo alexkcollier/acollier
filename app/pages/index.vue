@@ -37,59 +37,49 @@ const { data: featuredWork } = await useAsyncData('featured-work', () =>
             <span class="tag__highlight">{{ $t('home.experienceType') }}</span>
           </i18n-t>
 
-          <p>
+          <p class="description">
             {{ $t('home.description') }}
           </p>
 
+          <div class="featured-work">
+            <div class="featured-work__heading">
+              <span class="featured-work__heading-label">
+                {{ $t('home.featuredWork') }}
+              </span>
+              <span
+                class="featured-work__heading-rule"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="featured-work__list">
+              <WorkListItem
+                v-for="(post, index) in featuredWork"
+                :key="post.id"
+                :index="index"
+                :title="post.title"
+                :description="post.description"
+                :href="localePath(post.path)"
+                compact
+              />
+            </div>
+          </div>
+
           <div class="home-links">
             <NuxtLink
-              class="link link--large link--button link--button-filled"
+              class="link link--arrow"
               :to="localePath('/work/')"
             >
-              {{ $t('common.seeMyWork') }}
+              {{ $t('common.viewAllWork') }}
             </NuxtLink>
-
             <NuxtLink
-              class="link link--large link--button"
+              class="link link--arrow"
               :to="localePath('/contact/')"
             >
               {{ $t('common.contact') }}
             </NuxtLink>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="featured-work">
-      <div class="container">
-        <div class="featured-work__heading">
-          <span class="featured-work__heading-label">{{
-            $t('home.featuredWork')
-          }}</span>
-          <span
-            class="featured-work__heading-rule"
-            aria-hidden="true"
-          ></span>
-        </div>
-
-        <div class="featured-work__list">
-          <WorkListItem
-            v-for="(post, index) in featuredWork"
-            :key="post.id"
-            :index="index"
-            :title="post.title"
-            :description="post.description"
-            :href="localePath(post.path)"
-            compact
-          />
-        </div>
-
-        <NuxtLink
-          class="link link--arrow"
-          :to="localePath('/work/')"
-        >
-          {{ $t('common.viewAllWork') }}
-        </NuxtLink>
       </div>
     </section>
   </main>
@@ -109,24 +99,38 @@ $base-time: 1500ms;
 }
 
 .home-hero {
-  @include mixins.face-hero;
-
   animation: deblur $base-time * 1.5 $easing;
-  min-height: 80%;
+  padding-block: var(--space-8);
+  padding-inline: var(--page-side-padding);
+  overflow: auto;
+
+  @include bp.above('sm') {
+    background-attachment: fixed;
+    flex: 1;
+    padding-block-start: var(--space-12);
+
+    @include mixins.face-hero;
+  }
+
+  @include bp.above('lg') {
+    padding-block-start: var(--space-16);
+  }
+
+  @include bp.above('xl') {
+    padding-block-start: var(--space-24);
+  }
+
+  @include bp.above('xxl') {
+    padding-block-start: var(--space-36);
+  }
 }
 
 .home-content {
   // Multiplying the animation time staggers the animations nicely
   animation: fadein-delay $base-time * 1.5 $easing;
-  font-size: var(--text-xl);
-  max-width: 90%;
-
-  > * + * {
-    margin-block: var(--space-12) 0;
-  }
 
   @include bp.above('sm') {
-    max-width: 60%;
+    max-width: 70%;
   }
 
   @include bp.above('md') {
@@ -142,6 +146,7 @@ $base-time: 1500ms;
   font-size: var(--text-4xl);
   font-weight: 700;
   line-height: var(--leading-tight);
+  margin-block-start: var(--space-12);
 
   &__highlight {
     color: var(--color-text-primary);
@@ -151,20 +156,26 @@ $base-time: 1500ms;
     font-size: var(--text-5xl);
   }
 
-  @include bp.above('md') {
+  @include bp.above('lg') {
     font-size: var(--text-6xl);
   }
 }
 
-.home-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-4);
+.description {
+  font-size: var(--text-xl);
 }
 
 .featured-work {
-  flex: 1;
-  padding: var(--space-12) var(--page-side-padding) var(--page-top-padding);
+  margin-block: var(--space-12);
+  width: 100%;
+
+  @include bp.above('sm') {
+    max-width: 80%;
+  }
+
+  @include bp.above('md') {
+    margin-block: var(--space-16);
+  }
 
   &__heading {
     align-items: center;
@@ -187,14 +198,17 @@ $base-time: 1500ms;
     flex: 1;
     height: 1px;
   }
+}
 
-  &__list {
-    margin-block-end: var(--space-4);
-  }
+.home-links {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--text-lg);
+  gap: var(--space-4) var(--space-8);
+  padding-block-end: var(--space-6);
 }
 
 @keyframes deblur {
-  // I shouldn't be animating a filter, but I am
   from {
     filter: blur(5px);
   }

@@ -205,6 +205,8 @@ export default {
 
 .contact-hero {
   @include mixins.face-hero;
+
+  align-items: center;
 }
 
 .contact-form {

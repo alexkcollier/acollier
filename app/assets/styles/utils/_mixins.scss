@@ -14,13 +14,12 @@
   --bg-image: url('~/assets/images/acollier.png');
   --bg-size: 55%;
 
-  align-items: center;
-  background: var(--bg-image) 103% bottom / 55% no-repeat;
+  background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
   display: flex;
+  padding-inline: var(--page-side-padding);
   min-height: 100%;
-  padding: var(--page-top-padding) var(--page-side-padding);
 
-  @include bp.below('md') {
-    --bg-size: 80%;
+  @include bp.above('xl') {
+    --bg-size: auto 90%;
   }
 }
