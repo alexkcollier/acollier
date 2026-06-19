@@ -43,7 +43,7 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="container">
+  <main class="container container--narrow">
     <Head>
       <Title>
         {{ $t('work.metaTitle') }}
@@ -63,10 +63,11 @@ definePageMeta({
       </div>
     </div>
 
-    <div class="post-grid">
-      <PostItem
-        v-for="post in content"
+    <div class="work-list">
+      <WorkListItem
+        v-for="(post, index) in content"
         :key="post.id"
+        :index="index"
         :title="post.title"
         :description="post.description"
         :href="localePath(post.path)"
@@ -78,18 +79,16 @@ definePageMeta({
 </template>
 
 <script lang="ts">
-import PostItem from '~/components/PostItem.vue';
+import WorkListItem from '~/components/WorkListItem.vue';
 
 export default {
   components: {
-    PostItem,
+    WorkListItem,
   },
 };
 </script>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .work-heading {
   margin-bottom: var(--heading-1-bottom-margin);
 
@@ -102,16 +101,7 @@ export default {
   }
 }
 
-.post-grid {
-  --col-number: 1;
-
-  column-gap: var(--space-16);
-  display: grid;
-  grid-auto-rows: auto;
-  grid-template-columns: repeat(var(--col-number), 1fr);
-
-  @include bp.above('md') {
-    --col-number: 2;
-  }
+.work-list {
+  border-top: 1px solid var(--color-border);
 }
 </style>

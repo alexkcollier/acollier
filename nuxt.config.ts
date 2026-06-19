@@ -103,4 +103,11 @@ export default defineNuxtConfig({
     id: 'G-G07YCE0VSK',
     enabled: process.env.NODE_ENV === 'production',
   },
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      },
+    },
+  },
 });

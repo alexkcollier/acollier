@@ -1,19 +1,4 @@
-/* stylelint-disable selector-id-pattern */
 @use 'utils/breakpoints' as bp;
-
-/**
- * CSS custom properties
- */
-:root {
-  /* Page */
-  --page-top-padding: var(--space-24);
-  --page-side-padding: var(--space-8);
-  --navbar-background-color: var(--color-bg);
-
-  @include bp.below('sm') {
-    --page-side-padding: var(--space-4);
-  }
-}
 
 /**
  * Globals
@@ -53,29 +38,8 @@ h6 {
   }
 }
 
-/* Code and fixed-width */
-code[class*='language-'],
-pre[class*='language-'] {
-  /* override small font-size set by `~prism-themes/themes/vsc-dark-plus.css` */
-  font-size: inherit !important;
-}
-
-code,
-pre,
-kbd,
-samp {
-  &,
-  &[class*='language-'] {
-    border-radius: var(--radius-md);
-    font-family: var(--font-mono);
-    letter-spacing: initial;
-
-    &:not(.nuxt-content-highlight &) {
-      /* color taken from `~prism-themes/themes/vsc-dark-plus.css` */
-      background-color: #1e1e1e;
-      padding: 0.25rem 0.5rem;
-    }
-  }
+a {
+  text-decoration: none;
 }
 
 /* bold tags */
