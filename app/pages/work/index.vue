@@ -23,9 +23,7 @@ const { data: content } = await useAsyncData(
         .order('title', 'ASC')
         .all();
 
-    const results = await queryAll(
-      `work_${locale.value}` as keyof Collections,
-    );
+    const results = await queryAll(`work_${locale.value}` as keyof Collections);
 
     if (!results?.length && locale.value !== 'en') {
       return queryAll('work_en');
