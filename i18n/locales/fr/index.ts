@@ -65,5 +65,9 @@ export default <LangSchema>{
     mainHeading: 'Projets',
     clickToZoom: 'Cliquer pour développer 🔎',
     clickAnywhereToClose: 'Cliquer ou ESC pour fermer ❌',
+    onThisPage: 'Sur cette page',
+    tags: 'Tags',
+    builtWith: 'Réalisé avec',
+    links: 'Liens',
   },
 };
