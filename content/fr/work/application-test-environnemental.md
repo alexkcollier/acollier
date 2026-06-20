@@ -64,11 +64,11 @@ La navigation était une question ouverte. J'ai construit un prototype dans Adob
 
 ## Design et prototype
 
-Après le wireframing, je suis passé à Framer, écrivant un prototype entièrement interactif avec des données en direct et des interactions codées. C'était l'outil de transfert principal ; le développeur signalait tout ce qui ne pouvait pas être implémenté ou nécessitait une révision, et nous le travaillions ensemble.
+Après le wireframing, je suis passé à Framer, écrivant un prototype entièrement interactif avec des données en direct et des interactions codées. C'était l'outil de transfert principal ; le développeur signalait tout ce qui ne pouvait pas être implémenté ou nécessitait une révision, et on le travaillait ensemble.
 
 <video src="/images/environmental-testing-app/prototype.webm" controls muted style="max-height: 400px;" poster="/images/environmental-testing-app/prototype-poster.png"></video>
 
-L'écran de statut du Cube nécessitait un contournement pour la limitation fondamentale du BLE : le Bluetooth ne se connecte qu'en 1-à-1, ce qui aurait complètement compromis la surveillance multi-Cube. En travaillant avec le développeur, nous avons opté pour la lecture des paquets publicitaires que les Cubes diffusent passivement plutôt que de maintenir une connexion continue. Pour un test en cours, nous combinions un minuteur (les tests durent un peu moins d'une heure) avec les mises à jour de paquets disponibles à portée. Les utilisateurs hors de portée lors de la fin d'un test recevaient une notification ; ceux à proximité recevaient le résultat directement depuis l'annonce BLE. Les Cubes pouvaient également recevoir des noms significatifs, et le journal de résultats supportait le filtrage.
+L'écran de statut du Cube nécessitait un contournement pour la limitation fondamentale du BLE : le Bluetooth ne se connecte qu'en 1-à-1, ce qui aurait complètement compromis la surveillance multi-Cube. En travaillant avec le développeur, on a opté pour la lecture des paquets publicitaires que les Cubes diffusent passivement plutôt que de maintenir une connexion continue. Pour un test en cours, on combinait un minuteur (les tests durent un peu moins d'une heure) avec les mises à jour de paquets disponibles à portée. Les utilisateurs hors de portée lors de la fin d'un test recevaient une notification ; ceux à proximité recevaient le résultat directement depuis l'annonce BLE. Les Cubes pouvaient également recevoir des noms significatifs, et le journal de résultats supportait le filtrage.
 
 <img src="/images/environmental-testing-app/applied-filters.png" alt="Filtres appliqués" title="Filtres appliqués" />
 

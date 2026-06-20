@@ -65,7 +65,7 @@ Chaque composant a été conçu pour respecter WCAG 2.0 AA. J'ai utilisé Jest e
 
 ## Documentation
 
-Storybook n'est pas idéal pour la documentation non technique (directives d'utilisation, philosophie d'interaction, application des couleurs). J'avais besoin d'un endroit pour la mettre et je n'avais pas la bande passante pour construire un site de documentation séparé, donc elle est restée dans Storybook aux côtés des composants. Pour une équipe petite et majoritairement technique, ça fonctionnait. La limitation était un compromis conscient pour l'échelle à laquelle nous opérions.
+Storybook n'est pas idéal pour la documentation non technique (directives d'utilisation, philosophie d'interaction, application des couleurs). J'avais besoin d'un endroit pour la mettre et je n'avais pas la bande passante pour construire un site de documentation séparé, donc elle est restée dans Storybook aux côtés des composants. Pour une équipe petite et majoritairement technique, ça fonctionnait. La limitation était un compromis conscient pour l'échelle à laquelle on opérait.
 
 ![Documentation pour Schedio](/images/schedio/schedio-logo-usage.png 'Documentation pour Schedio')
 

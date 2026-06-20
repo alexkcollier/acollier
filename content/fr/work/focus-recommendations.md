@@ -54,23 +54,23 @@ J'ai opté pour une icône en forme de cible : trois anneaux concentriques, o�
 
 ![La vue tableau montre un peu plus de détail](/images/focus-recommendations/table-view.png)
 
-La première version utilisait un seuil absolu pour déterminer combien d'anneaux remplir. Les tests ont révélé le problème : les jeux de données varient considérablement d'un client à l'autre, et les seuils absolus produisaient des résultats très incohérents : certains clients voyant surtout des sujets à trois anneaux, d'autres surtout à un. Nous sommes passés à un calcul relatif, en fixant les seuils par rapport à la distribution des résultats dans chaque jeu de données. L'icône est devenue stable et significative quelle que soit la nature du jeu de données. Les libellés ont suivi une itération similaire ; le langage décrivant les quadrants et les niveaux d'impact devait être précis sans requérir de formation en statistiques.
+La première version utilisait un seuil absolu pour déterminer combien d'anneaux remplir. Les tests ont révélé le problème : les jeux de données varient considérablement d'un client à l'autre, et les seuils absolus produisaient des résultats très incohérents : certains clients voyant surtout des sujets à trois anneaux, d'autres surtout à un. On est passé à un calcul relatif, en fixant les seuils par rapport à la distribution des résultats dans chaque jeu de données. L'icône est devenue stable et significative quelle que soit la nature du jeu de données. Les libellés ont suivi une itération similaire ; le langage décrivant les quadrants et les niveaux d'impact devait être précis sans nécessiter de formation en statistiques.
 
 ### Aller au-delà du NPS
 
 La première mise en production supportait une paire question-réponse NPS unique, le cas le plus courant mais qui excluait les clients utilisant d'autres échelles de satisfaction ou réalisant des sondages complexes avec plusieurs paires notation-réponse.
 
-Nous avons étendu la couverture par étapes. D'abord, une fenêtre modale permettant aux utilisateurs d'ordonner n'importe quel champ (numérique, ou non numérique, une échelle de Likert par exemple) du moins satisfait au plus satisfait et de l'utiliser comme variable de réponse. Puis le support de plusieurs paires notation-réponse, permettant l'analyse de sondages contenant plusieurs ensembles de questions, un déblocage significatif pour les clients entreprise réalisant des recherches complexes.
+On a étendu la couverture par étapes. D'abord, une fenêtre modale permettant aux utilisateurs d'ordonner n'importe quel champ (numérique, ou non numérique, une échelle de Likert par exemple) du moins satisfait au plus satisfait et de l'utiliser comme variable de réponse. Puis le support de plusieurs paires notation-réponse, permettant l'analyse de sondages contenant plusieurs ensembles de questions, un déblocage significatif pour les clients entreprise réalisant des recherches complexes.
 
 ![Les notes pouvaient être facilement réordonnées en termes de satisfaction](/images/focus-recommendations/ratings-configuration.png 'La fenêtre de configuration des notes')
 
 ### Actionable Insights
 
-En octobre 2023, nous avons ajouté Actionable Insights : des recommandations générées par IA sur la façon d'améliorer les sujets identifiés comme facteurs clés. Plutôt que de faire remonter des recommandations pour chaque sujet, j'ai défini des critères de sélection (les trois facteurs négatifs les plus corrélés et les trois positifs les plus corrélés), gardant la sortie ciblée et actionnable plutôt qu'exhaustive.
+En octobre 2023, on a ajouté Actionable Insights : des recommandations générées par IA sur la façon d'améliorer les sujets identifiés comme facteurs clés. Plutôt que de faire remonter des recommandations pour chaque sujet, j'ai défini des critères de sélection (les trois facteurs négatifs les plus corrélés et les trois positifs les plus corrélés), gardant la sortie ciblée et actionnable plutôt qu'exhaustive.
 
 Les recommandations apparaissaient sous forme de cartes paginées au-dessus du graphique, chacune couvrant un sujet unique avec la possibilité de développer pour plus de détails. J'ai inclus un mécanisme de rejet sur chaque carte, qui servait deux objectifs : permettre aux utilisateurs d'effacer les recommandations sur lesquelles ils avaient agi ou qu'ils trouvaient non pertinentes, et nous donner un signal de feedback implicite sur la qualité des recommandations. Un export PDF du résumé complet des recommandations soutenait le workflow des clients construisant des rapports pour les parties prenantes.
 
-La liste des opinions clés dans la vue tableau a également été migrée vers un résumé généré par IA à cette période, réduisant le bruit et améliorant la lisibilité.
+La liste des opinions clés dans la vue tableau a également été migrée vers un résumé généré par IA à ce moment-là, réduisant le bruit et améliorant la lisibilité.
 
 ![Actionable Insights fournit de vraies recommandations pour améliorer la satisfaction](/images/focus-recommendations/actionable-insights.png 'Les cartes Actionable Insights')
 
@@ -86,4 +86,4 @@ _Le widget tableau de bord qui a intégré Focus Recommendations dans le produit
 
 ## Résultat
 
-Focus Recommendations a été mis en production en août 2022 et est devenu une fonctionnalité phare en démo et un facteur dans la conversion d'au moins un client. Il a représenté une expansion significative de la proposition de valeur du produit, passant de faire remonter ce que les clients disaient à indiquer aux clients quoi en faire. L'approche qu'il a validée a été portée en avant et améliorée dans le Rapport d'analyse agentique.
+Focus Recommendations a été mis en production en août 2022 et est devenu une fonctionnalité phare en démo et un facteur dans la conversion d'au moins un client. Il a représenté une expansion significative de la proposition de valeur du produit, passant de faire remonter ce que les clients disaient à indiquer aux clients quoi en faire. L'approche qu'il a validée a été portée de l’avant et améliorée dans le Rapport d'analyse agentique.

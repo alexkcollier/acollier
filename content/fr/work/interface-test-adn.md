@@ -32,13 +32,13 @@ Les fonctionnalités ont été définies lors des phases de concept et de faisab
 - Un verrouillage optionnel basé sur le temps
 - Un module de formation optionnel
 
-Nous avons construit des prototypes dans XD et utilisé ses fonctionnalités de transfert dans une boucle étroite avec notre développeur Windows, affinant les exigences en continu tout au long du processus.
+On a construit des prototypes dans XD et utilisé ses fonctionnalités de transfert dans une boucle étroite avec notre développeur Windows, affinant les exigences en continu tout au long du processus.
 
 ![Interface du test ADN dans XD](/images/dna-test-ui/cyp2c19-xd.png 'Interface du test ADN dans XD')
 
 ## Workflows guidés
 
-S'assurer que les utilisateurs pouvaient réussir le test à chaque fois était au cœur de la valeur du produit. Le workflow guidé fournissait des instructions étape par étape et des illustrations à chaque étape, afin que les utilisateurs n'aient jamais à deviner ce qui venait ensuite. Pour l'étape la plus critique et complexe (taper et mélanger l'échantillon), nous avons intégré une vidéo directement dans l'interface.
+S'assurer que les utilisateurs pouvaient réussir le test à chaque fois était au cœur de la valeur du produit. Le workflow guidé fournissait des instructions étape par étape et des illustrations à chaque étape, afin que les utilisateurs n'aient jamais à deviner ce qui venait ensuite. Pour l'étape la plus critique et complexe (taper et mélanger l'échantillon), on a intégré une vidéo directement dans l'interface.
 
 <video src="/images/dna-test-ui/cyp2c19-workflow.webm" controls preload="none" muted poster="/images/dna-test-ui/cyp2c19-feature.png"></video>
 
@@ -59,7 +59,7 @@ Les connexions utilisateur protégeaient les données patient potentiellement se
 
 ![La validation des informations d'identification indique seulement qu'il y a une erreur, sans préciser laquelle](/images/dna-test-ui/login.png "Informations d'identification invalides")
 
-Un verrouillage optionnel basé sur le temps permettait aux utilisateurs de sécuriser le système en leur absence. Comme le dispositif peut exécuter un test alors qu'il est verrouillé, nous avons ajouté le statut du test à l'écran de verrouillage ; avec un seul ordinateur par Cube, il était important d'indiquer si le système était occupé.
+Un verrouillage optionnel basé sur le temps permettait aux utilisateurs de sécuriser le système en leur absence. Comme le dispositif peut exécuter un test alors qu'il est verrouillé, on a ajouté le statut du test à l'écran de verrouillage ; avec un seul ordinateur par Cube, il était important d'indiquer si le système était occupé.
 
 ![Système verrouillé avec test en cours](/images/dna-test-ui/lock-screen.png 'Système verrouillé avec test en cours')
 
@@ -76,4 +76,4 @@ Un module de formation intégré guidait les utilisateurs à travers le workflow
 
 ## Résultat
 
-La plateforme de test ADN a reçu l'homologation FDA. La désignation CLIA waived vers laquelle nous avions conçu n'a pas été obtenue (une question de chimie du test, pas du logiciel), mais l'approche de conception a résisté au processus réglementaire. Une version du produit est toujours commercialisée par l'entreprise qui a acquis les actifs de Spartan.
+La plateforme de test ADN a reçu l'homologation FDA. La désignation CLIA waived qu'on visait lors de la conception n'a pas été obtenue (une question de chimie du test, pas du logiciel), mais l'approche de conception a résisté au processus réglementaire. Une version du produit est toujours commercialisée par l'entreprise qui a acquis les actifs de Spartan.

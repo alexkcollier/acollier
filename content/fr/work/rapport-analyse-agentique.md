@@ -36,7 +36,7 @@ J'ai conçu et piloté le développement frontend du Rapport d'analyse agentique
 
 ## Contexte
 
-**Mon rôle :** Designer et principal développeur frontend ; environ 50 % de l'implémentation active, avec une participation à la revue de chaque PR mis en production
+**Mon rôle :** Designer et principal développeur frontend ; environ 50 % de l'implémentation active, avec une participation à la revue de chaque PR mis en production
 
 **Stack :** React, TypeScript, RTK Query, server-sent events, react-pdf
 
@@ -58,11 +58,11 @@ Quatre problèmes ont façonné les décisions les plus importantes. En amont, d
 
 ### Recherche et affinement
 
-Nous avons impliqué des clients via des entretiens sur un prototype préliminaire, testant nos hypothèses avant de nous engager dans la construction complète. Les résultats ont modifié la fonctionnalité de manière concrète.
+On a impliqué des clients via des entretiens sur un prototype préliminaire, testant nos hypothèses avant de nous engager dans la construction complète. Les résultats ont modifié la fonctionnalité de manière concrète.
 
-Les sujets et les facteurs étaient initialement présentés comme des sections séparées. Les entretiens ont montré que les utilisateurs ne faisaient pas réellement de distinction entre eux ; la séparation ajoutait de la structure sans apporter de clarté. Nous les avons fusionnés. Une analyse de segmentation qui avait bien performé lors du prototypage n'a pas répondu aux attentes des vrais clients et a été supprimée.
+Les sujets et les facteurs étaient initialement présentés comme des sections séparées. Les entretiens ont montré que les utilisateurs ne faisaient pas réellement de distinction entre eux ; la séparation ajoutait de la structure sans apporter de clarté. On les a fusionnés. Une analyse de segmentation qui avait bien performé lors du prototypage n'a pas répondu aux attentes des vrais clients et a été supprimée.
 
-L'impact était le changement le plus significatif. Le prototype le présentait principalement comme un chiffre, ce qui nécessitait des explications et créait des frictions. Nous l'avons remplacé par une visualisation de type jauge, en gardant les chiffres bruts accessibles pour les utilisateurs qui voulaient aller plus loin, mais en mettant le visuel en avant. C'est devenu le principe général : passer des chiffres aux libellés et aux visualisations autant que possible, préserver la profondeur sans la mettre en avant par défaut. Les entretiens ont également permis de clarifier quelles sections du rapport avaient besoin de texte descriptif pour orienter les utilisateurs, et lesquelles pouvaient se passer d'explication, ce qui a directement influencé la façon dont la sortie LLM était structurée entre prose et données.
+L'impact était le changement le plus significatif. Le prototype le présentait principalement comme un chiffre, ce qui nécessitait des explications et créait des frictions. On l'a remplacé par une visualisation de type jauge, en gardant les chiffres bruts accessibles pour les utilisateurs qui voulaient aller plus loin, mais en mettant le visuel de l’avant. C'est devenu le principe général : passer des chiffres aux libellés et aux visualisations autant que possible, préserver la profondeur sans la mettre de l’avant par défaut. Les entretiens ont également permis de clarifier quelles sections du rapport avaient besoin de texte descriptif pour orienter les utilisateurs, et lesquelles pouvaient se passer d'explication, ce qui a directement influencé la façon dont la sortie LLM était structurée entre prose et données.
 
 ### Concevoir dans un espace contraint
 
@@ -78,7 +78,7 @@ J'ai opté pour une disposition horizontale des filtres, positionnés au-dessus 
 
 Comme pour Focus Recommendations, le Rapport d'analyse agentique présente un graphique à quatre quadrants représentant les sujets selon deux axes. La méthodologie utilise ici l'élasticité plutôt que la corrélation, une mesure plus rigoureuse de la force avec laquelle les variations d'un sujet sont liées aux variations de la satisfaction. Le défi était le même : rendre cela significatif pour des professionnels CX qui ne sont probablement pas familiers avec l'élasticité en tant que concept.
 
-Nous l'avons appelé « impact », évitant complètement le terme dans l'interface utilisateur.
+On l'a appelé « impact », évitant complètement le terme dans l'interface utilisateur.
 
 La valeur d'élasticité nette (positive moins négative) était visualisée sous forme de jauge. La jauge pouvait être développée pour révéler séparément les composantes positives et négatives, offrant aux utilisateurs qui voulaient plus de détails un chemin vers ceux-ci sans exposer la complexité par défaut.
 
