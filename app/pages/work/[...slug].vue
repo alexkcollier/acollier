@@ -8,6 +8,7 @@ import {
   onMounted,
   onUnmounted,
   ref,
+  computed,
 } from '#imports';
 import type { Collections } from '@nuxt/content';
 
@@ -35,7 +36,7 @@ const slug = computed(() =>
     : route.params.slug,
 );
 
-const { data: doc } = await useAsyncData(
+const { data: page } = await useAsyncData(
   `page-${slug.value}`,
   async () => {
     const query = (collection: keyof Collections) =>
@@ -45,13 +46,16 @@ const { data: doc } = await useAsyncData(
 
     // Fallback if language not available
     if (!content && locale.value !== 'en') {
-      return await query('work_en');
+      return { doc: await query('work_en'), isFallback: true };
     }
 
-    return content;
+    return { doc: content, isFallback: false };
   },
   { watch: [locale, slug] },
 );
+
+const doc = computed(() => page.value?.doc);
+const isFallback = computed(() => page.value?.isFallback ?? false);
 
 definePageMeta({
   i18n: {
@@ -113,7 +117,7 @@ definePageMeta({
             {{ $t('navigation.work') }}
           </NuxtLink>
 
-          <div v-if="locale === 'fr'">
+          <div v-if="isFallback">
             {{ $t('common.postTranslationMissing') }}
           </div>
 
@@ -129,7 +133,7 @@ definePageMeta({
             v-if="doc?.body?.toc?.links?.length"
             class="sidebar__section toc-sidebar"
           >
-            <h2 class="heading-2">On this page</h2>
+            <h2 class="heading-2">{{ $t('work.onThisPage') }}</h2>
 
             <WorkToc
               :links="doc.body.toc.links"
@@ -141,7 +145,7 @@ definePageMeta({
             v-if="doc?.tags?.length"
             class="sidebar__section"
           >
-            <h2 class="heading-2">Tags</h2>
+            <h2 class="heading-2">{{ $t('work.tags') }}</h2>
             <ul class="slug-tags">
               <li
                 v-for="tag in doc.tags"
@@ -156,7 +160,7 @@ definePageMeta({
             v-if="doc?.tools && doc.tools.length"
             class="sidebar__section"
           >
-            <h2 class="heading-2">Built with</h2>
+            <h2 class="heading-2">{{ $t('work.builtWith') }}</h2>
 
             <ToolsList :tools="doc.tools" />
           </section>
@@ -165,7 +169,7 @@ definePageMeta({
             v-if="doc?.links && doc.links.length"
             class="sidebar__section work-links"
           >
-            <h2 class="heading-1">Links</h2>
+            <h2 class="heading-1">{{ $t('work.links') }}</h2>
 
             <ul class="work-links__list">
               <li

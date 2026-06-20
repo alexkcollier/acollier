@@ -1,36 +1,40 @@
 <script setup lang="ts">
 import {
-  useRouteBaseName,
   useRoute,
   useAsyncData,
   queryCollection,
   definePageMeta,
   useI18n,
   useLocalePath,
-  computed,
 } from '#imports';
 import type { Collections } from '@nuxt/content';
 
 const route = useRoute();
-const routeBaseName = useRouteBaseName();
 const { locale } = useI18n();
 const localePath = useLocalePath();
-const baseRouteName = computed(() =>
-  String(routeBaseName(route.name as string)),
-);
 
 // TODO: #26 Design error/empty state in case this happens for some reason
-const { data: content } = await useAsyncData(route.path, async () => {
-  const queryAll = (collection: keyof Collections) =>
-    queryCollection(collection)
-      .order('order', 'ASC')
-      .order('title', 'ASC')
-      .all();
+const { data: content } = await useAsyncData(
+  route.path,
+  async () => {
+    const queryAll = (collection: keyof Collections) =>
+      queryCollection(collection)
+        .order('order', 'ASC')
+        .order('title', 'ASC')
+        .all();
 
-  const fallbackCollection = `${baseRouteName.value}_en` as keyof Collections;
+    const results = await queryAll(
+      `work_${locale.value}` as keyof Collections,
+    );
 
-  return queryAll(fallbackCollection);
-});
+    if (!results?.length && locale.value !== 'en') {
+      return queryAll('work_en');
+    }
+
+    return results;
+  },
+  { watch: [locale] },
+);
 
 definePageMeta({
   i18n: {
@@ -50,18 +54,9 @@ definePageMeta({
       </Title>
     </Head>
 
-    <div class="work-heading">
-      <h1 class="heading-1">
-        {{ $t('work.mainHeading') }}
-      </h1>
-
-      <div
-        v-if="locale === 'fr'"
-        class="missing-translation"
-      >
-        {{ $t('common.translationMissing') }}
-      </div>
-    </div>
+    <h1 class="heading-1">
+      {{ $t('work.mainHeading') }}
+    </h1>
 
     <div class="work-list">
       <WorkListItem
@@ -89,18 +84,6 @@ export default {
 </script>
 
 <style lang="scss">
-.work-heading {
-  margin-bottom: var(--heading-1-bottom-margin);
-
-  .heading-1 {
-    margin-bottom: 0;
-  }
-
-  .missing-translation {
-    margin-top: var(--space-2);
-  }
-}
-
 .work-list {
   border-top: 1px solid var(--color-border);
 }

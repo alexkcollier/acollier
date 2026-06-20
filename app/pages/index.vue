@@ -5,21 +5,27 @@ import {
   definePageMeta,
   useAsyncData,
   queryCollection,
+  useI18n,
 } from '#imports';
+import type { Collections } from '@nuxt/content';
 
 const localePath = useLocalePath();
+const { locale } = useI18n();
 
 definePageMeta({
   layout: 'no-page-spacing',
   transition: 'home',
 });
 
-const { data: featuredWork } = await useAsyncData('featured-work', () =>
-  queryCollection('work_en')
-    .where('featured', '=', true)
-    .order('order', 'ASC')
-    .limit(3)
-    .all(),
+const { data: featuredWork } = await useAsyncData(
+  `featured-work-${locale.value}`,
+  () =>
+    queryCollection(`work_${locale.value}` as keyof Collections)
+      .where('featured', '=', true)
+      .order('order', 'ASC')
+      .limit(3)
+      .all(),
+  { watch: [locale] },
 );
 </script>
 
