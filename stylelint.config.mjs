@@ -61,6 +61,11 @@ export default {
       },
     ],
     'order/properties-alphabetical-order': true,
+    'selector-class-pattern': [
+      '^[a-z][a-z0-9-]*(__[a-z][a-z0-9-]*)?(--[a-z][a-z0-9-]*)?$',
+      { message: 'Expected class selector to be BEM or kebab-case' },
+    ],
+    'selector-id-pattern': null,
     'scss/at-else-empty-line-before': 'never',
     'scss/at-if-closing-brace-newline-after': 'always-last-in-chain',
   },
