@@ -28,7 +28,7 @@ Translate content files from English to Quebec French.
 
 - Use **thin non-breaking space (U+202F)** before all heavy punctuation: `; ? !`
 - Use a **normal non-breaking space (U+00A0)** before: `: % $ »`
-- When a markdown image title (`![alt](url 'title')`) or HTML `title` attribute uses single-quote delimiters and the title text contains an apostrophe, switch the outer delimiters to double quotes
+- When a, JS/TS string, markdown image title (`![alt](url 'title')`) or HTML `title` attribute uses single-quote delimiters and the title text contains an apostrophe, switch the outer delimiters to double quotes
 
 ### What to translate
 
