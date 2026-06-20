@@ -1,3 +1,9 @@
+---
+name: translate-fr
+description: Project guidelines for writing in French
+when_to_use: Any time you are asked to create or translate content to French, use these guidelines
+---
+
 # translate-fr
 
 Translate content files from English to Quebec French.
