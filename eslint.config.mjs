@@ -16,4 +16,10 @@ export default withNuxt([
       'import/first': 'off',
     },
   },
+  {
+    files: ['app/pages/**/*.vue'],
+    rules: {
+      'vue/multi-word-component-names': 'off',
+    },
+  },
 ]);
