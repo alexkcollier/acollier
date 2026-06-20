@@ -267,6 +267,11 @@ onUnmounted(() => {
   }
 
   &__item {
+    &::before {
+      // sanitize.css adds a pseudo element that causes overflow in our design
+      display: none;
+    }
+
     &:not(:last-child) {
       margin-block-end: var(--space-4);
     }
