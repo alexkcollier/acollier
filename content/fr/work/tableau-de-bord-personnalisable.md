@@ -22,15 +22,15 @@ tools:
 
 ## En résumé
 
-J'ai conçu et développé de zéro un tableau de bord personnalisable pour une plateforme d'analyse de texte IA dédiée au secteur CX. Responsabilité de bout en bout : recherche concurrentielle, conception UX, tests internes et implémentation frontend. Le tableau de bord est devenu le point d'entrée principal de l'application et un facteur clé dans la conversion et le renouvellement de plusieurs clients.
+J'ai conçu et développé de zéro un tableau de bord personnalisable pour une plateforme d'analyse de texte IA dédiée au secteur CX. Responsabilité de bout en bout : recherche concurrentielle, conception UX, tests internes et implémentation frontend. Le tableau de bord est devenu le point d'entrée principal de l'application et un facteur clé dans la conversion et le renouvellement de plusieurs clients.
 
 ## Contexte
 
-**Produit :** Une plateforme d'analyse de texte IA pour le secteur CX. Un pipeline NLP extrayait des paires sujet-opinion à partir de retours clients libres, les classifiant en éloges, problèmes, suggestions, questions ou neutre, et leur attribuait un score. La plateforme s'intégrait à de nombreuses sources de données et enrichissait l'analyse avec de l'IA générative.
+**Produit :** Une plateforme d'analyse de texte IA pour le secteur CX. Un pipeline NLP extrayait des paires sujet-opinion à partir de retours clients libres, les classifiant en éloges, problèmes, suggestions, questions ou neutre, et leur attribuait un score. La plateforme s'intégrait à de nombreuses sources de données et enrichissait l'analyse avec de l'IA générative.
 
-**Mon rôle :** Designer et développeur frontend unique
+**Mon rôle :** Designer et développeur frontend unique
 
-**Calendrier :** Première mise en production T3-T4 2021, avec des mises en production de fonctionnalités itératives jusqu'en 2025
+**Calendrier :** Première mise en production T3-T4 2021, avec des mises en production de fonctionnalités itératives jusqu'en 2025
 
 ## Le problème
 
@@ -46,15 +46,15 @@ Trois problèmes ont façonné les décisions les plus importantes.
 
 ### L'éditeur de disposition
 
-Le redimensionnement et le repositionnement des widgets ne se produisent qu'en mode édition dédié, une décision architecturale délibérée qui sépare les modifications de disposition de l'utilisation normale du tableau de bord. Dans ce mode, le défi restant était de rendre les interactions précises et claires : supporter le glisser-déposer, communiquer ce que les gestes de redimensionnement et de repositionnement allaient faire avant qu'un utilisateur s'y engage, garder la grille compacte sans écraser la disposition voulue, et s'assurer que les zones cliquables étaient suffisamment distinctes pour éviter les erreurs. Cela nécessitait de concevoir et de spécifier chaque état de widget explicitement (base, édition, redimensionnement X, redimensionnement Y, survol glisser, et en cours de glissement), chacun avec ses propres affordances.
+Le redimensionnement et le repositionnement des widgets ne se produisent qu'en mode édition dédié, une décision architecturale délibérée qui sépare les modifications de disposition de l'utilisation normale du tableau de bord. Dans ce mode, le défi restant était de rendre les interactions précises et claires : supporter le glisser-déposer, communiquer ce que les gestes de redimensionnement et de repositionnement allaient faire avant qu'un utilisateur s'y engage, garder la grille compacte sans écraser la disposition voulue, et s'assurer que les zones cliquables étaient suffisamment distinctes pour éviter les erreurs. Cela nécessitait de concevoir et de spécifier chaque état de widget explicitement (base, édition, redimensionnement X, redimensionnement Y, survol glisser, et en cours de glissement), chacun avec ses propres affordances.
 
 Compte tenu de la complexité du comportement de la grille (logique de compaction, contraintes de redimensionnement, interactions de glissement), j'ai créé des prototypes en code pour explorer et valider le ressenti des interactions avant de m'engager dans l'implémentation complète. Certains problèmes d'interaction ne se manifestent qu'à l'exécution ; prototyper en code plutôt que dans Figma signifiait que les tests qui suivaient se basaient sur un comportement réaliste.
 
-Les tests avec des utilisateurs internes ont globalement validé la direction. Une exception : l'icône indiquant qu'un widget pouvait être déplacé n'était pas lisible. On l'a mise à jour et le problème s'est résolu. Les autres états d'interaction et affordances ont résisté aux tests sans modifications.
+Les tests avec des utilisateurs internes ont globalement validé la direction. Une exception : l'icône indiquant qu'un widget pouvait être déplacé n'était pas lisible. On l'a mise à jour et le problème s'est résolu. Les autres états d'interaction et affordances ont résisté aux tests sans modifications.
 
-J'ai écarté une fonctionnalité pendant le projet : les modèles de tableau de bord préconstruits. Ils n'étaient pas nécessaires ; les utilisateurs pouvaient rapidement créer un premier tableau de bord adapté, l'équipe commerciale en configurait généralement un lors de l'onboarding, et une fonctionnalité de duplication existante offrait déjà à quiconque la possibilité de réutiliser un tableau de bord comme point de départ.
+J'ai écarté une fonctionnalité pendant le projet : les modèles de tableau de bord préconstruits. Ils n'étaient pas nécessaires ; les utilisateurs pouvaient rapidement créer un premier tableau de bord adapté, l'équipe commerciale en configurait généralement un lors de l'onboarding, et une fonctionnalité de duplication existante offrait déjà à quiconque la possibilité de réutiliser un tableau de bord comme point de départ.
 
-Le tableau de bord a également introduit un nouveau modèle de filtre. Le tableau de bord statique original disposait d'un filtre global appliqué sur toute la vue. On a pris la décision délibérée de le supprimer en faveur de l'indépendance au niveau des widgets, en gardant uniquement les filtres de sentiment comme globaux. Chaque widget pouvait avoir ses propres filtres, locaux et éphémères, avec la possibilité de les promouvoir au niveau global. Le compromis était intentionnel : l'indépendance des widgets avait plus de valeur à ce stade que le filtrage inter-tableau de bord. Cela a été signalé tôt par l'équipe de développement et conçu en amont.
+Le tableau de bord a également introduit un nouveau modèle de filtre. Le tableau de bord statique original disposait d'un filtre global appliqué sur toute la vue. On a pris la décision délibérée de le supprimer en faveur de l'indépendance au niveau des widgets, en gardant uniquement les filtres de sentiment comme globaux. Chaque widget pouvait avoir ses propres filtres, locaux et éphémères, avec la possibilité de les promouvoir au niveau global. Le compromis était intentionnel : l'indépendance des widgets avait plus de valeur à ce stade que le filtrage inter-tableau de bord. Cela a été signalé tôt par l'équipe de développement et conçu en amont.
 
 <video src="/images/customizable-dashboard/layout-editing.webm" controls preload="none" muted poster="/images/customizable-dashboard/layout-editing.png" alt="Le tableau de bord permettait des dispositions personnalisées, mais essayait de combler intelligemment les espaces vides" title="Édition de la disposition"></video>
 
@@ -68,7 +68,7 @@ J'ai suivi de près la méthodologie de séquence de couleurs inclusives d'IBM, 
 
 ![Un ensemble de couleurs de base, sélectionnées pour la visualisation de données](/images/customizable-dashboard/base-palette.png)
 
-Le contraste entre les couleurs a été géré structurellement : la grille a été organisée avec un saut en chevron de sorte que seules les nuances ayant un contraste suffisant entre elles soient adjacentes dans la séquence, et une règle d'utilisation a été établie pour toujours itérer dans la palette dans l'ordre plutôt que de choisir les couleurs librement. Les garanties d'accessibilité sont intégrées dans le système ; elles ne dépendent pas de jugements individuels au moment de l'implémentation.
+Le contraste entre les couleurs a été géré structurellement : la grille a été organisée avec un saut en chevron de sorte que seules les nuances ayant un contraste suffisant entre elles soient adjacentes dans la séquence, et une règle d'utilisation a été établie pour toujours itérer dans la palette dans l'ordre plutôt que de choisir les couleurs librement. Les garanties d'accessibilité sont intégrées dans le système ; elles ne dépendent pas de jugements individuels au moment de l'implémentation.
 
 ![Un motif en chevron répété a été utilisé pour séquencer les couleurs](/images/customizable-dashboard/chevron-skip.png 'La méthodologie de sélection par saut en chevron')
 
@@ -88,6 +88,6 @@ Le tableau de bord a été mis en production au T3-T4 2021 et est devenu le poin
 
 ## Après le lancement
 
-Le tableau de bord a continué d'évoluer. L'ensemble de widgets initial était minimal et largement fixe (scores de sentiment, volume, comptages d'enregistrements, ventilations par source, sujets principaux). Ceux-ci ont été progressivement remplacés par des widgets de graphiques entièrement personnalisables : graphiques en barres, séries temporelles, tableaux de données, graphiques circulaires, widget numérique et carte de chaleur retravaillée. Une troisième vague a ajouté des widgets plus complexes et analytiquement avancés : notes en texte enrichi, questions matricielles et Focus Recommendations.
+Le tableau de bord a continué d'évoluer. L'ensemble de widgets initial était minimal et largement fixe (scores de sentiment, volume, comptages d'enregistrements, ventilations par source, sujets principaux). Ceux-ci ont été progressivement remplacés par des widgets de graphiques entièrement personnalisables : graphiques en barres, séries temporelles, tableaux de données, graphiques circulaires, widget numérique et carte de chaleur retravaillée. Une troisième vague a ajouté des widgets plus complexes et analytiquement avancés : notes en texte enrichi, questions matricielles et Focus Recommendations.
 
 Un filtre au niveau du tableau de bord a également été mis en production dans un cycle ultérieur, réintroduisant le filtrage inter-tableau de bord sous une forme plus puissante. Appliqué sur tous les widgets simultanément, rétrécissant toujours plutôt qu'élargissant leurs filtres individuels, et indépendant des filtres d'analyse globaux de l'application, il permettait aux utilisateurs de découper un tableau de bord entier sans perdre le contexte indépendant que chaque widget portait. Le modèle de filtre, conçu en amont pour supporter l'indépendance au niveau des widgets, s'est étendu sans accroc pour l'accommoder.

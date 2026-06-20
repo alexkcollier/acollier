@@ -1,5 +1,5 @@
 ---
-title: 'Schedio : un système de design Vue'
+title: 'Schedio : un système de design Vue'
 order: 4
 tags: [Design, Development, 'Design System']
 featureImage: '/images/schedio/schedio-feature.png'
@@ -39,7 +39,7 @@ tools:
   - { name: Jest, img: /images/tools/jest.png, href: https://jestjs.io/ }
 ---
 
-# Schedio : un système de design Vue
+# Schedio : un système de design Vue
 
 <img src="/images/schedio/schedio-feature.png" alt="schedio" title="schedio">
 
@@ -47,7 +47,7 @@ Schedio est une bibliothèque de composants Vue et un système de design que j'a
 
 ## Design tokens
 
-La première étape était de définir les éléments fondamentaux du système : typographie, couleurs, espacement, mouvement. Je les ai structurés comme des [design tokens](https://www.lightningdesignsystem.com/design-tokens/) en utilisant [Theo](https://github.com/salesforce-ux/theo), qui fournissait une source de vérité unique exportable dans plusieurs formats. Les tokens ont fini par influencer le travail non seulement en Vue, mais aussi sur nos plateformes Windows (WPF) et React Native, même là où les composants eux-mêmes ne pouvaient pas être consommés directement.
+La première étape était de définir les éléments fondamentaux du système : typographie, couleurs, espacement, mouvement. Je les ai structurés comme des [design tokens](https://www.lightningdesignsystem.com/design-tokens/) en utilisant [Theo](https://github.com/salesforce-ux/theo), qui fournissait une source de vérité unique exportable dans plusieurs formats. Les tokens ont fini par influencer le travail non seulement en Vue, mais aussi sur nos plateformes Windows (WPF) et React Native, même là où les composants eux-mêmes ne pouvaient pas être consommés directement.
 
 ![Travail sur les couleurs dans Theo](/images/schedio/schedio-tokens-colors.png 'Travail sur les couleurs dans Theo')
 

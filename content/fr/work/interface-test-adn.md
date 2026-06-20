@@ -22,9 +22,9 @@ L'interface du test ADN est la composante logicielle du CYP2C19 de Spartan Bio, 
 
 Les logiciels de dispositifs médicaux opèrent sous des contraintes strictes. Les exigences sont définies tôt, la documentation est rigoureuse, et les modifications après la soumission réglementaire ont des coûts significatifs à travers toute l'organisation. Bien concevoir avant la soumission est essentiel.
 
-L'objectif initial était une désignation CLIA waived de la FDA, ce qui aurait permis à quiconque d'effectuer le test avec une formation minimale (comparable à un glucomètre). La chimie du test l'a finalement placé en haute complexité, mais la cible de design a façonné notre approche tout au long : les instructions devaient être suffisamment claires pour les non-spécialistes, les workflows devaient être suffisamment fiables pour être exécutés sans erreur, et l'interface devait résister à l'examen minutieux.
+L'objectif initial était une désignation CLIA waived de la FDA, ce qui aurait permis à quiconque d'effectuer le test avec une formation minimale (comparable à un glucomètre). La chimie du test l'a finalement placé en haute complexité, mais la cible de design a façonné notre approche tout au long : les instructions devaient être suffisamment claires pour les non-spécialistes, les workflows devaient être suffisamment fiables pour être exécutés sans erreur, et l'interface devait résister à l'examen minutieux.
 
-Les fonctionnalités ont été définies lors des phases de concept et de faisabilité, en parallèle des exigences réglementaires, techniques et des utilisateurs finaux :
+Les fonctionnalités ont été définies lors des phases de concept et de faisabilité, en parallèle des exigences réglementaires, techniques et des utilisateurs finaux :
 
 - Workflows guidés pour effectuer un test ou un contrôle
 - Un journal recherchable des résultats de tests et de contrôles
