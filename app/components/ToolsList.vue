@@ -41,14 +41,17 @@ export default {
 
 <style lang="scss">
 @use '~/assets/styles/utils/mixins';
+@use '~/assets/styles/utils/breakpoints' as bp;
 
 .tool-list {
+  --column-number: 3;
+
   @include mixins.unstyled-list;
 
   align-items: flex-end;
   display: grid;
   gap: var(--space-8);
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(var(--column-number), 1fr);
 
   &__item {
     text-align: center;
@@ -74,6 +77,10 @@ export default {
     font-family: var(--font-mono);
     font-size: var(--text-sm);
     margin-top: 0.5rem;
+  }
+
+  @include bp.above('md') {
+    --column-number: 6;
   }
 }
 </style>
