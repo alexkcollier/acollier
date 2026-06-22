@@ -126,6 +126,14 @@ definePageMeta({
             class="nuxt-content"
             :value="doc"
           />
+
+          <section v-if="doc?.tools && doc.tools.length">
+            <h2 class="heading-2 built-with-section">
+              {{ $t('work.builtWith') }}
+            </h2>
+
+            <ToolsList :tools="doc.tools" />
+          </section>
         </main>
 
         <aside class="two-column__narrow-col sidebar">
@@ -142,34 +150,10 @@ definePageMeta({
           </section>
 
           <section
-            v-if="doc?.tags?.length"
-            class="sidebar__section"
-          >
-            <h2 class="heading-2">{{ $t('work.tags') }}</h2>
-            <ul class="slug-tags">
-              <li
-                v-for="tag in doc.tags"
-                :key="tag"
-              >
-                <BaseChip>{{ tag }}</BaseChip>
-              </li>
-            </ul>
-          </section>
-
-          <section
-            v-if="doc?.tools && doc.tools.length"
-            class="sidebar__section"
-          >
-            <h2 class="heading-2">{{ $t('work.builtWith') }}</h2>
-
-            <ToolsList :tools="doc.tools" />
-          </section>
-
-          <section
             v-if="doc?.links && doc.links.length"
             class="sidebar__section work-links"
           >
-            <h2 class="heading-1">{{ $t('work.links') }}</h2>
+            <h2 class="heading-2">{{ $t('work.links') }}</h2>
 
             <ul class="work-links__list">
               <li
@@ -260,5 +244,9 @@ export default {
       margin-bottom: var(--space-6);
     }
   }
+}
+
+.built-with-section:first-child {
+  margin-top: var(--space-8);
 }
 </style>
