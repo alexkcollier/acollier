@@ -57,5 +57,9 @@ export default {
     mainHeading: 'Work',
     clickToZoom: 'Click to zoom 🔎',
     clickAnywhereToClose: 'Click anywhere or press ESC to close ❌',
+    onThisPage: 'On this page',
+    tags: 'Tags',
+    builtWith: 'Built with',
+    links: 'Links',
   },
 };

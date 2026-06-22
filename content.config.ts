@@ -38,6 +38,7 @@ export default defineContentConfig({
       type: 'page',
       source: {
         include: 'fr/**',
+        prefix: '/',
       },
       schema: commonSchema,
     }),

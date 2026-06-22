@@ -5,21 +5,27 @@ import {
   definePageMeta,
   useAsyncData,
   queryCollection,
+  useI18n,
 } from '#imports';
+import type { Collections } from '@nuxt/content';
 
 const localePath = useLocalePath();
+const { locale } = useI18n();
 
 definePageMeta({
   layout: 'no-page-spacing',
   transition: 'home',
 });
 
-const { data: featuredWork } = await useAsyncData('featured-work', () =>
-  queryCollection('work_en')
-    .where('featured', '=', true)
-    .order('order', 'ASC')
-    .limit(3)
-    .all(),
+const { data: featuredWork } = await useAsyncData(
+  `featured-work-${locale.value}`,
+  () =>
+    queryCollection(`work_${locale.value}` as keyof Collections)
+      .where('featured', '=', true)
+      .order('order', 'ASC')
+      .limit(3)
+      .all(),
+  { watch: [locale] },
 );
 </script>
 
@@ -100,16 +106,16 @@ $base-time: 1500ms;
 
 .home-hero {
   animation: deblur $base-time * 1.5 $easing;
+  overflow: auto;
   padding-block: var(--space-8);
   padding-inline: var(--page-side-padding);
-  overflow: auto;
 
   @include bp.above('sm') {
+    @include mixins.face-hero;
+
     background-attachment: fixed;
     flex: 1;
     padding-block-start: var(--space-12);
-
-    @include mixins.face-hero;
   }
 
   @include bp.above('lg') {
@@ -170,14 +176,6 @@ $base-time: 1500ms;
   margin-block: var(--space-12);
   width: 100%;
 
-  @include bp.above('sm') {
-    max-width: 80%;
-  }
-
-  @include bp.above('md') {
-    margin-block: var(--space-16);
-  }
-
   &__heading {
     align-items: center;
     display: flex;
@@ -198,6 +196,14 @@ $base-time: 1500ms;
     background: var(--color-border);
     flex: 1;
     height: 1px;
+  }
+
+  @include bp.above('sm') {
+    max-width: 80%;
+  }
+
+  @include bp.above('md') {
+    margin-block: var(--space-16);
   }
 }
 

@@ -16,8 +16,8 @@
 
   background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
   display: flex;
-  padding-inline: var(--page-side-padding);
   min-height: 100%;
+  padding-inline: var(--page-side-padding);
 
   @include bp.above('xl') {
     --bg-size: auto 90%;
