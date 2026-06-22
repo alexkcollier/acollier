@@ -16,7 +16,7 @@ tools:
 
 ![DNA Test UI, FDA Cleared](/images/dna-test-ui/cyp2c19-feature.png 'DNA Test UI, FDA Cleared')
 
-The DNA Test UI is the software component of Spartan Bio's CYP2C19, a rapid DNA test run on the Spartan Cube analyser. I led the design with another designer, holding final approval on decisions, through Spartan's formal design control process. The product received FDA clearance and is still being marketed by the company that acquired Spartan's assets.
+The DNA Test UI is the software component of Spartan Bio's CYP2C19 Platform, a rapid DNA test run on the Spartan Cube analyser. I led the design with another designer, holding final approval on decisions, through Spartan's formal design control process. The product received FDA clearance and is still being marketed by the company that acquired Spartan's assets.
 
 ## The challenge
 

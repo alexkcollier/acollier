@@ -43,7 +43,7 @@ tools:
 
 <img src="/images/schedio/schedio-feature.png" alt="schedio" title="schedio">
 
-Schedio est une bibliothèque de composants Vue et un système de design que j'ai construit pour Spartan Bio. L'objectif était de formaliser le design dans une petite entreprise où l'efficacité et la cohérence comptaient d'autant plus que l'équipe était réduite. Je l'ai initié de façon indépendante, livré la v1 en quelques mois et maintenu pendant deux ans. Le nom vient du mot grec pour design (schédio, plus ou moins) ; Spartan appréciait les références grecques.
+Schedio est une bibliothèque de composants Vue et un système de design que j'ai construit pour Spartan Bio. L'objectif était de formaliser le design dans une petite entreprise où l'efficacité et la cohérence comptaient d'autant plus que l'équipe était réduite. Je l'ai initié de façon indépendante, livré la v1 en quelques mois et maintenu pendant deux ans. Le nom vient du mot grec signifiant design (schédio, plus ou moins). Spartan appréciait les références grecques.
 
 ## Design tokens
 
@@ -55,7 +55,7 @@ Certains tokens, comme l'easing et le timing des transitions, n'ont de sens que 
 
 ## Bibliothèque de composants
 
-J'ai conçu les composants dans Adobe XD (Figma était nouveau à l'époque et XD avait de meilleurs outils pour ce dont j'avais besoin), en générant des designs statiques avant de construire. [Storybook](https://storybook.js.org/) fournissait le bac à sable de développement et la couche de documentation. Certains plugins supportaient principalement React à l'époque, ce qui nécessitait des contournements pour Vue ; aucun n'était significatif, et le compromis en valait la peine. Notre développeur Windows pouvait se référer à Storybook pour comprendre l'intention de design même quand il ne pouvait pas consommer les composants directement.
+J'ai conçu les composants dans Adobe XD (Figma était nouveau à l'époque et XD avait de meilleurs outils pour ce dont j'avais besoin), en générant des designs statiques avant de construire. [Storybook](https://storybook.js.org/) fournissait le bac à sable de développement et la couche de documentation. Certains plugins supportaient principalement React à l'époque, ce qui nécessitait des contournements pour Vue. Aucun n'était majeur, et le compromis en valait la peine. Notre développeur Windows pouvait se référer à Storybook pour comprendre l'intention de design même quand il ne pouvait pas consommer les composants directement.
 
 ![Composants dans XD](/images/schedio/schedio-xd.png 'Composants dans XD')
 
@@ -65,10 +65,10 @@ Chaque composant a été conçu pour respecter WCAG 2.0 AA. J'ai utilisé Jest e
 
 ## Documentation
 
-Storybook n'est pas idéal pour la documentation non technique (directives d'utilisation, philosophie d'interaction, application des couleurs). J'avais besoin d'un endroit pour la mettre et je n'avais pas la bande passante pour construire un site de documentation séparé, donc elle est restée dans Storybook aux côtés des composants. Pour une équipe petite et majoritairement technique, ça fonctionnait. La limitation était un compromis conscient pour l'échelle à laquelle on opérait.
+Storybook n'est pas idéal pour la documentation non technique (directives d'utilisation, philosophie d'interaction, application des couleurs). J'avais besoin d'un endroit pour la mettre et je n'avais pas le temps de construire un site de documentation séparé, donc elle est restée dans Storybook aux côtés des composants. Pour une équipe petite et majoritairement technique, ça fonctionnait. La limitation était un compromis conscient pour l'échelle à laquelle on opérait.
 
 ![Documentation pour Schedio](/images/schedio/schedio-logo-usage.png 'Documentation pour Schedio')
 
 ## Résultat
 
-Schedio a été mis en production comme fondation pour le site corporate Vue de Spartan et utilisé dans les outils internes. Ses design tokens et ses patterns d'interaction ont influencé le travail sur nos plateformes WPF et React Native. [Polaris](https://github.com/Shopify/polaris-react/) de Shopify a été une influence significative sur l'approche, particulièrement sa réflexion sur la façon dont un système de design doit servir une équipe produit sans la contraindre.
+Schedio a été mis en production comme fondation pour le site corporate Vue de Spartan et utilisé dans les outils internes. Ses design tokens et ses patterns d'interaction ont influencé le travail sur nos plateformes WPF et React Native. [Polaris](https://github.com/Shopify/polaris-react/) de Shopify a été une influence déterminante sur l'approche, particulièrement sa réflexion sur la façon dont un système de design doit servir une équipe produit sans la contraindre.
