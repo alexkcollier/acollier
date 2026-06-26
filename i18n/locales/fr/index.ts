@@ -51,7 +51,7 @@ export default <LangSchema>{
     mainHeading: 'Envie de collaborer ?',
     mainHeadingLine2: 'Écris-moi.',
     thankYouHeading: 'Merci',
-    thankYouMessage: 'Ton message à été envoyé',
+    thankYouMessage: 'Ton message a été envoyé',
     thankYouMessageLine2: 'Je reviendrai vers toi dans les prochaines 48h.',
     contactFormNameLabel: 'Nom',
     contactFormEmailLabel: 'Adresse courriel',
