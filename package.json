@@ -31,9 +31,12 @@
     "nuxt-svgo": "^5.3.0",
     "prism-themes": "^1.9.0",
     "sanitize.css": "^13.0.0",
-    "vue": "^3.5.35",
+    "vue": "^3.5.39",
     "vue-lazyload": "^3.0.0-rc.2",
     "vue-router": "^5.1.0"
+  },
+  "overrides": {
+    "vite-plugin-checker": "0.13.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.18.1",
