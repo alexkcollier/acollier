@@ -15,6 +15,11 @@ const input = ref('');
 const isLoading = ref(false);
 const error = ref('');
 const interactionId = ref<string | null>(null);
+const abortController = ref<AbortController | null>(null);
+
+function abort() {
+  abortController.value?.abort();
+}
 
 async function sendMessage() {
   const content = input.value.trim();
@@ -25,14 +30,21 @@ async function sendMessage() {
   input.value = '';
   error.value = '';
   isLoading.value = true;
+  abortController.value = new AbortController();
 
   try {
     const res = await fetch('/.netlify/functions/chat', {
       method: 'POST',
-      body: JSON.stringify({ message: content, interactionId: interactionId.value }),
+      body: JSON.stringify({
+        message: content,
+        interactionId: interactionId.value,
+      }),
+      signal: abortController.value.signal,
     });
 
-    if (!res.ok) throw new Error('Request failed');
+    if (!res.ok) {
+      throw new Error('Request failed');
+    }
 
     interactionId.value = res.headers.get('X-Interaction-Id');
 
@@ -41,15 +53,24 @@ async function sendMessage() {
 
     messages.value.push({ role: 'assistant', content: '' });
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      messages.value.at(-1)!.content += decoder.decode(value);
+    const event = await reader.read();
+
+    while (!event.done) {
+      if (event.done) {
+        break;
+      }
+
+      messages.value.at(-1)!.content += decoder.decode(event.value);
     }
-  } catch {
+  } catch (err) {
+    if (err instanceof DOMException && err.name === 'AbortError') {
+      return;
+    }
+
     error.value = 'Something went wrong. Please try again.';
   } finally {
     isLoading.value = false;
+    abortController.value = null;
   }
 }
 </script>
@@ -94,9 +115,19 @@ async function sendMessage() {
       />
 
       <button
+        v-if="isLoading"
+        class="chat__submit"
+        type="button"
+        @click="abort"
+      >
+        Stop
+      </button>
+
+      <button
+        v-else
         class="chat__submit"
         type="submit"
-        :disabled="isLoading || !input.trim()"
+        :disabled="!input.trim()"
       >
         Send
       </button>
