@@ -32,8 +32,8 @@ export default defineContentConfig({
         repository: {
           url: 'https://github.com/alexkcollier/acollier-content',
           auth: {
-            username: process.env.GH_USER,
-            token: process.env.GH_TOKEN,
+            username: process.env.CONTENT_REPO_USER,
+            token: process.env.CONTENT_REPO_TOKEN,
           },
         },
         include: 'content/en/**',
@@ -47,8 +47,8 @@ export default defineContentConfig({
         repository: {
           url: 'https://github.com/alexkcollier/acollier-content',
           auth: {
-            username: process.env.GH_USER,
-            token: process.env.GH_TOKEN,
+            username: process.env.CONTENT_REPO_USER,
+            token: process.env.CONTENT_REPO_TOKEN,
           },
         },
         include: 'content/fr/**',
