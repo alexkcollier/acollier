@@ -29,7 +29,14 @@ export default defineContentConfig({
     work_en: defineCollection({
       type: 'page',
       source: {
-        include: 'en/**',
+        repository: {
+          url: 'https://github.com/alexkcollier/acollier-content',
+          auth: {
+            username: process.env.GH_USER,
+            token: process.env.GH_TOKEN,
+          },
+        },
+        include: 'content/en/**',
         prefix: '/',
       },
       schema: commonSchema,
@@ -37,7 +44,14 @@ export default defineContentConfig({
     work_fr: defineCollection({
       type: 'page',
       source: {
-        include: 'fr/**',
+        repository: {
+          url: 'https://github.com/alexkcollier/acollier-content',
+          auth: {
+            username: process.env.GH_USER,
+            token: process.env.GH_TOKEN,
+          },
+        },
+        include: 'content/fr/**',
         prefix: '/',
       },
       schema: commonSchema,
