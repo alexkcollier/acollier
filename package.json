@@ -14,6 +14,7 @@
     "format": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
+    "@google/genai": "^2.10.0",
     "@netlify/functions": "^5.3.0",
     "@netlify/nuxt": "^0.3.8",
     "@nuxt/content": "^3.14.0",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@nuxt/types": "^2.18.1",
+    "@types/node": "^26.0.1",
     "eslint-config-prettier": "^10.1.8",
     "netlify-cli": "^26.1.0",
     "postcss-html": "^1.5.0",
