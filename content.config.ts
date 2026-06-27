@@ -24,18 +24,20 @@ const commonSchema = z.object({
   ),
 });
 
+const contentRepoConfig = {
+  url: process.env.CONTENT_REPO_URL ?? '',
+  auth: {
+    username: process.env.CONTENT_REPO_USER,
+    token: process.env.CONTENT_REPO_TOKEN,
+  },
+};
+
 export default defineContentConfig({
   collections: {
     work_en: defineCollection({
       type: 'page',
       source: {
-        repository: {
-          url: 'https://github.com/alexkcollier/acollier-content',
-          auth: {
-            username: process.env.CONTENT_REPO_USER,
-            token: process.env.CONTENT_REPO_TOKEN,
-          },
-        },
+        repository: contentRepoConfig,
         include: 'content/en/**',
         prefix: '/',
       },
@@ -44,13 +46,7 @@ export default defineContentConfig({
     work_fr: defineCollection({
       type: 'page',
       source: {
-        repository: {
-          url: 'https://github.com/alexkcollier/acollier-content',
-          auth: {
-            username: process.env.CONTENT_REPO_USER,
-            token: process.env.CONTENT_REPO_TOKEN,
-          },
-        },
+        repository: contentRepoConfig,
         include: 'content/fr/**',
         prefix: '/',
       },
