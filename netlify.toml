@@ -8,3 +8,6 @@ publish = "dist"
 
 [functions]
 directory = "functions"
+
+[functions."chat"]
+timeout = 30

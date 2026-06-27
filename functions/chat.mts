@@ -22,17 +22,34 @@ export default async (req: Request) => {
     return new Response(null, { status: 400 });
   }
 
-  const interaction = await ai.interactions.create({
+  const stream = await ai.interactions.create({
     model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash-lite',
-    input: 'Give me a brief summary of Alex',
+    input: body.messages.at(-1).content,
+    stream: true,
     system_instruction: systemPrompt,
     generation_config: {
       temperature: 0.3,
     },
   });
 
-  return new Response(JSON.stringify({ message: interaction.output_text }), {
+  const encoder = new TextEncoder();
+  const readable = new ReadableStream({
+    async start(controller) {
+      for await (const event of stream) {
+        if (event.event_type === 'step.delta' && event.delta.type === 'text') {
+          controller.enqueue(encoder.encode(event.delta.text));
+        }
+      }
+      controller.close();
+    },
+  });
+
+  return new Response(readable, {
     status: 200,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-cache',
+      'X-Accel-Buffering': 'no',
+    },
   });
 };

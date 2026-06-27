@@ -33,9 +33,16 @@ async function sendMessage() {
 
     if (!res.ok) throw new Error('Request failed');
 
-    const data = await res.json();
+    const reader = res.body!.getReader();
+    const decoder = new TextDecoder();
 
-    messages.value.push({ role: 'assistant', content: data.message });
+    messages.value.push({ role: 'assistant', content: '' });
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      messages.value.at(-1)!.content += decoder.decode(value);
+    }
   } catch {
     error.value = 'Something went wrong. Please try again.';
   } finally {
