@@ -14,6 +14,7 @@ const messages = ref<Message[]>([]);
 const input = ref('');
 const isLoading = ref(false);
 const error = ref('');
+const interactionId = ref<string | null>(null);
 
 async function sendMessage() {
   const content = input.value.trim();
@@ -28,10 +29,12 @@ async function sendMessage() {
   try {
     const res = await fetch('/.netlify/functions/chat', {
       method: 'POST',
-      body: JSON.stringify({ messages: messages.value }),
+      body: JSON.stringify({ message: content, interactionId: interactionId.value }),
     });
 
     if (!res.ok) throw new Error('Request failed');
+
+    interactionId.value = res.headers.get('X-Interaction-Id');
 
     const reader = res.body!.getReader();
     const decoder = new TextDecoder();
