@@ -1,45 +1,12 @@
-import * as Sentry from '@sentry/node';
 import FormData from 'form-data';
 import Mailgun from 'mailgun.js';
-
-initSentry();
+import { reportError } from './utils/sentry.mts';
 
 const mailgun = new Mailgun(FormData);
 const mg = mailgun.client({
   username: 'api',
   key: process.env.MG_API_KEY || 'key-yourkeyhere',
 });
-
-let sentryInitialized = false;
-
-/**
- * Initializes sentry
- */
-function initSentry() {
-  Sentry.init({ dsn: process.env.SENTRY_DSN });
-  sentryInitialized = true;
-}
-
-/**
- * Reports error correctly
- */
-async function reportError(err: Error | string) {
-  if (process.env.NODE_ENV !== 'production') {
-    return console.log(err);
-  }
-
-  if (!sentryInitialized) {
-    return;
-  }
-
-  if (typeof err === 'string') {
-    Sentry.captureMessage(err);
-  } else {
-    Sentry.captureException(err);
-  }
-
-  return Sentry.flush();
-}
 
 /**
  * Send email
@@ -93,11 +60,7 @@ export default async (req: Request) => {
     return new Response(message || 'Mail sent', { status: 200 });
   } catch (err) {
     // Send errors to Sentry
-    await reportError(
-      typeof err === 'string' || err instanceof Error
-        ? err
-        : 'Unknown form error',
-    );
+    await reportError(err, 'mail');
 
     return new Response('Mailing error', { status: 500 });
   }
