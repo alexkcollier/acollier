@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { GoogleGenAI } from '@google/genai';
+import { reportError } from './utils/sentry.mts';
 
 const systemPrompt = readFileSync(
   join(process.cwd(), 'prompts/system-prompt.md'),
@@ -68,7 +69,7 @@ export default async (req: Request) => {
         }
 
         if (event.event_type === 'error') {
-          console.log(event.error);
+          await reportError(event.error, 'chat');
         }
 
         // advances to the next event
