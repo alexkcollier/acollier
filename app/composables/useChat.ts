@@ -1,44 +1,26 @@
 import { ref, type Ref } from '#imports';
+import { type StreamStatus, isBusy, streamChunks } from '~/utils/stream';
 
-interface Message {
+interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
 }
 
-export type StreamStatus =
-  | 'idle'
-  | 'connecting'
-  | 'streaming'
-  | 'done'
-  | 'error';
-
 /** Returns a new message list with `msg` appended. */
-const appendMessage = (msgs: Message[], msg: Message): Message[] => [
-  ...msgs,
-  msg,
-];
+const appendMessage = (
+  msgs: ChatMessage[],
+  msg: ChatMessage,
+): ChatMessage[] => [...msgs, msg];
 
 /** Returns a new message list with `chunk` concatenated onto the last message's content. */
-const updateLastMessage = (msgs: Message[], chunk: string): Message[] =>
+const updateLastMessage = (msgs: ChatMessage[], chunk: string): ChatMessage[] =>
   msgs.map((msg, i) =>
     i === msgs.length - 1 ? { ...msg, content: msg.content + chunk } : msg,
   );
 
-/** Yields decoded text chunks from a streaming response body. */
-async function* streamChunks(body: ReadableStream<Uint8Array>) {
-  const reader = body.getReader();
-  const decoder = new TextDecoder();
-  let chunk = await reader.read();
-
-  while (!chunk.done) {
-    yield decoder.decode(chunk.value);
-    chunk = await reader.read();
-  }
-}
-
 interface UseChatReturn {
   /** Ordered list of all messages in the current conversation. */
-  messages: Ref<Message[]>;
+  messages: Ref<ChatMessage[]>;
   /** Current state of the stream lifecycle. */
   status: Ref<StreamStatus>;
   /** Human-readable error message; only meaningful when `status === 'error'`. */
@@ -54,7 +36,7 @@ interface UseChatReturn {
  * Exposes reactive state alongside `sendMessage` and `abort` to drive the chat UI.
  */
 export function useChat(): UseChatReturn {
-  const messages = ref<Message[]>([]);
+  const messages = ref<ChatMessage[]>([]);
   const status = ref<StreamStatus>('idle');
   const error = ref('');
   const interactionId = ref<string | null>(null);
@@ -65,11 +47,7 @@ export function useChat(): UseChatReturn {
   }
 
   async function sendMessage(content: string) {
-    if (
-      !content ||
-      status.value === 'connecting' ||
-      status.value === 'streaming'
-    ) {
+    if (!content || isBusy(status.value)) {
       return;
     }
 
