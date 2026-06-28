@@ -63,6 +63,10 @@ const html = computed(() =>
     > *:first-child {
       margin-block-start: 0;
     }
+
+    > *:last-child {
+      margin-block-end: 0;
+    }
   }
 }
 </style>
