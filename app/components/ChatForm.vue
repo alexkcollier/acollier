@@ -107,7 +107,7 @@ watch(
 
   background: var(--color-bg-subtle);
   border: 1px solid var(--color-input-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   padding: var(--space-3);

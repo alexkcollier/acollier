@@ -37,18 +37,16 @@ const html = computed(() =>
 <style lang="scss">
 .chat-message {
   border-radius: var(--radius-md);
-  max-width: 80%;
-  padding: var(--space-3) var(--space-4);
+  max-width: 90%;
+  padding: var(--space-2) var(--space-3);
 
   &--user {
     align-self: flex-end;
-    background: var(--color-bg-primary);
-    color: var(--color-text-on-primary);
+    background: var(--color-bg-subtle);
   }
 
   &--assistant {
     align-self: flex-start;
-    background: var(--color-bg-subtle);
   }
 
   &--loading {
