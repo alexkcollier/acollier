@@ -12,16 +12,20 @@ const client = new OpenAI({
 export async function createOllamaInteraction({
   messages,
   systemInstruction,
+  signal,
 }: InteractionParams): Promise<InteractionResult> {
   const model = process.env.OLLAMA_MODEL ?? 'llama3.2';
 
   console.log(`[ Using ollama and ${model} ]`);
 
-  const stream = await client.chat.completions.create({
-    model: model,
-    messages: [{ role: 'system', content: systemInstruction }, ...messages],
-    stream: true,
-  });
+  const stream = await client.chat.completions.create(
+    {
+      model: model,
+      messages: [{ role: 'system', content: systemInstruction }, ...messages],
+      stream: true,
+    },
+    { signal },
+  );
 
   const textStream = new ReadableStream<string>({
     async start(controller) {

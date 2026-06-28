@@ -34,6 +34,7 @@ export default async (req: Request) => {
     messages: body.messages,
     systemInstruction: systemPrompt,
     previousInteractionId: body.interactionId,
+    signal: req.signal,
   });
 
   return new Response(textStream, {

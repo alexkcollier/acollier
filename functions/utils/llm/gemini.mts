@@ -11,6 +11,7 @@ export async function createGeminiInteraction({
   messages,
   systemInstruction,
   previousInteractionId,
+  signal,
 }: InteractionParams): Promise<InteractionResult> {
   const stream = await ai.interactions.create({
     model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash-lite',
@@ -18,13 +19,13 @@ export async function createGeminiInteraction({
     stream: true,
     store: true,
     system_instruction: systemInstruction,
-    ...(previousInteractionId && {
-      previous_interaction_id: previousInteractionId,
-    }),
     generation_config: {
       temperature: 0.3,
       thinking_level: 'low',
     },
+    ...(previousInteractionId && {
+      previous_interaction_id: previousInteractionId,
+    }),
   });
 
   // The interaction ID is only available on the first SSE event
@@ -42,6 +43,13 @@ export async function createGeminiInteraction({
 
   const textStream = new ReadableStream<string>({
     async start(controller) {
+      const onAbort = () => {
+        reader.cancel().catch(() => {});
+        controller.close();
+      };
+
+      signal?.addEventListener('abort', onAbort, { once: true });
+
       let chunk = await reader.read();
 
       while (!chunk.done) {
@@ -58,7 +66,11 @@ export async function createGeminiInteraction({
         chunk = await reader.read();
       }
 
+      signal?.removeEventListener('abort', onAbort);
       controller.close();
+    },
+    cancel() {
+      reader.cancel().catch(() => {});
     },
   });
 
