@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { createGeminiInteraction } from './utils/gemini.mts';
-import { GoogleGenAI } from '@google/genai';
-import { reportError } from './utils/sentry.mts';
+import { createInteraction } from './utils/llm/create-interaction.ts';
 
 const systemPrompt = readFileSync(
   join(process.cwd(), 'prompts/system-prompt.md'),
@@ -11,12 +9,13 @@ const systemPrompt = readFileSync(
   },
 );
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 interface RequestBody {
-  message: string;
+  messages: Message[];
   interactionId?: string;
 }
 
@@ -27,55 +26,17 @@ export default async (req: Request) => {
 
   const body = (await req.json()) as RequestBody;
 
-  if (!body?.message) {
+  if (!body?.messages?.length) {
     return new Response(null, { status: 400 });
   }
 
-  const stream = await createGeminiInteraction(ai, {
-    input: body.message,
+  const { textStream, interactionId } = await createInteraction({
+    messages: body.messages,
     systemInstruction: systemPrompt,
     previousInteractionId: body.interactionId,
   });
 
-  // The interaction ID is only available on the first SSE event
-  // (`interaction.created`), but response headers must be set before the body
-  // starts streaming. We consume that first event here so the ID is known
-  // before constructing the Response; the reader then continues from the
-  // second event onward inside the ReadableStream.
-  const reader = stream.getReader();
-  const { value: createdEvent } = await reader.read();
-
-  const interactionId =
-    createdEvent?.event_type === 'interaction.created'
-      ? createdEvent.interaction.id
-      : '';
-
-  const encoder = new TextEncoder();
-  const readable = new ReadableStream({
-    async start(controller) {
-      // advances to the next event
-      let chunk = await reader.read();
-
-      while (!chunk.done) {
-        const event = chunk.value;
-
-        if (event.event_type === 'step.delta' && event.delta.type === 'text') {
-          controller.enqueue(encoder.encode(event.delta.text));
-        }
-
-        if (event.event_type === 'error') {
-          await reportError(event.error, 'chat');
-        }
-
-        // advances to the next event
-        chunk = await reader.read();
-      }
-
-      controller.close();
-    },
-  });
-
-  return new Response(readable, {
+  return new Response(textStream, {
     status: 200,
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',

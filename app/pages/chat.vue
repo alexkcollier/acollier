@@ -36,7 +36,7 @@ async function sendMessage() {
     const res = await fetch('/.netlify/functions/chat', {
       method: 'POST',
       body: JSON.stringify({
-        message: content,
+        messages: messages.value,
         interactionId: interactionId.value,
       }),
       signal: abortController.value.signal,
