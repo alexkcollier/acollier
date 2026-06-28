@@ -5,7 +5,7 @@
   "author": "Alex Collier",
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
+    "dev": "TMPDIR=/tmp nuxi dev",
     "build": "nuxi build",
     "start": "nuxi start",
     "generate": "nuxi generate",
