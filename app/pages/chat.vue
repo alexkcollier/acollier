@@ -94,6 +94,8 @@ async function handleSend() {
     flex: 1;
     flex-direction: column;
     gap: var(--space-3);
+    min-height: 0;
+    overflow-y: auto;
   }
 
   &__message {
