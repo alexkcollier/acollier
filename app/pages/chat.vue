@@ -5,7 +5,7 @@ import { isBusy } from '~/utils/stream';
 import ChatMessage from '~/components/ChatMessage.vue';
 
 definePageMeta({
-  layout: 'chat-layout',
+  layout: 'no-page-spacing',
 });
 
 const input = ref('');
