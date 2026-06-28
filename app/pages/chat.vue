@@ -1,62 +1,34 @@
 <script setup lang="ts">
-import {
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-  onUnmounted,
-  definePageMeta,
-} from '#imports';
+import { ref, watch, nextTick, definePageMeta } from '#imports';
 import { useChat } from '~/composables/useChat';
-import { isBusy } from '~/utils/stream';
 import ChatMessage from '~/components/ChatMessage.vue';
+import ChatForm from '~/components/ChatForm.vue';
 
 definePageMeta({
   layout: 'no-page-spacing',
 });
 
-const input = ref('');
-const formEl = ref<HTMLFormElement | null>(null);
+const formEl = ref<InstanceType<typeof ChatForm> | null>(null);
 const { messages, status, error, sendMessage, abort } = useChat();
-
-async function handleSend() {
-  const content = input.value.trim();
-
-  input.value = '';
-  await sendMessage(content);
-
-  // replaces message in textarea if it did not succeed
-  if (status.value !== 'done') {
-    input.value = content;
-  }
-}
-
-function abortOnEsc(e: KeyboardEvent) {
-  if (e.key === 'Escape' && isBusy(status.value)) {
-    abort();
-  }
-}
-
-onMounted(() => document.addEventListener('keydown', abortOnEsc));
-onUnmounted(() => document.removeEventListener('keydown', abortOnEsc));
 
 watch(
   () => messages.value.length,
   async (newLen, oldLen) => {
     if (oldLen !== 0 || newLen === 0 || !formEl.value) return;
 
-    const before = formEl.value.getBoundingClientRect();
+    const el = formEl.value.$el as HTMLElement;
+    const before = el.getBoundingClientRect();
 
     await nextTick();
 
-    const after = formEl.value.getBoundingClientRect();
+    const after = el.getBoundingClientRect();
     const dy = before.top - after.top;
 
     if (dy !== 0) {
-      formEl.value.animate(
-        [{ translate: `0 ${dy}px` }, { translate: 'none' }],
-        { duration: 300, easing: 'cubic-bezier(0.4, 0, 0.2, 1)' },
-      );
+      el.animate([{ translate: `0 ${dy}px` }, { translate: 'none' }], {
+        duration: 300,
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      });
     }
   },
   { flush: 'pre' },
@@ -103,55 +75,18 @@ watch(
       {{ error }}
     </p>
 
-    <form
+    <ChatForm
       ref="formEl"
-      class="chat__form"
-      @submit.prevent="handleSend"
-    >
-      <textarea
-        v-model="input"
-        class="chat__input"
-        placeholder="Message"
-        rows="1"
-        :disabled="isBusy(status)"
-        @keydown.enter.exact.prevent="handleSend"
-      />
-
-      <div class="chat__form-actions">
-        <span class="chat__form-hint">
-          <template v-if="isBusy(status)"><kbd>Esc</kbd> to cancel</template>
-
-          <template v-else><kbd>Shift + Enter</kbd> for new line</template>
-        </span>
-        <button
-          v-if="isBusy(status)"
-          class="chat__submit"
-          type="button"
-          aria-label="Stop"
-          @click="abort"
-        >
-          <Icon name="lucide:octagon-pause" />
-        </button>
-
-        <button
-          v-else
-          class="chat__submit"
-          type="submit"
-          aria-label="Send"
-          :disabled="!input.trim()"
-        >
-          <Icon name="lucide:forward" />
-        </button>
-      </div>
-    </form>
+      :status="status"
+      @submit="sendMessage"
+      @abort="abort"
+    />
   </main>
 </template>
 
 <style lang="scss">
 .chat {
   --transition-duration: 200ms;
-  --submit-bg: var(--stone-200);
-  --submit-color: var(--stone-800);
 
   display: flex;
   flex-direction: column;
@@ -203,90 +138,6 @@ watch(
   &__error {
     color: var(--color-text-accent);
     font-size: var(--text-sm);
-  }
-
-  &__form {
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-input-border);
-    border-radius: var(--radius-lg);
-    display: flex;
-    flex-direction: column;
-    padding: var(--space-3);
-    transition: border-color var(--transition-duration) ease;
-
-    &:has(textarea:focus) {
-      border-color: var(--color-input-border-focus);
-    }
-
-    &-actions {
-      align-items: center;
-      display: flex;
-      gap: var(--space-2);
-      justify-content: flex-end;
-      padding-block-start: var(--space-2);
-    }
-
-    &-hint {
-      color: var(--color-text-muted);
-      font-size: var(--text-xs);
-
-      kbd {
-        border: 1px solid var(--color-input-border);
-        border-radius: var(--radius-sm);
-        font-family: var(--font-mono);
-        font-size: var(--text-xs);
-        margin-inline-end: calc(0.5 * var(--space-1));
-        padding: calc(0.5 * var(--space-1)) var(--space-1);
-      }
-    }
-  }
-
-  &__input {
-    background: transparent;
-    border: none;
-    field-sizing: content;
-    max-height: 24rem;
-    min-height: 3lh;
-    overflow-y: auto;
-    resize: none;
-    width: 100%;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:disabled {
-      color: var(--color-text-muted);
-      cursor: not-allowed;
-    }
-  }
-
-  &__submit {
-    align-items: center;
-    background: var(--submit-bg);
-    border-radius: var(--radius-md);
-    color: var(--submit-color);
-    display: flex;
-    justify-content: center;
-    padding: var(--space-2);
-
-    &:disabled {
-      background: transparent;
-      color: var(--color-text-muted);
-      cursor: not-allowed;
-    }
-  }
-}
-
-:root[data-theme='dark'] .chat {
-  --submit-bg: var(--stone-800);
-  --submit-color: var(--stone-100);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .chat {
-    --submit-bg: var(--stone-800);
-    --submit-color: var(--stone-100);
   }
 }
 </style>

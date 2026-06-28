@@ -1,0 +1,189 @@
+<script setup lang="ts">
+import { ref, watch, onMounted, onUnmounted } from '#imports';
+import { type StreamStatus, isBusy } from '~/utils/stream';
+
+const props = defineProps<{
+  status: StreamStatus;
+}>();
+
+const emit = defineEmits<{
+  submit: [content: string];
+  /** Abort event for triggering AbortController */
+  abort: [];
+}>();
+
+const input = ref('');
+const lastSentContent = ref('');
+
+function handleSend() {
+  const content = input.value.trim();
+
+  if (!content) {
+    return;
+  }
+
+  // Cache textarea value in case request fails or is cancelled
+  lastSentContent.value = content;
+  input.value = '';
+
+  emit('submit', content);
+}
+
+function handleAbort() {
+  emit('abort');
+}
+
+function abortOnEsc(e: KeyboardEvent) {
+  if (e.key === 'Escape' && isBusy(props.status)) handleAbort();
+}
+
+onMounted(() => document.addEventListener('keydown', abortOnEsc));
+onUnmounted(() => document.removeEventListener('keydown', abortOnEsc));
+
+// Resets textarea value if message does not succeed
+watch(
+  () => props.status,
+  (newStatus, oldStatus) => {
+    if (!isBusy(oldStatus)) {
+      return;
+    }
+
+    if (newStatus === 'idle' || newStatus === 'error') {
+      input.value = lastSentContent.value;
+    }
+
+    lastSentContent.value = '';
+  },
+);
+</script>
+
+<template>
+  <form
+    class="chat-form"
+    @submit.prevent="handleSend"
+  >
+    <textarea
+      v-model="input"
+      class="chat-form__input"
+      placeholder="Message"
+      rows="1"
+      :disabled="isBusy(status)"
+      @keydown.enter.exact.prevent="handleSend"
+    />
+
+    <div class="chat-form__actions">
+      <span class="chat-form__hint">
+        <template v-if="isBusy(status)"><kbd>Esc</kbd> to cancel</template>
+        <template v-else><kbd>Shift + Enter</kbd> for new line</template>
+      </span>
+
+      <button
+        v-if="isBusy(status)"
+        class="chat-form__submit"
+        type="button"
+        aria-label="Stop"
+        @click="handleAbort"
+      >
+        <Icon name="lucide:octagon-pause" />
+      </button>
+
+      <button
+        v-else
+        class="chat-form__submit"
+        type="submit"
+        aria-label="Send"
+        :disabled="!input.trim()"
+      >
+        <Icon name="lucide:forward" />
+      </button>
+    </div>
+  </form>
+</template>
+
+<style lang="scss">
+.chat-form {
+  --submit-bg: var(--stone-200);
+  --submit-color: var(--stone-800);
+
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-3);
+  transition: border-color 200ms ease;
+
+  &:has(textarea:focus) {
+    border-color: var(--color-input-border-focus);
+  }
+
+  &__actions {
+    align-items: center;
+    display: flex;
+    gap: var(--space-2);
+    justify-content: flex-end;
+    padding-block-start: var(--space-2);
+  }
+
+  &__hint {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+
+    kbd {
+      border: 1px solid var(--color-input-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      padding: calc(0.5 * var(--space-1)) var(--space-1);
+    }
+  }
+
+  &__input {
+    background: transparent;
+    border: none;
+    field-sizing: content;
+    max-height: 24rem;
+    min-height: 3lh;
+    overflow-y: auto;
+    resize: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+    }
+  }
+
+  &__submit {
+    align-items: center;
+    background: var(--submit-bg);
+    border-radius: var(--radius-md);
+    color: var(--submit-color);
+    display: flex;
+    justify-content: center;
+    padding: var(--space-2);
+
+    &:disabled {
+      background: transparent;
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+    }
+  }
+}
+
+:root[data-theme='dark'] .chat-form {
+  --submit-bg: var(--stone-800);
+  --submit-color: var(--stone-100);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .chat-form {
+    --submit-bg: var(--stone-800);
+    --submit-color: var(--stone-100);
+  }
+}
+</style>
