@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createGeminiInteraction } from './utils/gemini.mts';
 import { GoogleGenAI } from '@google/genai';
 import { reportError } from './utils/sentry.mts';
 
@@ -30,16 +31,10 @@ export default async (req: Request) => {
     return new Response(null, { status: 400 });
   }
 
-  const stream = await ai.interactions.create({
-    model: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash-lite',
+  const stream = await createGeminiInteraction(ai, {
     input: body.message,
-    stream: true,
-    store: true,
-    system_instruction: systemPrompt,
-    generation_config: {
-      temperature: 0.3,
-      thinking_level: 'low',
-    },
+    systemInstruction: systemPrompt,
+    previousInteractionId: body.interactionId,
   });
 
   // The interaction ID is only available on the first SSE event
