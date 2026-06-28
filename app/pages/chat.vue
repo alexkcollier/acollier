@@ -88,31 +88,36 @@ watch(
       class="chat__form"
       @submit.prevent="handleSend"
     >
-      <input
+      <textarea
         v-model="input"
         class="chat__input"
-        type="text"
         placeholder="Message"
+        rows="1"
         :disabled="isBusy(status)"
+        @keydown.enter.exact.prevent="handleSend"
       />
 
-      <button
-        v-if="isBusy(status)"
-        class="chat__submit"
-        type="button"
-        @click="abort"
-      >
-        Stop
-      </button>
+      <div class="chat__form-actions">
+        <button
+          v-if="isBusy(status)"
+          class="chat__submit"
+          type="button"
+          aria-label="Stop"
+          @click="abort"
+        >
+          <Icon name="lucide:octagon-pause" />
+        </button>
 
-      <button
-        v-else
-        class="chat__submit"
-        type="submit"
-        :disabled="!input.trim()"
-      >
-        Send
-      </button>
+        <button
+          v-else
+          class="chat__submit"
+          type="submit"
+          aria-label="Send"
+          :disabled="!input.trim()"
+        >
+          <Icon name="lucide:forward" />
+        </button>
+      </div>
     </form>
   </main>
 </template>
@@ -120,6 +125,8 @@ watch(
 <style lang="scss">
 .chat {
   --transition-duration: 200ms;
+  --submit-bg: var(--stone-200);
+  --submit-color: var(--stone-800);
 
   display: flex;
   flex-direction: column;
@@ -128,7 +135,7 @@ watch(
   justify-content: center;
   margin: 0 auto;
   max-width: 40rem;
-  padding: var(--space-8) var(--space-4);
+  padding: var(--space-24) var(--space-4) var(--space-8);
 
   &--active {
     justify-content: flex-start;
@@ -174,14 +181,38 @@ watch(
   }
 
   &__form {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-lg);
     display: flex;
-    gap: var(--space-2);
+    flex-direction: column;
+    padding: var(--space-3);
+    transition: border-color var(--transition-duration) ease;
+
+    &:has(textarea:focus) {
+      border-color: var(--color-input-border-focus);
+    }
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding-block-start: var(--space-2);
+    }
   }
 
   &__input {
-    border-radius: var(--radius-md);
-    flex: 1;
-    padding: var(--space-2) var(--space-3);
+    background: transparent;
+    border: none;
+    field-sizing: content;
+    max-height: 24rem;
+    min-height: 3lh;
+    overflow-y: auto;
+    resize: none;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
 
     &:disabled {
       color: var(--color-text-muted);
@@ -190,13 +221,31 @@ watch(
   }
 
   &__submit {
-    padding: var(--space-2) var(--space-4);
+    align-items: center;
+    background: var(--submit-bg);
+    border-radius: var(--radius-md);
+    color: var(--submit-color);
+    display: flex;
+    justify-content: center;
+    padding: var(--space-2);
 
     &:disabled {
+      background: transparent;
       color: var(--color-text-muted);
       cursor: not-allowed;
-      opacity: 0.5;
     }
+  }
+}
+
+:root[data-theme='dark'] .chat {
+  --submit-bg: var(--stone-800);
+  --submit-color: var(--stone-100);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .chat {
+    --submit-bg: var(--stone-800);
+    --submit-color: var(--stone-100);
   }
 }
 </style>
