@@ -182,10 +182,21 @@ watch(
     border-radius: var(--radius-md);
     flex: 1;
     padding: var(--space-2) var(--space-3);
+
+    &:disabled {
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+    }
   }
 
   &__submit {
     padding: var(--space-2) var(--space-4);
+
+    &:disabled {
+      color: var(--color-text-muted);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
   }
 }
 </style>
