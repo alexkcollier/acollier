@@ -1,4 +1,4 @@
-import { InteractionParams } from '../types/interaction.mts';
+import type { InteractionParams } from '../types/interaction.mts';
 
 export async function createInteraction(params: InteractionParams) {
   if (process.env.LOCAL_LLM_PROVIDER === 'ollama') {
