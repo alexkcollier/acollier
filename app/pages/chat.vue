@@ -53,14 +53,11 @@ async function sendMessage() {
 
     messages.value.push({ role: 'assistant', content: '' });
 
-    const event = await reader.read();
+    let chunk = await reader.read();
 
-    while (!event.done) {
-      if (event.done) {
-        break;
-      }
-
-      messages.value.at(-1)!.content += decoder.decode(event.value);
+    while (!chunk.done) {
+      messages.value.at(-1)!.content += decoder.decode(chunk.value);
+      chunk = await reader.read();
     }
   } catch (err) {
     if (err instanceof DOMException && err.name === 'AbortError') {
