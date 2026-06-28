@@ -51,6 +51,8 @@ export function useChat(): UseChatReturn {
       return;
     }
 
+    // cache messages, allowing rollback on failure
+    const snapshot = messages.value;
     messages.value = appendMessage(messages.value, { role: 'user', content });
     error.value = '';
     status.value = 'connecting';
@@ -83,6 +85,9 @@ export function useChat(): UseChatReturn {
 
       status.value = 'done';
     } catch (err) {
+      // if request fails or is cancelled, rollback to snapshot
+      messages.value = snapshot;
+
       if (err instanceof DOMException && err.name === 'AbortError') {
         status.value = 'idle';
         return;

@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, definePageMeta } from '#imports';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  definePageMeta,
+} from '#imports';
 import { useChat } from '~/composables/useChat';
 import { isBusy } from '~/utils/stream';
 import ChatMessage from '~/components/ChatMessage.vue';
@@ -15,10 +22,23 @@ const { messages, status, error, sendMessage, abort } = useChat();
 async function handleSend() {
   const content = input.value.trim();
 
+  input.value = '';
   await sendMessage(content);
 
-  input.value = '';
+  // replaces message in textarea if it did not succeed
+  if (status.value !== 'done') {
+    input.value = content;
+  }
 }
+
+function abortOnEsc(e: KeyboardEvent) {
+  if (e.key === 'Escape' && isBusy(status.value)) {
+    abort();
+  }
+}
+
+onMounted(() => document.addEventListener('keydown', abortOnEsc));
+onUnmounted(() => document.removeEventListener('keydown', abortOnEsc));
 
 watch(
   () => messages.value.length,
