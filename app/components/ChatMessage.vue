@@ -17,7 +17,13 @@ const html = computed(() =>
 </script>
 
 <template>
-  <div :class="['chat-message', `chat-message--${role}`, { 'chat-message--loading': loading }]">
+  <div
+    :class="[
+      'chat-message',
+      `chat-message--${role}`,
+      { 'chat-message--loading': loading },
+    ]"
+  >
     <div
       v-if="html !== null"
       class="chat-message__content"
@@ -51,7 +57,11 @@ const html = computed(() =>
 
   &__content {
     > * + * {
-      margin-top: var(--space-2);
+      margin-block-start: var(--space-2);
+    }
+
+    > *:first-child {
+      margin-block-start: 0;
     }
   }
 }
