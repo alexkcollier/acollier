@@ -2,7 +2,10 @@ import * as Sentry from '@sentry/node';
 
 Sentry.init({ dsn: process.env.SENTRY_DSN });
 
-export async function reportError(err: Error | string | unknown, source: string): Promise<void> {
+export async function reportError(
+  err: Error | string | unknown,
+  source: string,
+): Promise<void> {
   if (process.env.NODE_ENV !== 'production') {
     console.error(`[${source}]`, err);
     return;
