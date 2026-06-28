@@ -1,74 +1,20 @@
 <script setup lang="ts">
 import { ref, definePageMeta } from '#imports';
+import { useChat } from '~/composables/useChat';
 
 definePageMeta({
   layout: 'chat-layout',
 });
 
-interface Message {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-const messages = ref<Message[]>([]);
 const input = ref('');
-const isLoading = ref(false);
-const error = ref('');
-const interactionId = ref<string | null>(null);
-const abortController = ref<AbortController | null>(null);
+const { messages, isLoading, error, sendMessage, abort } = useChat();
 
-function abort() {
-  abortController.value?.abort();
-}
-
-async function sendMessage() {
+async function handleSend() {
   const content = input.value.trim();
 
-  if (!content || isLoading.value) return;
+  await sendMessage(content);
 
-  messages.value.push({ role: 'user', content });
   input.value = '';
-  error.value = '';
-  isLoading.value = true;
-  abortController.value = new AbortController();
-
-  try {
-    const res = await fetch('/.netlify/functions/chat', {
-      method: 'POST',
-      body: JSON.stringify({
-        messages: messages.value,
-        interactionId: interactionId.value,
-      }),
-      signal: abortController.value.signal,
-    });
-
-    if (!res.ok) {
-      throw new Error('Request failed');
-    }
-
-    interactionId.value = res.headers.get('X-Interaction-Id');
-
-    const reader = res.body!.getReader();
-    const decoder = new TextDecoder();
-
-    messages.value.push({ role: 'assistant', content: '' });
-
-    let chunk = await reader.read();
-
-    while (!chunk.done) {
-      messages.value.at(-1)!.content += decoder.decode(chunk.value);
-      chunk = await reader.read();
-    }
-  } catch (err) {
-    if (err instanceof DOMException && err.name === 'AbortError') {
-      return;
-    }
-
-    error.value = 'Something went wrong. Please try again.';
-  } finally {
-    isLoading.value = false;
-    abortController.value = null;
-  }
 }
 </script>
 
@@ -101,7 +47,7 @@ async function sendMessage() {
 
     <form
       class="chat__form"
-      @submit.prevent="sendMessage"
+      @submit.prevent="handleSend"
     >
       <input
         v-model="input"
