@@ -118,6 +118,11 @@ watch(
       />
 
       <div class="chat__form-actions">
+        <span class="chat__form-hint">
+          <template v-if="isBusy(status)"><kbd>Esc</kbd> to cancel</template>
+
+          <template v-else><kbd>Shift + Enter</kbd> for new line</template>
+        </span>
         <button
           v-if="isBusy(status)"
           class="chat__submit"
@@ -214,9 +219,25 @@ watch(
     }
 
     &-actions {
+      align-items: center;
       display: flex;
+      gap: var(--space-2);
       justify-content: flex-end;
       padding-block-start: var(--space-2);
+    }
+
+    &-hint {
+      color: var(--color-text-muted);
+      font-size: var(--text-xs);
+
+      kbd {
+        border: 1px solid var(--color-input-border);
+        border-radius: var(--radius-sm);
+        font-family: var(--font-mono);
+        font-size: var(--text-xs);
+        margin-inline-end: calc(0.5 * var(--space-1));
+        padding: calc(0.5 * var(--space-1)) var(--space-1);
+      }
     }
   }
 
