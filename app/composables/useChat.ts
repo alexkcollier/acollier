@@ -5,6 +5,13 @@ interface Message {
   content: string;
 }
 
+export type StreamStatus =
+  | 'idle'
+  | 'connecting'
+  | 'streaming'
+  | 'done'
+  | 'error';
+
 /** Returns a new message list with `msg` appended. */
 const appendMessage = (msgs: Message[], msg: Message): Message[] => [
   ...msgs,
@@ -32,13 +39,13 @@ async function* streamChunks(body: ReadableStream<Uint8Array>) {
 interface UseChatReturn {
   /** Ordered list of all messages in the current conversation. */
   messages: Ref<Message[]>;
-  /** True while a response is in flight or being streamed. */
-  isLoading: Ref<boolean>;
-  /** Human-readable error message; empty string when no error is present. */
+  /** Current state of the stream lifecycle. */
+  status: Ref<StreamStatus>;
+  /** Human-readable error message; only meaningful when `status === 'error'`. */
   error: Ref<string>;
   /** Sends `content` to the chat function and streams the response. */
   sendMessage: (content: string) => Promise<void>;
-  /** Cancels the in-flight request and stream. */
+  /** Cancels the in-flight request and stream, returning status to `'idle'`. */
   abort: () => void;
 }
 
@@ -48,7 +55,7 @@ interface UseChatReturn {
  */
 export function useChat(): UseChatReturn {
   const messages = ref<Message[]>([]);
-  const isLoading = ref(false);
+  const status = ref<StreamStatus>('idle');
   const error = ref('');
   const interactionId = ref<string | null>(null);
   const abortController = ref<AbortController | null>(null);
@@ -58,13 +65,17 @@ export function useChat(): UseChatReturn {
   }
 
   async function sendMessage(content: string) {
-    if (!content || isLoading.value) {
+    if (
+      !content ||
+      status.value === 'connecting' ||
+      status.value === 'streaming'
+    ) {
       return;
     }
 
     messages.value = appendMessage(messages.value, { role: 'user', content });
     error.value = '';
-    isLoading.value = true;
+    status.value = 'connecting';
     abortController.value = new AbortController();
 
     try {
@@ -86,21 +97,25 @@ export function useChat(): UseChatReturn {
         role: 'assistant',
         content: '',
       });
+      status.value = 'streaming';
 
       for await (const chunk of streamChunks(res.body!)) {
         messages.value = updateLastMessage(messages.value, chunk);
       }
+
+      status.value = 'done';
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
+        status.value = 'idle';
         return;
       }
 
+      status.value = 'error';
       error.value = 'Something went wrong. Please try again.';
     } finally {
-      isLoading.value = false;
       abortController.value = null;
     }
   }
 
-  return { messages, isLoading, error, sendMessage, abort };
+  return { messages, status, error, sendMessage, abort };
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, definePageMeta } from '#imports';
+import { ref, computed, definePageMeta } from '#imports';
 import { useChat } from '~/composables/useChat';
 
 definePageMeta({
@@ -7,7 +7,11 @@ definePageMeta({
 });
 
 const input = ref('');
-const { messages, isLoading, error, sendMessage, abort } = useChat();
+const { messages, status, error, sendMessage, abort } = useChat();
+
+const isBusy = computed(
+  () => status.value === 'connecting' || status.value === 'streaming',
+);
 
 async function handleSend() {
   const content = input.value.trim();
@@ -30,7 +34,7 @@ async function handleSend() {
       </div>
 
       <div
-        v-if="isLoading"
+        v-if="status === 'connecting'"
         class="chat__message chat__message--assistant chat__message--loading"
       >
         ...
@@ -54,11 +58,11 @@ async function handleSend() {
         class="chat__input"
         type="text"
         placeholder="Message"
-        :disabled="isLoading"
+        :disabled="isBusy"
       />
 
       <button
-        v-if="isLoading"
+        v-if="isBusy"
         class="chat__submit"
         type="button"
         @click="abort"
