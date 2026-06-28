@@ -1,7 +1,7 @@
 import { ref, type Ref } from '#imports';
 import { type StreamStatus, isBusy, streamChunks } from '~/utils/stream';
 
-interface ChatMessage {
+export interface ChatMessage {
   role: 'user' | 'assistant';
   content: string;
 }

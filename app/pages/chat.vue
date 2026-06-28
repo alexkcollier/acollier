@@ -2,6 +2,7 @@
 import { ref, definePageMeta } from '#imports';
 import { useChat } from '~/composables/useChat';
 import { isBusy } from '~/utils/stream';
+import ChatMessage from '~/components/ChatMessage.vue';
 
 definePageMeta({
   layout: 'chat-layout',
@@ -22,20 +23,19 @@ async function handleSend() {
 <template>
   <main class="chat">
     <div class="chat__messages">
-      <div
+      <ChatMessage
         v-for="(msg, i) in messages"
         :key="i"
-        :class="['chat__message', `chat__message--${msg.role}`]"
-      >
-        {{ msg.content }}
-      </div>
+        :role="msg.role"
+        :content="msg.content"
+      />
 
-      <div
+      <ChatMessage
         v-if="status === 'connecting'"
-        class="chat__message chat__message--assistant chat__message--loading"
-      >
-        ...
-      </div>
+        role="assistant"
+        content="..."
+        loading
+      />
     </div>
 
     <p
@@ -96,27 +96,6 @@ async function handleSend() {
     gap: var(--space-3);
     min-height: 0;
     overflow-y: auto;
-  }
-
-  &__message {
-    border-radius: var(--radius-md);
-    max-width: 80%;
-    padding: var(--space-3) var(--space-4);
-
-    &--user {
-      align-self: flex-end;
-      background: var(--color-bg-primary);
-      color: var(--color-text-on-primary);
-    }
-
-    &--assistant {
-      align-self: flex-start;
-      background: var(--color-bg-subtle);
-    }
-
-    &--loading {
-      opacity: 0.6;
-    }
   }
 
   &__error {
