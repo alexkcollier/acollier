@@ -214,6 +214,14 @@ const formattedDescription = computed(() => {
     &__image {
       flex: none;
       width: 270px;
+
+      @include bp.above('lg') {
+        display: none;
+      }
+
+      @include bp.above('xl') {
+        display: block;
+      }
     }
 
     &__content {
