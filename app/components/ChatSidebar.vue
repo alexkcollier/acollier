@@ -45,25 +45,12 @@ watch(
       />
     </button>
 
-    <div class="chat-sidebar__body">
-      <Transition name="chat-sidebar__greeting">
-        <div
-          v-if="!messages.length"
-          class="chat-sidebar__greeting"
-        >
-          <i18n-t
-            keypath="home.tag"
-            scope="global"
-            tag="p"
-            class="chat-sidebar__tag"
-          >
-            <span class="chat-sidebar__highlight">{{
-              t('home.experienceType')
-            }}</span>
-          </i18n-t>
-        </div>
-      </Transition>
-
+    <div
+      :class="[
+        'chat-sidebar__body',
+        { 'chat-sidebar__body--empty': !messages.length },
+      ]"
+    >
       <div
         v-if="messages.length"
         ref="messagesEl"
@@ -148,11 +135,10 @@ watch(
     min-height: 0;
     padding: 0 var(--space-4) var(--space-4);
     transition: opacity 150ms;
-  }
 
-  &__greeting {
-    flex-shrink: 0;
-    padding-top: var(--space-10);
+    &--empty {
+      margin-top: var(--space-12);
+    }
   }
 
   &__tag {
@@ -166,19 +152,6 @@ watch(
 
   &__highlight {
     color: var(--color-text-primary);
-  }
-
-  &__greeting-enter-active,
-  &__greeting-leave-active {
-    transition:
-      opacity var(--transition-duration) ease,
-      translate var(--transition-duration) ease;
-  }
-
-  &__greeting-enter-from,
-  &__greeting-leave-to {
-    opacity: 0;
-    translate: 0 var(--space-2);
   }
 
   &__messages {
