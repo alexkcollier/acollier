@@ -35,7 +35,9 @@ watch(
           tag="p"
           class="chat-sidebar__tag"
         >
-          <span class="chat-sidebar__highlight">{{ t('home.experienceType') }}</span>
+          <span class="chat-sidebar__highlight">{{
+            t('home.experienceType')
+          }}</span>
         </i18n-t>
       </div>
     </Transition>
@@ -79,14 +81,17 @@ watch(
 .chat-sidebar {
   --transition-duration: 200ms;
 
+  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  height: calc(100dvh - 8rem);
+  height: 100dvh;
   overflow: hidden;
   padding: var(--space-6) var(--space-4);
+  padding-top: var(--space-24);
   position: sticky;
-  top: 8rem;
+  top: 0;
+  view-transition-name: chat;
 
   &__greeting {
     flex-shrink: 0;

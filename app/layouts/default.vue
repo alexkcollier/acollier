@@ -29,11 +29,10 @@ export default {
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .default-layout {
-  height: 100%;
-
   &__body {
+    align-items: flex-start;
     display: flex;
-    height: 100%;
+    min-height: 100%;
   }
 
   &__sidebar {

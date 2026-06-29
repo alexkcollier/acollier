@@ -14,9 +14,8 @@
 .layout {
   &-enter-active,
   &-leave-active {
-    /* hack to transition layouts without without transitioning the navbar */
-    .content,
-    .chat-sidebar {
+    /* hack to transition layouts without transitioning the navbar */
+    .content {
       transition: opacity 250ms;
     }
   }
@@ -25,9 +24,20 @@
   &-leave {
     opacity: 0.9999;
 
-    .content,
-    .chat-sidebar {
+    .content {
       opacity: 0;
     }
   }
+}
+
+/* suppress the default full-page crossfade; layout CSS transition handles .content */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* chat morph: position/size animation between home chat and sidebar */
+::view-transition-group(chat) {
+  animation-duration: 250ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -95,6 +95,10 @@ async function sendMessage(content: string) {
   }
 }
 
+/**
+ * Manages chat state and streaming communication with the portfolio assistant.
+ * Exposes reactive state alongside `sendMessage` and `abort` to drive the chat UI.
+ */
 export function useChat(): UseChatReturn {
   return { messages, status, error, sendMessage, abort };
 }

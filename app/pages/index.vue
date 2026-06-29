@@ -235,6 +235,7 @@ watch(
   margin: 0 auto;
   max-width: 40rem;
   padding: var(--space-12) var(--space-4) var(--space-8);
+  view-transition-name: chat;
   width: 100%;
 
   @include bp.above('sm') {
