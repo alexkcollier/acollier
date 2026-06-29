@@ -225,6 +225,12 @@ watch(
     min-height: 0;
   }
 
+  &:not(#{&}--active) .chat-form {
+    filter: drop-shadow(
+      0 16px 40px color-mix(in srgb, var(--color-bg-primary) 32%, transparent)
+    );
+  }
+
   &__greeting {
     font-size: var(--text-4xl);
     font-weight: 600;
@@ -345,6 +351,5 @@ watch(
   height: 100%;
   justify-content: center;
   max-width: bp.$lg;
-  overflow-y: auto;
 }
 </style>
