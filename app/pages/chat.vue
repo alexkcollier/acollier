@@ -216,8 +216,12 @@ watch(
   flex-direction: column;
   margin: 0 auto;
   max-width: 40rem;
-  padding: var(--space-24) var(--space-4) var(--space-8);
+  padding: var(--space-12) var(--space-4) var(--space-8);
   width: 100%;
+
+  @include bp.above('sm') {
+    padding-block-start: var(--space-24);
+  }
 
   &--active {
     flex: 1;
@@ -332,15 +336,23 @@ watch(
 
     &-label {
       color: var(--color-text-muted);
-      margin-block: var(--space-24) var(--space-4);
+      margin-block: var(--space-8) var(--space-4);
       text-align: center;
+
+      @include bp.above('sm') {
+        margin-block-start: var(--space-24);
+      }
     }
 
     &-list {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: var(--space-8);
+      gap: var(--space-4);
+
+      @include bp.above('sm') {
+        gap: var(--space-8);
+      }
     }
   }
 }
@@ -351,5 +363,9 @@ watch(
   height: 100%;
   justify-content: center;
   max-width: bp.$lg;
+
+  @include bp.below('md') {
+    justify-content: flex-start;
+  }
 }
 </style>
