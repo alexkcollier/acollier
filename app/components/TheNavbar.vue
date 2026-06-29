@@ -134,6 +134,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   position: fixed;
   right: 0;
   top: 0;
+  view-transition-name: navbar;
   z-index: 3;
 
   &__button-wrapper {

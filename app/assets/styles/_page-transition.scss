@@ -36,8 +36,14 @@
   animation: none;
 }
 
+/* keep navbar above the chat morph layer during transitions */
+::view-transition-group(navbar) {
+  z-index: 2;
+}
+
 /* chat morph: position/size animation between home chat and sidebar */
 ::view-transition-group(chat) {
   animation-duration: 250ms;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
