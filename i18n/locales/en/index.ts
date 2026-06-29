@@ -72,5 +72,6 @@ export default {
     thinking: 'Thinking…',
     you: 'You',
     assistant: 'Assistant',
+    featuredWork: 'Or, jump straight to some of my work:',
   },
 };

@@ -66,7 +66,7 @@ const { data: featuredWork } = await useAsyncData(
                 :title="post.title"
                 :description="post.description"
                 :href="localePath(post.path)"
-                compact
+                variant="compact"
               />
             </div>
           </div>

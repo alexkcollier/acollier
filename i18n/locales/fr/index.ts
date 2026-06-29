@@ -81,5 +81,6 @@ export default <LangSchema>{
     thinking: 'En train de réfléchir…',
     you: 'Tu',
     assistant: 'Assistant',
+    featuredWork: 'Ou, vas directement à mes projets :',
   },
 };

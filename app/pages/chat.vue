@@ -1,16 +1,39 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, definePageMeta, useI18n } from '#imports';
+import {
+  ref,
+  watch,
+  nextTick,
+  definePageMeta,
+  useI18n,
+  useAsyncData,
+  queryCollection,
+  useLocalePath,
+} from '#imports';
+import type { Collections } from '@nuxt/content';
 import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
 import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
+import WorkListItem from '~/components/WorkListItem.vue';
 
 definePageMeta({
   layout: 'no-page-spacing',
 });
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
+
+const { data: featuredWork } = await useAsyncData(
+  `chat-featured-work-${locale.value}`,
+  () =>
+    queryCollection(`work_${locale.value}` as keyof Collections)
+      .where('featured', '=', true)
+      .order('order', 'ASC')
+      .limit(3)
+      .all(),
+  { watch: [locale] },
+);
 
 const formEl = ref<InstanceType<typeof ChatForm> | null>(null);
 const messagesEl = ref<HTMLElement | null>(null);
@@ -93,89 +116,118 @@ watch(
 </script>
 
 <template>
-  <main
-    :class="['chat', { 'chat--active': messages.length }]"
-    :aria-label="t('chat.formLabel')"
-  >
-    <Transition name="chat__greeting">
-      <div
-        v-if="!messages.length"
-        class="chat__greeting"
-      >
-        <p>{{ t('chat.greeting') }}</p>
-      </div>
-    </Transition>
-
-    <Transition name="chat__messages">
-      <div
-        v-if="messages.length"
-        class="chat__messages"
-      >
+  <div class="container chat-container">
+    <main
+      :class="['chat', { 'chat--active': messages.length }]"
+      :aria-label="t('chat.formLabel')"
+    >
+      <Transition name="chat__greeting">
         <div
-          ref="messagesEl"
-          class="chat__messages-body"
-          role="log"
+          v-if="!messages.length"
+          class="chat__greeting"
         >
-          <ChatMessage
-            v-for="(msg, i) in messages"
-            :key="i"
-            :role="msg.role"
-            :content="msg.content"
-          />
+          <p>{{ t('chat.greeting') }}</p>
+        </div>
+      </Transition>
 
-          <AssistantPip
-            :paused="!isBusy(status)"
-            :thinking="status === 'connecting'"
+      <Transition name="chat__messages">
+        <div
+          v-if="messages.length"
+          class="chat__messages"
+        >
+          <div
+            ref="messagesEl"
+            class="chat__messages-body"
+            role="log"
+          >
+            <ChatMessage
+              v-for="(msg, i) in messages"
+              :key="i"
+              :role="msg.role"
+              :content="msg.content"
+            />
+
+            <AssistantPip
+              :paused="!isBusy(status)"
+              :thinking="status === 'connecting'"
+            />
+          </div>
+
+          <Transition name="chat__scroll-btn">
+            <button
+              v-if="isScrolledUp"
+              class="chat__scroll-btn"
+              :aria-label="t('chat.scrollToEnd')"
+              @click="scrollToEnd"
+            >
+              <Icon name="lucide:arrow-down" />
+            </button>
+          </Transition>
+        </div>
+      </Transition>
+
+      <p
+        v-if="error"
+        class="chat__error"
+        role="alert"
+      >
+        {{ error }}
+      </p>
+
+      <ChatForm
+        ref="formEl"
+        :status="status"
+        @submit="sendMessage"
+        @abort="abort"
+      />
+    </main>
+
+    <Transition name="chat__suggestions">
+      <div
+        v-if="!messages.length && featuredWork?.length"
+        class="chat__suggestions"
+      >
+        <p class="chat__suggestions-label">{{ t('chat.featuredWork') }}</p>
+
+        <div class="chat__suggestions-list">
+          <WorkListItem
+            v-for="(post, index) in featuredWork"
+            :key="post.id"
+            :index="index"
+            :title="post.title"
+            :featureImage="post.featureImage"
+            :description="post.description"
+            :href="localePath(post.path)"
+            variant="mini"
           />
         </div>
-
-        <Transition name="chat__scroll-btn">
-          <button
-            v-if="isScrolledUp"
-            class="chat__scroll-btn"
-            :aria-label="t('chat.scrollToEnd')"
-            @click="scrollToEnd"
-          >
-            <Icon name="lucide:arrow-down" />
-          </button>
-        </Transition>
       </div>
     </Transition>
-
-    <p
-      v-if="error"
-      class="chat__error"
-      role="alert"
-    >
-      {{ error }}
-    </p>
-
-    <ChatForm
-      ref="formEl"
-      :status="status"
-      @submit="sendMessage"
-      @abort="abort"
-    />
-  </main>
+  </div>
 </template>
 
 <style lang="scss">
+@use '~/assets/styles/utils/breakpoints' as bp;
+
 .chat {
   --transition-duration: 200ms;
 
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center;
   margin: 0 auto;
   max-width: 40rem;
   padding: var(--space-24) var(--space-4) var(--space-8);
+  width: 100%;
 
   &--active {
+    flex: 1;
     justify-content: flex-start;
+    min-height: 0;
   }
 
   &__greeting {
+    font-size: var(--text-4xl);
+    font-weight: 600;
     text-align: center;
 
     &-enter-active,
@@ -255,5 +307,44 @@ watch(
     color: var(--color-text-accent);
     font-size: var(--text-sm);
   }
+
+  &__suggestions {
+    padding-inline: var(--page-side-padding);
+
+    &-enter-active,
+    &-leave-active {
+      transition:
+        opacity var(--transition-duration) ease,
+        translate var(--transition-duration) ease;
+    }
+
+    &-enter-from,
+    &-leave-to {
+      opacity: 0;
+      translate: 0 calc(-1 * var(--space-2));
+    }
+
+    &-label {
+      color: var(--color-text-muted);
+      margin-block: var(--space-24) var(--space-4);
+      text-align: center;
+    }
+
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-8);
+    }
+  }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  max-width: bp.$lg;
+  overflow-y: auto;
 }
 </style>
