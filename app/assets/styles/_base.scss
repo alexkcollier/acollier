@@ -21,7 +21,7 @@ body,
 }
 
 ::selection {
-  background: rgb(from var(--color-bg-primary) r g b / 30%);
+  background: rgb(from var(--color-text-muted) r g b / 20%);
 }
 
 /* Headings */
@@ -69,4 +69,13 @@ button {
 
 label {
   font-family: var(--font-mono);
+}
+
+.sr-only {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

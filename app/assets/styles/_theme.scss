@@ -81,6 +81,9 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
+  --space-20: 5rem;
+  --space-21: 5.25rem;
+  --space-22: 5.5rem;
   --space-24: 6rem;
   --space-36: 9rem;
   --space-48: 12rem;
@@ -122,8 +125,8 @@
   // inputs
   --color-input-bg: var(--stone-100);
   --color-input-bg-focus: var(--stone-50);
-  --color-input-border: var(--stone-300);
-  --color-input-border-focus: var(--orange-500);
+  --color-input-border: var(--stone-200);
+  --color-input-border-focus: var(--stone-300);
   --color-input-text: var(--stone-900);
   --color-input-placeholder: var(--stone-500);
 }
@@ -156,7 +159,7 @@
   --color-input-bg: var(--stone-700);
   --color-input-bg-focus: var(--stone-600);
   --color-input-border: var(--stone-600);
-  --color-input-border-focus: var(--orange-200);
+  --color-input-border-focus: var(--stone-500);
   --color-input-text: var(--stone-50);
   --color-input-placeholder: var(--stone-400);
 }

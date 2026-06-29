@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     enabled: true,
   },
   app: {
+    layoutTransition: { name: 'fade', mode: 'out-in' },
+    pageTransition: { name: 'fade', mode: 'out-in' },
     head: {
       meta: [
         { charset: 'utf-8' },
@@ -54,7 +56,16 @@ export default defineNuxtConfig({
     'sanitize.css/reduce-motion.css',
     '~/assets/styles/styles.scss',
   ],
-  modules: ['@nuxt/content', '@nuxtjs/i18n', '@nuxt/eslint', 'nuxt-svgo', '@nuxt/image', '@nuxt/icon', 'nuxt-gtag', '@netlify/nuxt'],
+  modules: [
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    '@nuxt/eslint',
+    'nuxt-svgo',
+    '@nuxt/image',
+    '@nuxt/icon',
+    'nuxt-gtag',
+    '@netlify/nuxt',
+  ],
   typescript: {
     typeCheck: true,
   },

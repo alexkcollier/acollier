@@ -23,28 +23,28 @@
 
 /* TODO?: implement a grid system? */
 .two-column {
-  align-items: flex-start;
-  display: flex;
-  justify-content: space-between;
+  display: block;
 
-  &__wide-col {
-    flex: 1 0 auto;
-    max-width: math.div(8, 12) * 100%;
-  }
-
+  &__wide-col,
   &__narrow-col {
-    flex: 1 0 auto;
-    margin-left: 1rem;
-    max-width: math.div(3, 12) * 100%;
+    min-width: 0;
   }
 
-  @include bp.below('md') {
-    display: block;
+  @include bp.above('xl') {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
 
-    &__wide-col,
+    &__wide-col {
+      flex: 1 1 0;
+      max-width: math.div(8, 12) * 100%;
+    }
+
     &__narrow-col {
-      margin: 0;
-      max-width: unset;
+      flex: 0 0 auto;
+      margin-left: 1rem;
+      max-width: math.div(3, 12) * 100%;
+      width: math.div(3, 12) * 100%;
     }
   }
 }
@@ -56,7 +56,7 @@
   &__section {
     margin-top: 4rem;
 
-    @include bp.above('md') {
+    @include bp.above('xl') {
       &:first-child {
         margin-top: 0;
       }

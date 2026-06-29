@@ -8,7 +8,7 @@ const props = defineProps<{
   href: string;
   featureImage?: string;
   tags?: string[];
-  compact?: boolean;
+  variant?: 'compact' | 'mini';
 }>();
 
 const formattedIndex = computed(() => String(props.index + 1).padStart(2, '0'));
@@ -24,12 +24,12 @@ const formattedDescription = computed(() => {
 <template>
   <NuxtLink
     :to="href"
-    :class="['work-list-item', { 'work-list-item--compact': compact }]"
+    :class="['work-list-item', variant && `work-list-item--${variant}`]"
   >
     <span class="work-list-item__index">{{ formattedIndex }}</span>
 
     <NuxtImg
-      v-if="!compact"
+      v-if="!variant"
       :src="featureImage"
       class="work-list-item__image"
       :alt="formattedDescription"
@@ -132,6 +132,12 @@ const formattedDescription = computed(() => {
     display: none;
   }
 
+  &:is(#{&}--compact, #{&}--mini) {
+    .work-list-item__content {
+      flex: 1;
+    }
+  }
+
   &--compact {
     align-items: flex-start;
     background: transparent;
@@ -142,10 +148,6 @@ const formattedDescription = computed(() => {
     .work-list-item__index {
       flex: none;
       padding-top: 3px;
-    }
-
-    .work-list-item__content {
-      flex: 1;
     }
 
     .work-list-item__title {
@@ -163,11 +165,45 @@ const formattedDescription = computed(() => {
     }
   }
 
-  @include bp.above('md') {
-    align-items: center;
+  &--mini {
+    align-items: flex-start;
+    flex: 1 1 240px;
     flex-direction: row;
-    gap: var(--space-8);
-    padding: var(--space-8) var(--space-1);
+    gap: var(--space-2);
+    max-width: 400px;
+    padding: var(--space-3) 0;
+
+    &:hover {
+      transform: translateY(calc(-1 * var(--space-1)));
+    }
+
+    .work-list-item__index {
+      display: none;
+    }
+
+    .work-list-item__title {
+      font-size: var(--text-sm);
+      letter-spacing: -0.01em;
+    }
+
+    .work-list-item__description {
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      font-size: var(--text-xs);
+      line-clamp: 2;
+      margin-top: var(--space-1);
+      overflow: hidden;
+    }
+  }
+
+  @include bp.above('md') {
+    &:not(#{&}--mini) {
+      align-items: center;
+      flex-direction: row;
+      gap: var(--space-8);
+      padding: var(--space-8) var(--space-1);
+    }
 
     &__index {
       align-self: flex-start;
@@ -178,13 +214,21 @@ const formattedDescription = computed(() => {
     &__image {
       flex: none;
       width: 270px;
+
+      @include bp.above('lg') {
+        display: none;
+      }
+
+      @include bp.above('xl') {
+        display: block;
+      }
     }
 
     &__content {
       flex: 1;
     }
 
-    &__arrow {
+    &:not(#{&}--mini) &__arrow {
       align-self: flex-start;
       color: var(--color-text-primary);
       display: block;

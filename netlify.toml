@@ -3,8 +3,11 @@
 command = "npm run dev"
 
 [build]
-command = "npm run generate"
+command = "node scripts/fetch-prompts.js && npm run generate"
 publish = "dist"
 
 [functions]
 directory = "functions"
+
+[functions."chat"]
+timeout = 30

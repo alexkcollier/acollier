@@ -20,7 +20,6 @@ export default <LangSchema>{
     light: 'clair',
   },
   navigation: {
-    home: 'AC',
     about: 'À propos',
     work: 'Projets',
     contact: 'Contact',
@@ -28,9 +27,6 @@ export default <LangSchema>{
   home: {
     tag: "Moi, c'est Alex. Je donne forme aux expériences {0}.",
     experienceType: 'réfléchies',
-    featuredWork: 'Projets en vedette',
-    description:
-      "Ancré à la croisée du design et du développement frontend avec une solide expérience dans la conception et la mise en production d'interfaces pour des produits d'IA—incluant les interactions conversationnelles et fondées sur des LLM.",
   },
   about: {
     metaTitle: 'À propos',
@@ -69,5 +65,18 @@ export default <LangSchema>{
     tags: 'Tags',
     builtWith: 'Réalisé avec',
     links: 'Liens',
+  },
+  chat: {
+    formLabel: 'Clavardage',
+    placeholder: "Qu'est-ce que tu aimerais savoir ?",
+    send: 'Envoyer',
+    stop: 'Arrêter',
+    scrollToEnd: 'Défiler vers le bas',
+    thinking: 'En train de réfléchir…',
+    you: 'Tu',
+    assistant: 'Assistant',
+    featuredWork: 'Ou, vas directement à mes projets :',
+    sidebarCollapse: 'Réduire la barre latérale',
+    sidebarExpand: 'Développer la barre latérale',
   },
 };

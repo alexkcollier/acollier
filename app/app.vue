@@ -8,7 +8,6 @@
 
 <script setup>
 import { useHead } from '#imports';
-import TheNavbar from '~/components/TheNavbar.vue';
 
 useHead({
   titleTemplate: (chunk) =>
