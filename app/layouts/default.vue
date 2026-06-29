@@ -4,11 +4,11 @@
     <TheNavbar />
 
     <div class="default-layout__body">
-      <ChatSidebar class="default-layout__sidebar" />
-
       <div class="content">
         <slot />
       </div>
+
+      <ChatSidebar class="default-layout__sidebar" />
     </div>
   </div>
 </template>

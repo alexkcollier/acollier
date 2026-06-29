@@ -41,7 +41,7 @@ watch(
       @click="isCollapsed = !isCollapsed"
     >
       <Icon
-        :name="isCollapsed ? 'lucide:chevron-right' : 'lucide:chevron-left'"
+        :name="isCollapsed ? 'lucide:chevron-left' : 'lucide:chevron-right'"
       />
     </button>
 
@@ -106,7 +106,7 @@ watch(
 
   --transition-duration: 200ms;
 
-  border-right: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   height: 100dvh;
@@ -116,7 +116,7 @@ watch(
   top: 0;
   transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
   view-transition-name: chat;
-  width: 20rem;
+  width: 30rem;
 
   &__toggle {
     background: var(--color-bg);
@@ -203,7 +203,8 @@ watch(
 
     #{$parent}__toggle {
       border-color: transparent;
-      left: var(--space-2);
+      left: unset;
+      right: var(--space-2);
     }
 
     #{$parent}__body {
