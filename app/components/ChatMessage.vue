@@ -31,6 +31,7 @@ const html = computed(() =>
 
 <style lang="scss">
 .chat-message {
+  animation: chat-message-enter 200ms ease both;
   border-radius: var(--radius-md);
 
   &--user {
@@ -60,6 +61,13 @@ const html = computed(() =>
     > *:last-child {
       margin-block-end: 0;
     }
+  }
+}
+
+@keyframes chat-message-enter {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-2);
   }
 }
 </style>
