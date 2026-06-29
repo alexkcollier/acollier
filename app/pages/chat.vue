@@ -126,7 +126,16 @@ watch(
           v-if="!messages.length"
           class="chat__greeting"
         >
-          <p>{{ t('chat.greeting') }}</p>
+          <i18n-t
+            keypath="home.tag"
+            scope="global"
+            tag="p"
+            class="chat__greeting-tag"
+          >
+            <span class="chat__greeting-highlight">{{
+              t('home.experienceType')
+            }}</span>
+          </i18n-t>
         </div>
       </Transition>
 
@@ -211,6 +220,15 @@ watch(
 
 .chat {
   --transition-duration: 200ms;
+  --glow-opacity: 16%;
+
+  :root[data-theme='dark'] & {
+    --glow-opacity: 32%;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --glow-opacity: 32%;
+  }
 
   display: flex;
   flex-direction: column;
@@ -231,14 +249,29 @@ watch(
 
   &:not(#{&}--active) .chat-form {
     filter: drop-shadow(
-      0 16px 40px color-mix(in srgb, var(--color-bg-primary) 32%, transparent)
+      0 16px 40px color-mix(in srgb, var(--color-bg-primary) var(--glow-opacity), transparent)
     );
   }
 
   &__greeting {
-    font-size: var(--text-4xl);
-    font-weight: 600;
+    margin-block-end: var(--space-8);
     text-align: center;
+
+    &-tag {
+      font-size: var(--text-3xl);
+      font-weight: 700;
+      letter-spacing: -0.016em;
+      line-height: var(--leading-snug);
+      margin: 0 0 var(--space-3);
+
+      @include bp.above('sm') {
+        font-size: var(--text-4xl);
+      }
+    }
+
+    &-highlight {
+      color: var(--color-text-primary);
+    }
 
     &-enter-active,
     &-leave-active {
