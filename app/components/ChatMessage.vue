@@ -6,7 +6,6 @@ import DOMPurify from 'dompurify';
 const props = defineProps<{
   role: ChatMessage['role'];
   content: string;
-  loading?: boolean;
 }>();
 
 const html = computed(() =>
@@ -18,11 +17,7 @@ const html = computed(() =>
 
 <template>
   <div
-    :class="[
-      'chat-message',
-      `chat-message--${role}`,
-      { 'chat-message--loading': loading },
-    ]"
+    :class="['chat-message', `chat-message--${role}`]"
   >
     <div
       v-if="html !== null"
@@ -37,23 +32,23 @@ const html = computed(() =>
 <style lang="scss">
 .chat-message {
   border-radius: var(--radius-md);
-  max-width: 90%;
-  padding: var(--space-2) var(--space-3);
 
   &--user {
     align-self: flex-end;
     background: var(--color-bg-subtle);
+    padding: var(--space-2) var(--space-4);
+    max-width: 90%;
   }
 
   &--assistant {
     align-self: flex-start;
   }
 
-  &--loading {
-    opacity: 0.6;
-  }
-
   &__content {
+    p {
+      padding-inline-end: var(--space-8);
+    }
+
     > * + * {
       margin-block-start: var(--space-2);
     }

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, nextTick, definePageMeta } from '#imports';
+import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
+import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
 
@@ -58,11 +60,9 @@ watch(
           :content="msg.content"
         />
 
-        <ChatMessage
-          v-if="status === 'connecting'"
-          role="assistant"
-          content="..."
-          loading
+        <AssistantPip
+          :paused="!isBusy(status)"
+          :thinking="status === 'connecting'"
         />
       </div>
     </Transition>
@@ -122,7 +122,7 @@ watch(
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-8);
     min-height: 0;
     overflow-y: auto;
 
