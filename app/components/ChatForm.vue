@@ -34,7 +34,9 @@ function handleAbort() {
 }
 
 function abortOnEsc(e: KeyboardEvent) {
-  if (e.key === 'Escape' && isBusy(props.status)) handleAbort();
+  if (e.key === 'Escape' && isBusy(props.status)) {
+    handleAbort();
+  }
 }
 
 onMounted(() => document.addEventListener('keydown', abortOnEsc));
@@ -65,7 +67,7 @@ watch(
     <textarea
       v-model="input"
       class="chat-form__input"
-      placeholder="Message"
+      placeholder="What would you like to know?"
       rows="1"
       :disabled="isBusy(status)"
       @keydown.enter.exact.prevent="handleSend"
@@ -73,8 +75,7 @@ watch(
 
     <div class="chat-form__actions">
       <span class="chat-form__hint">
-        <template v-if="isBusy(status)"><kbd>Esc</kbd> to cancel</template>
-        <template v-else><kbd>Shift + Enter</kbd> for new line</template>
+        <kbd v-if="isBusy(status)">Esc</kbd>
       </span>
 
       <button
@@ -122,7 +123,7 @@ watch(
     display: flex;
     gap: var(--space-2);
     justify-content: flex-end;
-    padding-block-start: var(--space-2);
+    margin-block-start: var(--space-2);
   }
 
   &__hint {
@@ -143,7 +144,7 @@ watch(
     border: none;
     field-sizing: content;
     max-height: 24rem;
-    min-height: 3lh;
+    min-height: 1lh;
     overflow-y: auto;
     resize: none;
     width: 100%;

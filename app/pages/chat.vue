@@ -44,7 +44,7 @@ watch(
         v-if="!messages.length"
         class="chat__greeting"
       >
-        <p>Hi! Ask me anything about Alex's work and experience.</p>
+        <p>Alex Collier is a UX designer and developer in Ottawa, Canada.</p>
       </div>
     </Transition>
 
