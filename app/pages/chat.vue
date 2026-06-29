@@ -11,13 +11,33 @@ definePageMeta({
 });
 
 const formEl = ref<InstanceType<typeof ChatForm> | null>(null);
+const messagesEl = ref<HTMLElement | null>(null);
 const { messages, status, error, sendMessage, abort } = useChat();
 
 watch(
   () => messages.value.length,
   async (newLen, oldLen) => {
-    if (oldLen !== 0 || newLen === 0 || !formEl.value) return;
+    // Scroll to latest user message on message send
+    if (
+      newLen > oldLen &&
+      messages.value.at(-1)?.role === 'user' &&
+      messagesEl.value
+    ) {
+      await nextTick();
 
+      const userMsgs = messagesEl.value.querySelectorAll('.chat-message--user');
+
+      userMsgs[userMsgs.length - 1]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+
+    if (oldLen !== 0 || newLen === 0 || !formEl.value) {
+      return;
+    }
+
+    // animate ChatForm moving to bottom on first message
     const el = formEl.value.$el as HTMLElement;
     const before = el.getBoundingClientRect();
 
@@ -51,6 +71,7 @@ watch(
     <Transition name="chat__messages">
       <div
         v-if="messages.length"
+        ref="messagesEl"
         class="chat__messages"
       >
         <ChatMessage
@@ -90,7 +111,6 @@ watch(
 
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
   height: 100%;
   justify-content: center;
   margin: 0 auto;
@@ -125,6 +145,8 @@ watch(
     gap: var(--space-8);
     min-height: 0;
     overflow-y: auto;
+    padding-block-end: var(--space-36);
+    padding-inline: var(--space-4);
 
     &-enter-active {
       transition: opacity var(--transition-duration) ease;
