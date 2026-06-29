@@ -21,7 +21,7 @@ body,
 }
 
 ::selection {
-  background: rgb(from var(--color-bg-primary) r g b / 30%);
+  background: rgb(from var(--color-text-muted) r g b / 20%);
 }
 
 /* Headings */
