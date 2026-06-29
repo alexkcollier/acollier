@@ -70,4 +70,16 @@ export default <LangSchema>{
     builtWith: 'Réalisé avec',
     links: 'Liens',
   },
+  chat: {
+    greeting:
+      'Alex Collier est un designer UX et développeur à Ottawa, Canada.',
+    formLabel: 'Clavardage',
+    placeholder: "Qu'est-ce que tu aimerais savoir ?",
+    send: 'Envoyer',
+    stop: 'Arrêter',
+    scrollToEnd: 'Défiler vers le bas',
+    thinking: 'En train de réfléchir…',
+    you: 'Tu',
+    assistant: 'Assistant',
+  },
 };

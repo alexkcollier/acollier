@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { useI18n } from '#imports';
+
 defineProps<{ paused?: boolean; thinking?: boolean }>();
+
+const { t } = useI18n();
 </script>
 
 <template>
-  <div :class="['assistant-pip', { 'assistant-pip--paused': paused }]">
+  <div
+    :class="['assistant-pip', { 'assistant-pip--paused': paused }]"
+    role="status"
+  >
     <span
       class="assistant-pip__pulse"
       aria-hidden="true"
@@ -16,7 +23,7 @@ defineProps<{ paused?: boolean; thinking?: boolean }>();
       v-if="thinking"
       class="assistant-pip__label"
     >
-      Thinking…
+      {{ t('chat.thinking') }}
     </span>
   </div>
 </template>

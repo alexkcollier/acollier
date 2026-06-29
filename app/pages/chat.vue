@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, definePageMeta } from '#imports';
+import { ref, watch, nextTick, definePageMeta, useI18n } from '#imports';
 import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
 import AssistantPip from '~/components/AssistantPip.vue';
@@ -9,6 +9,8 @@ import ChatForm from '~/components/ChatForm.vue';
 definePageMeta({
   layout: 'no-page-spacing',
 });
+
+const { t } = useI18n();
 
 const formEl = ref<InstanceType<typeof ChatForm> | null>(null);
 const messagesEl = ref<HTMLElement | null>(null);
@@ -91,13 +93,16 @@ watch(
 </script>
 
 <template>
-  <main :class="['chat', { 'chat--active': messages.length }]">
+  <main
+    :class="['chat', { 'chat--active': messages.length }]"
+    :aria-label="t('chat.formLabel')"
+  >
     <Transition name="chat__greeting">
       <div
         v-if="!messages.length"
         class="chat__greeting"
       >
-        <p>Alex Collier is a UX designer and developer in Ottawa, Canada.</p>
+        <p>{{ t('chat.greeting') }}</p>
       </div>
     </Transition>
 
@@ -109,6 +114,7 @@ watch(
         <div
           ref="messagesEl"
           class="chat__messages-body"
+          role="log"
         >
           <ChatMessage
             v-for="(msg, i) in messages"
@@ -127,7 +133,7 @@ watch(
           <button
             v-if="isScrolledUp"
             class="chat__scroll-btn"
-            aria-label="Scroll to end"
+            :aria-label="t('chat.scrollToEnd')"
             @click="scrollToEnd"
           >
             <Icon name="lucide:arrow-down" />

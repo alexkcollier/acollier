@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, onUnmounted } from '#imports';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  useI18n,
+} from '#imports';
 import { type StreamStatus, isBusy } from '~/utils/stream';
 
 const props = defineProps<{
@@ -11,6 +18,8 @@ const emit = defineEmits<{
   /** Abort event for triggering AbortController */
   abort: [];
 }>();
+
+const { t } = useI18n();
 
 const input = ref('');
 const lastSentContent = ref('');
@@ -75,16 +84,18 @@ function handleGlobalKeydown(e: KeyboardEvent) {
 onMounted(() => document.addEventListener('keydown', handleGlobalKeydown));
 onUnmounted(() => document.removeEventListener('keydown', handleGlobalKeydown));
 
-// Resets textarea value if message does not succeed
+// Resets textarea value if message does not succeed; returns focus after stream ends
 watch(
   () => props.status,
-  (newStatus, oldStatus) => {
+  async (newStatus, oldStatus) => {
     if (!isBusy(oldStatus)) {
       return;
     }
 
     if (newStatus === 'idle' || newStatus === 'error') {
       input.value = lastSentContent.value;
+      await nextTick();
+      textareaRef.value?.focus();
     }
 
     lastSentContent.value = '';
@@ -95,13 +106,21 @@ watch(
 <template>
   <form
     class="chat-form"
+    :aria-label="t('chat.formLabel')"
     @submit.prevent="handleSend"
   >
+    <label
+      class="sr-only"
+      for="chat-input"
+      >{{ t('chat.formLabel') }}</label
+    >
+
     <textarea
+      id="chat-input"
       ref="textareaRef"
       v-model="input"
       class="chat-form__input"
-      placeholder="What would you like to know?"
+      :placeholder="t('chat.placeholder')"
       rows="1"
       :disabled="isBusy(status)"
       @keydown.enter.exact.prevent="handleSend"
@@ -116,7 +135,7 @@ watch(
         v-if="isBusy(status)"
         class="chat-form__submit"
         type="button"
-        aria-label="Stop"
+        :aria-label="t('chat.stop')"
         @click="handleAbort"
       >
         <Icon name="lucide:octagon-pause" />
@@ -126,7 +145,7 @@ watch(
         v-else
         class="chat-form__submit"
         type="submit"
-        aria-label="Send"
+        :aria-label="t('chat.send')"
         :disabled="!input.trim()"
       >
         <Icon name="lucide:forward" />

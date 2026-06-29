@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, type ChatMessage } from '#imports';
+import { computed, useI18n, type ChatMessage } from '#imports';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 
@@ -7,6 +7,8 @@ const props = defineProps<{
   role: ChatMessage['role'];
   content: string;
 }>();
+
+const { t } = useI18n();
 
 const html = computed(() =>
   props.role === 'assistant'
@@ -18,7 +20,12 @@ const html = computed(() =>
 <template>
   <div
     :class="['chat-message', `chat-message--${role}`]"
+    role="article"
   >
+    <span class="sr-only">{{
+      role === 'user' ? t('chat.you') : t('chat.assistant')
+    }}</span>
+
     <div
       v-if="html !== null"
       class="chat-message__content"

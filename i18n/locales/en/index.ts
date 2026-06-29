@@ -62,4 +62,15 @@ export default {
     builtWith: 'Built with',
     links: 'Links',
   },
+  chat: {
+    greeting: 'Alex Collier is a UX designer and developer in Ottawa, Canada.',
+    formLabel: 'Chat',
+    placeholder: 'What would you like to know?',
+    send: 'Send',
+    stop: 'Stop',
+    scrollToEnd: 'Scroll to end',
+    thinking: 'Thinking…',
+    you: 'You',
+    assistant: 'Assistant',
+  },
 };
