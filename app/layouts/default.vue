@@ -1,8 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="default-layout">
-    <TheNavbar />
-
     <div class="default-layout__body">
       <div class="content">
         <slot />
@@ -14,12 +12,10 @@
 </template>
 
 <script>
-import TheNavbar from '~/components/TheNavbar.vue';
 import ChatSidebar from '~/components/ChatSidebar.vue';
 
 export default {
   components: {
-    TheNavbar,
     ChatSidebar,
   },
 };

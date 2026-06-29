@@ -1,22 +1,11 @@
 <template>
   <div class="no-spacing-layout">
-    <TheNavbar />
-
     <div class="content">
       <slot />
     </div>
   </div>
 </template>
 
-<script>
-import TheNavbar from '~/components/TheNavbar.vue';
-
-export default {
-  components: {
-    TheNavbar,
-  },
-};
-</script>
 
 <style scoped>
 .no-spacing-layout {

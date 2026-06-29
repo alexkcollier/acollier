@@ -102,7 +102,6 @@ watch(
   position: sticky;
   top: 0;
   transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-  view-transition-name: chat;
   width: 30rem;
 
   &__toggle {

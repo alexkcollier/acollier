@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     enabled: true,
   },
   app: {
+    layoutTransition: { name: 'fade', mode: 'out-in' },
+    pageTransition: { name: 'fade', mode: 'out-in' },
     head: {
       meta: [
         { charset: 'utf-8' },
@@ -105,7 +107,6 @@ export default defineNuxtConfig({
     enabled: process.env.NODE_ENV === 'production',
   },
   experimental: {
-    viewTransition: true,
     defaults: {
       nuxtLink: {
         trailingSlash: 'append',
