@@ -6,7 +6,6 @@
   </div>
 </template>
 
-
 <style scoped>
 .no-spacing-layout {
   height: 100%;

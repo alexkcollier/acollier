@@ -13,18 +13,30 @@ import {
 import type { Collections } from '@nuxt/content';
 
 const progress = ref(0);
+let contentEl: Element | null = null;
 
 function updateProgress() {
-  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-  progress.value = scrollable > 0 ? window.scrollY / scrollable : 0;
+  if (contentEl && contentEl.scrollHeight > contentEl.clientHeight) {
+    const scrollable = contentEl.scrollHeight - contentEl.clientHeight;
+    progress.value = scrollable > 0 ? contentEl.scrollTop / scrollable : 0;
+  } else {
+    const scrollable =
+      document.documentElement.scrollHeight - window.innerHeight;
+    progress.value = scrollable > 0 ? window.scrollY / scrollable : 0;
+  }
 }
 
 onMounted(() => {
+  contentEl = document.querySelector('.content');
+  contentEl?.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 });
 
-onUnmounted(() => window.removeEventListener('scroll', updateProgress));
+onUnmounted(() => {
+  contentEl?.removeEventListener('scroll', updateProgress);
+  window.removeEventListener('scroll', updateProgress);
+});
 
 const route = useRoute();
 const { locale } = useI18n();

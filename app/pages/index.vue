@@ -204,7 +204,7 @@ watch(
             :key="post.id"
             :index="index"
             :title="post.title"
-            :featureImage="post.featureImage"
+            :feature-image="post.featureImage"
             :description="post.description"
             :href="localePath(post.path)"
             variant="mini"
@@ -249,7 +249,12 @@ watch(
 
   &:not(#{&}--active) .chat-form {
     filter: drop-shadow(
-      0 16px 40px color-mix(in srgb, var(--color-bg-primary) var(--glow-opacity), transparent)
+      0 16px 40px
+        color-mix(
+          in srgb,
+          var(--color-bg-primary) var(--glow-opacity),
+          transparent
+        )
     );
   }
 
