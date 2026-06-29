@@ -400,9 +400,11 @@ watch(
   flex-direction: column;
   height: 100%;
   max-width: bp.$lg;
+  padding-top: var(--space-12);
 
   @include bp.above('md') {
     justify-content: center;
+    padding-top: 0;
   }
 }
 </style>
