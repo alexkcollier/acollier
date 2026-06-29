@@ -68,5 +68,7 @@ export default {
     you: 'You',
     assistant: 'Assistant',
     featuredWork: 'Or, jump straight to some of my work:',
+    sidebarCollapse: 'Collapse sidebar',
+    sidebarExpand: 'Expand sidebar',
   },
 };

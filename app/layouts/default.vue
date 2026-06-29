@@ -41,7 +41,6 @@ export default {
     @include bp.above('lg') {
       display: flex;
       flex-shrink: 0;
-      width: 20rem;
     }
   }
 

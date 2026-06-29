@@ -76,5 +76,7 @@ export default <LangSchema>{
     you: 'Tu',
     assistant: 'Assistant',
     featuredWork: 'Ou, vas directement à mes projets :',
+    sidebarCollapse: 'Réduire la barre latérale',
+    sidebarExpand: 'Développer la barre latérale',
   },
 };
