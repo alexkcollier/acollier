@@ -1,4 +1,4 @@
-import { ref, type Ref } from '#imports';
+import { ref, useRoute, type Ref } from '#imports';
 import { type StreamStatus, isBusy, streamChunks } from '~/utils/stream';
 
 export interface ChatMessage {
@@ -41,7 +41,7 @@ function abort() {
   abortController.value?.abort();
 }
 
-async function sendMessage(content: string) {
+async function sendMessage(content: string, currentPath?: string) {
   if (!content || isBusy(status.value)) {
     return;
   }
@@ -59,6 +59,7 @@ async function sendMessage(content: string) {
       body: JSON.stringify({
         messages: messages.value,
         interactionId: interactionId.value,
+        currentPath,
       }),
       signal: abortController.value.signal,
     });
@@ -100,5 +101,13 @@ async function sendMessage(content: string) {
  * Exposes reactive state alongside `sendMessage` and `abort` to drive the chat UI.
  */
 export function useChat(): UseChatReturn {
-  return { messages, status, error, sendMessage, abort };
+  const route = useRoute();
+
+  return {
+    messages,
+    status,
+    error,
+    abort,
+    sendMessage: (content) => sendMessage(content, route.path),
+  };
 }

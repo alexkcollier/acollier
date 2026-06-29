@@ -17,6 +17,7 @@ interface Message {
 interface RequestBody {
   messages: Message[];
   interactionId?: string;
+  currentPath?: string;
 }
 
 export default async (req: Request) => {
@@ -30,9 +31,13 @@ export default async (req: Request) => {
     return new Response(null, { status: 400 });
   }
 
+  const contextualSystemPrompt = body.currentPath
+    ? `${systemPrompt}\n\n---\nThe user is currently viewing: ${body.currentPath}`
+    : systemPrompt;
+
   const { textStream, interactionId } = await createInteraction({
     messages: body.messages,
-    systemInstruction: systemPrompt,
+    systemInstruction: contextualSystemPrompt,
     previousInteractionId: body.interactionId,
     signal: req.signal,
   });
