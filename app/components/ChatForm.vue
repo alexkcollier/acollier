@@ -14,6 +14,7 @@ const emit = defineEmits<{
 
 const input = ref('');
 const lastSentContent = ref('');
+const textareaRef = ref<HTMLTextAreaElement | null>(null);
 
 function handleSend() {
   const content = input.value.trim();
@@ -33,14 +34,46 @@ function handleAbort() {
   emit('abort');
 }
 
-function abortOnEsc(e: KeyboardEvent) {
+/**
+ * Focuses the chat form if user starts typing.
+ * If request is in flight, listens for esc to cancel
+ */
+function handleGlobalKeydown(e: KeyboardEvent) {
   if (e.key === 'Escape' && isBusy(props.status)) {
     handleAbort();
+    return;
   }
+
+  if (
+    isBusy(props.status) ||
+    e.key.length !== 1 ||
+    e.key === ' ' ||
+    e.ctrlKey ||
+    e.metaKey ||
+    e.altKey
+  ) {
+    return;
+  }
+
+  if (document.activeElement === textareaRef.value) {
+    return;
+  }
+
+  const active = document.activeElement;
+
+  if (
+    active instanceof HTMLInputElement ||
+    active instanceof HTMLTextAreaElement ||
+    (active as HTMLElement)?.isContentEditable
+  ) {
+    return;
+  }
+
+  textareaRef.value?.focus();
 }
 
-onMounted(() => document.addEventListener('keydown', abortOnEsc));
-onUnmounted(() => document.removeEventListener('keydown', abortOnEsc));
+onMounted(() => document.addEventListener('keydown', handleGlobalKeydown));
+onUnmounted(() => document.removeEventListener('keydown', handleGlobalKeydown));
 
 // Resets textarea value if message does not succeed
 watch(
@@ -65,6 +98,7 @@ watch(
     @submit.prevent="handleSend"
   >
     <textarea
+      ref="textareaRef"
       v-model="input"
       class="chat-form__input"
       placeholder="What would you like to know?"
