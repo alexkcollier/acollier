@@ -12,7 +12,6 @@ export default {
     light: 'light',
   },
   navigation: {
-    home: 'Alex Collier',
     about: 'About',
     work: 'Work',
     contact: 'Contact',
@@ -20,9 +19,6 @@ export default {
   home: {
     tag: "I'm Alex. I build {0} digital experiences.",
     experienceType: 'thoughtful',
-    description:
-      'Fluent across design and frontend engineering with deep experience designing and shipping production interfaces for AI products—including conversational and LLM-based interactions.',
-    featuredWork: 'Featured Work',
   },
   about: {
     metaTitle: 'About',
@@ -63,7 +59,6 @@ export default {
     links: 'Links',
   },
   chat: {
-    greeting: 'Alex Collier is a UX designer and developer in Ottawa, Canada.',
     formLabel: 'Chat',
     placeholder: 'What would you like to know?',
     send: 'Send',
