@@ -12,7 +12,7 @@ Changes to `main` (protected) trigger production deploys. PRs will open branch d
 
 - nodejs 24+
 - netlify cli
-- ollama (for local chat)
+- ollama (for local chat, `qwen2.5:1.5b` is a good small model for testing)
 
 ## Build Setup
 

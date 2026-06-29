@@ -31,74 +31,70 @@ interface UseChatReturn {
   abort: () => void;
 }
 
-/**
- * Manages chat state and streaming communication with the portfolio assistant.
- * Exposes reactive state alongside `sendMessage` and `abort` to drive the chat UI.
- */
-export function useChat(): UseChatReturn {
-  const messages = ref<ChatMessage[]>([]);
-  const status = ref<StreamStatus>('idle');
-  const error = ref('');
-  const interactionId = ref<string | null>(null);
-  const abortController = ref<AbortController | null>(null);
+const messages = ref<ChatMessage[]>([]);
+const status = ref<StreamStatus>('idle');
+const error = ref('');
+const interactionId = ref<string | null>(null);
+const abortController = ref<AbortController | null>(null);
 
-  function abort() {
-    abortController.value?.abort();
+function abort() {
+  abortController.value?.abort();
+}
+
+async function sendMessage(content: string) {
+  if (!content || isBusy(status.value)) {
+    return;
   }
 
-  async function sendMessage(content: string) {
-    if (!content || isBusy(status.value)) {
+  // cache messages, allowing rollback on failure
+  const snapshot = messages.value;
+  messages.value = appendMessage(messages.value, { role: 'user', content });
+  error.value = '';
+  status.value = 'connecting';
+  abortController.value = new AbortController();
+
+  try {
+    const res = await fetch('/.netlify/functions/chat', {
+      method: 'POST',
+      body: JSON.stringify({
+        messages: messages.value,
+        interactionId: interactionId.value,
+      }),
+      signal: abortController.value.signal,
+    });
+
+    if (!res.ok) {
+      throw new Error('Request failed');
+    }
+
+    interactionId.value = res.headers.get('X-Interaction-Id');
+    messages.value = appendMessage(messages.value, {
+      role: 'assistant',
+      content: '',
+    });
+    status.value = 'streaming';
+
+    for await (const chunk of streamChunks(res.body!)) {
+      messages.value = updateLastMessage(messages.value, chunk);
+    }
+
+    status.value = 'done';
+  } catch (err) {
+    // if request fails or is cancelled, rollback to snapshot
+    messages.value = snapshot;
+
+    if (err instanceof DOMException && err.name === 'AbortError') {
+      status.value = 'idle';
       return;
     }
 
-    // cache messages, allowing rollback on failure
-    const snapshot = messages.value;
-    messages.value = appendMessage(messages.value, { role: 'user', content });
-    error.value = '';
-    status.value = 'connecting';
-    abortController.value = new AbortController();
-
-    try {
-      const res = await fetch('/.netlify/functions/chat', {
-        method: 'POST',
-        body: JSON.stringify({
-          messages: messages.value,
-          interactionId: interactionId.value,
-        }),
-        signal: abortController.value.signal,
-      });
-
-      if (!res.ok) {
-        throw new Error('Request failed');
-      }
-
-      interactionId.value = res.headers.get('X-Interaction-Id');
-      messages.value = appendMessage(messages.value, {
-        role: 'assistant',
-        content: '',
-      });
-      status.value = 'streaming';
-
-      for await (const chunk of streamChunks(res.body!)) {
-        messages.value = updateLastMessage(messages.value, chunk);
-      }
-
-      status.value = 'done';
-    } catch (err) {
-      // if request fails or is cancelled, rollback to snapshot
-      messages.value = snapshot;
-
-      if (err instanceof DOMException && err.name === 'AbortError') {
-        status.value = 'idle';
-        return;
-      }
-
-      status.value = 'error';
-      error.value = 'Something went wrong. Please try again.';
-    } finally {
-      abortController.value = null;
-    }
+    status.value = 'error';
+    error.value = 'Something went wrong. Please try again.';
+  } finally {
+    abortController.value = null;
   }
+}
 
+export function useChat(): UseChatReturn {
   return { messages, status, error, sendMessage, abort };
 }

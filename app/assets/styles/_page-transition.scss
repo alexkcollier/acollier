@@ -15,7 +15,8 @@
   &-enter-active,
   &-leave-active {
     /* hack to transition layouts without without transitioning the navbar */
-    .content {
+    .content,
+    .chat-sidebar {
       transition: opacity 250ms;
     }
   }
@@ -24,7 +25,8 @@
   &-leave {
     opacity: 0.9999;
 
-    .content {
+    .content,
+    .chat-sidebar {
       opacity: 0;
     }
   }
