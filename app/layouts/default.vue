@@ -12,16 +12,31 @@ function onPopState() {
 
 const unregisterBefore = router.beforeEach(() => {
   const el = document.querySelector('.content');
-  if (el) scrollPositions.set(router.currentRoute.value.fullPath, el.scrollTop);
+
+  if (el) {
+    scrollPositions.set(router.currentRoute.value.fullPath, el.scrollTop);
+  }
 });
 
-const unregisterAfter = router.afterEach((to) => {
+const unregisterAfter = router.afterEach((to, from) => {
+  if (to.path === from.path) {
+    isPopState = false;
+
+    return;
+  }
+
   nextTick(() => {
     const el = document.querySelector('.content');
-    if (!el) return;
+
+    if (!el) {
+      return;
+    }
+
     el.scrollTo({
       top: isPopState ? (scrollPositions.get(to.fullPath) ?? 0) : 0,
+      behavior: 'instant',
     });
+
     isPopState = false;
   });
 });
@@ -83,6 +98,7 @@ onUnmounted(() => {
     .content {
       height: 100%;
       overflow-y: auto;
+      scroll-behavior: smooth;
     }
   }
 }
