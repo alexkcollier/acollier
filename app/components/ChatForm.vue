@@ -84,6 +84,8 @@ function handleGlobalKeydown(e: KeyboardEvent) {
 onMounted(() => document.addEventListener('keydown', handleGlobalKeydown));
 onUnmounted(() => document.removeEventListener('keydown', handleGlobalKeydown));
 
+const focusTextarea = () => textareaRef.value?.focus();
+
 // Resets textarea value if message does not succeed; returns focus after stream ends
 watch(
   () => props.status,
@@ -107,6 +109,7 @@ watch(
   <form
     class="chat-form"
     :aria-label="t('chat.formLabel')"
+    @click.stop="focusTextarea()"
     @submit.prevent="handleSend"
   >
     <label
@@ -162,6 +165,7 @@ watch(
   background: var(--color-bg-subtle);
   border: 1px solid var(--color-input-border);
   border-radius: var(--radius-md);
+  cursor: text;
   display: flex;
   flex-direction: column;
   padding: var(--space-3);
@@ -169,6 +173,10 @@ watch(
 
   &:has(textarea:focus) {
     border-color: var(--color-input-border-focus);
+  }
+
+  &:has(.chat-form__input:disabled) {
+    cursor: not-allowed;
   }
 
   &__actions {
@@ -181,6 +189,7 @@ watch(
 
   &__hint {
     color: var(--color-text-muted);
+    cursor: default;
     font-size: var(--text-xs);
 
     kbd {
