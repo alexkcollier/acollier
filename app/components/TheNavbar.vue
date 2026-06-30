@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import NavbarButton from '~/components/NavbarButton.vue';
 import ColorSwitcher from '~/components/ColorSwitcher.vue';
+import SidebarToggle from '~/components/SidebarToggle.vue';
+import { useSidebar } from '~/composables/useSidebar';
 import links from '~/assets/data/navbar-links';
 import {
   useI18n,
@@ -21,6 +23,8 @@ const switchLocalePath = useSwitchLocalePath();
 const availableLocales = computed(() => {
   return locales.value.filter((l) => l.code !== locale.value);
 });
+
+const { isCollapsed, isMobileOpen } = useSidebar();
 
 const isMenuOpen = ref(false);
 const menuRef = useTemplateRef<HTMLElement>('menuRef');
@@ -68,14 +72,21 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       <div class="navbar-brand__title">{{ $t('common.title') }}</div>
     </NavbarButton>
 
-    <button
-      :class="[
-        'navbar-button',
-        'navbar__menu-button',
-        { 'navbar__menu-button--open': isMenuOpen },
-      ]"
-      @click.stop="() => setIsMenuOpen(!isMenuOpen)"
-    />
+    <div class="navbar__mobile-controls">
+      <SidebarToggle
+        class="navbar__sidebar-toggle--mobile"
+        :is-active="isMobileOpen"
+      />
+
+      <button
+        :class="[
+          'navbar-button',
+          'navbar__menu-button',
+          { 'navbar__menu-button--open': isMenuOpen },
+        ]"
+        @click.stop="() => setIsMenuOpen(!isMenuOpen)"
+      />
+    </div>
 
     <div
       ref="menuRef"
@@ -112,6 +123,11 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
         </NavbarButton>
 
         <ColorSwitcher />
+
+        <SidebarToggle
+          class="navbar__sidebar-toggle--desktop"
+          :is-active="!isCollapsed"
+        />
       </div>
     </div>
   </nav>
@@ -134,7 +150,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 3;
+  z-index: 99;
 
   &__button-wrapper {
     align-items: stretch;
@@ -158,15 +174,27 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     }
   }
 
+  &__mobile-controls {
+    display: flex;
+    margin-left: auto;
+  }
+
+  &__sidebar-toggle--mobile {
+    display: flex;
+  }
+
+  &__sidebar-toggle--desktop {
+    display: none;
+  }
+
   &__menu-button {
     --transform-transition-delay: 0ms;
     --top-transition-delay: var(--transition-time);
     --rotation: 0deg;
 
     display: flex;
-    margin-left: auto;
     position: relative;
-    width: 3.5rem;
+    width: 3rem;
 
     &::before,
     &::after {
@@ -181,7 +209,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
         transform var(--transition-time) ease-in-out
           var(--transform-transition-delay),
         top var(--transition-time) ease-in-out var(--top-transition-delay);
-      width: 1.5rem;
+      width: 1rem;
     }
 
     &::before {
@@ -228,6 +256,14 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     &__menu-button {
       display: none;
       margin-left: auto;
+    }
+
+    &__sidebar-toggle--mobile {
+      display: none;
+    }
+
+    &__sidebar-toggle--desktop {
+      display: flex;
     }
   }
 }

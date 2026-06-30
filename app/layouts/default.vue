@@ -72,10 +72,7 @@ onUnmounted(() => {
   }
 
   &__sidebar {
-    display: none;
-
     @include bp.above('lg') {
-      display: flex;
       flex-shrink: 0;
     }
   }

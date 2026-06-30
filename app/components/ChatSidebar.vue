@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted, useI18n } from '#imports';
+import { ref, watch, nextTick, onMounted, onUnmounted, useRoute } from '#imports';
 import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
+import { useSidebar } from '~/composables/useSidebar';
 import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
@@ -10,11 +11,11 @@ import ChatScrollButton from '~/components/ChatScrollButton.vue';
 const MIN_WIDTH = 256;
 const MAX_WIDTH = 640;
 
-const { t } = useI18n();
+const route = useRoute();
 const { messages, status, error, sendMessage, abort } = useChat();
+const { isCollapsed, isMobileOpen, closeMobile } = useSidebar();
 const messagesEl = ref<HTMLElement | null>(null);
 const sidebarEl = ref<HTMLElement | null>(null);
-const isCollapsed = ref(false);
 const isResizing = ref(false);
 
 onMounted(() => {
@@ -26,12 +27,16 @@ onMounted(() => {
       `${savedWidth}px`,
     );
   }
-
-  isCollapsed.value = localStorage.getItem('sidebar-collapsed') === 'true';
 });
 
-watch(isCollapsed, (val) => {
-  localStorage.setItem('sidebar-collapsed', String(val));
+watch(isMobileOpen, (open) => {
+  document.documentElement.style.overflowY = open ? 'hidden' : 'auto';
+});
+
+watch(() => route.fullPath, closeMobile);
+
+onUnmounted(() => {
+  document.documentElement.style.overflowY = 'auto';
 });
 
 function onResizeStart(e: MouseEvent) {
@@ -86,6 +91,7 @@ watch(
       'chat-sidebar',
       {
         'chat-sidebar--collapsed': isCollapsed,
+        'chat-sidebar--mobile-open': isMobileOpen,
         'chat-sidebar--resizing': isResizing,
       },
     ]"
@@ -95,18 +101,6 @@ watch(
       aria-hidden="true"
       @mousedown.prevent="onResizeStart"
     />
-
-    <button
-      class="chat-sidebar__toggle"
-      :aria-label="
-        isCollapsed ? t('chat.sidebarExpand') : t('chat.sidebarCollapse')
-      "
-      @click="isCollapsed = !isCollapsed"
-    >
-      <Icon
-        :name="isCollapsed ? 'lucide:chevron-left' : 'lucide:chevron-right'"
-      />
-    </button>
 
     <div
       :class="[
@@ -157,10 +151,12 @@ watch(
 </template>
 
 <style lang="scss">
-.chat-sidebar {
-  $parent: &;
+@use '~/assets/styles/utils/breakpoints' as bp;
 
+.chat-sidebar {
   --transition-duration: 200ms;
+
+  $parent: &;
 
   border-left: 1px solid var(--color-border);
   display: flex;
@@ -199,29 +195,6 @@ watch(
     }
   }
 
-  &__toggle {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-subtle);
-    cursor: pointer;
-    display: flex;
-    padding: var(--space-2);
-    left: var(--space-4);
-    position: absolute;
-    top: var(--space-21);
-    transition:
-      box-shadow var(--transition-duration) ease,
-      color var(--transition-duration) ease;
-    z-index: 2;
-
-    &:hover {
-      box-shadow: 0 2px 8px
-        color-mix(in srgb, var(--stone-900) 12%, transparent);
-      color: var(--color-text);
-    }
-  }
-
   &__body {
     display: flex;
     flex: 1;
@@ -231,7 +204,7 @@ watch(
     transition: opacity 150ms;
 
     &--empty {
-      margin-top: var(--space-12);
+      margin-top: var(--space-2);
     }
   }
 
@@ -281,22 +254,44 @@ watch(
   }
 
   &--collapsed {
-    background: transparent;
-    width: 3rem;
+    @include bp.above('lg') {
+      background: transparent;
+      border: none;
+      width: 0;
 
-    #{$parent}__resize-handle {
-      pointer-events: none;
+      #{$parent}__resize-handle {
+        pointer-events: none;
+      }
+
+      #{$parent}__body {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
+  }
 
-    #{$parent}__toggle {
-      border-color: transparent;
-      left: unset;
-      right: var(--space-2);
-    }
+  @include bp.below('lg') {
+    background: var(--color-bg);
+    inset: 0;
+    opacity: 0;
+    position: fixed;
+    transform: translateY(var(--space-4));
+    transition:
+      opacity var(--transition-duration) ease,
+      transform var(--transition-duration) ease,
+      visibility 0s linear var(--transition-duration);
+    visibility: hidden;
+    width: 100%;
+    z-index: 12;
 
-    #{$parent}__body {
-      opacity: 0;
-      pointer-events: none;
+    &--mobile-open {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity var(--transition-duration) ease,
+        transform var(--transition-duration) ease,
+        visibility 0s linear 0s;
+      visibility: visible;
     }
   }
 }
