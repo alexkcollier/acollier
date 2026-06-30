@@ -32,19 +32,13 @@ const { t } = useI18n();
 .assistant-pip {
   --assistant-color: var(--stone-300);
 
-  :root[data-theme='dark'] & {
-    --assistant-color: var(--stone-600);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) & {
-      --assistant-color: var(--stone-600);
-    }
-  }
-
   align-items: center;
   display: flex;
   gap: var(--space-1);
+
+  :root[data-theme='dark'] & {
+    --assistant-color: var(--stone-600);
+  }
 
   &__pulse {
     flex-shrink: 0;
@@ -90,6 +84,12 @@ const { t } = useI18n();
   &__label {
     color: var(--color-text-muted);
     font-size: var(--text-sm);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) & {
+      --assistant-color: var(--stone-600);
+    }
   }
 }
 

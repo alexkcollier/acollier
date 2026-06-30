@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted, onUnmounted, useRoute } from '#imports';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  useRoute,
+} from '#imports';
 import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
 import { useSidebar } from '~/composables/useSidebar';

@@ -46,7 +46,10 @@ export function useChat(): UseChatReturn {
   const messages = useState<ChatMessage[]>('chat-messages', () => []);
   const status = useState<StreamStatus>('chat-status', () => 'idle');
   const error = useState('chat-error', () => '');
-  const interactionId = useState<string | null>('chat-interaction-id', () => null);
+  const interactionId = useState<string | null>(
+    'chat-interaction-id',
+    () => null,
+  );
 
   function abort() {
     abortController.value?.abort();

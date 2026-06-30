@@ -188,9 +188,9 @@ const formattedDescription = computed(() => {
 
     .work-list-item__description {
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
       display: -webkit-box;
       font-size: var(--text-xs);
+      -webkit-line-clamp: 2;
       line-clamp: 2;
       margin-top: var(--space-1);
       overflow: hidden;
