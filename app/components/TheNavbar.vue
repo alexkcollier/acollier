@@ -8,6 +8,7 @@ import {
   useI18n,
   useLocalePath,
   useSwitchLocalePath,
+  useRoute,
   useTemplateRef,
   nextTick,
   computed,
@@ -17,8 +18,11 @@ import {
 } from '#imports';
 
 const { locale, locales } = useI18n();
+const route = useRoute();
 const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
+
+const isHome = computed(() => route.path === localePath('/'));
 
 const availableLocales = computed(() => {
   return locales.value.filter((l) => l.code !== locale.value);
@@ -74,6 +78,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
     <div class="navbar__mobile-controls">
       <SidebarToggle
+        v-if="!isHome"
         class="navbar__sidebar-toggle--mobile"
         :is-active="isMobileOpen"
       />
@@ -125,6 +130,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
         <ColorSwitcher />
 
         <SidebarToggle
+          v-if="!isHome"
           class="navbar__sidebar-toggle--desktop"
           :is-active="!isCollapsed"
         />
