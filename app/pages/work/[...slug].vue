@@ -148,10 +148,10 @@ definePageMeta({
           </section>
         </main>
 
-        <aside class="two-column__narrow-col sidebar">
+        <aside class="two-column__narrow-col sidebar toc-sidebar">
           <section
             v-if="doc?.body?.toc?.links?.length"
-            class="sidebar__section toc-sidebar"
+            class="sidebar__section"
           >
             <h2 class="heading-2">{{ $t('work.onThisPage') }}</h2>
 
@@ -241,6 +241,8 @@ export default {
 }
 
 .toc-sidebar {
+  top: 0;
+
   @include bp.below('md') {
     display: none;
   }

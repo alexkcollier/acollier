@@ -1,23 +1,83 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted, useI18n } from '#imports';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  onUnmounted,
+  useRoute,
+} from '#imports';
 import { isBusy } from '~/utils/stream';
 import { useChat } from '~/composables/useChat';
+import { useSidebar } from '~/composables/useSidebar';
 import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
+import ChatScrollButton from '~/components/ChatScrollButton.vue';
 
-const { t } = useI18n();
+const MIN_WIDTH = 256;
+const MAX_WIDTH = 640;
+
+const route = useRoute();
 const { messages, status, error, sendMessage, abort } = useChat();
+const { isCollapsed, isMobileOpen, closeMobile } = useSidebar();
 const messagesEl = ref<HTMLElement | null>(null);
-const isCollapsed = ref(false);
+const sidebarEl = ref<HTMLElement | null>(null);
+const isResizing = ref(false);
 
 onMounted(() => {
-  isCollapsed.value = localStorage.getItem('sidebar-collapsed') === 'true';
+  const savedWidth = localStorage.getItem('sidebar-width');
+
+  if (savedWidth && sidebarEl.value) {
+    sidebarEl.value.style.setProperty(
+      '--chat-sidebar-width',
+      `${savedWidth}px`,
+    );
+  }
 });
 
-watch(isCollapsed, (val) => {
-  localStorage.setItem('sidebar-collapsed', String(val));
+watch(isMobileOpen, (open) => {
+  document.documentElement.style.overflowY = open ? 'hidden' : 'auto';
 });
+
+watch(() => route.fullPath, closeMobile);
+
+onUnmounted(() => {
+  document.documentElement.style.overflowY = 'auto';
+});
+
+function onResizeStart(e: MouseEvent) {
+  e.preventDefault();
+  const startX = e.clientX;
+  const startWidth = sidebarEl.value
+    ? parseInt(getComputedStyle(sidebarEl.value).width, 10)
+    : 384;
+
+  isResizing.value = true;
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+
+  function onMove(e: MouseEvent) {
+    const delta = startX - e.clientX;
+    const w = Math.min(Math.max(startWidth + delta, MIN_WIDTH), MAX_WIDTH);
+    sidebarEl.value?.style.setProperty('--chat-sidebar-width', `${w}px`);
+  }
+
+  function onUp() {
+    isResizing.value = false;
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    const w = sidebarEl.value
+      ? parseInt(getComputedStyle(sidebarEl.value).width, 10)
+      : 384;
+    localStorage.setItem('sidebar-width', String(w));
+  }
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
 
 watch(
   () => messages.value.length,
@@ -32,18 +92,22 @@ watch(
 </script>
 
 <template>
-  <aside :class="['chat-sidebar', { 'chat-sidebar--collapsed': isCollapsed }]">
-    <button
-      class="chat-sidebar__toggle"
-      :aria-label="
-        isCollapsed ? t('chat.sidebarExpand') : t('chat.sidebarCollapse')
-      "
-      @click="isCollapsed = !isCollapsed"
-    >
-      <Icon
-        :name="isCollapsed ? 'lucide:chevron-left' : 'lucide:chevron-right'"
-      />
-    </button>
+  <aside
+    ref="sidebarEl"
+    :class="[
+      'chat-sidebar',
+      {
+        'chat-sidebar--collapsed': isCollapsed,
+        'chat-sidebar--mobile-open': isMobileOpen,
+        'chat-sidebar--resizing': isResizing,
+      },
+    ]"
+  >
+    <div
+      class="chat-sidebar__resize-handle"
+      aria-hidden="true"
+      @mousedown.prevent="onResizeStart"
+    />
 
     <div
       :class="[
@@ -53,21 +117,27 @@ watch(
     >
       <div
         v-if="messages.length"
-        ref="messagesEl"
-        class="chat-sidebar__messages"
-        role="log"
+        class="chat-sidebar__messages-wrap"
       >
-        <ChatMessage
-          v-for="(msg, i) in messages"
-          :key="i"
-          :role="msg.role"
-          :content="msg.content"
-        />
+        <div
+          ref="messagesEl"
+          class="chat-sidebar__messages"
+          role="log"
+        >
+          <ChatMessage
+            v-for="(msg, i) in messages"
+            :key="i"
+            :role="msg.role"
+            :content="msg.content"
+          />
 
-        <AssistantPip
-          :paused="!isBusy(status)"
-          :thinking="status === 'connecting'"
-        />
+          <AssistantPip
+            :paused="!isBusy(status)"
+            :thinking="status === 'connecting'"
+          />
+        </div>
+
+        <ChatScrollButton :target="messagesEl" />
       </div>
 
       <p
@@ -88,10 +158,12 @@ watch(
 </template>
 
 <style lang="scss">
-.chat-sidebar {
-  $parent: &;
+@use '~/assets/styles/utils/breakpoints' as bp;
 
+.chat-sidebar {
   --transition-duration: 200ms;
+
+  $parent: &;
 
   border-left: 1px solid var(--color-border);
   display: flex;
@@ -102,28 +174,31 @@ watch(
   position: sticky;
   top: 0;
   transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-  width: 24rem;
+  width: var(--chat-sidebar-width, 24rem);
 
-  &__toggle {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-subtle);
-    cursor: pointer;
-    display: flex;
-    padding: var(--space-2);
-    left: var(--space-4);
+  &__resize-handle {
+    cursor: col-resize;
+    height: 100%;
+    left: 0;
     position: absolute;
-    top: var(--space-21);
-    transition:
-      box-shadow var(--transition-duration) ease,
-      color var(--transition-duration) ease;
-    z-index: 2;
+    top: 0;
+    width: var(--space-2);
+    z-index: 3;
 
-    &:hover {
-      box-shadow: 0 2px 8px
-        color-mix(in srgb, var(--stone-900) 12%, transparent);
-      color: var(--color-text);
+    &::after {
+      background: var(--color-text-primary);
+      content: '';
+      height: 100%;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      transition: opacity 150ms;
+      width: 2px;
+    }
+
+    &:hover::after {
+      opacity: 0.2;
     }
   }
 
@@ -136,7 +211,7 @@ watch(
     transition: opacity 150ms;
 
     &--empty {
-      margin-top: var(--space-12);
+      margin-top: var(--space-2);
     }
   }
 
@@ -151,6 +226,14 @@ watch(
 
   &__highlight {
     color: var(--color-text-primary);
+  }
+
+  &__messages-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
   }
 
   &__messages {
@@ -169,19 +252,55 @@ watch(
     font-size: var(--text-sm);
   }
 
-  &--collapsed {
-    background: transparent;
-    width: 3rem;
+  &--resizing {
+    transition: none;
 
-    #{$parent}__toggle {
-      border-color: transparent;
-      left: unset;
-      right: var(--space-2);
+    #{$parent}__resize-handle::after {
+      opacity: 0.4;
     }
+  }
 
-    #{$parent}__body {
-      opacity: 0;
-      pointer-events: none;
+  &--collapsed {
+    @include bp.above('lg') {
+      background: transparent;
+      border: none;
+      width: 0;
+
+      #{$parent}__resize-handle {
+        pointer-events: none;
+      }
+
+      #{$parent}__body {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  @include bp.below('lg') {
+    background: var(--color-bg);
+    height: var(--visual-viewport-height, 100dvh);
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: var(--visual-viewport-offset-top, 0);
+    transform: translateY(var(--space-4));
+    transition:
+      opacity var(--transition-duration) ease,
+      transform var(--transition-duration) ease,
+      visibility 0s linear var(--transition-duration);
+    visibility: hidden;
+    width: 100%;
+    z-index: 12;
+
+    &--mobile-open {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity var(--transition-duration) ease,
+        transform var(--transition-duration) ease,
+        visibility 0s linear 0s;
+      visibility: visible;
     }
   }
 }

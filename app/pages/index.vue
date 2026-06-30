@@ -15,6 +15,7 @@ import { useChat } from '~/composables/useChat';
 import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
+import ChatScrollButton from '~/components/ChatScrollButton.vue';
 import WorkListItem from '~/components/WorkListItem.vue';
 
 definePageMeta({
@@ -37,40 +38,7 @@ const { data: featuredWork } = await useAsyncData(
 
 const formEl = ref<InstanceType<typeof ChatForm> | null>(null);
 const messagesEl = ref<HTMLElement | null>(null);
-const isScrolledUp = ref(false);
 const { messages, status, error, sendMessage, abort } = useChat();
-
-function checkScroll() {
-  if (!messagesEl.value) {
-    return;
-  }
-
-  const { scrollTop, scrollHeight, clientHeight } = messagesEl.value;
-
-  const offset = Math.min(100, clientHeight / 3);
-
-  // distance scrolled < total distance
-  isScrolledUp.value = scrollTop + clientHeight < scrollHeight - offset;
-}
-
-function scrollToEnd() {
-  messagesEl.value?.scrollTo({
-    top: messagesEl.value.scrollHeight,
-    behavior: 'smooth',
-  });
-}
-
-watch(messagesEl, (el, _, onCleanup) => {
-  if (!el) {
-    isScrolledUp.value = false;
-
-    return;
-  }
-
-  el.addEventListener('scroll', checkScroll, { passive: true });
-
-  onCleanup(() => el.removeEventListener('scroll', checkScroll));
-});
 
 watch(
   () => messages.value.length,
@@ -162,16 +130,7 @@ watch(
             />
           </div>
 
-          <Transition name="chat__scroll-btn">
-            <button
-              v-if="isScrolledUp"
-              class="chat__scroll-btn"
-              :aria-label="t('chat.scrollToEnd')"
-              @click="scrollToEnd"
-            >
-              <Icon name="lucide:arrow-down" />
-            </button>
-          </Transition>
+          <ChatScrollButton :target="messagesEl" />
         </div>
       </Transition>
 
@@ -222,14 +181,6 @@ watch(
   --transition-duration: 200ms;
   --glow-opacity: 16%;
 
-  :root[data-theme='dark'] & {
-    --glow-opacity: 32%;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    --glow-opacity: 32%;
-  }
-
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -237,8 +188,8 @@ watch(
   padding: var(--space-12) var(--space-4) var(--space-8);
   width: 100%;
 
-  @include bp.above('sm') {
-    padding-block-start: var(--space-24);
+  :root[data-theme='dark'] & {
+    --glow-opacity: 32%;
   }
 
   &--active {
@@ -316,41 +267,6 @@ watch(
     }
   }
 
-  &__scroll-btn {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    bottom: var(--space-4);
-    box-shadow: 0 2px 8px color-mix(in srgb, var(--stone-900) 16%, transparent);
-    color: var(--color-text-subtle);
-    cursor: pointer;
-    display: flex;
-    left: 50%;
-    padding: var(--space-2) var(--space-3);
-    position: absolute;
-    transform: translateX(-50%);
-    transition:
-      background var(--transition-duration) ease,
-      box-shadow var(--transition-duration) ease;
-
-    &:hover {
-      background: var(--color-bg-subtle);
-    }
-
-    &-enter-active,
-    &-leave-active {
-      transition:
-        opacity var(--transition-duration) ease,
-        translate var(--transition-duration) ease;
-    }
-
-    &-enter-from,
-    &-leave-to {
-      opacity: 0;
-      translate: 0 var(--space-2);
-    }
-  }
-
   &__error {
     color: var(--color-text-accent);
     font-size: var(--text-sm);
@@ -385,20 +301,28 @@ watch(
     &-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: var(--space-4);
+      justify-content: center;
 
       @include bp.above('sm') {
         gap: var(--space-8);
       }
     }
   }
+
+  @media (prefers-color-scheme: dark) {
+    --glow-opacity: 32%;
+  }
+
+  @include bp.above('sm') {
+    padding-block-start: var(--space-24);
+  }
 }
 
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: var(--visual-viewport-height, 100%);
   max-width: bp.$lg;
   padding-top: var(--space-12);
 

@@ -12,16 +12,31 @@ function onPopState() {
 
 const unregisterBefore = router.beforeEach(() => {
   const el = document.querySelector('.content');
-  if (el) scrollPositions.set(router.currentRoute.value.fullPath, el.scrollTop);
+
+  if (el) {
+    scrollPositions.set(router.currentRoute.value.fullPath, el.scrollTop);
+  }
 });
 
-const unregisterAfter = router.afterEach((to) => {
+const unregisterAfter = router.afterEach((to, from) => {
+  if (to.path === from.path) {
+    isPopState = false;
+
+    return;
+  }
+
   nextTick(() => {
     const el = document.querySelector('.content');
-    if (!el) return;
+
+    if (!el) {
+      return;
+    }
+
     el.scrollTo({
       top: isPopState ? (scrollPositions.get(to.fullPath) ?? 0) : 0,
+      behavior: 'instant',
     });
+
     isPopState = false;
   });
 });
@@ -57,15 +72,13 @@ onUnmounted(() => {
   }
 
   &__sidebar {
-    display: none;
-
     @include bp.above('lg') {
-      display: flex;
       flex-shrink: 0;
     }
   }
 
   .content {
+    container-type: inline-size;
     flex: 1;
     padding: var(--page-top-padding) var(--page-side-padding);
     padding-top: 8rem;
@@ -82,6 +95,7 @@ onUnmounted(() => {
     .content {
       height: 100%;
       overflow-y: auto;
+      scroll-behavior: smooth;
     }
   }
 }
