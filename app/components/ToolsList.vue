@@ -40,8 +40,8 @@ export default {
 </script>
 
 <style lang="scss">
-@use '~/assets/styles/utils/mixins';
 @use '~/assets/styles/utils/breakpoints' as bp;
+@use '~/assets/styles/utils/mixins';
 
 .tool-list {
   --column-number: 3;
@@ -79,7 +79,7 @@ export default {
     margin-top: 0.5rem;
   }
 
-  @include bp.above('md') {
+  @container (min-width: #{bp.$md}) {
     --column-number: 6;
   }
 }

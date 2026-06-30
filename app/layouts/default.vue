@@ -66,6 +66,7 @@ onUnmounted(() => {
   }
 
   .content {
+    container-type: inline-size;
     flex: 1;
     padding: var(--page-top-padding) var(--page-side-padding);
     padding-top: 8rem;

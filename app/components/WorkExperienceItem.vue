@@ -107,7 +107,7 @@ export default {
     }
   }
 
-  @include bp.below('sm') {
+  @container (max-width: #{bp.$sm - 1}) {
     column-gap: 0;
     grid-template:
       'heading date'

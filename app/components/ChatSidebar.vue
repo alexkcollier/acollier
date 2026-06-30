@@ -6,18 +6,65 @@ import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
 
+const MIN_WIDTH = 256;
+const MAX_WIDTH = 640;
+
 const { t } = useI18n();
 const { messages, status, error, sendMessage, abort } = useChat();
 const messagesEl = ref<HTMLElement | null>(null);
+const sidebarEl = ref<HTMLElement | null>(null);
 const isCollapsed = ref(false);
+const isResizing = ref(false);
 
 onMounted(() => {
+  const savedWidth = localStorage.getItem('sidebar-width');
+
+  if (savedWidth && sidebarEl.value) {
+    sidebarEl.value.style.setProperty(
+      '--chat-sidebar-width',
+      `${savedWidth}px`,
+    );
+  }
+
   isCollapsed.value = localStorage.getItem('sidebar-collapsed') === 'true';
 });
 
 watch(isCollapsed, (val) => {
   localStorage.setItem('sidebar-collapsed', String(val));
 });
+
+function onResizeStart(e: MouseEvent) {
+  e.preventDefault();
+  const startX = e.clientX;
+  const startWidth = sidebarEl.value
+    ? parseInt(getComputedStyle(sidebarEl.value).width, 10)
+    : 384;
+
+  isResizing.value = true;
+  document.body.style.cursor = 'col-resize';
+  document.body.style.userSelect = 'none';
+
+  function onMove(e: MouseEvent) {
+    const delta = startX - e.clientX;
+    const w = Math.min(Math.max(startWidth + delta, MIN_WIDTH), MAX_WIDTH);
+    sidebarEl.value?.style.setProperty('--chat-sidebar-width', `${w}px`);
+  }
+
+  function onUp() {
+    isResizing.value = false;
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onUp);
+    const w = sidebarEl.value
+      ? parseInt(getComputedStyle(sidebarEl.value).width, 10)
+      : 384;
+    localStorage.setItem('sidebar-width', String(w));
+  }
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+}
 
 watch(
   () => messages.value.length,
@@ -32,7 +79,22 @@ watch(
 </script>
 
 <template>
-  <aside :class="['chat-sidebar', { 'chat-sidebar--collapsed': isCollapsed }]">
+  <aside
+    ref="sidebarEl"
+    :class="[
+      'chat-sidebar',
+      {
+        'chat-sidebar--collapsed': isCollapsed,
+        'chat-sidebar--resizing': isResizing,
+      },
+    ]"
+  >
+    <div
+      class="chat-sidebar__resize-handle"
+      aria-hidden="true"
+      @mousedown.prevent="onResizeStart"
+    />
+
     <button
       class="chat-sidebar__toggle"
       :aria-label="
@@ -102,7 +164,33 @@ watch(
   position: sticky;
   top: 0;
   transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-  width: 24rem;
+  width: var(--chat-sidebar-width, 24rem);
+
+  &__resize-handle {
+    cursor: col-resize;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: var(--space-2);
+    z-index: 3;
+
+    &::after {
+      background: var(--color-text-primary);
+      content: '';
+      height: 100%;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      transition: opacity 150ms;
+      width: 2px;
+    }
+
+    &:hover::after {
+      opacity: 0.2;
+    }
+  }
 
   &__toggle {
     background: var(--color-bg);
@@ -169,9 +257,21 @@ watch(
     font-size: var(--text-sm);
   }
 
+  &--resizing {
+    transition: none;
+
+    #{$parent}__resize-handle::after {
+      opacity: 0.4;
+    }
+  }
+
   &--collapsed {
     background: transparent;
     width: 3rem;
+
+    #{$parent}__resize-handle {
+      pointer-events: none;
+    }
 
     #{$parent}__toggle {
       border-color: transparent;

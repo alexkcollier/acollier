@@ -197,7 +197,7 @@ const formattedDescription = computed(() => {
     }
   }
 
-  @include bp.above('md') {
+  @container (min-width: #{bp.$sm}) {
     &:not(#{&}--mini) {
       align-items: center;
       flex-direction: row;
@@ -213,15 +213,7 @@ const formattedDescription = computed(() => {
 
     &__image {
       flex: none;
-      width: 270px;
-
-      @include bp.above('lg') {
-        display: none;
-      }
-
-      @include bp.above('xl') {
-        display: block;
-      }
+      width: 180px;
     }
 
     &__content {
@@ -236,6 +228,18 @@ const formattedDescription = computed(() => {
       font-family: var(--font-mono);
       font-size: var(--text-lg);
       padding-top: var(--space-1);
+    }
+  }
+
+  @container (min-width: #{bp.$md}) {
+    &__image {
+      width: 270px;
+    }
+  }
+
+  @container (min-width: #{bp.$xl}) {
+    &__image {
+      display: block;
     }
   }
 }
