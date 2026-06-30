@@ -272,9 +272,11 @@ watch(
 
   @include bp.below('lg') {
     background: var(--color-bg);
-    inset: 0;
+    height: var(--visual-viewport-height, 100dvh);
+    left: 0;
     opacity: 0;
     position: fixed;
+    top: var(--visual-viewport-offset-top, 0);
     transform: translateY(var(--space-4));
     transition:
       opacity var(--transition-duration) ease,

@@ -322,7 +322,7 @@ watch(
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: var(--visual-viewport-height, 100%);
   max-width: bp.$lg;
   padding-top: var(--space-12);
 
