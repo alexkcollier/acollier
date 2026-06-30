@@ -5,6 +5,7 @@ import { useChat } from '~/composables/useChat';
 import AssistantPip from '~/components/AssistantPip.vue';
 import ChatMessage from '~/components/ChatMessage.vue';
 import ChatForm from '~/components/ChatForm.vue';
+import ChatScrollButton from '~/components/ChatScrollButton.vue';
 
 const MIN_WIDTH = 256;
 const MAX_WIDTH = 640;
@@ -115,21 +116,27 @@ watch(
     >
       <div
         v-if="messages.length"
-        ref="messagesEl"
-        class="chat-sidebar__messages"
-        role="log"
+        class="chat-sidebar__messages-wrap"
       >
-        <ChatMessage
-          v-for="(msg, i) in messages"
-          :key="i"
-          :role="msg.role"
-          :content="msg.content"
-        />
+        <div
+          ref="messagesEl"
+          class="chat-sidebar__messages"
+          role="log"
+        >
+          <ChatMessage
+            v-for="(msg, i) in messages"
+            :key="i"
+            :role="msg.role"
+            :content="msg.content"
+          />
 
-        <AssistantPip
-          :paused="!isBusy(status)"
-          :thinking="status === 'connecting'"
-        />
+          <AssistantPip
+            :paused="!isBusy(status)"
+            :thinking="status === 'connecting'"
+          />
+        </div>
+
+        <ChatScrollButton :target="messagesEl" />
       </div>
 
       <p
@@ -239,6 +246,14 @@ watch(
 
   &__highlight {
     color: var(--color-text-primary);
+  }
+
+  &__messages-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
   }
 
   &__messages {
