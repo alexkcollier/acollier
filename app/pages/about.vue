@@ -1,8 +1,19 @@
 <script setup lang="ts">
-import { definePageMeta, useI18n, useLocalePath } from '#imports';
+import { computed, definePageMeta, useI18n, useLocalePath } from '#imports';
+import workExperience, {
+  skills,
+  languages,
+} from '~/assets/data/work-experience';
+import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
 
 const localePath = useLocalePath();
 const { locale } = useI18n();
+
+const skillChips = computed(() => {
+  const key = locale.value as keyof typeof skills;
+
+  return [...skills[key], ...languages[key]];
+});
 
 definePageMeta({
   i18n: {
@@ -63,7 +74,7 @@ definePageMeta({
             v-for="item in workExperience[
               locale as keyof typeof workExperience
             ]"
-            :key="item.position"
+            :key="`${item.company}-${item.position}`"
             v-bind="item"
           />
         </div>
@@ -77,8 +88,8 @@ definePageMeta({
 
           <ul class="about-skills">
             <li
-              v-for="(skill, index) in skills[locale]"
-              :key="index"
+              v-for="skill in skillChips"
+              :key="skill"
             >
               <BaseChip>{{ skill }}</BaseChip>
             </li>
@@ -104,23 +115,6 @@ definePageMeta({
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import workExperience, { skills } from '~/assets/data/work-experience';
-import WorkExperienceItem from '~/components/WorkExperienceItem.vue';
-
-export default {
-  components: {
-    WorkExperienceItem,
-  },
-
-  data() {
-    return {
-      workExperience,
-    };
-  },
-};
-</script>
 
 <style lang="scss">
 @use 'sass:math';

@@ -13,16 +13,28 @@ interface WorkExperienceItem {
 
 const en: WorkExperienceItem[] = [
   {
+    position: 'Design Engineer',
+    company: 'Volume7',
+    startDate: 'July 2026',
+    description: [
+      'Work across design and frontend development, moving between Figma and production code on the same client projects',
+      'Shipped frontend improvements to a live client product, resolving interaction defects and modernizing legacy UI',
+      'Building new B2B credit limit review features, carrying flows from design through implementation',
+      'Led discussions on how the team organizes design and development work as the org scales, covering handoff process and shared conventions',
+    ],
+  },
+  {
     position: 'UX Engineer',
     company: 'Keatext',
     startDate: 'May 2021',
     endDate: 'May 2026',
     description: [
-      'Owned product design and front-end direction, serving as the bridge between design and engineering',
-      "Redesigned the core user experience for conversational AI that traditional UI patterns didn't address",
-      'Partnered with product owners and engineers to shape roadmap and strategy, establishing design-to-development workflows that cut handoff loops',
-      'Designed, built, and maintained production React + TypeScript components with  interaction fidelity and accessibility at their core',
-      'Converted fragmented UI into a reusable component system built on design tokens',
+      'Owned product design and frontend direction for an AI analytics platform, serving as the bridge between design and engineering across the full product lifecycle',
+      'Designed and shipped the interface for an agentic analysis product, including an LLM-driven report with custom data visualization and a conversational interface for interrogating results',
+      'Redesigned the core experience for conversational AI where traditional UI patterns broke down, defining interaction models for streaming, uncertainty, and agent-initiated actions',
+      'Converted a fragmented UI into a reusable component system built on design tokens, then maintained it as production React and TypeScript with accessibility and interaction fidelity as requirements, not polish',
+      'Built token export and import tooling against the Figma API before the platform supported variables natively, keeping design and code in sync from a single source',
+      'Established design-to-development workflows with product owners and engineers that cut handoff loops and made design decisions legible in code',
     ],
   },
   {
@@ -31,11 +43,11 @@ const en: WorkExperienceItem[] = [
     startDate: 'June 2017',
     endDate: 'May 2021',
     description: [
-      'Designed and built interactive, high-fidelity prototypes and production interfaces for medical software and training products',
-      'Built a design system from the ground up with full documentation',
-      'Developed and maintained a web-based customer support portal and corporate site with headless CMS integration',
-      'Collaborated with cross-functional teams spanning engineering, management, and executive leadership',
-      'Synthesized multi-channel feedback into iterative design revisions, maintaining a single source of truth',
+      'Built a design system from scratch, components, documentation, and Storybook, for medical device software in a regulated environment',
+      'Designed and built high-fidelity prototypes and production interfaces for diagnostic software and training products',
+      'Contributed design documentation to FDA 510(k) submissions and shipped HIPAA-compliant product surfaces',
+      'Developed and maintained a customer support portal and corporate site with headless CMS integration',
+      'Worked directly with engineering, management, and executive leadership to move design decisions forward',
     ],
   },
   {
@@ -46,7 +58,6 @@ const en: WorkExperienceItem[] = [
     description: [
       'Contributed to UX and product design alongside the core team',
       'Managed the company WordPress site and server infrastructure',
-      'Designed marketing collateral and training documentation',
     ],
   },
 ];
@@ -54,72 +65,94 @@ const en: WorkExperienceItem[] = [
 const fr: WorkExperienceItem[] = [
   {
     position: 'Design Engineer',
+    company: 'Volume7',
+    startDate: 'juillet 2026',
+    description: [
+      'Travail à la fois en design et en développement front-end, en passant de Figma au code de production sur les mêmes projets clients',
+      "Livraison d'améliorations front-end sur un produit client en production, en corrigeant des défauts d'interaction et en modernisant une interface existante",
+      "Développement de nouvelles fonctionnalités B2B de révision des limites de crédit, du design jusqu'à l'implémentation",
+      "Animation des discussions sur l'organisation du travail design et développement à mesure que l'équipe grandit, incluant le processus de passation et les conventions communes",
+    ],
+  },
+  {
+    position: 'UX Engineer',
     company: 'Keatext',
     startDate: 'mai 2021',
     endDate: 'mai 2026',
     description: [
-      'Responsable du design produit et de la direction front-end, assurant la liaison entre design et ingénierie',
-      "Refondu l'expérience utilisateur principale pour l'IA conversationnelle, que les patterns d'interface traditionnels ne prenaient pas en charge",
-      'Collaboré avec les product owners et les ingénieurs pour façonner la feuille de route et la stratégie, en établissant des workflows design-développement efficaces',
-      "Conçu, développé et maintenu des composants React + TypeScript de production, avec la fidélité des interactions et l'accessibilité au cœur",
-      'Transformé une interface fragmentée en système de composants réutilisables basé sur des design tokens',
+      "Responsable du design produit et de la direction front-end d'une plateforme d'analyse par IA, assurant la liaison entre design et ingénierie sur tout le cycle de vie du produit",
+      "Conception et livraison de l'interface d'un produit d'analyse agentique, incluant un rapport généré par LLM avec des visualisations de données sur mesure et une interface conversationnelle pour interroger les résultats",
+      "Refonte de l'expérience principale pour l'IA conversationnelle, là où les conventions d'interface traditionnelles ne tenaient plus, en définissant les modèles d'interaction pour le streaming, l'incertitude et les actions initiées par l'agent",
+      "Transformation d'une interface fragmentée en système de composants réutilisables basé sur des design tokens, puis maintien en React et TypeScript de production, avec l'accessibilité et la fidélité des interactions comme exigences et non comme finition",
+      "Développement d'outils d'export et d'import de tokens via l'API Figma, avant que la plateforme ne prenne en charge les variables nativement, gardant design et code synchronisés à partir d'une source unique",
+      'Mise en place de flux de travail design-développement avec les product owners et les ingénieurs, réduisant les allers-retours de passation et rendant les décisions de design lisibles dans le code',
     ],
   },
   {
-    position: 'Concepteur UX/UI principal',
+    position: 'UX/UI Design Lead',
     company: 'Spartan Bioscience',
     startDate: 'juin 2017',
     endDate: 'mai 2021',
     description: [
-      'Création de prototypes interactifs et hautes-fidélités ainsi que des interfaces de production pour des logiciels médicaux et leurs produits de formation',
-      "Développement d'un système de design de zéro avec une documentation complète",
-      "Mise en œuvre et maintenance d'un portail d'assistance client et d'un site corporatif avec intégration CMS headless",
-      'Collaboration avec des équipes transversales regroupant ingénierie, gestion et direction générale',
-      'Synthétisation de retours multicanaux en révisions itératives, en maintenant une source de vérité unique',
+      "Création d'un système de design à partir de zéro, composants, documentation et Storybook, pour des logiciels de dispositifs médicaux en environnement réglementé",
+      "Conception et réalisation de prototypes haute-fidélité et d'interfaces de production pour des logiciels de diagnostic et des produits de formation",
+      'Contribution à la documentation de design des dossiers réglementaires FDA 510(k) et livraison de fonctionnalités produit conformes à la HIPAA',
+      "Mise en œuvre et maintenance d'un portail d'assistance client et d'un site d'entreprise avec intégration CMS headless",
+      "Collaboration directe avec l'ingénierie, la gestion et la direction générale pour faire avancer les décisions de design",
     ],
   },
   {
-    position: 'Coordinateur marketing',
+    position: 'Marketing Coordinator',
     company: 'Spartan Bioscience',
     startDate: 'avril 2015',
     endDate: 'juin 2017',
     description: [
       "Participation aux initiatives de design UX et produit aux côtés de l'équipe principale",
-      "Gestion du site WordPress de l'entreprise et l'infrastructure serveur",
-      'Production de supports marketing et de documentation de formation',
+      "Gestion du site WordPress de l'entreprise et de l'infrastructure serveur",
     ],
   },
 ];
 
 export const skills = {
   en: [
+    'Design Systems',
+    'Tokens & Component Architecture',
     'Agentic and LLM Interface Design',
     'Conversational UI',
-    'Design Systems',
     'UX Design',
     'Accessibility',
+    'Prototyping',
     'React',
-    'Figma',
+    'Vue/Nuxt',
     'TypeScript/JavaScript',
     'CSS',
-    'Prototyping',
-    'English (native)',
-    'French',
+    'Figma',
+    'Figma API',
+    'Storybook',
+    'AI-assisted Workflows',
   ],
   fr: [
-    "Conception d'interfaces agentiques",
-    'UI conversationnelle',
     'Systèmes de design',
+    'Tokens et architecture de composants',
+    "Conception d'interfaces agentiques et LLM",
+    'UI conversationnelle',
     'Design UX',
     'Accessibilité',
+    'Prototypage',
     'React',
-    'Figma',
+    'Vue/Nuxt',
     'TypeScript/JavaScript',
     'CSS',
-    'Prototypage',
-    'Anglais (natif)',
-    'Français',
+    'Figma',
+    'API Figma',
+    'Storybook',
+    'Flux de travail assistés par IA',
   ],
+};
+
+export const languages = {
+  en: ['English (native)', 'French'],
+  fr: ['Anglais (natif)', 'Français'],
 };
 
 export default {

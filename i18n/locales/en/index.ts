@@ -24,7 +24,7 @@ export default {
     metaTitle: 'About',
     mainHeading: 'About',
     blurb:
-      'I thrive in high-complexity environments, with nearly 10 years of experience including designing for medical and scientific testing, and shipping agentic experiences.',
+      'I work at the seam between design and frontend engineering. A decade shipping production interfaces, design systems, and AI product experiences, from token architecture and component libraries to conversational and agentic LLM interfaces.',
     resumeDownload: 'Download my resume',
     experienceHeading: 'Experience',
     educationHeading: 'Education',
