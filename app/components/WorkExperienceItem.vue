@@ -1,121 +1,93 @@
+<script setup lang="ts">
+import { computed, useI18n } from '#imports';
+
+const props = defineProps<{
+  company: string;
+  roles: string[];
+  startDate: string;
+  endDate?: string;
+  body: string[];
+}>();
+
+const { t } = useI18n();
+
+const dateRange = computed(() =>
+  props.endDate
+    ? `${props.startDate} ${t('about.toDate')} ${props.endDate}`
+    : `${props.startDate} ${t('about.toPresentDate')}`,
+);
+</script>
+
 <template>
   <article class="work-experience-item">
-    <div class="work-experience-item__date">
-      <div class="work-experience-item__date-start">
-        {{ startDate }}
-      </div>
-
-      <div>
-        &nbsp;{{
-          endDate
-            ? `${$t('about.toDate')} ${endDate}`
-            : $t('about.toPresentDate')
-        }}
-      </div>
-    </div>
-
-    <div class="work-experience-item__heading">
-      <h1 class="heading-2 title">
-        {{ position }}
-      </h1>
-      <div class="subtitle">
+    <header class="work-experience-item__header">
+      <h3 class="work-experience-item__company heading-2 title">
         {{ company }}
-      </div>
-    </div>
+      </h3>
 
-    <div class="work-experience-item__description">
-      <ul class="work-experience-item__description-list">
-        <li
-          v-for="item in description"
-          :key="item"
-        >
-          {{ item }}
-        </li>
-      </ul>
+      <p class="work-experience-item__meta">
+        <span class="work-experience-item__roles">
+          {{ roles.join(' · ') }}
+        </span>
+
+        <span class="work-experience-item__date">
+          {{ dateRange }}
+        </span>
+      </p>
+    </header>
+
+    <div class="work-experience-item__body">
+      <p
+        v-for="paragraph in body"
+        :key="paragraph"
+      >
+        {{ paragraph }}
+      </p>
     </div>
   </article>
 </template>
 
-<script>
-export default {
-  name: 'WorkExperienceItem',
-
-  props: {
-    startDate: {
-      type: String,
-      required: true,
-    },
-    endDate: {
-      type: String,
-      default: '',
-    },
-    position: {
-      type: String,
-      required: true,
-    },
-    company: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: Array,
-      required: true,
-    },
-  },
-};
-</script>
-
 <style lang="scss">
-@use 'sass:math';
 @use '~/assets/styles/utils/breakpoints' as bp;
 
 .work-experience-item {
-  display: grid;
-  gap: 1rem;
-  grid-template:
-    'date heading'
-    '. description'
-    / (math.div(1, 6) * 100%) auto;
-
   & ~ & {
-    margin-top: 3rem;
+    border-block-start: 1px solid var(--color-border);
+    margin-block-start: var(--space-12);
+    padding-block-start: var(--space-12);
+  }
+
+  &__header {
+    margin-block-end: var(--space-6);
+  }
+
+  &__meta {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-sm);
+    gap: var(--space-1);
+    margin-block: var(--space-2) 0;
+
+    @container (min-width: #{bp.$sm}) {
+      align-items: baseline;
+      flex-direction: row;
+      gap: var(--space-4);
+      justify-content: space-between;
+    }
   }
 
   &__date {
-    align-self: end;
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    grid-area: date;
-    line-height: 1.8;
-    text-align: right;
+    white-space: nowrap;
   }
 
-  &__heading {
-    grid-area: heading;
-
-    .subtitle {
-      color: var(--color-text-muted);
+  &__body {
+    p {
+      margin-block: 0;
     }
-  }
 
-  &__description {
-    grid-area: description;
-
-    &-list {
-      margin: 0;
-      padding-left: 1.25rem;
-    }
-  }
-
-  @container (max-width: #{bp.$sm - 1}) {
-    column-gap: 0;
-    grid-template:
-      'heading date'
-      'description description' / 1fr auto;
-
-    &__date {
-      display: inline-flex;
-      justify-content: flex-end;
+    p + p {
+      margin-block-start: var(--space-4);
     }
   }
 }

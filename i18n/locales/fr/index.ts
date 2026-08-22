@@ -32,9 +32,9 @@ export default <LangSchema>{
     metaTitle: 'À propos',
     mainHeading: 'À propos',
     blurb:
-      "À l'aise dans les environnements complexes, j'ai près de 10 ans d'expérience en conception, notamment pour les tests médicaux et scientifiques, et pour des expériences agentiques.",
+      "Je travaille à la jonction du design et du développement front-end. Une décennie à livrer des interfaces de production, des systèmes de design et des expériences produit en IA, de l'architecture de tokens aux bibliothèques de composants jusqu'aux interfaces LLM conversationnelles et agentiques.",
     resumeDownload: 'Télécharger mon CV',
-    experienceHeading: 'Expérience professionelle',
+    experienceHeading: 'Expérience professionnelle',
     educationHeading: 'Éducation',
     bcomm: 'Baccalauréat en commerce, commerce international et marketing',
     toPresentDate: 'au présent',
