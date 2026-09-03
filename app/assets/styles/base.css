@@ -23,6 +23,11 @@
     background: rgb(from var(--color-text-muted) r g b / 20%);
   }
 
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
   /* Headings */
   h1,
   h2,
