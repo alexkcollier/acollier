@@ -116,7 +116,7 @@ definePageMeta({
                 <div
                   v-if="mailError"
                   id="form-error"
-                  class="form-field"
+                  class="form-field contact-form__error"
                   role="alert"
                   aria-live="assertive"
                 >
@@ -217,6 +217,17 @@ export default {
     @media screen and (width > 768px) {
       max-width: calc(5 / 12 * 100%);
     }
+  }
+
+  .contact-form__error {
+    background-color: var(--color-bg-error);
+    border-radius: var(--radius-md);
+    color: var(--color-text-error);
+    padding: var(--space-4);
+  }
+
+  .contact-form__error .link {
+    color: currentcolor;
   }
 
   .social-links-contact {
