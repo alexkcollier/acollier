@@ -139,8 +139,6 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 <style>
 @layer block {
   .navbar {
-    --transition-time: 100ms;
-
     align-items: stretch;
     backdrop-filter: blur(16px);
     background-color: rgb(from var(--color-bg) r g b / 50%);
@@ -152,7 +150,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 99;
+    z-index: var(--z-nav);
 
     @media screen and (width > 768px) {
       padding: 0 var(--space-4);
@@ -166,8 +164,8 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     flex-direction: column;
     opacity: 0;
     transition:
-      display var(--transition-time) allow-discrete,
-      opacity var(--transition-time);
+      display var(--duration-fast) allow-discrete,
+      opacity var(--duration-fast);
   }
 
   .navbar__mobile-controls {
@@ -185,7 +183,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
   .navbar__menu-button {
     --transform-transition-delay: 0ms;
-    --top-transition-delay: var(--transition-time);
+    --top-transition-delay: var(--duration-fast);
     --rotation: 0deg;
 
     display: flex;
@@ -202,9 +200,9 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       top: calc(50% + var(--bar-offset));
       transform: translate(-50%, -50%) rotate(var(--rotation));
       transition:
-        transform var(--transition-time) ease-in-out
+        transform var(--duration-fast) ease-in-out
           var(--transform-transition-delay),
-        top var(--transition-time) ease-in-out var(--top-transition-delay);
+        top var(--duration-fast) ease-in-out var(--top-transition-delay);
       width: 1rem;
     }
 
@@ -299,7 +297,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     &::after {
       /* having unit enables animating this variable properly */
       --bar-offset: 0px;
-      --transform-transition-delay: var(--transition-time);
+      --transform-transition-delay: var(--duration-fast);
       --top-transition-delay: 0ms;
     }
 

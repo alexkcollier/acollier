@@ -154,8 +154,6 @@ watch(
 <style>
 @layer block {
   .chat-sidebar {
-    --transition-duration: 200ms;
-
     border-left: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
@@ -164,7 +162,7 @@ watch(
     padding-top: var(--space-20);
     position: sticky;
     top: 0;
-    transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width var(--duration-slow) var(--ease-standard);
     width: var(--chat-sidebar-width, 24rem);
 
     @media screen and (width <= 960px) {
@@ -176,12 +174,12 @@ watch(
       top: var(--visual-viewport-offset-top, 0);
       transform: translateY(var(--space-4));
       transition:
-        opacity var(--transition-duration) ease,
-        transform var(--transition-duration) ease,
-        visibility 0s linear var(--transition-duration);
+        opacity var(--duration-slow) ease,
+        transform var(--duration-slow) ease,
+        visibility 0s linear var(--duration-slow);
       visibility: hidden;
       width: 100%;
-      z-index: 12;
+      z-index: var(--z-modal);
     }
   }
 
@@ -192,7 +190,7 @@ watch(
     position: absolute;
     top: 0;
     width: var(--space-2);
-    z-index: 3;
+    z-index: var(--z-mask);
 
     &::after {
       background: var(--color-text-primary);
@@ -202,7 +200,7 @@ watch(
       opacity: 0;
       position: absolute;
       top: 0;
-      transition: opacity 150ms;
+      transition: opacity var(--duration-base);
       width: 2px;
     }
 
@@ -217,7 +215,7 @@ watch(
     flex-direction: column;
     min-height: 0;
     padding: 0 var(--space-4) var(--space-4);
-    transition: opacity 150ms;
+    transition: opacity var(--duration-base);
   }
 
   .chat-sidebar__tag {
@@ -293,8 +291,8 @@ watch(
       opacity: 1;
       transform: translateY(0);
       transition:
-        opacity var(--transition-duration) ease,
-        transform var(--transition-duration) ease,
+        opacity var(--duration-slow) ease,
+        transform var(--duration-slow) ease,
         visibility 0s linear 0s;
       visibility: visible;
     }

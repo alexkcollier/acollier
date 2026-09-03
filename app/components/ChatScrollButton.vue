@@ -61,13 +61,11 @@ watch(
 <style>
 @layer block {
   .chat-scroll-btn {
-    --transition-duration: 200ms;
-
     background: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-4);
-    box-shadow: 0 2px 8px var(--color-shadow);
+    box-shadow: var(--shadow-sm);
     color: var(--color-text-muted);
     cursor: pointer;
     display: flex;
@@ -76,8 +74,8 @@ watch(
     position: absolute;
     transform: translateX(-50%);
     transition:
-      background var(--transition-duration) ease,
-      box-shadow var(--transition-duration) ease;
+      background var(--duration-slow) ease,
+      box-shadow var(--duration-slow) ease;
 
     &:hover {
       background: var(--color-bg-subtle);
@@ -87,8 +85,8 @@ watch(
   .chat-scroll-btn-enter-active,
   .chat-scroll-btn-leave-active {
     transition:
-      opacity var(--transition-duration) ease,
-      translate var(--transition-duration) ease;
+      opacity var(--duration-slow) ease,
+      translate var(--duration-slow) ease;
   }
 
   .chat-scroll-btn-enter-from,

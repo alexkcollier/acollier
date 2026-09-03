@@ -24,7 +24,7 @@ const { toggle } = useSidebar();
 <style>
 @layer block {
   .sidebar-toggle {
-    transition: color 150ms ease;
+    transition: color var(--duration-base) ease;
   }
 }
 
