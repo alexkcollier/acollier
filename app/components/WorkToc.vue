@@ -115,7 +115,7 @@ onUnmounted(() => {
         <a
           :href="`#${link.id}`"
           class="link toc__link text-muted"
-          :data-active="activeId === link.id || undefined"
+          :aria-current="activeId === link.id ? 'location' : 'false'"
           @click="onLinkClick(link.id)"
         >
           {{ link.text }}
@@ -133,7 +133,7 @@ onUnmounted(() => {
             <a
               :href="`#${child.id}`"
               class="link toc__link text-muted"
-              :data-active="activeId === child.id || undefined"
+              :aria-current="activeId === child.id ? 'location' : 'false'"
               @click="onLinkClick(child.id)"
             >
               {{ child.text }}
@@ -184,7 +184,7 @@ onUnmounted(() => {
                 <a
                   :href="`#${link.id}`"
                   class="link toc__link text-muted"
-                  :data-active="activeId === link.id || undefined"
+                  :aria-current="activeId === link.id ? 'location' : 'false'"
                   @click="onLinkClick(link.id)"
                 >
                   {{ link.text }}
@@ -202,7 +202,9 @@ onUnmounted(() => {
                     <a
                       :href="`#${child.id}`"
                       class="link toc__link text-muted"
-                      :data-active="activeId === child.id || undefined"
+                      :aria-current="
+                        activeId === child.id ? 'location' : 'false'
+                      "
                       @click="onLinkClick(child.id)"
                     >
                       {{ child.text }}
@@ -324,7 +326,7 @@ onUnmounted(() => {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-6);
-    box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
+    box-shadow: 0 2px 12px var(--color-shadow);
     color: var(--color-link);
     cursor: pointer;
     display: flex;
@@ -384,7 +386,7 @@ onUnmounted(() => {
 }
 
 @layer exception {
-  .toc__link[data-active] {
+  .toc__link[aria-current='location'] {
     color: var(--color-link);
     font-weight: 700;
 

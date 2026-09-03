@@ -28,7 +28,7 @@
 }
 
 @layer exception {
-  .submit-button[data-state='loading'] {
+  .submit-button:disabled {
     color: transparent;
     pointer-events: none;
     position: relative;

@@ -95,9 +95,9 @@ watch(
   <aside
     ref="sidebarEl"
     class="chat-sidebar"
-    :data-collapsed="isCollapsed || undefined"
-    :data-mobile-open="isMobileOpen || undefined"
-    :data-resizing="isResizing || undefined"
+    :data-collapsed="isCollapsed"
+    :data-mobile-open="isMobileOpen"
+    :data-resizing="isResizing"
   >
     <div
       class="chat-sidebar__resize-handle"
@@ -107,7 +107,7 @@ watch(
 
     <div
       class="chat-sidebar__body"
-      :data-empty="!messages.length || undefined"
+      :data-empty="!messages.length"
     >
       <div
         v-if="messages.length"
@@ -259,11 +259,11 @@ watch(
 }
 
 @layer exception {
-  .chat-sidebar__body[data-empty] {
+  .chat-sidebar__body[data-empty='true'] {
     margin-top: var(--space-2);
   }
 
-  .chat-sidebar[data-resizing] {
+  .chat-sidebar[data-resizing='true'] {
     transition: none;
 
     .chat-sidebar__resize-handle::after {
@@ -271,7 +271,7 @@ watch(
     }
   }
 
-  .chat-sidebar[data-collapsed] {
+  .chat-sidebar[data-collapsed='true'] {
     @media screen and (width > 960px) {
       background: transparent;
       border: none;
@@ -289,7 +289,7 @@ watch(
   }
 
   @media screen and (width <= 960px) {
-    .chat-sidebar[data-mobile-open] {
+    .chat-sidebar[data-mobile-open='true'] {
       opacity: 1;
       transform: translateY(0);
       transition:

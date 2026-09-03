@@ -207,15 +207,27 @@ would sit in the block layer alongside the thing it is meant to override,
 and would have to win on selector weight. The attribute keeps the block's
 class list stable, and it reads as what it is: markup describing state.
 
-Bind a boolean state so the attribute is absent when off:
+**Reach for a native attribute first.** Most interactive state already has
+one, it is required for assistive tech regardless, and styling off it
+means there is a single source of truth rather than a `data-*` shadowing
+an ARIA state that has to be kept in sync:
 
-```
-:data-open="isMenuOpen || undefined"
-```
+| State                     | Attribute       | Selector                    |
+| ------------------------- | --------------- | --------------------------- |
+| a disclosure is open      | `aria-expanded` | `[aria-expanded='true']`    |
+| a toggle button is on     | `aria-pressed`  | `[aria-pressed='true']`     |
+| the current item in a set | `aria-current`  | `[aria-current='location']` |
+| a control is unavailable  | `disabled`      | `:disabled`                 |
 
-`|| undefined` is the load-bearing part. Vue drops an attribute bound to
-`undefined`, but `false` renders as `data-open="false"` — present, and
-matching `[data-open]`.
+Only where nothing native fits — a purely presentational state like
+`data-collapsed` or `data-resizing` — reach for `data-*`.
+
+**Bind the value, never the presence.** `:data-collapsed="isCollapsed"`
+and select `[data-collapsed='true']`. Presence-testing (`[data-collapsed]`)
+looks tidier but forces the binding to erase the attribute when false —
+Vue renders `false` as `data-collapsed="false"`, which is present and
+matches — and that sentinel is easy to drop and never notice, because the
+result is a state that is silently always on.
 
 Where the value is already data, bind it straight through instead of
 composing a class name from it — `:data-role="role"`, not

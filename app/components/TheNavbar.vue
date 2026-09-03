@@ -85,15 +85,17 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
       <button
         class="navbar-button navbar__menu-button"
-        :data-open="isMenuOpen || undefined"
+        aria-controls="navbar-menu"
+        :aria-expanded="isMenuOpen"
         @click.stop="() => setIsMenuOpen(!isMenuOpen)"
       />
     </div>
 
     <div
+      id="navbar-menu"
       ref="menuRef"
       class="navbar__button-wrapper"
-      :data-open="isMenuOpen || undefined"
+      :data-open="isMenuOpen"
     >
       <NavbarButton
         v-for="{ href, key } in links"
@@ -281,7 +283,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 }
 
 @layer exception {
-  .navbar__button-wrapper[data-open] {
+  .navbar__button-wrapper[data-open='true'] {
     display: flex;
     inset: 3.5rem 0 0;
     opacity: 1;
@@ -292,7 +294,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     }
   }
 
-  .navbar__menu-button[data-open] {
+  .navbar__menu-button[aria-expanded='true'] {
     &::before,
     &::after {
       /* having unit enables animating this variable properly */

@@ -13,7 +13,7 @@ const { toggle } = useSidebar();
 <template>
   <button
     class="navbar-button sidebar-toggle"
-    :data-active="isActive || undefined"
+    :aria-pressed="isActive"
     :aria-label="t('chat.sidebarToggle')"
     @click="toggle"
   >
@@ -29,7 +29,7 @@ const { toggle } = useSidebar();
 }
 
 @layer exception {
-  .sidebar-toggle[data-active] {
+  .sidebar-toggle[aria-pressed='true'] {
     &,
     &:hover {
       color: var(--color-text-primary);

@@ -63,6 +63,10 @@
     /* border */
     --color-border: light-dark(var(--stone-300), var(--stone-700));
 
+    /* shadow — heavier in dark, where a soft black barely reads against
+       a near-black surface */
+    --color-shadow: light-dark(rgb(0 0 0 / 20%), rgb(0 0 0 / 60%));
+
     /* links */
     --color-link: light-dark(var(--green-700), var(--green-300));
     --color-link-hover: light-dark(var(--green-700), var(--green-100));

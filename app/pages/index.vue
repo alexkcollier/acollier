@@ -87,7 +87,7 @@ watch(
   <div class="chat-container wrapper">
     <main
       class="chat"
-      :data-active="messages.length > 0 || undefined"
+      :data-active="messages.length > 0"
       :aria-label="t('chat.formLabel')"
     >
       <Transition name="chat__greeting">
@@ -310,13 +310,13 @@ watch(
 }
 
 @layer exception {
-  .chat[data-active] {
+  .chat[data-active='true'] {
     flex: 1;
     justify-content: flex-start;
     min-height: 0;
   }
 
-  .chat:not([data-active]) .chat-form {
+  .chat:not([data-active='true']) .chat-form {
     filter: drop-shadow(0 16px 40px var(--color-glow));
   }
 }

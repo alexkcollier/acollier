@@ -9,7 +9,7 @@ const { t } = useI18n();
 <template>
   <div
     class="assistant-pip"
-    :data-paused="paused || undefined"
+    :data-paused="paused"
     role="status"
   >
     <span
@@ -99,13 +99,13 @@ const { t } = useI18n();
 }
 
 @layer exception {
-  .assistant-pip[data-paused] .assistant-pip__dot {
+  .assistant-pip[data-paused='true'] .assistant-pip__dot {
     animation: none;
     opacity: 1;
     scale: 1.35;
   }
 
-  .assistant-pip[data-paused] .assistant-pip__ring {
+  .assistant-pip[data-paused='true'] .assistant-pip__ring {
     animation: none;
     opacity: 0;
     scale: 1.8;
