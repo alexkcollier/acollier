@@ -81,18 +81,18 @@ watch(
   &:hover {
     background: var(--color-bg-subtle);
   }
+}
 
-  &-enter-active,
-  &-leave-active {
-    transition:
-      opacity var(--transition-duration) ease,
-      translate var(--transition-duration) ease;
-  }
+.chat-scroll-btn-enter-active,
+.chat-scroll-btn-leave-active {
+  transition:
+    opacity var(--transition-duration) ease,
+    translate var(--transition-duration) ease;
+}
 
-  &-enter-from,
-  &-leave-to {
-    opacity: 0;
-    translate: 0 var(--space-2);
-  }
+.chat-scroll-btn-enter-from,
+.chat-scroll-btn-leave-to {
+  opacity: 0;
+  translate: 0 var(--space-2);
 }
 </style>

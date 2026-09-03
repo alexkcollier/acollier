@@ -40,127 +40,127 @@ const html = computed(() =>
 .chat-message {
   animation: chat-message-enter 200ms ease both;
   border-radius: var(--radius-md);
+}
 
-  &--user {
-    align-self: flex-end;
+.chat-message--user {
+  align-self: flex-end;
+  background: var(--color-bg-subtle);
+  max-width: 90%;
+  padding: var(--space-2) var(--space-4);
+}
+
+.chat-message--assistant {
+  align-self: flex-start;
+}
+
+.chat-message__content {
+  line-height: var(--leading-normal);
+
+  p {
+    padding-inline-end: var(--space-8);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 700;
+    line-height: var(--leading-snug);
+  }
+
+  h1 {
+    font-size: var(--text-xl);
+  }
+
+  h2 {
+    font-size: var(--text-lg);
+  }
+
+  h3,
+  h4 {
+    font-size: var(--text-base);
+  }
+
+  ul,
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-inline-start: var(--space-6);
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li::marker {
+    color: var(--color-text-muted);
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: var(--color-link-hover);
+    }
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  code {
     background: var(--color-bg-subtle);
-    max-width: 90%;
-    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.1em 0.3em;
   }
 
-  &--assistant {
-    align-self: flex-start;
-  }
-
-  &__content {
-    line-height: var(--leading-normal);
-
-    p {
-      padding-inline-end: var(--space-8);
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-weight: 700;
-      line-height: var(--leading-snug);
-    }
-
-    h1 {
-      font-size: var(--text-xl);
-    }
-
-    h2 {
-      font-size: var(--text-lg);
-    }
-
-    h3,
-    h4 {
-      font-size: var(--text-base);
-    }
-
-    ul,
-    ol {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-1);
-      padding-inline-start: var(--space-6);
-    }
-
-    ul {
-      list-style: disc;
-    }
-
-    ol {
-      list-style: decimal;
-    }
-
-    li::marker {
-      color: var(--color-text-muted);
-    }
-
-    a {
-      color: var(--color-link);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-
-      &:hover {
-        color: var(--color-link-hover);
-      }
-    }
-
-    strong {
-      font-weight: 700;
-    }
-
-    em {
-      font-style: italic;
-    }
+  pre {
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    padding: var(--space-3) var(--space-4);
 
     code {
-      background: var(--color-bg-subtle);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: 0.9em;
-      padding: 0.1em 0.3em;
+      background: none;
+      font-size: var(--text-sm);
+      padding: 0;
     }
+  }
 
-    pre {
-      background: var(--color-bg-subtle);
-      border-radius: var(--radius-md);
-      overflow-x: auto;
-      padding: var(--space-3) var(--space-4);
+  blockquote {
+    border-inline-start: 2px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding-inline-start: var(--space-4);
+  }
 
-      code {
-        background: none;
-        font-size: var(--text-sm);
-        padding: 0;
-      }
-    }
+  hr {
+    border: none;
+    border-block-start: 1px solid var(--color-border);
+  }
 
-    blockquote {
-      border-inline-start: 2px solid var(--color-border);
-      color: var(--color-text-muted);
-      padding-inline-start: var(--space-4);
-    }
+  > * + * {
+    margin-block-start: var(--space-3);
+  }
 
-    hr {
-      border: none;
-      border-block-start: 1px solid var(--color-border);
-    }
+  > *:first-child {
+    margin-block-start: 0;
+  }
 
-    > * + * {
-      margin-block-start: var(--space-3);
-    }
-
-    > *:first-child {
-      margin-block-start: 0;
-    }
-
-    > *:last-child {
-      margin-block-end: 0;
-    }
+  > *:last-child {
+    margin-block-end: 0;
   }
 }
 

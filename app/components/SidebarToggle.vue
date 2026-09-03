@@ -23,10 +23,10 @@ const { toggle } = useSidebar();
 <style lang="scss">
 .sidebar-toggle {
   transition: color 150ms ease;
+}
 
-  &--active,
-  &--active:hover {
-    color: var(--color-text-primary);
-  }
+.sidebar-toggle--active,
+.sidebar-toggle--active:hover {
+  color: var(--color-text-primary);
 }
 </style>

@@ -178,63 +178,63 @@ watch(
   &:has(.chat-form__input:disabled) {
     cursor: not-allowed;
   }
+}
 
-  &__actions {
-    align-items: center;
-    display: flex;
-    gap: var(--space-2);
-    justify-content: flex-end;
-    margin-block-start: var(--space-2);
-  }
+.chat-form__actions {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+  margin-block-start: var(--space-2);
+}
 
-  &__hint {
-    color: var(--color-text-muted);
-    cursor: default;
+.chat-form__hint {
+  color: var(--color-text-muted);
+  cursor: default;
+  font-size: var(--text-xs);
+
+  kbd {
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
+    padding: calc(0.5 * var(--space-1)) var(--space-1);
+  }
+}
 
-    kbd {
-      border: 1px solid var(--color-input-border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      padding: calc(0.5 * var(--space-1)) var(--space-1);
-    }
+.chat-form__input {
+  background: transparent;
+  border: none;
+  field-sizing: content;
+  max-height: 24rem;
+  min-height: 1lh;
+  overflow-y: auto;
+  resize: none;
+  width: 100%;
+
+  &:focus {
+    outline: none;
   }
 
-  &__input {
+  &:disabled {
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+}
+
+.chat-form__submit {
+  align-items: center;
+  background: var(--submit-bg);
+  border-radius: var(--radius-md);
+  color: var(--submit-color);
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2);
+
+  &:disabled {
     background: transparent;
-    border: none;
-    field-sizing: content;
-    max-height: 24rem;
-    min-height: 1lh;
-    overflow-y: auto;
-    resize: none;
-    width: 100%;
-
-    &:focus {
-      outline: none;
-    }
-
-    &:disabled {
-      color: var(--color-text-muted);
-      cursor: not-allowed;
-    }
-  }
-
-  &__submit {
-    align-items: center;
-    background: var(--submit-bg);
-    border-radius: var(--radius-md);
-    color: var(--submit-color);
-    display: flex;
-    justify-content: center;
-    padding: var(--space-2);
-
-    &:disabled {
-      background: transparent;
-      color: var(--color-text-muted);
-      cursor: not-allowed;
-    }
+    color: var(--color-text-muted);
+    cursor: not-allowed;
   }
 }
 

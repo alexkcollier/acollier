@@ -63,18 +63,6 @@ onUnmounted(() => {
 
 <style lang="scss">
 .default-layout {
-  &__body {
-    align-items: flex-start;
-    display: flex;
-    min-height: 100%;
-  }
-
-  &__sidebar {
-    @media screen and (width > 960px) {
-      flex-shrink: 0;
-    }
-  }
-
   .content {
     container-type: inline-size;
     flex: 1;
@@ -85,16 +73,30 @@ onUnmounted(() => {
   @media screen and (width > 960px) {
     height: 100%;
 
-    &__body {
-      height: 100%;
-      min-height: unset;
-    }
-
     .content {
       height: 100%;
       overflow-y: auto;
       scroll-behavior: smooth;
     }
+  }
+}
+
+.default-layout__body {
+  align-items: flex-start;
+  display: flex;
+  min-height: 100%;
+}
+
+.default-layout__sidebar {
+  @media screen and (width > 960px) {
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (width > 960px) {
+  .default-layout__body {
+    height: 100%;
+    min-height: unset;
   }
 }
 </style>

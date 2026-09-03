@@ -55,34 +55,34 @@ export default {
     margin-bottom: inherit;
   }
 
-  &__item {
-    text-align: center;
-  }
-
-  &__image {
-    display: block;
-    margin: 0 auto;
-    max-height: 3rem;
-    width: 3rem;
-  }
-
-  &__link {
-    color: var(--color-text);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-between;
-    text-decoration: none;
-  }
-
-  &__link-text {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    margin-top: 0.5rem;
-  }
-
   @container (width >= 768px) {
     --column-number: 6;
   }
+}
+
+.tool-list__item {
+  text-align: center;
+}
+
+.tool-list__image {
+  display: block;
+  margin: 0 auto;
+  max-height: 3rem;
+  width: 3rem;
+}
+
+.tool-list__link {
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.tool-list__link-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  margin-top: 0.5rem;
 }
 </style>

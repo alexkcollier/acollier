@@ -99,32 +99,32 @@ html:has(.lightbox[open]) {
       }
     }
   }
+}
 
-  &__preview {
-    margin-bottom: var(--space-1);
-    margin-top: 0;
-  }
+.lightbox__preview {
+  margin-bottom: var(--space-1);
+  margin-top: 0;
+}
 
-  &__hint {
-    text-align: right;
-  }
+.lightbox__hint {
+  text-align: right;
+}
 
-  &__image {
-    flex: 1 1 0;
-    max-width: 100%;
-    min-height: 0;
-    object-fit: scale-down;
-    width: 100%;
-  }
+.lightbox__image {
+  flex: 1 1 0;
+  max-width: 100%;
+  min-height: 0;
+  object-fit: scale-down;
+  width: 100%;
+}
 
-  &-wrapper {
-    margin: var(--space-12) auto;
-    text-align: center;
+.lightbox-wrapper {
+  margin: var(--space-12) auto;
+  text-align: center;
 
-    button: {
-      display: block;
-      margin: 0 auto;
-    }
+  button {
+    display: block;
+    margin: 0 auto;
   }
 }
 </style>

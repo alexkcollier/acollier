@@ -156,134 +156,140 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   top: 0;
   z-index: 99;
 
-  &__button-wrapper {
-    align-items: stretch;
-    display: none;
-    flex-basis: 100%;
-    flex-direction: column;
-    opacity: 0;
-    transition:
-      display var(--transition-time) allow-discrete,
-      opacity var(--transition-time);
-
-    &--open {
-      display: flex;
-      inset: 3.5rem 0 0;
-      opacity: 1;
-      position: static;
-
-      @starting-style {
-        opacity: 0;
-      }
-    }
-  }
-
-  &__mobile-controls {
-    display: flex;
-    margin-left: auto;
-  }
-
-  &__sidebar-toggle--mobile {
-    display: flex;
-  }
-
-  &__sidebar-toggle--desktop {
-    display: none;
-  }
-
-  &__menu-button {
-    --transform-transition-delay: 0ms;
-    --top-transition-delay: var(--transition-time);
-    --rotation: 0deg;
-
-    display: flex;
-    position: relative;
-    width: 3rem;
-
-    &::before,
-    &::after {
-      border-bottom: 1px solid var(--color-text);
-      content: '';
-      left: 50%;
-      margin: auto;
-      position: absolute;
-      top: calc(50% + var(--bar-offset));
-      transform: translate(-50%, -50%) rotate(var(--rotation));
-      transition:
-        transform var(--transition-time) ease-in-out
-          var(--transform-transition-delay),
-        top var(--transition-time) ease-in-out var(--top-transition-delay);
-      width: 1rem;
-    }
-
-    &::before {
-      --bar-offset: -4px;
-    }
-
-    &::after {
-      --bar-offset: 4px;
-    }
-
-    &--open {
-      &::before,
-      &::after {
-        // having unit enables animating this variable properly
-        --bar-offset: 0px;
-        --transform-transition-delay: var(--transition-time);
-        --top-transition-delay: 0ms;
-      }
-
-      &::before {
-        --rotation: 45deg;
-      }
-
-      &::after {
-        --rotation: -45deg;
-      }
-    }
-  }
-
-  &__locale-switcher {
-    text-transform: uppercase;
-  }
-
   @media screen and (width > 768px) {
     padding: 0 var(--space-4);
-
-    &__button-wrapper {
-      display: flex;
-      flex-basis: auto;
-      flex-direction: row;
-      opacity: 1;
-    }
-
-    &__menu-button {
-      display: none;
-      margin-left: auto;
-    }
-
-    &__sidebar-toggle--mobile {
-      display: none;
-    }
-
-    &__sidebar-toggle--desktop {
-      display: flex;
-    }
   }
 }
 
-.navbar-brand {
-  &__name {
-    color: var(--color-text);
-    font-weight: 700;
-    margin-block-end: var(--space-1);
+.navbar__button-wrapper {
+  align-items: stretch;
+  display: none;
+  flex-basis: 100%;
+  flex-direction: column;
+  opacity: 0;
+  transition:
+    display var(--transition-time) allow-discrete,
+    opacity var(--transition-time);
+}
+
+.navbar__button-wrapper--open {
+  display: flex;
+  inset: 3.5rem 0 0;
+  opacity: 1;
+  position: static;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.navbar__mobile-controls {
+  display: flex;
+  margin-left: auto;
+}
+
+.navbar__sidebar-toggle--mobile {
+  display: flex;
+}
+
+.navbar__sidebar-toggle--desktop {
+  display: none;
+}
+
+.navbar__menu-button {
+  --transform-transition-delay: 0ms;
+  --top-transition-delay: var(--transition-time);
+  --rotation: 0deg;
+
+  display: flex;
+  position: relative;
+  width: 3rem;
+
+  &::before,
+  &::after {
+    border-bottom: 1px solid var(--color-text);
+    content: '';
+    left: 50%;
+    margin: auto;
+    position: absolute;
+    top: calc(50% + var(--bar-offset));
+    transform: translate(-50%, -50%) rotate(var(--rotation));
+    transition:
+      transform var(--transition-time) ease-in-out
+        var(--transform-transition-delay),
+      top var(--transition-time) ease-in-out var(--top-transition-delay);
+    width: 1rem;
   }
 
-  &__title {
-    color: var(--color-text);
-    font-family: var(--font-mono);
-    font-weight: 300;
+  &::before {
+    --bar-offset: -4px;
   }
+
+  &::after {
+    --bar-offset: 4px;
+  }
+}
+
+.navbar__menu-button--open {
+  &::before,
+  &::after {
+    // having unit enables animating this variable properly
+    --bar-offset: 0px;
+    --transform-transition-delay: var(--transition-time);
+    --top-transition-delay: 0ms;
+  }
+
+  &::before {
+    --rotation: 45deg;
+  }
+
+  &::after {
+    --rotation: -45deg;
+  }
+}
+
+.navbar__locale-switcher {
+  text-transform: uppercase;
+}
+
+@media screen and (width > 768px) {
+  .navbar__button-wrapper {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    opacity: 1;
+  }
+}
+
+@media screen and (width > 768px) {
+  .navbar__menu-button {
+    display: none;
+    margin-left: auto;
+  }
+}
+
+@media screen and (width > 768px) {
+  .navbar__sidebar-toggle--mobile {
+    display: none;
+  }
+}
+
+@media screen and (width > 768px) {
+  .navbar__sidebar-toggle--desktop {
+    display: flex;
+  }
+}
+
+.navbar-brand__name {
+  color: var(--color-text);
+  font-weight: 700;
+  margin-block-end: var(--space-1);
+}
+
+.navbar-brand__title {
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-weight: 300;
 }
 
 .navbar-divider {

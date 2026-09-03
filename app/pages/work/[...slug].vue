@@ -246,21 +246,19 @@ export default {
   }
 }
 
-.work-links {
-  &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.work-links__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    &:not(:last-child) {
-      margin-bottom: inherit;
-    }
+  &:not(:last-child) {
+    margin-bottom: inherit;
   }
+}
 
-  &__list-item {
-    &:not(:last-child) {
-      margin-bottom: var(--space-6);
-    }
+.work-links__list-item {
+  &:not(:last-child) {
+    margin-bottom: var(--space-6);
   }
 }
 

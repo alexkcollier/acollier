@@ -90,17 +90,17 @@ definePageMeta({
 .about-intro {
   font-size: var(--text-lg);
 
-  &__links {
-    align-items: flex-start;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    justify-content: flex-start;
-  }
-
   @media screen and (width > 480px) {
     font-size: var(--text-xl);
   }
+}
+
+.about-intro__links {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: flex-start;
 }
 
 .about-section {
