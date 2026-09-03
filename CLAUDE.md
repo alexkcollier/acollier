@@ -33,7 +33,17 @@ The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mai
 
 ### Styling
 
-Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS plugins, and no utility-class framework. Global stylesheets live in `app/assets/styles/*.css` and are listed explicitly in the `css` array in `nuxt.config.ts`; component styles live in the component's own `<style>` block. The design system is defined in `app/assets/styles/theme.css` (color ramps, spacing scale, type scale, radius tokens, breakpoint values).
+Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS plugins, and no utility-class framework. The organising idea is **CUBE CSS** (Composition, Utility, Block, Exception) over a shared token set, with **cascade layers** enforcing the order.
+
+The layer order is declared once at the top of `app/assets/styles/reset.css`, which must stay first in the `css` array in `nuxt.config.ts`:
+
+```css
+@layer reset, tokens, global, composition, utility, block, exception;
+```
+
+Every rule in the project sits in one of those layers — global stylesheets wrap their whole contents in a single `@layer`, and so does every component `<style>` block (`@layer block { … }`). Unlayered CSS beats every layer, so nothing may be left outside one. A later layer wins regardless of specificity.
+
+Global stylesheets live in `app/assets/styles/*.css` and are listed explicitly in the `css` array; component styles live in the component's own `<style>` block. The design system is defined in `app/assets/styles/tokens.css` (color ramps, spacing scale, type scale, radius tokens, breakpoint values, page and heading tokens) — the only place custom properties are declared. `app/assets/styles/compositions.css` holds the layout primitives (`.wrapper`, `.stack`, `.cluster`, `.with-sidebar`, `.frame`), each tuned by custom properties. The `utility` and `exception` layers are declared but not yet populated.
 
 Both themes are declared once via `light-dark()`, which resolves against `color-scheme`: `:root` is `light dark` (following the OS), and `ColorSwitcher` stamps `data-theme` on `:root` to pin a choice. There is no `prefers-color-scheme` block in the token layer.
 
