@@ -175,158 +175,160 @@ watch(
 </template>
 
 <style>
-.chat {
-  --transition-duration: 200ms;
-  --glow-opacity: 16%;
+@layer block {
+  .chat {
+    --transition-duration: 200ms;
+    --glow-opacity: 16%;
 
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 40rem;
-  padding: var(--space-12) var(--space-4) var(--space-8);
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 40rem;
+    padding: var(--space-12) var(--space-4) var(--space-8);
+    width: 100%;
 
-  :root[data-theme='dark'] & {
-    --glow-opacity: 32%;
+    :root[data-theme='dark'] & {
+      --glow-opacity: 32%;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      --glow-opacity: 32%;
+    }
+
+    @media screen and (width > 480px) {
+      padding-block-start: var(--space-24);
+    }
   }
 
-  @media (prefers-color-scheme: dark) {
-    --glow-opacity: 32%;
+  .chat--active {
+    flex: 1;
+    justify-content: flex-start;
+    min-height: 0;
   }
 
-  @media screen and (width > 480px) {
-    padding-block-start: var(--space-24);
+  .chat:not(.chat--active) .chat-form {
+    filter: drop-shadow(
+      0 16px 40px
+        color-mix(
+          in srgb,
+          var(--color-bg-primary) var(--glow-opacity),
+          transparent
+        )
+    );
   }
-}
 
-.chat--active {
-  flex: 1;
-  justify-content: flex-start;
-  min-height: 0;
-}
-
-.chat:not(.chat--active) .chat-form {
-  filter: drop-shadow(
-    0 16px 40px
-      color-mix(
-        in srgb,
-        var(--color-bg-primary) var(--glow-opacity),
-        transparent
-      )
-  );
-}
-
-.chat__greeting {
-  margin-block-end: var(--space-8);
-  text-align: center;
-}
-
-.chat__greeting-tag {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  letter-spacing: -0.016em;
-  line-height: var(--leading-snug);
-  margin: 0 0 var(--space-3);
-
-  @media screen and (width > 480px) {
-    font-size: var(--text-4xl);
+  .chat__greeting {
+    margin-block-end: var(--space-8);
+    text-align: center;
   }
-}
 
-.chat__greeting-highlight {
-  color: var(--color-text-primary);
-}
+  .chat__greeting-tag {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.016em;
+    line-height: var(--leading-snug);
+    margin: 0 0 var(--space-3);
 
-.chat__greeting-enter-active,
-.chat__greeting-leave-active {
-  transition:
-    opacity var(--transition-duration) ease,
-    translate var(--transition-duration) ease;
-}
-
-.chat__greeting-enter-from,
-.chat__greeting-leave-to {
-  opacity: 0;
-  translate: 0 var(--space-2);
-}
-
-.chat__messages {
-  flex: 1;
-  min-height: 0;
-  position: relative;
-}
-
-.chat__messages-enter-active {
-  transition: opacity var(--transition-duration) ease;
-}
-
-.chat__messages-enter-from {
-  opacity: 0;
-}
-
-.chat__messages-body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  height: 100%;
-  overflow-y: auto;
-  padding-block-end: var(--space-36);
-  padding-inline: var(--space-4);
-}
-
-.chat__error {
-  color: var(--color-text-accent);
-  font-size: var(--text-sm);
-}
-
-.chat__suggestions {
-  padding-inline: var(--page-side-padding);
-}
-
-.chat__suggestions-enter-active,
-.chat__suggestions-leave-active {
-  transition:
-    opacity var(--transition-duration) ease,
-    translate var(--transition-duration) ease;
-}
-
-.chat__suggestions-enter-from,
-.chat__suggestions-leave-to {
-  opacity: 0;
-  translate: 0 calc(-1 * var(--space-2));
-}
-
-.chat__suggestions-label {
-  color: var(--color-text-muted);
-  margin-block: var(--space-8) var(--space-4);
-  text-align: center;
-
-  @media screen and (width > 480px) {
-    margin-block-start: var(--space-24);
+    @media screen and (width > 480px) {
+      font-size: var(--text-4xl);
+    }
   }
-}
 
-.chat__suggestions-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  justify-content: center;
+  .chat__greeting-highlight {
+    color: var(--color-text-primary);
+  }
 
-  @media screen and (width > 480px) {
+  .chat__greeting-enter-active,
+  .chat__greeting-leave-active {
+    transition:
+      opacity var(--transition-duration) ease,
+      translate var(--transition-duration) ease;
+  }
+
+  .chat__greeting-enter-from,
+  .chat__greeting-leave-to {
+    opacity: 0;
+    translate: 0 var(--space-2);
+  }
+
+  .chat__messages {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+  }
+
+  .chat__messages-enter-active {
+    transition: opacity var(--transition-duration) ease;
+  }
+
+  .chat__messages-enter-from {
+    opacity: 0;
+  }
+
+  .chat__messages-body {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-8);
+    height: 100%;
+    overflow-y: auto;
+    padding-block-end: var(--space-36);
+    padding-inline: var(--space-4);
   }
-}
 
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: var(--visual-viewport-height, 100%);
-  max-width: var(--bp-lg);
-  padding-top: var(--space-12);
+  .chat__error {
+    color: var(--color-text-accent);
+    font-size: var(--text-sm);
+  }
 
-  @media screen and (width > 768px) {
+  .chat__suggestions {
+    padding-inline: var(--page-side-padding);
+  }
+
+  .chat__suggestions-enter-active,
+  .chat__suggestions-leave-active {
+    transition:
+      opacity var(--transition-duration) ease,
+      translate var(--transition-duration) ease;
+  }
+
+  .chat__suggestions-enter-from,
+  .chat__suggestions-leave-to {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--space-2));
+  }
+
+  .chat__suggestions-label {
+    color: var(--color-text-muted);
+    margin-block: var(--space-8) var(--space-4);
+    text-align: center;
+
+    @media screen and (width > 480px) {
+      margin-block-start: var(--space-24);
+    }
+  }
+
+  .chat__suggestions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
     justify-content: center;
-    padding-top: 0;
+
+    @media screen and (width > 480px) {
+      gap: var(--space-8);
+    }
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: var(--visual-viewport-height, 100%);
+    max-width: var(--bp-lg);
+    padding-top: var(--space-12);
+
+    @media screen and (width > 768px) {
+      justify-content: center;
+      padding-top: 0;
+    }
   }
 }
 </style>

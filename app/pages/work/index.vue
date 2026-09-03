@@ -82,7 +82,9 @@ export default {
 </script>
 
 <style>
-.work-list {
-  border-top: 1px solid var(--color-border);
+@layer block {
+  .work-list {
+    border-top: 1px solid var(--color-border);
+  }
 }
 </style>

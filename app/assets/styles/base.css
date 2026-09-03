@@ -1,79 +1,81 @@
-/**
- * Globals
- */
+@layer global {
+  /**
+   * Globals
+   */
 
-/* Page */
-html {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  letter-spacing: var(--letter-spacing-base);
-  overflow-y: scroll;
-}
-
-html,
-body,
-#__nuxt,
-#__layout {
-  height: 100%;
-}
-
-::selection {
-  background: rgb(from var(--color-text-muted) r g b / 20%);
-}
-
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  letter-spacing: var(--letter-spacing-bold);
-
-  &:first-child {
-    margin-top: 0;
+  /* Page */
+  html {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    letter-spacing: var(--letter-spacing-base);
+    overflow-y: scroll;
   }
-}
 
-a {
-  text-decoration: none;
-}
+  html,
+  body,
+  #__nuxt,
+  #__layout {
+    height: 100%;
+  }
 
-/* bold tags */
-b,
-strong {
-  font-weight: 700;
-  letter-spacing: var(--letter-spacing-bold);
-}
+  ::selection {
+    background: rgb(from var(--color-text-muted) r g b / 20%);
+  }
 
-/* lists */
-li {
-  margin-bottom: var(--space-2);
-}
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: var(--letter-spacing-bold);
 
-/* Forms */
-input,
-select,
-textarea {
-  border-color: var(--color-border);
-  font-family: var(--font-body);
-}
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 
-button {
-  border: none;
-  cursor: pointer;
-}
+  a {
+    text-decoration: none;
+  }
 
-label {
-  font-family: var(--font-mono);
-}
+  /* bold tags */
+  b,
+  strong {
+    font-weight: 700;
+    letter-spacing: var(--letter-spacing-bold);
+  }
 
-.sr-only {
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+  /* lists */
+  li {
+    margin-bottom: var(--space-2);
+  }
+
+  /* Forms */
+  input,
+  select,
+  textarea {
+    border-color: var(--color-border);
+    font-family: var(--font-body);
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  label {
+    font-family: var(--font-mono);
+  }
+
+  .sr-only {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 }

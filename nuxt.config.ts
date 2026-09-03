@@ -53,12 +53,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // Order here is documentation only — the cascade order is fixed by the
+  // `@layer` statement at the top of `reset.css`, which must load first.
   css: [
-    'sanitize.css',
-    'sanitize.css/forms.css',
-    'sanitize.css/assets.css',
-    'sanitize.css/reduce-motion.css',
-    '~/assets/styles/theme.css',
+    '~/assets/styles/reset.css',
+    '~/assets/styles/tokens.css',
     '~/assets/styles/base.css',
     '~/assets/styles/layout.css',
     '~/assets/styles/typography.css',

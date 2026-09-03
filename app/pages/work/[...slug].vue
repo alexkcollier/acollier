@@ -203,66 +203,68 @@ export default {
 <style>
 @import url('../../assets/styles/nuxt-content.css');
 
-.reading-progress {
-  background-color: var(--color-bg-accent);
-  border-bottom-right-radius: var(--radius-full);
-  border-top-right-radius: var(--radius-full);
-  height: 4px;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 68px;
-  transform-origin: left;
-  z-index: 1;
-}
-
-.content-container {
-  margin-block-start: var(--space-4);
-  margin-inline: auto;
-  max-width: var(--bp-xl);
-}
-
-.slug-back {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--space-2);
-  margin-block: var(--space-3) var(--space-2);
-}
-
-.slug-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  margin-block-start: 0;
-  padding: 0;
-}
-
-.toc-sidebar {
-  top: 0;
-
-  @media screen and (width <= 768px) {
-    display: none;
+@layer block {
+  .reading-progress {
+    background-color: var(--color-bg-accent);
+    border-bottom-right-radius: var(--radius-full);
+    border-top-right-radius: var(--radius-full);
+    height: 4px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 68px;
+    transform-origin: left;
+    z-index: 1;
   }
-}
 
-.work-links__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  &:not(:last-child) {
-    margin-bottom: inherit;
+  .content-container {
+    margin-block-start: var(--space-4);
+    margin-inline: auto;
+    max-width: var(--bp-xl);
   }
-}
 
-.work-links__list-item {
-  &:not(:last-child) {
-    margin-bottom: var(--space-6);
+  .slug-back {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--space-2);
+    margin-block: var(--space-3) var(--space-2);
   }
-}
 
-.built-with-section:first-child {
-  margin-top: var(--space-8);
+  .slug-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin-block-start: 0;
+    padding: 0;
+  }
+
+  .toc-sidebar {
+    top: 0;
+
+    @media screen and (width <= 768px) {
+      display: none;
+    }
+  }
+
+  .work-links__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
+  }
+
+  .work-links__list-item {
+    &:not(:last-child) {
+      margin-bottom: var(--space-6);
+    }
+  }
+
+  .built-with-section:first-child {
+    margin-top: var(--space-8);
+  }
 }
 </style>

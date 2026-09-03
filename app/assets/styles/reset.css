@@ -1,0 +1,23 @@
+/**
+ * Cascade layers
+ *
+ * The order below is the whole cascade contract: a rule in a later layer
+ * beats a rule in an earlier one no matter how specific either is. This
+ * statement must be the first thing the browser parses, which is why it
+ * lives at the top of the first stylesheet in the `css` array in
+ * `nuxt.config.ts`.
+ *
+ *   reset        normalize/opinionated defaults (sanitize.css)
+ *   tokens       the design system — custom properties only
+ *   global       bare element styling (`base.css`)
+ *   composition  layout primitives: flow and relationships, no cosmetics
+ *   utility      single-job, token-derived classes
+ *   block        components — global stylesheets and `\3c style>` blocks alike
+ *   exception    state and variant overrides, keyed off `data-*`
+ */
+@layer reset, tokens, global, composition, utility, block, exception;
+
+@import url('sanitize.css') layer(reset);
+@import url('sanitize.css/forms.css') layer(reset);
+@import url('sanitize.css/assets.css') layer(reset);
+@import url('sanitize.css/reduce-motion.css') layer(reset);

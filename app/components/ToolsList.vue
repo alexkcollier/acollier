@@ -40,49 +40,51 @@ export default {
 </script>
 
 <style>
-.tool-list {
-  --column-number: 3;
+@layer block {
+  .tool-list {
+    --column-number: 3;
 
-  align-items: flex-end;
-  display: grid;
-  gap: var(--space-8);
-  grid-template-columns: repeat(var(--column-number), 1fr);
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    align-items: flex-end;
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: repeat(var(--column-number), 1fr);
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-  &:not(:last-child) {
-    margin-bottom: inherit;
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
+
+    @container (width >= 768px) {
+      --column-number: 6;
+    }
   }
 
-  @container (width >= 768px) {
-    --column-number: 6;
+  .tool-list__item {
+    text-align: center;
   }
-}
 
-.tool-list__item {
-  text-align: center;
-}
+  .tool-list__image {
+    display: block;
+    margin: 0 auto;
+    max-height: 3rem;
+    width: 3rem;
+  }
 
-.tool-list__image {
-  display: block;
-  margin: 0 auto;
-  max-height: 3rem;
-  width: 3rem;
-}
+  .tool-list__link {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    text-decoration: none;
+  }
 
-.tool-list__link {
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-  text-decoration: none;
-}
-
-.tool-list__link-text {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  margin-top: 0.5rem;
+  .tool-list__link-text {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    margin-top: 0.5rem;
+  }
 }
 </style>

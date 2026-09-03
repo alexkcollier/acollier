@@ -1,30 +1,24 @@
-:root {
-  --heading-1-font-size: var(--text-3xl);
-  --heading-2-font-size: var(--text-2xl);
-  --heading-top-margin: var(--space-8);
-  --heading-bottom-margin: var(--space-4);
-  --heading-1-bottom-margin: var(--space-12);
-}
+@layer block {
+  .heading-1 {
+    font-size: var(--heading-1-font-size);
+    line-height: var(--heading-1-line-height);
+    margin-bottom: var(--heading-1-bottom-margin);
+  }
 
-.heading-1 {
-  font-size: var(--heading-1-font-size);
-  line-height: var(--heading-1-line-height);
-  margin-bottom: var(--heading-1-bottom-margin);
-}
+  .heading-2 {
+    font-size: var(--heading-2-font-size);
+  }
 
-.heading-2 {
-  font-size: var(--heading-2-font-size);
-}
+  .heading-1,
+  .heading-2 {
+    margin-top: var(--heading-top-margin);
+  }
 
-.heading-1,
-.heading-2 {
-  margin-top: var(--heading-top-margin);
-}
+  .title {
+    margin-bottom: 0;
+  }
 
-.title {
-  margin-bottom: 0;
-}
-
-.subtitle {
-  margin-top: 0;
+  .subtitle {
+    margin-top: 0;
+  }
 }

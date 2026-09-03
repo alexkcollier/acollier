@@ -1,9 +1,11 @@
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 250ms;
-}
+@layer block {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 250ms;
+  }
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 }

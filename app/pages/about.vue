@@ -81,29 +81,31 @@ definePageMeta({
 </template>
 
 <style>
-.about-layout {
-  /* Matches the reading column on the portfolio pages: 8 of 12 cols at the xl breakpoint */
-  margin-inline: auto;
-  max-width: calc(var(--bp-xl) * 2 / 3);
-}
-
-.about-intro {
-  font-size: var(--text-lg);
-
-  @media screen and (width > 480px) {
-    font-size: var(--text-xl);
+@layer block {
+  .about-layout {
+    /* Matches the reading column on the portfolio pages: 8 of 12 cols at the xl breakpoint */
+    margin-inline: auto;
+    max-width: calc(var(--bp-xl) * 2 / 3);
   }
-}
 
-.about-intro__links {
-  align-items: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  justify-content: flex-start;
-}
+  .about-intro {
+    font-size: var(--text-lg);
 
-.about-section {
-  margin-block-start: var(--space-16);
+    @media screen and (width > 480px) {
+      font-size: var(--text-xl);
+    }
+  }
+
+  .about-intro__links {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: flex-start;
+  }
+
+  .about-section {
+    margin-block-start: var(--space-16);
+  }
 }
 </style>

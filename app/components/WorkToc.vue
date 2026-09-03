@@ -245,172 +245,174 @@ onUnmounted(() => {
 </template>
 
 <style>
-.toc__desktop {
-  display: none;
-
-  @media screen and (width > 768px) {
-    display: block;
-  }
-}
-
-.toc__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  &:not(:last-child) {
-    margin-bottom: inherit;
-  }
-}
-
-.toc__list--nested {
-  padding-block-start: var(--space-4);
-  padding-inline-start: var(--space-4);
-}
-
-.toc__item {
-  &::before {
-    /* sanitize.css adds a pseudo element that causes overflow in our design */
+@layer block {
+  .toc__desktop {
     display: none;
+
+    @media screen and (width > 768px) {
+      display: block;
+    }
   }
 
-  &:not(:last-child) {
-    margin-block-end: var(--space-4);
+  .toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
   }
-}
 
-.toc__link {
-  color: var(--color-text-muted);
-  position: relative;
-  text-decoration: none;
-  transition: color 150ms ease-in-out;
-}
+  .toc__list--nested {
+    padding-block-start: var(--space-4);
+    padding-inline-start: var(--space-4);
+  }
 
-.toc__link--active,
-.toc__link:hover {
-  color: var(--color-link);
-}
+  .toc__item {
+    &::before {
+      /* sanitize.css adds a pseudo element that causes overflow in our design */
+      display: none;
+    }
 
-.toc__link--active {
-  font-weight: 700;
+    &:not(:last-child) {
+      margin-block-end: var(--space-4);
+    }
+  }
 
-  &::before {
-    animation: toc-marker-in 150ms ease-out both;
-    background-color: currentcolor;
+  .toc__link {
+    color: var(--color-text-muted);
+    position: relative;
+    text-decoration: none;
+    transition: color 150ms ease-in-out;
+  }
+
+  .toc__link--active,
+  .toc__link:hover {
+    color: var(--color-link);
+  }
+
+  .toc__link--active {
+    font-weight: 700;
+
+    &::before {
+      animation: toc-marker-in 150ms ease-out both;
+      background-color: currentcolor;
+      border-radius: var(--radius-full);
+      content: '';
+      display: inline-block;
+      height: 0.75rem;
+      width: 0.25rem;
+    }
+  }
+
+  .toc-mobile {
+    @media screen and (width > 768px) {
+      display: none;
+    }
+  }
+
+  .toc-mobile__overlay {
+    backdrop-filter: blur(4px);
+    background-color: rgb(0 0 0 / 20%);
+    inset: 0;
+    position: fixed;
+    z-index: 10;
+  }
+
+  .toc-mobile__sheet {
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    bottom: 0;
+    left: 0;
+    max-height: 60dvh;
+    overflow-y: auto;
+    padding: var(--space-6);
+    position: fixed;
+    right: 0;
+    z-index: 11;
+  }
+
+  .toc-mobile__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-block-end: var(--space-6);
+  }
+
+  .toc-mobile__close {
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    display: flex;
+    padding: var(--space-3);
+  }
+
+  .toc-mobile__fab {
+    align-items: center;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
-    content: '';
-    display: inline-block;
-    height: 0.75rem;
-    width: 0.25rem;
+    bottom: var(--space-6);
+    box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
+    color: var(--color-link);
+    cursor: pointer;
+    display: flex;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    gap: var(--space-3);
+    max-width: 70vw;
+    padding: var(--space-3) var(--space-6);
+    position: fixed;
+    right: var(--space-8);
+    z-index: 9;
   }
-}
 
-.toc-mobile {
-  @media screen and (width > 768px) {
-    display: none;
+  .toc-mobile__fab-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-}
 
-.toc-mobile__overlay {
-  backdrop-filter: blur(4px);
-  background-color: rgb(0 0 0 / 20%);
-  inset: 0;
-  position: fixed;
-  z-index: 10;
-}
+  .toc-mobile__fab-icon {
+    flex-shrink: 0;
+  }
 
-.toc-mobile__sheet {
-  background-color: var(--color-bg);
-  border-top: 1px solid var(--color-border);
-  bottom: 0;
-  left: 0;
-  max-height: 60dvh;
-  overflow-y: auto;
-  padding: var(--space-6);
-  position: fixed;
-  right: 0;
-  z-index: 11;
-}
+  .toc-overlay-enter-active,
+  .toc-overlay-leave-active {
+    transition: opacity 200ms ease;
+  }
 
-.toc-mobile__header {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-block-end: var(--space-6);
-}
-
-.toc-mobile__close {
-  align-items: center;
-  background: none;
-  border: none;
-  color: var(--color-text);
-  cursor: pointer;
-  display: flex;
-  padding: var(--space-3);
-}
-
-.toc-mobile__fab {
-  align-items: center;
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  bottom: var(--space-6);
-  box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
-  color: var(--color-link);
-  cursor: pointer;
-  display: flex;
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  gap: var(--space-3);
-  max-width: 70vw;
-  padding: var(--space-3) var(--space-6);
-  position: fixed;
-  right: var(--space-8);
-  z-index: 9;
-}
-
-.toc-mobile__fab-label {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.toc-mobile__fab-icon {
-  flex-shrink: 0;
-}
-
-.toc-overlay-enter-active,
-.toc-overlay-leave-active {
-  transition: opacity 200ms ease;
-}
-
-.toc-overlay-enter-from,
-.toc-overlay-leave-to {
-  opacity: 0;
-}
-
-.toc-sheet-enter-active,
-.toc-sheet-leave-active {
-  transition: transform 250ms ease;
-}
-
-.toc-sheet-enter-from,
-.toc-sheet-leave-to {
-  transform: translateY(100%);
-}
-
-@keyframes toc-marker-in {
-  from {
-    margin-inline-end: 0;
+  .toc-overlay-enter-from,
+  .toc-overlay-leave-to {
     opacity: 0;
-    transform: scaleY(0);
   }
 
-  to {
-    margin-inline-end: var(--space-3);
-    opacity: 1;
-    transform: scaleY(1);
+  .toc-sheet-enter-active,
+  .toc-sheet-leave-active {
+    transition: transform 250ms ease;
+  }
+
+  .toc-sheet-enter-from,
+  .toc-sheet-leave-to {
+    transform: translateY(100%);
+  }
+
+  @keyframes toc-marker-in {
+    from {
+      margin-inline-end: 0;
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    to {
+      margin-inline-end: var(--space-3);
+      opacity: 1;
+      transform: scaleY(1);
+    }
   }
 }
 </style>

@@ -62,41 +62,43 @@ onUnmounted(() => {
 </template>
 
 <style>
-.default-layout {
-  .content {
-    container-type: inline-size;
-    flex: 1;
-    padding: var(--page-top-padding) var(--page-side-padding);
-    padding-top: 8rem;
-  }
-
-  @media screen and (width > 960px) {
-    height: 100%;
-
+@layer block {
+  .default-layout {
     .content {
+      container-type: inline-size;
+      flex: 1;
+      padding: var(--page-top-padding) var(--page-side-padding);
+      padding-top: 8rem;
+    }
+
+    @media screen and (width > 960px) {
       height: 100%;
-      overflow-y: auto;
-      scroll-behavior: smooth;
+
+      .content {
+        height: 100%;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+      }
     }
   }
-}
 
-.default-layout__body {
-  align-items: flex-start;
-  display: flex;
-  min-height: 100%;
-}
-
-.default-layout__sidebar {
-  @media screen and (width > 960px) {
-    flex-shrink: 0;
-  }
-}
-
-@media screen and (width > 960px) {
   .default-layout__body {
-    height: 100%;
-    min-height: unset;
+    align-items: flex-start;
+    display: flex;
+    min-height: 100%;
+  }
+
+  .default-layout__sidebar {
+    @media screen and (width > 960px) {
+      flex-shrink: 0;
+    }
+  }
+
+  @media screen and (width > 960px) {
+    .default-layout__body {
+      height: 100%;
+      min-height: unset;
+    }
   }
 }
 </style>

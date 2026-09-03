@@ -42,89 +42,93 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
 </template>
 
 <style>
-html:has(.lightbox[open]) {
-  overflow-y: hidden;
+@layer block {
+  html:has(.lightbox[open]) {
+    overflow-y: hidden;
+  }
 }
 </style>
 
 <style scoped>
-.lightbox {
-  --transition-time: 300ms;
-  --base-transition:
-    display var(--transition-time) allow-discrete,
-    overlay var(--transition-time) allow-discrete,
-    opacity var(--transition-time), background-color var(--transition-time);
+@layer block {
+  .lightbox {
+    --transition-time: 300ms;
+    --base-transition:
+      display var(--transition-time) allow-discrete,
+      overlay var(--transition-time) allow-discrete,
+      opacity var(--transition-time), background-color var(--transition-time);
 
-  align-items: center;
-  background: none;
-  border: none;
-  box-sizing: border-box;
-  color: var(--color-text-on-dark);
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  gap: var(--space-4);
-  height: 100dvh;
-  inset: 0;
-  justify-content: center;
-  margin: auto;
-  max-width: 100dvw;
-  overflow: hidden;
-  padding: var(--space-8);
-  position: fixed;
-  transition: var(--base-transition);
-  width: 100dvw;
-
-  &::backdrop {
-    backdrop-filter: blur(4px) brightness(60%);
-    background-color: rgb(0 0 0 / 50%);
+    align-items: center;
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    color: var(--color-text-on-dark);
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    gap: var(--space-4);
+    height: 100dvh;
+    inset: 0;
+    justify-content: center;
+    margin: auto;
+    max-width: 100dvw;
+    overflow: hidden;
+    padding: var(--space-8);
+    position: fixed;
     transition: var(--base-transition);
-  }
-
-  &:not([open]) {
-    display: none;
-    opacity: 0;
+    width: 100dvw;
 
     &::backdrop {
-      background-color: rgb(0 0 0 / 0%);
+      backdrop-filter: blur(4px) brightness(60%);
+      background-color: rgb(0 0 0 / 50%);
+      transition: var(--base-transition);
     }
-  }
 
-  @starting-style {
-    &[open] {
+    &:not([open]) {
+      display: none;
       opacity: 0;
 
       &::backdrop {
         background-color: rgb(0 0 0 / 0%);
       }
     }
+
+    @starting-style {
+      &[open] {
+        opacity: 0;
+
+        &::backdrop {
+          background-color: rgb(0 0 0 / 0%);
+        }
+      }
+    }
   }
-}
 
-.lightbox__preview {
-  margin-bottom: var(--space-1);
-  margin-top: 0;
-}
+  .lightbox__preview {
+    margin-bottom: var(--space-1);
+    margin-top: 0;
+  }
 
-.lightbox__hint {
-  text-align: right;
-}
+  .lightbox__hint {
+    text-align: right;
+  }
 
-.lightbox__image {
-  flex: 1 1 0;
-  max-width: 100%;
-  min-height: 0;
-  object-fit: scale-down;
-  width: 100%;
-}
+  .lightbox__image {
+    flex: 1 1 0;
+    max-width: 100%;
+    min-height: 0;
+    object-fit: scale-down;
+    width: 100%;
+  }
 
-.lightbox-wrapper {
-  margin: var(--space-12) auto;
-  text-align: center;
+  .lightbox-wrapper {
+    margin: var(--space-12) auto;
+    text-align: center;
 
-  button {
-    display: block;
-    margin: 0 auto;
+    button {
+      display: block;
+      margin: 0 auto;
+    }
   }
 }
 </style>

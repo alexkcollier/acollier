@@ -140,177 +140,179 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 </template>
 
 <style>
-.navbar {
-  --transition-time: 100ms;
+@layer block {
+  .navbar {
+    --transition-time: 100ms;
 
-  align-items: stretch;
-  backdrop-filter: blur(16px);
-  background-color: rgb(from var(--color-bg) r g b / 50%);
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 99;
-
-  @media screen and (width > 768px) {
-    padding: 0 var(--space-4);
-  }
-}
-
-.navbar__button-wrapper {
-  align-items: stretch;
-  display: none;
-  flex-basis: 100%;
-  flex-direction: column;
-  opacity: 0;
-  transition:
-    display var(--transition-time) allow-discrete,
-    opacity var(--transition-time);
-}
-
-.navbar__button-wrapper--open {
-  display: flex;
-  inset: 3.5rem 0 0;
-  opacity: 1;
-  position: static;
-
-  @starting-style {
-    opacity: 0;
-  }
-}
-
-.navbar__mobile-controls {
-  display: flex;
-  margin-left: auto;
-}
-
-.navbar__sidebar-toggle--mobile {
-  display: flex;
-}
-
-.navbar__sidebar-toggle--desktop {
-  display: none;
-}
-
-.navbar__menu-button {
-  --transform-transition-delay: 0ms;
-  --top-transition-delay: var(--transition-time);
-  --rotation: 0deg;
-
-  display: flex;
-  position: relative;
-  width: 3rem;
-
-  &::before,
-  &::after {
-    border-bottom: 1px solid var(--color-text);
-    content: '';
-    left: 50%;
-    margin: auto;
-    position: absolute;
-    top: calc(50% + var(--bar-offset));
-    transform: translate(-50%, -50%) rotate(var(--rotation));
-    transition:
-      transform var(--transition-time) ease-in-out
-        var(--transform-transition-delay),
-      top var(--transition-time) ease-in-out var(--top-transition-delay);
-    width: 1rem;
-  }
-
-  &::before {
-    --bar-offset: -4px;
-  }
-
-  &::after {
-    --bar-offset: 4px;
-  }
-}
-
-.navbar__menu-button--open {
-  &::before,
-  &::after {
-    /* having unit enables animating this variable properly */
-    --bar-offset: 0px;
-    --transform-transition-delay: var(--transition-time);
-    --top-transition-delay: 0ms;
-  }
-
-  &::before {
-    --rotation: 45deg;
-  }
-
-  &::after {
-    --rotation: -45deg;
-  }
-}
-
-.navbar__locale-switcher {
-  text-transform: uppercase;
-}
-
-@media screen and (width > 768px) {
-  .navbar__button-wrapper {
+    align-items: stretch;
+    backdrop-filter: blur(16px);
+    background-color: rgb(from var(--color-bg) r g b / 50%);
+    border-bottom: 1px solid var(--color-border);
     display: flex;
-    flex-basis: auto;
-    flex-direction: row;
-    opacity: 1;
-  }
-}
+    flex-wrap: wrap;
+    justify-content: space-between;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99;
 
-@media screen and (width > 768px) {
-  .navbar__menu-button {
+    @media screen and (width > 768px) {
+      padding: 0 var(--space-4);
+    }
+  }
+
+  .navbar__button-wrapper {
+    align-items: stretch;
     display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    opacity: 0;
+    transition:
+      display var(--transition-time) allow-discrete,
+      opacity var(--transition-time);
+  }
+
+  .navbar__button-wrapper--open {
+    display: flex;
+    inset: 3.5rem 0 0;
+    opacity: 1;
+    position: static;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .navbar__mobile-controls {
+    display: flex;
     margin-left: auto;
   }
-}
 
-@media screen and (width > 768px) {
   .navbar__sidebar-toggle--mobile {
+    display: flex;
+  }
+
+  .navbar__sidebar-toggle--desktop {
     display: none;
   }
-}
 
-@media screen and (width > 768px) {
-  .navbar__sidebar-toggle--desktop {
+  .navbar__menu-button {
+    --transform-transition-delay: 0ms;
+    --top-transition-delay: var(--transition-time);
+    --rotation: 0deg;
+
     display: flex;
+    position: relative;
+    width: 3rem;
+
+    &::before,
+    &::after {
+      border-bottom: 1px solid var(--color-text);
+      content: '';
+      left: 50%;
+      margin: auto;
+      position: absolute;
+      top: calc(50% + var(--bar-offset));
+      transform: translate(-50%, -50%) rotate(var(--rotation));
+      transition:
+        transform var(--transition-time) ease-in-out
+          var(--transform-transition-delay),
+        top var(--transition-time) ease-in-out var(--top-transition-delay);
+      width: 1rem;
+    }
+
+    &::before {
+      --bar-offset: -4px;
+    }
+
+    &::after {
+      --bar-offset: 4px;
+    }
   }
-}
 
-.navbar-brand__name {
-  color: var(--color-text);
-  font-weight: 700;
-  margin-block-end: var(--space-1);
-}
+  .navbar__menu-button--open {
+    &::before,
+    &::after {
+      /* having unit enables animating this variable properly */
+      --bar-offset: 0px;
+      --transform-transition-delay: var(--transition-time);
+      --top-transition-delay: 0ms;
+    }
 
-.navbar-brand__title {
-  color: var(--color-text);
-  font-family: var(--font-mono);
-  font-weight: 300;
-}
+    &::before {
+      --rotation: 45deg;
+    }
 
-.navbar-divider {
-  align-items: center;
-  color: var(--color-text-muted);
-  display: none;
-  padding-left: var(--space-2);
-  padding-right: var(--space-2);
-  pointer-events: none;
+    &::after {
+      --rotation: -45deg;
+    }
+  }
+
+  .navbar__locale-switcher {
+    text-transform: uppercase;
+  }
+
+  .navbar-brand__name {
+    color: var(--color-text);
+    font-weight: 700;
+    margin-block-end: var(--space-1);
+  }
+
+  .navbar-brand__title {
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: 300;
+  }
+
+  .navbar-divider {
+    align-items: center;
+    color: var(--color-text-muted);
+    display: none;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+    pointer-events: none;
+
+    @media screen and (width > 768px) {
+      display: flex;
+    }
+  }
+
+  .navbar-utils {
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (width > 768px) {
+      justify-content: flex-start;
+    }
+  }
 
   @media screen and (width > 768px) {
-    display: flex;
+    .navbar__button-wrapper {
+      display: flex;
+      flex-basis: auto;
+      flex-direction: row;
+      opacity: 1;
+    }
   }
-}
-
-.navbar-utils {
-  display: flex;
-  justify-content: space-between;
 
   @media screen and (width > 768px) {
-    justify-content: flex-start;
+    .navbar__menu-button {
+      display: none;
+      margin-left: auto;
+    }
+  }
+
+  @media screen and (width > 768px) {
+    .navbar__sidebar-toggle--mobile {
+      display: none;
+    }
+  }
+
+  @media screen and (width > 768px) {
+    .navbar__sidebar-toggle--desktop {
+      display: flex;
+    }
   }
 }
 </style>

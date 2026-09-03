@@ -48,45 +48,47 @@ const dateRange = computed(() =>
 </template>
 
 <style>
-.work-experience-item {
-  & ~ & {
-    border-block-start: 1px solid var(--color-border);
-    margin-block-start: var(--space-12);
-    padding-block-start: var(--space-12);
-  }
-}
-
-.work-experience-item__header {
-  margin-block-end: var(--space-6);
-}
-
-.work-experience-item__meta {
-  color: var(--color-text-muted);
-  display: flex;
-  flex-direction: column;
-  font-size: var(--text-sm);
-  gap: var(--space-1);
-  margin-block: var(--space-2) 0;
-
-  @container (width >= 480px) {
-    align-items: baseline;
-    flex-direction: row;
-    gap: var(--space-4);
-    justify-content: space-between;
-  }
-}
-
-.work-experience-item__date {
-  white-space: nowrap;
-}
-
-.work-experience-item__body {
-  p {
-    margin-block: 0;
+@layer block {
+  .work-experience-item {
+    & ~ & {
+      border-block-start: 1px solid var(--color-border);
+      margin-block-start: var(--space-12);
+      padding-block-start: var(--space-12);
+    }
   }
 
-  p + p {
-    margin-block-start: var(--space-4);
+  .work-experience-item__header {
+    margin-block-end: var(--space-6);
+  }
+
+  .work-experience-item__meta {
+    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-sm);
+    gap: var(--space-1);
+    margin-block: var(--space-2) 0;
+
+    @container (width >= 480px) {
+      align-items: baseline;
+      flex-direction: row;
+      gap: var(--space-4);
+      justify-content: space-between;
+    }
+  }
+
+  .work-experience-item__date {
+    white-space: nowrap;
+  }
+
+  .work-experience-item__body {
+    p {
+      margin-block: 0;
+    }
+
+    p + p {
+      margin-block-start: var(--space-4);
+    }
   }
 }
 </style>

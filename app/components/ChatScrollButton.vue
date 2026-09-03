@@ -59,40 +59,42 @@ watch(
 </template>
 
 <style>
-.chat-scroll-btn {
-  --transition-duration: 200ms;
+@layer block {
+  .chat-scroll-btn {
+    --transition-duration: 200ms;
 
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  bottom: var(--space-4);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--stone-900) 16%, transparent);
-  color: var(--color-text-subtle);
-  cursor: pointer;
-  display: flex;
-  left: 50%;
-  padding: var(--space-2) var(--space-3);
-  position: absolute;
-  transform: translateX(-50%);
-  transition:
-    background var(--transition-duration) ease,
-    box-shadow var(--transition-duration) ease;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    bottom: var(--space-4);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--stone-900) 16%, transparent);
+    color: var(--color-text-subtle);
+    cursor: pointer;
+    display: flex;
+    left: 50%;
+    padding: var(--space-2) var(--space-3);
+    position: absolute;
+    transform: translateX(-50%);
+    transition:
+      background var(--transition-duration) ease,
+      box-shadow var(--transition-duration) ease;
 
-  &:hover {
-    background: var(--color-bg-subtle);
+    &:hover {
+      background: var(--color-bg-subtle);
+    }
   }
-}
 
-.chat-scroll-btn-enter-active,
-.chat-scroll-btn-leave-active {
-  transition:
-    opacity var(--transition-duration) ease,
-    translate var(--transition-duration) ease;
-}
+  .chat-scroll-btn-enter-active,
+  .chat-scroll-btn-leave-active {
+    transition:
+      opacity var(--transition-duration) ease,
+      translate var(--transition-duration) ease;
+  }
 
-.chat-scroll-btn-enter-from,
-.chat-scroll-btn-leave-to {
-  opacity: 0;
-  translate: 0 var(--space-2);
+  .chat-scroll-btn-enter-from,
+  .chat-scroll-btn-leave-to {
+    opacity: 0;
+    translate: 0 var(--space-2);
+  }
 }
 </style>

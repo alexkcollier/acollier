@@ -158,148 +158,150 @@ watch(
 </template>
 
 <style>
-.chat-sidebar {
-  --transition-duration: 200ms;
+@layer block {
+  .chat-sidebar {
+    --transition-duration: 200ms;
 
-  border-left: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  overflow: hidden;
-  padding-top: var(--space-20);
-  position: sticky;
-  top: 0;
-  transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-  width: var(--chat-sidebar-width, 24rem);
+    border-left: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+    padding-top: var(--space-20);
+    position: sticky;
+    top: 0;
+    transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
+    width: var(--chat-sidebar-width, 24rem);
 
-  @media screen and (width <= 960px) {
-    background: var(--color-bg);
-    height: var(--visual-viewport-height, 100dvh);
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    top: var(--visual-viewport-offset-top, 0);
-    transform: translateY(var(--space-4));
-    transition:
-      opacity var(--transition-duration) ease,
-      transform var(--transition-duration) ease,
-      visibility 0s linear var(--transition-duration);
-    visibility: hidden;
-    width: 100%;
-    z-index: 12;
+    @media screen and (width <= 960px) {
+      background: var(--color-bg);
+      height: var(--visual-viewport-height, 100dvh);
+      left: 0;
+      opacity: 0;
+      position: fixed;
+      top: var(--visual-viewport-offset-top, 0);
+      transform: translateY(var(--space-4));
+      transition:
+        opacity var(--transition-duration) ease,
+        transform var(--transition-duration) ease,
+        visibility 0s linear var(--transition-duration);
+      visibility: hidden;
+      width: 100%;
+      z-index: 12;
+    }
   }
-}
 
-.chat-sidebar__resize-handle {
-  cursor: col-resize;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: var(--space-2);
-  z-index: 3;
-
-  &::after {
-    background: var(--color-text-primary);
-    content: '';
+  .chat-sidebar__resize-handle {
+    cursor: col-resize;
     height: 100%;
     left: 0;
-    opacity: 0;
     position: absolute;
     top: 0;
-    transition: opacity 150ms;
-    width: 2px;
-  }
+    width: var(--space-2);
+    z-index: 3;
 
-  &:hover::after {
-    opacity: 0.2;
-  }
-}
-
-.chat-sidebar__body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  min-height: 0;
-  padding: 0 var(--space-4) var(--space-4);
-  transition: opacity 150ms;
-}
-
-.chat-sidebar__body--empty {
-  margin-top: var(--space-2);
-}
-
-.chat-sidebar__tag {
-  color: var(--color-text-subtle);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  letter-spacing: -0.016em;
-  line-height: var(--leading-snug);
-  margin: 0;
-}
-
-.chat-sidebar__highlight {
-  color: var(--color-text-primary);
-}
-
-.chat-sidebar__messages-wrap {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  min-height: 0;
-  position: relative;
-}
-
-.chat-sidebar__messages {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  gap: var(--space-6);
-  min-height: 0;
-  overflow-y: auto;
-  padding-block-end: var(--space-12);
-}
-
-.chat-sidebar__error {
-  color: var(--color-text-accent);
-  flex-shrink: 0;
-  font-size: var(--text-sm);
-}
-
-.chat-sidebar--resizing {
-  transition: none;
-
-  .chat-sidebar__resize-handle::after {
-    opacity: 0.4;
-  }
-}
-
-.chat-sidebar--collapsed {
-  @media screen and (width > 960px) {
-    background: transparent;
-    border: none;
-    width: 0;
-
-    .chat-sidebar__resize-handle {
-      pointer-events: none;
-    }
-
-    .chat-sidebar__body {
+    &::after {
+      background: var(--color-text-primary);
+      content: '';
+      height: 100%;
+      left: 0;
       opacity: 0;
-      pointer-events: none;
+      position: absolute;
+      top: 0;
+      transition: opacity 150ms;
+      width: 2px;
+    }
+
+    &:hover::after {
+      opacity: 0.2;
     }
   }
-}
 
-@media screen and (width <= 960px) {
-  .chat-sidebar--mobile-open {
-    opacity: 1;
-    transform: translateY(0);
-    transition:
-      opacity var(--transition-duration) ease,
-      transform var(--transition-duration) ease,
-      visibility 0s linear 0s;
-    visibility: visible;
+  .chat-sidebar__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0 var(--space-4) var(--space-4);
+    transition: opacity 150ms;
+  }
+
+  .chat-sidebar__body--empty {
+    margin-top: var(--space-2);
+  }
+
+  .chat-sidebar__tag {
+    color: var(--color-text-subtle);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: -0.016em;
+    line-height: var(--leading-snug);
+    margin: 0;
+  }
+
+  .chat-sidebar__highlight {
+    color: var(--color-text-primary);
+  }
+
+  .chat-sidebar__messages-wrap {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+  }
+
+  .chat-sidebar__messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-6);
+    min-height: 0;
+    overflow-y: auto;
+    padding-block-end: var(--space-12);
+  }
+
+  .chat-sidebar__error {
+    color: var(--color-text-accent);
+    flex-shrink: 0;
+    font-size: var(--text-sm);
+  }
+
+  .chat-sidebar--resizing {
+    transition: none;
+
+    .chat-sidebar__resize-handle::after {
+      opacity: 0.4;
+    }
+  }
+
+  .chat-sidebar--collapsed {
+    @media screen and (width > 960px) {
+      background: transparent;
+      border: none;
+      width: 0;
+
+      .chat-sidebar__resize-handle {
+        pointer-events: none;
+      }
+
+      .chat-sidebar__body {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  @media screen and (width <= 960px) {
+    .chat-sidebar--mobile-open {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity var(--transition-duration) ease,
+        transform var(--transition-duration) ease,
+        visibility 0s linear 0s;
+      visibility: visible;
+    }
   }
 }
 </style>

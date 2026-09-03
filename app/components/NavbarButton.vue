@@ -18,24 +18,26 @@ defineProps({
 </template>
 
 <style>
-.navbar-button {
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  font-size: var(--text-base);
-  justify-content: center;
-  line-height: 100%;
-  padding: var(--space-4);
-  text-decoration: none;
+@layer block {
+  .navbar-button {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-base);
+    justify-content: center;
+    line-height: 100%;
+    padding: var(--space-4);
+    text-decoration: none;
 
-  &:hover {
-    color: var(--color-link-hover);
-  }
+    &:hover {
+      color: var(--color-link-hover);
+    }
 
-  &.router-link-exact-active {
-    color: var(--color-link);
-    font-weight: 700;
-    letter-spacing: var(--bold-letter-spacing);
+    &.router-link-exact-active {
+      color: var(--color-link);
+      font-weight: 700;
+      letter-spacing: var(--bold-letter-spacing);
+    }
   }
 }
 </style>

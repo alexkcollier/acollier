@@ -28,23 +28,25 @@ import LinkedinIcon from '~/assets/icons/linkedin.svg';
 </template>
 
 <style>
-.social-links {
-  display: flex;
-  font-size: 2rem;
-  gap: 1.5rem;
+@layer block {
+  .social-links {
+    display: flex;
+    font-size: 2rem;
+    gap: 1.5rem;
 
-  &:not(:last-of-type) {
-    margin-bottom: 3rem;
+    &:not(:last-of-type) {
+      margin-bottom: 3rem;
+    }
   }
-}
 
-.social-link {
-  color: var(--color-text);
-  display: flex;
-  text-shadow: none;
-
-  &:hover {
+  .social-link {
     color: var(--color-text);
+    display: flex;
+    text-shadow: none;
+
+    &:hover {
+      color: var(--color-text);
+    }
   }
 }
 </style>

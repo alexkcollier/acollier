@@ -199,32 +199,34 @@ export default {
 </script>
 
 <style>
-.contact-hero {
-  --bg-image: url('~/assets/images/acollier.png');
-  --bg-size: 55%;
+@layer block {
+  .contact-hero {
+    --bg-image: url('~/assets/images/acollier.png');
+    --bg-size: 55%;
 
-  align-items: center;
-  background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
-  display: flex;
-  min-height: 100%;
-  padding-inline: var(--page-side-padding);
+    align-items: center;
+    background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
+    display: flex;
+    min-height: 100%;
+    padding-inline: var(--page-side-padding);
 
-  @media screen and (width > 1200px) {
-    --bg-size: auto 90%;
+    @media screen and (width > 1200px) {
+      --bg-size: auto 90%;
+    }
   }
-}
 
-.contact-form {
-  @media screen and (width > 768px) {
-    max-width: calc(5 / 12 * 100%);
+  .contact-form {
+    @media screen and (width > 768px) {
+      max-width: calc(5 / 12 * 100%);
+    }
   }
-}
 
-.social-links-contact {
-  margin-block-start: 3rem;
-}
+  .social-links-contact {
+    margin-block-start: 3rem;
+  }
 
-.thank-you-text {
-  font-size: 1.5rem;
+  .thank-you-text {
+    font-size: 1.5rem;
+  }
 }
 </style>

@@ -21,12 +21,14 @@ const { toggle } = useSidebar();
 </template>
 
 <style>
-.sidebar-toggle {
-  transition: color 150ms ease;
-}
+@layer block {
+  .sidebar-toggle {
+    transition: color 150ms ease;
+  }
 
-.sidebar-toggle--active,
-.sidebar-toggle--active:hover {
-  color: var(--color-text-primary);
+  .sidebar-toggle--active,
+  .sidebar-toggle--active:hover {
+    color: var(--color-text-primary);
+  }
 }
 </style>

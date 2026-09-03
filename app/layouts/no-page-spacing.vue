@@ -7,11 +7,13 @@
 </template>
 
 <style scoped>
-.no-spacing-layout {
-  height: 100%;
-}
+@layer block {
+  .no-spacing-layout {
+    height: 100%;
+  }
 
-.content {
-  height: 100%;
+  .content {
+    height: 100%;
+  }
 }
 </style>
