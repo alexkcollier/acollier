@@ -1,17 +1,21 @@
 @layer block {
-  .heading-1 {
-    font-size: var(--heading-1-font-size);
-    line-height: var(--heading-1-line-height);
-    margin-bottom: var(--heading-1-bottom-margin);
+  .heading-1,
+  .nuxt-content h1 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-12);
   }
 
-  .heading-2 {
-    font-size: var(--heading-2-font-size);
+  .heading-2,
+  .nuxt-content h2 {
+    font-size: var(--text-2xl);
   }
 
   .heading-1,
-  .heading-2 {
-    margin-top: var(--heading-top-margin);
+  .heading-2,
+  .nuxt-content h1,
+  .nuxt-content h2 {
+    margin-top: var(--space-8);
   }
 
   .title {

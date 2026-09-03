@@ -103,17 +103,13 @@
 
     /* ── Typography ─────────────────────────────────────────────────── */
 
-    /* families */
-    --font-family-sans-serif:
+    /* roles */
+    --font-body:
       'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
       ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --font-family-monospaced:
+    --font-mono:
       'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono',
       'Courier New', monospace;
-
-    /* roles */
-    --font-body: var(--font-family-sans-serif);
-    --font-mono: var(--font-family-monospaced);
 
     /* scale */
     --text-xs: 0.75rem;
@@ -195,20 +191,11 @@
     /* ── Component tokens ───────────────────────────────────────────── */
 
     /* Shared by more than one stylesheet, which is why they are here and
-       not in the component that reads them. The heading sizes are how
-       `typography.css` and `nuxt-content.css` stay in agreement — the
-       latter styles rendered markdown and has no classes to hook. */
+       not in the component that reads them. */
 
     /* page */
     --page-top-padding: var(--space-24);
     --page-side-padding: var(--space-8);
-
-    /* headings */
-    --heading-1-font-size: var(--text-3xl);
-    --heading-1-line-height: var(--leading-tight);
-    --heading-1-bottom-margin: var(--space-12);
-    --heading-2-font-size: var(--text-2xl);
-    --heading-top-margin: var(--space-8);
 
     /**
      * ── Stacking ──────────────────────────────────────────────────────

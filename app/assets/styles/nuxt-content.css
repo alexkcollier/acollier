@@ -1,23 +1,5 @@
 @layer block {
   .nuxt-content {
-    /* `--heading-*` variables are from `./tokens.css` */
-    h1 {
-      font-size: var(--heading-1-font-size);
-      line-height: var(--heading-1-line-height);
-      margin-bottom: var(--heading-1-bottom-margin);
-    }
-
-    h2 {
-      font-size: var(--heading-2-font-size);
-    }
-
-    h1,
-    h2 {
-      &:not(:first-child) {
-        margin-top: var(--heading-top-margin);
-      }
-    }
-
     a {
       color: var(--color-link);
       display: inline-block;
