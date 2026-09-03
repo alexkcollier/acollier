@@ -21,6 +21,13 @@ export default defineNuxtConfig({
             'width=device-width, initial-scale=1, interactive-widget=resizes-content',
         },
         { name: 'description', content: pkg.description },
+        { name: 'color-scheme', content: 'light dark' },
+      ],
+      script: [
+        {
+          innerHTML:
+            "try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') { document.documentElement.dataset.theme = t; } } catch (e) { /* ignore */ }",
+        },
       ],
       link: [
         {
