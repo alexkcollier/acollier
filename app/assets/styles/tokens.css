@@ -67,6 +67,11 @@
        a near-black surface */
     --color-shadow: light-dark(rgb(0 0 0 / 20%), rgb(0 0 0 / 60%));
 
+    /* scrim — the dimming behind a modal or a sheet. Same in both themes:
+       a scrim dims what is behind it rather than reading against it. */
+    --color-scrim: rgb(0 0 0 / 50%);
+    --color-scrim-subtle: rgb(0 0 0 / 20%);
+
     /* links */
     --color-link: light-dark(var(--green-700), var(--green-300));
     --color-link-hover: light-dark(var(--green-700), var(--green-100));

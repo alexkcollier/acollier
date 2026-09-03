@@ -284,7 +284,7 @@ onUnmounted(() => {
 
   .toc-mobile__overlay {
     backdrop-filter: blur(4px);
-    background-color: rgb(0 0 0 / 20%);
+    background-color: var(--color-scrim-subtle);
     inset: 0;
     position: fixed;
     z-index: 10;

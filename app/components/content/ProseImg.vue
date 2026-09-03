@@ -80,7 +80,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
 
     &::backdrop {
       backdrop-filter: blur(4px) brightness(60%);
-      background-color: rgb(0 0 0 / 50%);
+      background-color: var(--color-scrim);
       transition: var(--base-transition);
     }
 
@@ -89,7 +89,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
       opacity: 0;
 
       &::backdrop {
-        background-color: rgb(0 0 0 / 0%);
+        background-color: transparent;
       }
     }
 
@@ -98,7 +98,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
         opacity: 0;
 
         &::backdrop {
-          background-color: rgb(0 0 0 / 0%);
+          background-color: transparent;
         }
       }
     }
