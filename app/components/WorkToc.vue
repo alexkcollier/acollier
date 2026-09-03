@@ -114,12 +114,8 @@ onUnmounted(() => {
       >
         <a
           :href="`#${link.id}`"
-          :class="[
-            'link',
-            'toc__link',
-            'text-muted',
-            { 'toc__link--active': activeId === link.id },
-          ]"
+          class="link toc__link text-muted"
+          :data-active="activeId === link.id || undefined"
           @click="onLinkClick(link.id)"
         >
           {{ link.text }}
@@ -136,12 +132,8 @@ onUnmounted(() => {
           >
             <a
               :href="`#${child.id}`"
-              :class="[
-                'link',
-                'toc__link',
-                'text-muted',
-                { 'toc__link--active': activeId === child.id },
-              ]"
+              class="link toc__link text-muted"
+              :data-active="activeId === child.id || undefined"
               @click="onLinkClick(child.id)"
             >
               {{ child.text }}
@@ -191,12 +183,8 @@ onUnmounted(() => {
               >
                 <a
                   :href="`#${link.id}`"
-                  :class="[
-                    'link',
-                    'toc__link',
-                    'text-muted',
-                    { 'toc__link--active': activeId === link.id },
-                  ]"
+                  class="link toc__link text-muted"
+                  :data-active="activeId === link.id || undefined"
                   @click="onLinkClick(link.id)"
                 >
                   {{ link.text }}
@@ -213,12 +201,8 @@ onUnmounted(() => {
                   >
                     <a
                       :href="`#${child.id}`"
-                      :class="[
-                        'link',
-                        'toc__link',
-                        'text-muted',
-                        { 'toc__link--active': activeId === child.id },
-                      ]"
+                      class="link toc__link text-muted"
+                      :data-active="activeId === child.id || undefined"
                       @click="onLinkClick(child.id)"
                     >
                       {{ child.text }}
@@ -286,23 +270,8 @@ onUnmounted(() => {
     transition: color 150ms ease-in-out;
   }
 
-  .toc__link--active,
   .toc__link:hover {
     color: var(--color-link);
-  }
-
-  .toc__link--active {
-    font-weight: 700;
-
-    &::before {
-      animation: toc-marker-in 150ms ease-out both;
-      background-color: currentcolor;
-      border-radius: var(--radius-full);
-      content: '';
-      display: inline-block;
-      height: 0.75rem;
-      width: 0.25rem;
-    }
   }
 
   .toc-mobile {
@@ -410,6 +379,23 @@ onUnmounted(() => {
       margin-inline-end: var(--space-3);
       opacity: 1;
       transform: scaleY(1);
+    }
+  }
+}
+
+@layer exception {
+  .toc__link[data-active] {
+    color: var(--color-link);
+    font-weight: 700;
+
+    &::before {
+      animation: toc-marker-in 150ms ease-out both;
+      background-color: currentcolor;
+      border-radius: var(--radius-full);
+      content: '';
+      display: inline-block;
+      height: 0.75rem;
+      width: 0.25rem;
     }
   }
 }

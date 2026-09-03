@@ -94,14 +94,10 @@ watch(
 <template>
   <aside
     ref="sidebarEl"
-    :class="[
-      'chat-sidebar',
-      {
-        'chat-sidebar--collapsed': isCollapsed,
-        'chat-sidebar--mobile-open': isMobileOpen,
-        'chat-sidebar--resizing': isResizing,
-      },
-    ]"
+    class="chat-sidebar"
+    :data-collapsed="isCollapsed || undefined"
+    :data-mobile-open="isMobileOpen || undefined"
+    :data-resizing="isResizing || undefined"
   >
     <div
       class="chat-sidebar__resize-handle"
@@ -110,10 +106,8 @@ watch(
     />
 
     <div
-      :class="[
-        'chat-sidebar__body',
-        { 'chat-sidebar__body--empty': !messages.length },
-      ]"
+      class="chat-sidebar__body"
+      :data-empty="!messages.length || undefined"
     >
       <div
         v-if="messages.length"
@@ -226,10 +220,6 @@ watch(
     transition: opacity 150ms;
   }
 
-  .chat-sidebar__body--empty {
-    margin-top: var(--space-2);
-  }
-
   .chat-sidebar__tag {
     color: var(--color-text-muted);
     font-size: var(--text-xl);
@@ -266,8 +256,14 @@ watch(
     flex-shrink: 0;
     font-size: var(--text-sm);
   }
+}
 
-  .chat-sidebar--resizing {
+@layer exception {
+  .chat-sidebar__body[data-empty] {
+    margin-top: var(--space-2);
+  }
+
+  .chat-sidebar[data-resizing] {
     transition: none;
 
     .chat-sidebar__resize-handle::after {
@@ -275,7 +271,7 @@ watch(
     }
   }
 
-  .chat-sidebar--collapsed {
+  .chat-sidebar[data-collapsed] {
     @media screen and (width > 960px) {
       background: transparent;
       border: none;
@@ -293,7 +289,7 @@ watch(
   }
 
   @media screen and (width <= 960px) {
-    .chat-sidebar--mobile-open {
+    .chat-sidebar[data-mobile-open] {
       opacity: 1;
       transform: translateY(0);
       transition:

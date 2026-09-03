@@ -51,7 +51,7 @@ watch(
     ) {
       await nextTick();
 
-      const userMsgs = messagesEl.value.querySelectorAll('.chat-message--user');
+      const userMsgs = messagesEl.value.querySelectorAll('[data-role="user"]');
 
       userMsgs[userMsgs.length - 1]?.scrollIntoView({
         behavior: 'smooth',
@@ -86,7 +86,8 @@ watch(
 <template>
   <div class="chat-container wrapper">
     <main
-      :class="['chat', { 'chat--active': messages.length }]"
+      class="chat"
+      :data-active="messages.length > 0 || undefined"
       :aria-label="t('chat.formLabel')"
     >
       <Transition name="chat__greeting">
@@ -197,16 +198,6 @@ watch(
     }
   }
 
-  .chat--active {
-    flex: 1;
-    justify-content: flex-start;
-    min-height: 0;
-  }
-
-  .chat:not(.chat--active) .chat-form {
-    filter: drop-shadow(0 16px 40px var(--color-glow));
-  }
-
   .chat__greeting {
     margin-block-end: var(--space-8);
     text-align: center;
@@ -315,6 +306,18 @@ watch(
       justify-content: center;
       padding-top: 0;
     }
+  }
+}
+
+@layer exception {
+  .chat[data-active] {
+    flex: 1;
+    justify-content: flex-start;
+    min-height: 0;
+  }
+
+  .chat:not([data-active]) .chat-form {
+    filter: drop-shadow(0 16px 40px var(--color-glow));
   }
 }
 </style>

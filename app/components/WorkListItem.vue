@@ -24,7 +24,8 @@ const formattedDescription = computed(() => {
 <template>
   <NuxtLink
     :to="href"
-    :class="['work-list-item', variant && `work-list-item--${variant}`]"
+    class="work-list-item"
+    :data-variant="variant"
   >
     <span class="work-list-item__index font-mono text-muted">{{
       formattedIndex
@@ -130,13 +131,36 @@ const formattedDescription = computed(() => {
     display: none;
   }
 
-  .work-list-item:is(.work-list-item--compact, .work-list-item--mini) {
+  @container (width >= 480px) {
+    .work-list-item__index {
+      align-self: flex-start;
+      flex: none;
+      padding-top: var(--space-1);
+    }
+
+    .work-list-item__image {
+      flex: none;
+      width: 180px;
+    }
+
     .work-list-item__content {
       flex: 1;
     }
   }
 
-  .work-list-item--compact {
+  @container (width >= 768px) {
+    .work-list-item__image {
+      width: 270px;
+    }
+  }
+}
+
+@layer exception {
+  .work-list-item[data-variant] .work-list-item__content {
+    flex: 1;
+  }
+
+  .work-list-item[data-variant='compact'] {
     align-items: flex-start;
     background: transparent;
     flex-direction: row;
@@ -162,7 +186,7 @@ const formattedDescription = computed(() => {
     }
   }
 
-  .work-list-item--mini {
+  .work-list-item[data-variant='mini'] {
     align-items: flex-start;
     flex: 1 1 240px;
     flex-direction: row;
@@ -195,55 +219,20 @@ const formattedDescription = computed(() => {
   }
 
   @container (width >= 480px) {
-    .work-list-item:not(.work-list-item--mini) {
+    .work-list-item:not([data-variant='mini']) {
       align-items: center;
       flex-direction: row;
       gap: var(--space-8);
       padding: var(--space-8) var(--space-1);
     }
-  }
 
-  @container (width >= 480px) {
-    .work-list-item__index {
-      align-self: flex-start;
-      flex: none;
-      padding-top: var(--space-1);
-    }
-  }
-
-  @container (width >= 480px) {
-    .work-list-item__image {
-      flex: none;
-      width: 180px;
-    }
-  }
-
-  @container (width >= 480px) {
-    .work-list-item__content {
-      flex: 1;
-    }
-  }
-
-  @container (width >= 480px) {
-    .work-list-item:not(.work-list-item--mini) .work-list-item__arrow {
+    .work-list-item:not([data-variant='mini']) .work-list-item__arrow {
       align-self: flex-start;
       color: var(--color-text-primary);
       display: block;
       flex: none;
       font-size: var(--text-lg);
       padding-top: var(--space-1);
-    }
-  }
-
-  @container (width >= 768px) {
-    .work-list-item__image {
-      width: 270px;
-    }
-  }
-
-  @container (width >= 1200px) {
-    .work-list-item__image {
-      display: block;
     }
   }
 }

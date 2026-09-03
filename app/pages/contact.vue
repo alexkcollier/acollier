@@ -104,10 +104,8 @@ definePageMeta({
               <!-- submit -->
               <div class="form-field">
                 <button
-                  :class="[
-                    'submit-button link link--button link--button-filled',
-                    { 'is-loading': isSending },
-                  ]"
+                  class="submit-button link link--button link--button-filled"
+                  :data-state="isSending ? 'loading' : undefined"
                 >
                   {{ $t('contact.send') }}
                 </button>

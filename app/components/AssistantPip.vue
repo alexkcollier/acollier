@@ -8,7 +8,8 @@ const { t } = useI18n();
 
 <template>
   <div
-    :class="['assistant-pip', { 'assistant-pip--paused': paused }]"
+    class="assistant-pip"
+    :data-paused="paused || undefined"
     role="status"
   >
     <span
@@ -67,18 +68,6 @@ const { t } = useI18n();
     width: var(--space-4);
   }
 
-  .assistant-pip--paused .assistant-pip__dot {
-    animation: none;
-    opacity: 1;
-    scale: 1.35;
-  }
-
-  .assistant-pip--paused .assistant-pip__ring {
-    animation: none;
-    opacity: 0;
-    scale: 1.8;
-  }
-
   .assistant-pip__label {
     font-size: var(--text-sm);
   }
@@ -106,6 +95,20 @@ const { t } = useI18n();
       opacity: 0;
       scale: 1.8;
     }
+  }
+}
+
+@layer exception {
+  .assistant-pip[data-paused] .assistant-pip__dot {
+    animation: none;
+    opacity: 1;
+    scale: 1.35;
+  }
+
+  .assistant-pip[data-paused] .assistant-pip__ring {
+    animation: none;
+    opacity: 0;
+    scale: 1.8;
   }
 }
 </style>

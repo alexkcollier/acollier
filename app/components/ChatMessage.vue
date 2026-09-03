@@ -19,7 +19,8 @@ const html = computed(() =>
 
 <template>
   <div
-    :class="['chat-message', `chat-message--${role}`]"
+    class="chat-message"
+    :data-role="role"
     role="article"
   >
     <span class="visually-hidden">{{
@@ -41,17 +42,6 @@ const html = computed(() =>
   .chat-message {
     animation: chat-message-enter 200ms ease both;
     border-radius: var(--radius-md);
-  }
-
-  .chat-message--user {
-    align-self: flex-end;
-    background: var(--color-bg-subtle);
-    max-width: 90%;
-    padding: var(--space-2) var(--space-4);
-  }
-
-  .chat-message--assistant {
-    align-self: flex-start;
   }
 
   .chat-message__content {
@@ -170,6 +160,19 @@ const html = computed(() =>
       opacity: 0;
       translate: 0 var(--space-2);
     }
+  }
+}
+
+@layer exception {
+  .chat-message[data-role='user'] {
+    align-self: flex-end;
+    background: var(--color-bg-subtle);
+    max-width: 90%;
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .chat-message[data-role='assistant'] {
+    align-self: flex-start;
   }
 }
 </style>

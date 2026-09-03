@@ -84,21 +84,16 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       />
 
       <button
-        :class="[
-          'navbar-button',
-          'navbar__menu-button',
-          { 'navbar__menu-button--open': isMenuOpen },
-        ]"
+        class="navbar-button navbar__menu-button"
+        :data-open="isMenuOpen || undefined"
         @click.stop="() => setIsMenuOpen(!isMenuOpen)"
       />
     </div>
 
     <div
       ref="menuRef"
-      :class="[
-        'navbar__button-wrapper',
-        { 'navbar__button-wrapper--open': isMenuOpen },
-      ]"
+      class="navbar__button-wrapper"
+      :data-open="isMenuOpen || undefined"
     >
       <NavbarButton
         v-for="{ href, key } in links"
@@ -173,17 +168,6 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       opacity var(--transition-time);
   }
 
-  .navbar__button-wrapper--open {
-    display: flex;
-    inset: 3.5rem 0 0;
-    opacity: 1;
-    position: static;
-
-    @starting-style {
-      opacity: 0;
-    }
-  }
-
   .navbar__mobile-controls {
     display: flex;
     margin-left: auto;
@@ -228,24 +212,6 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
     &::after {
       --bar-offset: 4px;
-    }
-  }
-
-  .navbar__menu-button--open {
-    &::before,
-    &::after {
-      /* having unit enables animating this variable properly */
-      --bar-offset: 0px;
-      --transform-transition-delay: var(--transition-time);
-      --top-transition-delay: 0ms;
-    }
-
-    &::before {
-      --rotation: 45deg;
-    }
-
-    &::after {
-      --rotation: -45deg;
     }
   }
 
@@ -310,6 +276,37 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   @media screen and (width > 768px) {
     .navbar__sidebar-toggle--desktop {
       display: flex;
+    }
+  }
+}
+
+@layer exception {
+  .navbar__button-wrapper[data-open] {
+    display: flex;
+    inset: 3.5rem 0 0;
+    opacity: 1;
+    position: static;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  .navbar__menu-button[data-open] {
+    &::before,
+    &::after {
+      /* having unit enables animating this variable properly */
+      --bar-offset: 0px;
+      --transform-transition-delay: var(--transition-time);
+      --top-transition-delay: 0ms;
+    }
+
+    &::before {
+      --rotation: 45deg;
+    }
+
+    &::after {
+      --rotation: -45deg;
     }
   }
 }

@@ -25,7 +25,7 @@ the `css` array in `nuxt.config.ts` and must stay first:
 | `composition` | `compositions.css` — layout primitives                    |
 | `utility`     | `utilities.css` — single-job, token-derived classes       |
 | `block`       | components: global block sheets and every `<style>` block |
-| `exception`   | state and variant overrides (nothing here yet)            |
+| `exception`   | state and variant rules, keyed off `data-*` attributes    |
 
 A later layer beats an earlier one **regardless of specificity**, so
 nothing in this project needs `!important` or a selector-weight trick to
@@ -56,8 +56,9 @@ Two consequences to remember:
   explicitly in the `css` array in `nuxt.config.ts`. The array order is
   documentation; the cascade order comes from the layer statement.
 - Component styles belong in the `<style>` block of the component they
-  style, wrapped in `@layer block { … }`. `app/assets/styles` is only for
-  global and reusable styles.
+  style, wrapped in `@layer block { … }`, with an `@layer exception { … }`
+  block after it if the component has states or variants.
+  `app/assets/styles` is only for global and reusable styles.
   - An exception can be made for global styles with no corresponding
     component, like `.link`, or overrides for framework components
     provided by Vue or Nuxt and its modules. Avoid this where possible.
@@ -179,6 +180,50 @@ top level:
 A block should hold only what is genuinely idiosyncratic to it. Layout
 relationships go to a composition; repeated single-property values go to
 a utility.
+
+## Exceptions
+
+An exception is a block in a state (`data-open`, `data-active`) or in a
+variant (`data-variant="mini"`, `data-role="user"`). Both live in the
+`exception` layer, which is last, so they beat the block without needing
+to out-specify it:
+
+```css
+@layer block {
+  .work-list-item__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+@layer exception {
+  .work-list-item[data-variant='mini'] .work-list-item__title {
+    font-size: var(--text-sm);
+  }
+}
+```
+
+State and variant are **attributes, not classes** — a `--modifier` class
+would sit in the block layer alongside the thing it is meant to override,
+and would have to win on selector weight. The attribute keeps the block's
+class list stable, and it reads as what it is: markup describing state.
+
+Bind a boolean state so the attribute is absent when off:
+
+```
+:data-open="isMenuOpen || undefined"
+```
+
+`|| undefined` is the load-bearing part. Vue drops an attribute bound to
+`undefined`, but `false` renders as `data-open="false"` — present, and
+matching `[data-open]`.
+
+Where the value is already data, bind it straight through instead of
+composing a class name from it — `:data-role="role"`, not
+`` `chat-message--${role}` ``.
+
+A structural distinction that is not state — two placements of the same
+component, say — stays a modifier class. `.navbar__sidebar-toggle--mobile`
+and `--desktop` are two different elements, not one element in two states.
 
 ## Nesting
 
