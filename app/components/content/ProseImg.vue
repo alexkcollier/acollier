@@ -52,11 +52,10 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
 <style scoped>
 @layer block {
   .lightbox {
-    --transition-time: 300ms;
     --base-transition:
-      display var(--transition-time) allow-discrete,
-      overlay var(--transition-time) allow-discrete,
-      opacity var(--transition-time), background-color var(--transition-time);
+      display var(--duration-slowest) allow-discrete,
+      overlay var(--duration-slowest) allow-discrete,
+      opacity var(--duration-slowest), background-color var(--duration-slowest);
 
     align-items: center;
     background: none;

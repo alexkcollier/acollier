@@ -77,7 +77,7 @@ const formattedDescription = computed(() => {
     gap: var(--space-4);
     padding: var(--space-6) var(--space-1);
     text-decoration: none;
-    transition: transform 220ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    transition: transform var(--duration-slow) var(--ease-emphasized);
 
     &:hover {
       transform: translateX(var(--space-4));
