@@ -18,7 +18,7 @@ the `css` array in `nuxt.config.ts` and must stay first:
 
 | Layer         | Holds                                                     |
 | ------------- | --------------------------------------------------------- |
-| `reset`       | `sanitize.css`, imported with `layer(reset)`              |
+| `reset`       | `sanitize.css` and its `reduce-motion.css` partial, imported with `layer(reset)` |
 | `tokens`      | `tokens.css` — custom properties only, nothing else       |
 | `theme`       | `theme.css` — the light/dark switch, nothing else         |
 | `global`      | `base.css` — bare element styling                         |
@@ -37,7 +37,7 @@ Note the direction that implies — **a block beats a utility**, not the
 other way round. That is what lets `.work-list-item__tags` take
 `.list-bare` for the reset and still set its own top margin.
 
-Two consequences to remember:
+A few consequences to remember:
 
 - **Unlayered CSS beats every layer.** Anything you add must be inside a
   layer or it silently wins over the whole system. Third-party CSS Nuxt
@@ -48,6 +48,15 @@ Two consequences to remember:
   instead — `@import url('x.css') layer(reset)` — or keep the `@import` at
   the top of the file, above the layer block, when the imported file wraps
   itself.
+- **A block outranks `global`, so a block must defer on purpose.**
+  `typography.css`'s heading rules keep a `:not(:first-child)` guard on
+  their `.nuxt-content` selectors for exactly this reason — without it,
+  the block layer would override `base.css`'s `h*:first-child { margin-top:
+  0 }` instead of leaving it alone.
+- **`prefers-reduced-motion` is handled once, globally, in `reset`.**
+  `reduce-motion.css` already covers it for every animation and transition
+  in the project — don't add a second `@media (prefers-reduced-motion:
+  reduce)` block anywhere else.
 
 ## File conventions
 
@@ -70,6 +79,21 @@ properties in `tokens.css` — that file is the only place tokens are
 declared. Never hardcode these values; breakpoints in query conditions
 are the one exception, for the reason below.
 
+That list is wider than colour and spacing: `tokens.css` also carries the
+duration/easing pair, font-weight, elevation (`--shadow-sm` /
+`--shadow-md`), a z-index scale (`--z-raised` … `--z-nav`, in steps of
+10), status colour (`--color-bg-error` / `--color-text-error`), and the
+themed focus colour. A bare literal in any of those categories —
+`250ms`, `font-weight: 700`, `z-index: 12` — is a defect now, the same
+way a hardcoded hex value already was.
+
+Two deliberate carve-outs, so nobody "finishes" them later: only the two
+`cubic-bezier()` curves actually in use are tokenised, as `--ease-standard`
+and `--ease-emphasized` — bare `ease` / `ease-out` keywords stay keywords.
+And a few one-off rhythms stay literal because they are not scale steps:
+`AssistantPip`'s `1900ms` idle breathe, the contact form's `0.5s` spinner,
+and `TheNavbar`'s `0ms` JS-toggled delay sentinels.
+
 Both themes are declared once, via `light-dark()` resolving against
 `color-scheme`. To add a token that differs between themes, add a single
 `light-dark(<light>, <dark>)` declaration; do not add a
@@ -79,6 +103,14 @@ Both themes are declared once, via `light-dark()` resolving against
 overrides `ColorSwitcher` stamps — and nothing else. It is a layer of its
 own, after `tokens`, so a theme that ever needs to restate a palette token
 outranks the default by layer instead of by selector weight.
+
+A blocking inline script in `nuxt.config.ts`'s `app.head.script` reads any
+theme saved to `localStorage` and stamps `data-theme` on `:root` before
+first paint, so a visitor with a pinned preference never sees a flash of
+the OS theme — only a visitor with nothing stored falls through to
+`color-scheme: light dark` following the OS. `ColorSwitcher` defers
+rendering its icon until mounted, so the markup it renders can't disagree
+with what the script already pinned.
 
 A ramp step (`--stone-700`) is not a value to style with — reach for the
 semantic palette (`--color-text-muted`). Naming a themed colour a
@@ -97,6 +129,48 @@ themes. Never hand-roll the switch with a `[data-theme]` rule plus a
 `light-dark()` says in one, and it is easy to write the pair so that
 pinning a theme stops working. If what varies is not a colour, express it
 as one: an opacity applied to a colour is a colour.
+
+A ramp keeps every step even where nothing currently consumes it. A ramp
+is a designed palette, not dead code — an unused step is the next value
+you reach for, not weight to trim.
+
+## Focus
+
+One global rule, in the `global` layer of `base.css`, draws the focus
+ring for the whole site:
+
+```css
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+```
+
+Components should not hand-roll their own — no bespoke `outline` or
+`box-shadow` on `:focus-visible` in a block. Where the control itself
+can't carry a legible ring, moving it to a wrapper is the exception, not
+the pattern: `ChatForm` deletes the textarea's own outline and instead
+matches `:has(textarea:focus-visible)` on `.chat-form`, because the
+wrapper already draws the border treatment and isn't clipped by the
+textarea's own edges.
+
+## Custom property shadowing
+
+A custom property resolves by ordinary CSS inheritance, not by cascade
+layer — a property declared on a component's root class always beats one
+inherited from `:root`, whatever layer either rule sits in. Layer order
+only decides between rules that target the *same* property on the *same*
+element; it has no say once a nearer ancestor already supplies a value.
+
+That makes reusing a global token's name inside a component dangerous,
+not just redundant. Five components used to declare a local
+`--transition-duration` or `--transition-time` directly on their root
+class, which would have silently shadowed any global token of that name
+for the component's whole subtree, forever, with no layer able to win it
+back. The rule: a component-local custom property must never share a
+name with a token declared in `tokens.css` — alias it (`--submit-bg:
+light-dark(...)`, above) or give it a name the token set doesn't use;
+never shadow it.
 
 ## Compositions
 
@@ -236,6 +310,11 @@ composing a class name from it — `:data-role="role"`, not
 A structural distinction that is not state — two placements of the same
 component, say — stays a modifier class. `.navbar__sidebar-toggle--mobile`
 and `--desktop` are two different elements, not one element in two states.
+
+The same reasoning keeps `.link--button` / `--button-filled` / `--arrow`
+as modifier classes rather than a `data-variant`: they *compose* —
+`contact.vue` puts three of them on one element — and a single-valued
+attribute can't express that without reinventing a class list.
 
 ## Nesting
 
