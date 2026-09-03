@@ -223,13 +223,13 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
   .navbar-brand__name {
     color: var(--color-text);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     margin-block-end: var(--space-1);
   }
 
   .navbar-brand__title {
     color: var(--color-text);
-    font-weight: 300;
+    font-weight: var(--font-weight-light);
   }
 
   .navbar-divider {

@@ -108,7 +108,7 @@ const formattedDescription = computed(() => {
 
   .work-list-item__title {
     font-size: var(--text-2xl);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     letter-spacing: -0.016em;
     line-height: var(--leading-snug);
     margin: 0;

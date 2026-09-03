@@ -205,7 +205,7 @@ watch(
 
   .chat__greeting-tag {
     font-size: var(--text-3xl);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     letter-spacing: -0.016em;
     line-height: var(--leading-snug);
     margin: 0 0 var(--space-3);

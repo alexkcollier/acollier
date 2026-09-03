@@ -331,7 +331,7 @@ onUnmounted(() => {
     cursor: pointer;
     display: flex;
     font-size: var(--text-sm);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     gap: var(--space-3);
     max-width: 70vw;
     padding: var(--space-3) var(--space-6);
@@ -388,7 +388,7 @@ onUnmounted(() => {
 @layer exception {
   .toc__link[aria-current='location'] {
     color: var(--color-link);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
 
     &::before {
       animation: toc-marker-in 150ms ease-out both;

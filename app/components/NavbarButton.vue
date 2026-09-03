@@ -35,7 +35,7 @@ defineProps({
 
     &.router-link-exact-active {
       color: var(--color-link);
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       letter-spacing: var(--letter-spacing-bold);
     }
   }

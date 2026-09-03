@@ -55,7 +55,7 @@ const html = computed(() =>
     h2,
     h3,
     h4 {
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       line-height: var(--leading-snug);
     }
 
@@ -103,7 +103,7 @@ const html = computed(() =>
     }
 
     strong {
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
     }
 
     em {

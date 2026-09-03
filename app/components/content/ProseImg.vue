@@ -65,7 +65,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
     color: var(--color-text-on-dark);
     display: flex;
     flex-direction: column;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
     gap: var(--space-4);
     height: 100dvh;
     inset: 0;
