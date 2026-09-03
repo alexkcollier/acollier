@@ -1,7 +1,8 @@
 /* ── Base tokens ─────────────────────────────────── */
 :root {
   /* Color ramps */
-  // green
+
+  /* green */
   --green-50: #eaf4e8;
   --green-100: #b6ddb1;
   --green-200: #96cc90;
@@ -15,7 +16,7 @@
   --green-800: #1a4317;
   --green-900: #13300f;
 
-  // stone
+  /* stone */
   --stone-50: #fafaf8;
   --stone-100: #edede8;
   --stone-200: #d6d6cf;
@@ -27,7 +28,7 @@
   --stone-800: #2a2a27;
   --stone-900: #1a1a18;
 
-  // amber
+  /* amber */
   --amber-50: #fbf2e0;
   --amber-200: #f5d48a;
   --amber-500: #c28a1a;
@@ -36,7 +37,8 @@
   --amber-700: #7a5310;
 
   /* Typography */
-  // families
+
+  /* families */
   --font-family-serif: 'Playfair Display', georgia, serif;
   --font-family-sans-serif:
     'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
@@ -45,7 +47,7 @@
     'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono', 'Courier New',
     monospace;
 
-  // display faces
+  /* display faces */
   --font-display: var(--font-family-serif);
   --font-body: var(--font-family-sans-serif);
   --font-mono: var(--font-family-monospaced);
@@ -116,81 +118,61 @@
   --bp-xxl: 1440px;
 }
 
-/* ── Light theme ─────────────────────────────────── */
+/* ── Themes ──────────────────────────────────────── */
 
-:root,
-:root[data-theme='light'] {
-  // bg
-  --color-bg: var(--stone-50);
-  --color-bg-subtle: var(--stone-100);
-  --color-bg-primary: var(--green-700);
-  --color-bg-accent: var(--amber-500);
+/**
+ * Both palettes are declared once via `light-dark()`, which resolves
+ * against the `color-scheme` in effect. With no `data-theme` set — the
+ * pre-hydration state of the static HTML — `light dark` follows the OS
+ * preference; `ColorSwitcher` then stamps `data-theme` to pin a choice.
+ *
+ * Tokens whose value is the same in both themes are declared plainly.
+ */
 
-  // text
-  --color-text: var(--stone-900);
-  --color-text-muted: var(--stone-500);
-  --color-text-primary: var(--green-700);
-  --color-text-on-primary: #fff;
-  --color-text-accent: var(--amber-700);
-  --color-text-on-dark: var(--stone-50);
-
-  // border
-  --color-border: var(--stone-300);
-  --color-border-primary: var(--green-300);
-
-  // links
-  --color-link: var(--green-700, var(--color-text));
-  --color-link-hover: var(--green-700);
-  --color-focus-ring: var(--green-300);
-
-  // inputs
-  --color-input-bg: var(--stone-100);
-  --color-input-bg-focus: var(--stone-50);
-  --color-input-border: var(--stone-200);
-  --color-input-border-focus: var(--stone-300);
-  --color-input-text: var(--stone-900);
-  --color-input-placeholder: var(--stone-500);
+:root {
+  color-scheme: light dark;
 }
 
-/* ── Dark theme ──────────────────────────────────── */
-@mixin dark-theme {
-  // bg
-  --color-bg: var(--stone-900);
-  --color-bg-subtle: var(--stone-700);
-  --color-bg-primary: var(--green-600);
-  --color-bg-accent: var(--amber-500);
-
-  // text
-  --color-text: var(--stone-50);
-  --color-text-muted: var(--stone-300);
-  --color-text-primary: var(--green-300);
-  --color-text-on-primary: #fff;
-  --color-text-accent: var(--amber-200);
-
-  // border
-  --color-border: var(--stone-700);
-  --color-border-primary: var(--green-700);
-
-  // color
-  --color-link: var(--green-300, var(--color-text));
-  --color-link-hover: var(--green-100);
-  --color-focus-ring: var(--green-700);
-
-  // input
-  --color-input-bg: var(--stone-700);
-  --color-input-bg-focus: var(--stone-600);
-  --color-input-border: var(--stone-600);
-  --color-input-border-focus: var(--stone-500);
-  --color-input-text: var(--stone-50);
-  --color-input-placeholder: var(--stone-400);
+:root[data-theme='light'] {
+  color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  @include dark-theme;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include dark-theme;
-  }
+:root {
+  /* bg */
+  --color-bg: light-dark(var(--stone-50), var(--stone-900));
+  --color-bg-subtle: light-dark(var(--stone-100), var(--stone-700));
+  --color-bg-primary: light-dark(var(--green-700), var(--green-600));
+  --color-bg-accent: var(--amber-500);
+
+  /* text */
+  --color-text: light-dark(var(--stone-900), var(--stone-50));
+  --color-text-muted: light-dark(var(--stone-500), var(--stone-300));
+  --color-text-primary: light-dark(var(--green-700), var(--green-300));
+  --color-text-on-primary: #fff;
+  --color-text-accent: light-dark(var(--amber-700), var(--amber-200));
+  --color-text-on-dark: var(--stone-50);
+
+  /* border */
+  --color-border: light-dark(var(--stone-300), var(--stone-700));
+  --color-border-primary: light-dark(var(--green-300), var(--green-700));
+
+  /* links */
+  --color-link: light-dark(
+    var(--green-700, var(--color-text)),
+    var(--green-300, var(--color-text))
+  );
+  --color-link-hover: light-dark(var(--green-700), var(--green-100));
+  --color-focus-ring: light-dark(var(--green-300), var(--green-700));
+
+  /* inputs */
+  --color-input-bg: light-dark(var(--stone-100), var(--stone-700));
+  --color-input-bg-focus: light-dark(var(--stone-50), var(--stone-600));
+  --color-input-border: light-dark(var(--stone-200), var(--stone-600));
+  --color-input-border-focus: light-dark(var(--stone-300), var(--stone-500));
+  --color-input-text: light-dark(var(--stone-900), var(--stone-50));
+  --color-input-placeholder: light-dark(var(--stone-500), var(--stone-400));
 }
