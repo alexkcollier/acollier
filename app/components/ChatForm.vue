@@ -113,7 +113,7 @@ watch(
     @submit.prevent="handleSend"
   >
     <label
-      class="sr-only"
+      class="visually-hidden"
       for="chat-input"
       >{{ t('chat.formLabel') }}</label
     >
@@ -130,7 +130,7 @@ watch(
     />
 
     <div class="chat-form__actions">
-      <span class="chat-form__hint">
+      <span class="chat-form__hint text-muted">
         <kbd v-if="isBusy(status)">Esc</kbd>
       </span>
 
@@ -190,7 +190,6 @@ watch(
   }
 
   .chat-form__hint {
-    color: var(--color-text-muted);
     cursor: default;
     font-size: var(--text-xs);
 

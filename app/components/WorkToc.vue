@@ -106,7 +106,7 @@ onUnmounted(() => {
 <template>
   <!-- Desktop: rendered in sidebar -->
   <nav class="toc__desktop">
-    <ul class="toc__list">
+    <ul class="toc__list list-bare">
       <li
         v-for="link in links"
         :key="link.id"
@@ -117,6 +117,7 @@ onUnmounted(() => {
           :class="[
             'link',
             'toc__link',
+            'text-muted',
             { 'toc__link--active': activeId === link.id },
           ]"
           @click="onLinkClick(link.id)"
@@ -126,7 +127,7 @@ onUnmounted(() => {
 
         <ul
           v-if="link.children?.length"
-          class="toc__list toc__list--nested"
+          class="toc__list toc__list--nested list-bare"
         >
           <li
             v-for="child in link.children"
@@ -138,6 +139,7 @@ onUnmounted(() => {
               :class="[
                 'link',
                 'toc__link',
+                'text-muted',
                 { 'toc__link--active': activeId === child.id },
               ]"
               @click="onLinkClick(child.id)"
@@ -181,7 +183,7 @@ onUnmounted(() => {
           </div>
 
           <nav>
-            <ul class="toc__list">
+            <ul class="toc__list list-bare">
               <li
                 v-for="link in links"
                 :key="link.id"
@@ -192,6 +194,7 @@ onUnmounted(() => {
                   :class="[
                     'link',
                     'toc__link',
+                    'text-muted',
                     { 'toc__link--active': activeId === link.id },
                   ]"
                   @click="onLinkClick(link.id)"
@@ -201,7 +204,7 @@ onUnmounted(() => {
 
                 <ul
                   v-if="link.children?.length"
-                  class="toc__list toc__list--nested"
+                  class="toc__list toc__list--nested list-bare"
                 >
                   <li
                     v-for="child in link.children"
@@ -213,6 +216,7 @@ onUnmounted(() => {
                       :class="[
                         'link',
                         'toc__link',
+                        'text-muted',
                         { 'toc__link--active': activeId === child.id },
                       ]"
                       @click="onLinkClick(child.id)"
@@ -228,7 +232,7 @@ onUnmounted(() => {
       </Transition>
 
       <button
-        class="toc-mobile__fab"
+        class="toc-mobile__fab font-mono"
         :aria-label="`Table of contents${activeLink ? `: ${activeLink.text}` : ''}`"
         @click="isDrawerOpen = true"
       >
@@ -255,10 +259,6 @@ onUnmounted(() => {
   }
 
   .toc__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
     &:not(:last-child) {
       margin-bottom: inherit;
     }
@@ -281,7 +281,6 @@ onUnmounted(() => {
   }
 
   .toc__link {
-    color: var(--color-text-muted);
     position: relative;
     text-decoration: none;
     transition: color 150ms ease-in-out;
@@ -360,7 +359,6 @@ onUnmounted(() => {
     color: var(--color-link);
     cursor: pointer;
     display: flex;
-    font-family: var(--font-mono);
     font-size: var(--text-sm);
     font-weight: 700;
     gap: var(--space-3);

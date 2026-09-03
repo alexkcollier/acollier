@@ -25,7 +25,7 @@ const dateRange = computed(() =>
         {{ company }}
       </h3>
 
-      <p class="work-experience-item__meta">
+      <p class="work-experience-item__meta text-muted">
         <span class="work-experience-item__roles">
           {{ roles.join(' · ') }}
         </span>
@@ -62,7 +62,6 @@ const dateRange = computed(() =>
   }
 
   .work-experience-item__meta {
-    color: var(--color-text-muted);
     display: flex;
     flex-direction: column;
     font-size: var(--text-sm);

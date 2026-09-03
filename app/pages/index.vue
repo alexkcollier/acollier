@@ -155,7 +155,9 @@ watch(
         v-if="!messages.length && featuredWork?.length"
         class="chat__suggestions"
       >
-        <p class="chat__suggestions-label">{{ t('chat.featuredWork') }}</p>
+        <p class="chat__suggestions-label text-muted">
+          {{ t('chat.featuredWork') }}
+        </p>
 
         <div class="chat__suggestions-list cluster">
           <WorkListItem
@@ -297,7 +299,6 @@ watch(
   }
 
   .chat__suggestions-label {
-    color: var(--color-text-muted);
     margin-block: var(--space-8) var(--space-4);
     text-align: center;
 

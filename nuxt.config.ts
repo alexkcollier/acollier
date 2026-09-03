@@ -60,6 +60,7 @@ export default defineNuxtConfig({
     '~/assets/styles/tokens.css',
     '~/assets/styles/base.css',
     '~/assets/styles/compositions.css',
+    '~/assets/styles/utilities.css',
     '~/assets/styles/typography.css',
     '~/assets/styles/elements.css',
     '~/assets/styles/forms.css',

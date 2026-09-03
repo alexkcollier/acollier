@@ -26,7 +26,9 @@ const formattedDescription = computed(() => {
     :to="href"
     :class="['work-list-item', variant && `work-list-item--${variant}`]"
   >
-    <span class="work-list-item__index">{{ formattedIndex }}</span>
+    <span class="work-list-item__index font-mono text-muted">{{
+      formattedIndex
+    }}</span>
 
     <NuxtImg
       v-if="!variant"
@@ -40,10 +42,12 @@ const formattedDescription = computed(() => {
 
     <div class="work-list-item__content">
       <h2 class="work-list-item__title">{{ title }}</h2>
-      <p class="work-list-item__description">{{ formattedDescription }}</p>
+      <p class="work-list-item__description text-muted">
+        {{ formattedDescription }}
+      </p>
       <ul
         v-if="tags?.length"
-        class="work-list-item__tags cluster"
+        class="work-list-item__tags cluster list-bare"
       >
         <li
           v-for="tag in tags"
@@ -55,7 +59,7 @@ const formattedDescription = computed(() => {
     </div>
 
     <span
-      class="work-list-item__arrow"
+      class="work-list-item__arrow font-mono"
       aria-hidden="true"
       >↗</span
     >
@@ -80,8 +84,6 @@ const formattedDescription = computed(() => {
   }
 
   .work-list-item__index {
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
   }
@@ -112,7 +114,6 @@ const formattedDescription = computed(() => {
   }
 
   .work-list-item__description {
-    color: var(--color-text-muted);
     font-size: var(--text-base);
     line-height: var(--leading-normal);
     margin: var(--space-2) 0 0;
@@ -122,9 +123,7 @@ const formattedDescription = computed(() => {
   .work-list-item__tags {
     --cluster-space: var(--space-2);
 
-    list-style: none;
     margin: var(--space-4) 0 0;
-    padding: 0;
   }
 
   .work-list-item__arrow {
@@ -158,7 +157,6 @@ const formattedDescription = computed(() => {
       color: var(--color-text-primary);
       display: block;
       flex: none;
-      font-family: var(--font-mono);
       font-size: var(--text-base);
       padding-top: 3px;
     }
@@ -232,7 +230,6 @@ const formattedDescription = computed(() => {
       color: var(--color-text-primary);
       display: block;
       flex: none;
-      font-family: var(--font-mono);
       font-size: var(--text-lg);
       padding-top: var(--space-1);
     }

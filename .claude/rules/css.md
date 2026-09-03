@@ -22,13 +22,19 @@ the `css` array in `nuxt.config.ts` and must stay first:
 | `tokens`      | `tokens.css` — custom properties only, nothing else       |
 | `global`      | `base.css` — bare element styling                         |
 | `composition` | `compositions.css` — layout primitives                    |
-| `utility`     | single-job, token-derived classes (no file yet)           |
+| `utility`     | `utilities.css` — single-job, token-derived classes       |
 | `block`       | components: global block sheets and every `<style>` block |
 | `exception`   | state and variant overrides (nothing here yet)            |
 
-A later layer beats an earlier one **regardless of specificity**, so a
-utility can override a block without `!important` and without selector
-weight tricks.
+A later layer beats an earlier one **regardless of specificity**, so
+nothing in this project needs `!important` or a selector-weight trick to
+win. The order is CUBE's own acronym: compositions arrange, utilities
+carry the default for a recurring decision, blocks specialise it, and
+exceptions override everything.
+
+Note the direction that implies — **a block beats a utility**, not the
+other way round. That is what lets `.work-list-item__tags` take
+`.list-bare` for the reset and still set its own top margin.
 
 Two consequences to remember:
 
@@ -107,6 +113,27 @@ composition is visible to every descendant, and a nested composition of
 the same kind picks it up unless it sets its own — `.work-links__list`
 has to restate `--stack-space` because the sticky rail around it already
 set one.
+
+## Utilities
+
+`utilities.css` holds single-job classes whose value comes from a token:
+`.visually-hidden`, `.list-bare`, `.font-mono`, `.text-muted`.
+
+A utility names a decision that recurs across components with nothing
+else in common. It is not a shorthand for an arbitrary declaration, and
+not a way to assemble a component out of class names in the template — if
+you find yourself reaching for four of them on one element, that element
+wants a block.
+
+Because a block outranks a utility, a utility carries the default and the
+component departs from it in its own stylesheet. That also means a
+utility cannot rescue you from a block that sets the same property: fix
+the block instead.
+
+Only reach for a utility where a template can actually carry the class.
+Styling that lands on rendered markdown (`nuxt-content.css`), on a bare
+element (`label`, `code`, `kbd`), or on a pseudo-element stays a
+declaration.
 
 ## Blocks and BEM
 

@@ -22,7 +22,7 @@ const html = computed(() =>
     :class="['chat-message', `chat-message--${role}`]"
     role="article"
   >
-    <span class="sr-only">{{
+    <span class="visually-hidden">{{
       role === 'user' ? t('chat.you') : t('chat.assistant')
     }}</span>
 

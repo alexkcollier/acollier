@@ -161,7 +161,7 @@ definePageMeta({
           >
             <h2 class="heading-2">{{ $t('work.links') }}</h2>
 
-            <ul class="work-links__list stack">
+            <ul class="work-links__list stack list-bare">
               <li
                 v-for="{ href, title } in doc.links"
                 :key="href"
@@ -238,10 +238,6 @@ export default {
 
   .work-links__list {
     --stack-space: var(--space-6);
-
-    list-style: none;
-    margin: 0;
-    padding: 0;
 
     &:not(:last-child) {
       margin-bottom: inherit;

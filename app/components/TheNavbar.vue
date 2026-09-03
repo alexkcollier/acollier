@@ -261,13 +261,11 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
   .navbar-brand__title {
     color: var(--color-text);
-    font-family: var(--font-mono);
     font-weight: 300;
   }
 
   .navbar-divider {
     align-items: center;
-    color: var(--color-text-muted);
     display: none;
     padding-left: var(--space-2);
     padding-right: var(--space-2);

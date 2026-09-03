@@ -1,5 +1,5 @@
 <template>
-  <ul class="tool-list">
+  <ul class="tool-list list-bare">
     <li
       v-for="{ href, img, name } in tools"
       :key="name"
@@ -18,7 +18,7 @@
           class="tool-list__image"
         />
 
-        <span class="tool-list__link-text">
+        <span class="tool-list__link-text font-mono">
           {{ name }}
         </span>
       </a>
@@ -48,9 +48,6 @@ export default {
     display: grid;
     gap: var(--space-8);
     grid-template-columns: repeat(var(--column-number), 1fr);
-    list-style: none;
-    margin: 0;
-    padding: 0;
 
     &:not(:last-child) {
       margin-bottom: inherit;
@@ -82,7 +79,6 @@ export default {
   }
 
   .tool-list__link-text {
-    font-family: var(--font-mono);
     font-size: var(--text-sm);
     margin-top: 0.5rem;
   }

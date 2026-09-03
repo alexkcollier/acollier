@@ -21,7 +21,7 @@ const { t } = useI18n();
 
     <span
       v-if="thinking"
-      class="assistant-pip__label"
+      class="assistant-pip__label text-muted"
     >
       {{ t('chat.thinking') }}
     </span>
@@ -90,7 +90,6 @@ const { t } = useI18n();
   }
 
   .assistant-pip__label {
-    color: var(--color-text-muted);
     font-size: var(--text-sm);
   }
 
