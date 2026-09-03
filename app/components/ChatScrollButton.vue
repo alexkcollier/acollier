@@ -68,7 +68,7 @@ watch(
     border-radius: var(--radius-full);
     bottom: var(--space-4);
     box-shadow: 0 2px 8px color-mix(in srgb, var(--stone-900) 16%, transparent);
-    color: var(--color-text-subtle);
+    color: var(--color-text-muted);
     cursor: pointer;
     display: flex;
     left: 50%;

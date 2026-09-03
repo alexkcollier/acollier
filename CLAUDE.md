@@ -38,14 +38,14 @@ Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS 
 The layer order is declared once at the top of `app/assets/styles/reset.css`, which must stay first in the `css` array in `nuxt.config.ts`:
 
 ```css
-@layer reset, tokens, global, composition, utility, block, exception;
+@layer reset, tokens, theme, global, composition, utility, block, exception;
 ```
 
 Every rule in the project sits in one of those layers — global stylesheets wrap their whole contents in a single `@layer`, and so does every component `<style>` block (`@layer block { … }`). Unlayered CSS beats every layer, so nothing may be left outside one. A later layer wins regardless of specificity.
 
 Global stylesheets live in `app/assets/styles/*.css` and are listed explicitly in the `css` array; component styles live in the component's own `<style>` block. The design system is defined in `app/assets/styles/tokens.css` (color ramps, spacing scale, type scale, radius tokens, breakpoint values, page and heading tokens) — the only place custom properties are declared. `app/assets/styles/compositions.css` holds the layout primitives (`.wrapper`, `.stack`, `.cluster`, `.with-sidebar`), each tuned by inherited custom properties that the consuming block sets. `app/assets/styles/utilities.css` holds the single-job, token-derived classes (`.visually-hidden`, `.list-bare`, `.font-mono`, `.text-muted`). Note that `utility` sits before `block`, so a block outranks a utility on the same property — a utility carries the default and the component departs from it. The `exception` layer is declared but not yet populated.
 
-Both themes are declared once via `light-dark()`, which resolves against `color-scheme`: `:root` is `light dark` (following the OS), and `ColorSwitcher` stamps `data-theme` on `:root` to pin a choice. There is no `prefers-color-scheme` block in the token layer.
+Both themes are declared once via `light-dark()`, which resolves against `color-scheme`. The switch itself lives in `app/assets/styles/theme.css` and its own `theme` layer: `:root` is `light dark` (following the OS), and `ColorSwitcher` stamps `data-theme` on `:root` to pin a choice. There is no `prefers-color-scheme` block in the token layer.
 
 Native CSS nesting is used for pseudo-classes, compound selectors, descendants and at-rules, but it cannot concatenate selectors, so BEM elements and modifiers are written out in full at the top level. Media and container query conditions cannot read `var()`, so breakpoints are hardcoded there and kept in sync with the `--bp-*` custom properties by hand. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific ordering (custom properties → declarations → nested rules → `@media` → `@container`).
 

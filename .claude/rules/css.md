@@ -13,13 +13,14 @@ at the top of `app/assets/styles/reset.css`, which is the first entry in
 the `css` array in `nuxt.config.ts` and must stay first:
 
 ```css
-@layer reset, tokens, global, composition, utility, block, exception;
+@layer reset, tokens, theme, global, composition, utility, block, exception;
 ```
 
 | Layer         | Holds                                                     |
 | ------------- | --------------------------------------------------------- |
 | `reset`       | `sanitize.css`, imported with `layer(reset)`              |
 | `tokens`      | `tokens.css` — custom properties only, nothing else       |
+| `theme`       | `theme.css` — the light/dark switch, nothing else         |
 | `global`      | `base.css` — bare element styling                         |
 | `composition` | `compositions.css` — layout primitives                    |
 | `utility`     | `utilities.css` — single-job, token-derived classes       |
@@ -72,6 +73,15 @@ Both themes are declared once, via `light-dark()` resolving against
 `color-scheme`. To add a token that differs between themes, add a single
 `light-dark(<light>, <dark>)` declaration; do not add a
 `prefers-color-scheme` block.
+
+`theme.css` holds the switch itself — `color-scheme` and the `[data-theme]`
+overrides `ColorSwitcher` stamps — and nothing else. It is a layer of its
+own, after `tokens`, so a theme that ever needs to restate a palette token
+outranks the default by layer instead of by selector weight.
+
+A ramp step (`--stone-700`) is not a token to style with. Reach for the
+semantic palette (`--color-text-muted`); a bare ramp outside `tokens.css`
+is a last resort.
 
 ## Compositions
 

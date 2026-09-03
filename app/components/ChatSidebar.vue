@@ -231,7 +231,7 @@ watch(
   }
 
   .chat-sidebar__tag {
-    color: var(--color-text-subtle);
+    color: var(--color-text-muted);
     font-size: var(--text-xl);
     font-weight: 700;
     letter-spacing: -0.016em;
