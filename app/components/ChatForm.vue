@@ -170,7 +170,7 @@ watch(
     display: flex;
     flex-direction: column;
     padding: var(--space-3);
-    transition: border-color 200ms ease;
+    transition: border-color var(--duration-slow) ease;
 
     &:has(textarea:focus-visible) {
       border-color: var(--color-input-border-focus);

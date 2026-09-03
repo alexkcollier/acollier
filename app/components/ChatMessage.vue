@@ -40,7 +40,7 @@ const html = computed(() =>
 <style>
 @layer block {
   .chat-message {
-    animation: chat-message-enter 200ms ease both;
+    animation: chat-message-enter var(--duration-slow) ease both;
     border-radius: var(--radius-md);
   }
 

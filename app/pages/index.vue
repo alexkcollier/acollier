@@ -180,7 +180,6 @@ watch(
 <style>
 @layer block {
   .chat {
-    --transition-duration: 200ms;
     --color-glow: light-dark(
       color-mix(in srgb, var(--green-700) 16%, transparent),
       color-mix(in srgb, var(--green-600) 32%, transparent)
@@ -222,8 +221,8 @@ watch(
   .chat__greeting-enter-active,
   .chat__greeting-leave-active {
     transition:
-      opacity var(--transition-duration) ease,
-      translate var(--transition-duration) ease;
+      opacity var(--duration-slow) ease,
+      translate var(--duration-slow) ease;
   }
 
   .chat__greeting-enter-from,
@@ -239,7 +238,7 @@ watch(
   }
 
   .chat__messages-enter-active {
-    transition: opacity var(--transition-duration) ease;
+    transition: opacity var(--duration-slow) ease;
   }
 
   .chat__messages-enter-from {
@@ -267,8 +266,8 @@ watch(
   .chat__suggestions-enter-active,
   .chat__suggestions-leave-active {
     transition:
-      opacity var(--transition-duration) ease,
-      translate var(--transition-duration) ease;
+      opacity var(--duration-slow) ease,
+      translate var(--duration-slow) ease;
   }
 
   .chat__suggestions-enter-from,
