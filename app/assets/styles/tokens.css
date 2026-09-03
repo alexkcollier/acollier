@@ -40,6 +40,12 @@
     --amber-500: #c28a1a;
     --amber-700: #7a5310;
 
+    /* red — 600 is error */
+    --red-100: #f7d9d6;
+    --red-300: #e59a93;
+    --red-600: #a3241b;
+    --red-800: #5e120c;
+
     /* ── Semantic palette ───────────────────────────────────────────── */
 
     /* Declared once via `light-dark()`, which resolves against the
@@ -54,11 +60,14 @@
 
     /* text */
     --color-text: light-dark(var(--stone-900), var(--stone-50));
-    --color-text-muted: light-dark(var(--stone-500), var(--stone-300));
+    --color-text-muted: light-dark(var(--stone-600), var(--stone-300));
     --color-text-primary: light-dark(var(--green-700), var(--green-300));
     --color-text-accent: light-dark(var(--amber-700), var(--amber-200));
-    --color-text-on-primary: #fff;
+    --color-text-on-primary: var(--stone-50);
     --color-text-on-dark: var(--stone-50);
+
+    /* pairs the accent background that had no foreground token — 5.76:1 */
+    --color-text-on-accent: var(--stone-900);
 
     /* border */
     --color-border: light-dark(var(--stone-300), var(--stone-700));
@@ -74,7 +83,7 @@
 
     /* links */
     --color-link: light-dark(var(--green-700), var(--green-300));
-    --color-link-hover: light-dark(var(--green-700), var(--green-100));
+    --color-link-hover: light-dark(var(--green-500), var(--green-100));
 
     /* inputs */
     --color-input-bg: light-dark(var(--stone-100), var(--stone-700));
@@ -82,6 +91,15 @@
     --color-input-border: light-dark(var(--stone-200), var(--stone-600));
     --color-input-border-focus: light-dark(var(--stone-300), var(--stone-500));
     --color-input-text: light-dark(var(--stone-900), var(--stone-50));
+
+    /* focus — 6.59:1 light, 7.29:1 dark, both well over the 3:1 needed */
+    --color-focus: light-dark(var(--green-600), var(--green-300));
+    --focus-ring-offset: 2px;
+    --focus-ring-width: 2px;
+
+    /* status */
+    --color-bg-error: light-dark(var(--red-100), var(--red-800));
+    --color-text-error: light-dark(var(--red-600), var(--red-300));
 
     /* ── Typography ─────────────────────────────────────────────────── */
 
@@ -117,6 +135,11 @@
     --letter-spacing-base: 0.02em;
     --letter-spacing-bold: 0.03em;
 
+    /* weight */
+    --font-weight-light: 300;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
     /* ── Spacing ────────────────────────────────────────────────────── */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
@@ -134,6 +157,25 @@
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-full: 9999px;
+
+    /* ── Elevation ──────────────────────────────────────────────────── */
+    --shadow-sm: 0 2px 8px var(--color-shadow);
+    --shadow-md: 0 2px 12px var(--color-shadow);
+
+    /**
+     * ── Motion ──────────────────────────────────────────────────────
+     *
+     * Only the two cubic-beziers already in use across the codebase are
+     * tokenised here. Bare `ease` / `ease-out` keywords stay as keywords —
+     * do not "finish the set" by adding tokens for curves nothing uses.
+     */
+    --duration-fast: 100ms;
+    --duration-base: 150ms;
+    --duration-slow: 200ms;
+    --duration-slower: 250ms;
+    --duration-slowest: 300ms;
+    --ease-emphasized: cubic-bezier(0.2, 0.6, 0.2, 1);
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
     /**
      * ── Breakpoints ─────────────────────────────────────────────────
@@ -167,6 +209,21 @@
     --heading-1-bottom-margin: var(--space-12);
     --heading-2-font-size: var(--text-2xl);
     --heading-top-margin: var(--space-8);
+
+    /**
+     * ── Stacking ──────────────────────────────────────────────────────
+     *
+     * One scale, in steps of 10, in the order the old ad hoc numbers
+     * already implied. The navbar is deliberately the top layer — it has
+     * to stay visible above any sheet, modal, or scrim under it.
+     */
+    --z-raised: 10;
+    --z-mask: 20;
+    --z-sticky: 30;
+    --z-scrim: 40;
+    --z-sheet: 50;
+    --z-modal: 60;
+    --z-nav: 70;
 
     @media screen and (width <= 480px) {
       --page-side-padding: var(--space-4);
