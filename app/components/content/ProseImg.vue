@@ -61,7 +61,7 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
     background: none;
     border: none;
     box-sizing: border-box;
-    color: var(--color-text-on-dark);
+    color: var(--color-text-on-primary);
     display: flex;
     flex-direction: column;
     font-weight: var(--font-weight-medium);

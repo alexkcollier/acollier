@@ -64,7 +64,6 @@
     --color-text-primary: light-dark(var(--green-700), var(--green-300));
     --color-text-accent: light-dark(var(--amber-700), var(--amber-200));
     --color-text-on-primary: var(--stone-50);
-    --color-text-on-dark: var(--stone-50);
 
     /* pairs the accent background that had no foreground token — 5.76:1 */
     --color-text-on-accent: var(--stone-900);
