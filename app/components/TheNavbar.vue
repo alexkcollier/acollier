@@ -140,8 +140,6 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .navbar {
   --transition-time: 100ms;
 
@@ -249,7 +247,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     text-transform: uppercase;
   }
 
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     padding: 0 var(--space-4);
 
     &__button-wrapper {
@@ -296,7 +294,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   padding-right: var(--space-2);
   pointer-events: none;
 
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     display: flex;
   }
 }
@@ -305,7 +303,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   display: flex;
   justify-content: space-between;
 
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     justify-content: flex-start;
   }
 }

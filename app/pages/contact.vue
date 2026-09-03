@@ -200,7 +200,6 @@ export default {
 
 <style lang="scss">
 @use 'sass:math';
-@use '~/assets/styles/utils/breakpoints' as bp;
 @use '~/assets/styles/utils/mixins';
 
 .contact-hero {
@@ -210,7 +209,7 @@ export default {
 }
 
 .contact-form {
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     max-width: math.div(5, 12) * 100%;
   }
 }

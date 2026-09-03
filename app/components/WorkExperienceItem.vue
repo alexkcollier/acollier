@@ -48,8 +48,6 @@ const dateRange = computed(() =>
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .work-experience-item {
   & ~ & {
     border-block-start: 1px solid var(--color-border);
@@ -69,7 +67,7 @@ const dateRange = computed(() =>
     gap: var(--space-1);
     margin-block: var(--space-2) 0;
 
-    @container (min-width: #{bp.$sm}) {
+    @container (width >= 480px) {
       align-items: baseline;
       flex-direction: row;
       gap: var(--space-4);

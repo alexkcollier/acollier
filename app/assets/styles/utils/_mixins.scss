@@ -1,5 +1,3 @@
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 @mixin unstyled-list {
   list-style: none;
   margin: 0;
@@ -19,7 +17,7 @@
   min-height: 100%;
   padding-inline: var(--page-side-padding);
 
-  @include bp.above('xl') {
+  @media screen and (width > 1200px) {
     --bg-size: auto 90%;
   }
 }

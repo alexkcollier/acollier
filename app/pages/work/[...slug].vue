@@ -203,7 +203,6 @@ export default {
 <style lang="scss">
 @use '~/assets/styles/nuxt-content';
 @use '~/assets/styles/utils/mixins';
-@use '~/assets/styles/utils/breakpoints' as bp;
 
 .reading-progress {
   background-color: var(--color-bg-accent);
@@ -221,7 +220,7 @@ export default {
 .content-container {
   margin-block-start: var(--space-4);
   margin-inline: auto;
-  max-width: bp.$xl;
+  max-width: var(--bp-xl);
 }
 
 .slug-back {
@@ -243,7 +242,7 @@ export default {
 .toc-sidebar {
   top: 0;
 
-  @include bp.below('md') {
+  @media screen and (width <= 768px) {
     display: none;
   }
 }

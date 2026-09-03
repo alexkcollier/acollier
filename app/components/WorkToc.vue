@@ -246,13 +246,12 @@ onUnmounted(() => {
 
 <style lang="scss">
 @use '~/assets/styles/utils/mixins';
-@use '~/assets/styles/utils/breakpoints' as bp;
 
 .toc {
   &__desktop {
     display: none;
 
-    @include bp.above('md') {
+    @media screen and (width > 768px) {
       display: block;
     }
   }
@@ -388,7 +387,7 @@ onUnmounted(() => {
     }
   }
 
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     display: none;
   }
 }

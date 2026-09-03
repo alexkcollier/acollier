@@ -175,8 +175,6 @@ watch(
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .chat {
   --transition-duration: 200ms;
   --glow-opacity: 16%;
@@ -220,7 +218,7 @@ watch(
       line-height: var(--leading-snug);
       margin: 0 0 var(--space-3);
 
-      @include bp.above('sm') {
+      @media screen and (width > 480px) {
         font-size: var(--text-4xl);
       }
     }
@@ -293,7 +291,7 @@ watch(
       margin-block: var(--space-8) var(--space-4);
       text-align: center;
 
-      @include bp.above('sm') {
+      @media screen and (width > 480px) {
         margin-block-start: var(--space-24);
       }
     }
@@ -304,7 +302,7 @@ watch(
       gap: var(--space-4);
       justify-content: center;
 
-      @include bp.above('sm') {
+      @media screen and (width > 480px) {
         gap: var(--space-8);
       }
     }
@@ -314,7 +312,7 @@ watch(
     --glow-opacity: 32%;
   }
 
-  @include bp.above('sm') {
+  @media screen and (width > 480px) {
     padding-block-start: var(--space-24);
   }
 }
@@ -323,10 +321,10 @@ watch(
   display: flex;
   flex-direction: column;
   height: var(--visual-viewport-height, 100%);
-  max-width: bp.$lg;
+  max-width: var(--bp-lg);
   padding-top: var(--space-12);
 
-  @include bp.above('md') {
+  @media screen and (width > 768px) {
     justify-content: center;
     padding-top: 0;
   }

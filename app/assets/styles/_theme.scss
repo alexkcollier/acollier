@@ -93,6 +93,27 @@
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-full: 9999px;
+
+  /**
+   * Breakpoints
+   *
+   * These custom properties are usable in declarations only. Media and
+   * container query *conditions* cannot read `var()` — the spec resolves
+   * custom properties per element, and a query has no element to resolve
+   * against — so query conditions hardcode the same values. Keep the two in
+   * sync by hand; the literals below are the canonical set.
+   *
+   *   sm   480px
+   *   md   768px
+   *   lg   960px
+   *   xl  1200px
+   *   xxl 1440px
+   */
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 960px;
+  --bp-xl: 1200px;
+  --bp-xxl: 1440px;
 }
 
 /* ── Light theme ─────────────────────────────────── */

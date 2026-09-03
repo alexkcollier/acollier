@@ -63,8 +63,6 @@ const formattedDescription = computed(() => {
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .work-list-item {
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
@@ -197,7 +195,7 @@ const formattedDescription = computed(() => {
     }
   }
 
-  @container (min-width: #{bp.$sm}) {
+  @container (width >= 480px) {
     &:not(#{&}--mini) {
       align-items: center;
       flex-direction: row;
@@ -231,13 +229,13 @@ const formattedDescription = computed(() => {
     }
   }
 
-  @container (min-width: #{bp.$md}) {
+  @container (width >= 768px) {
     &__image {
       width: 270px;
     }
   }
 
-  @container (min-width: #{bp.$xl}) {
+  @container (width >= 1200px) {
     &__image {
       display: block;
     }

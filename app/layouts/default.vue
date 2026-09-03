@@ -62,8 +62,6 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .default-layout {
   &__body {
     align-items: flex-start;
@@ -72,7 +70,7 @@ onUnmounted(() => {
   }
 
   &__sidebar {
-    @include bp.above('lg') {
+    @media screen and (width > 960px) {
       flex-shrink: 0;
     }
   }
@@ -84,7 +82,7 @@ onUnmounted(() => {
     padding-top: 8rem;
   }
 
-  @include bp.above('lg') {
+  @media screen and (width > 960px) {
     height: 100%;
 
     &__body {

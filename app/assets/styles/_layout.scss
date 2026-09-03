@@ -1,23 +1,22 @@
 @use 'sass:math';
-@use 'utils/breakpoints' as bp;
 
 :root {
   /* Page */
   --page-top-padding: var(--space-24);
   --page-side-padding: var(--space-8);
 
-  @include bp.below('sm') {
+  @media screen and (width <= 480px) {
     --page-side-padding: var(--space-4);
   }
 }
 
 .container {
   margin: 0 auto;
-  max-width: bp.$xxl;
+  max-width: var(--bp-xxl);
   width: 100%;
 
   &--narrow {
-    max-width: bp.$xl;
+    max-width: var(--bp-xl);
   }
 }
 
@@ -30,7 +29,7 @@
     min-width: 0;
   }
 
-  @container (min-width: #{bp.$md}) {
+  @container (width >= 768px) {
     align-items: flex-start;
     display: flex;
     justify-content: space-between;
@@ -56,7 +55,7 @@
   &__section {
     margin-top: 4rem;
 
-    @container (min-width: #{bp.$md}) {
+    @container (width >= 768px) {
       &:first-child {
         margin-top: 0;
       }

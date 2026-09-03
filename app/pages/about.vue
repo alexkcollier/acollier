@@ -81,12 +81,10 @@ definePageMeta({
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .about-layout {
-  /* Matches the reading column on the portfolio pages: 8 of 12 cols at bp.$xl */
+  /* Matches the reading column on the portfolio pages: 8 of 12 cols at the xl breakpoint */
   margin-inline: auto;
-  max-width: calc(#{bp.$xl} * 2 / 3);
+  max-width: calc(var(--bp-xl) * 2 / 3);
 }
 
 .about-intro {
@@ -100,7 +98,7 @@ definePageMeta({
     justify-content: flex-start;
   }
 
-  @include bp.above('sm') {
+  @media screen and (width > 480px) {
     font-size: var(--text-xl);
   }
 }

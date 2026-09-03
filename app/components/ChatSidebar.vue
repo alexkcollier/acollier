@@ -158,8 +158,6 @@ watch(
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
 .chat-sidebar {
   --transition-duration: 200ms;
 
@@ -261,7 +259,7 @@ watch(
   }
 
   &--collapsed {
-    @include bp.above('lg') {
+    @media screen and (width > 960px) {
       background: transparent;
       border: none;
       width: 0;
@@ -277,7 +275,7 @@ watch(
     }
   }
 
-  @include bp.below('lg') {
+  @media screen and (width <= 960px) {
     background: var(--color-bg);
     height: var(--visual-viewport-height, 100dvh);
     left: 0;
