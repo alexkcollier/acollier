@@ -79,9 +79,23 @@ overrides `ColorSwitcher` stamps — and nothing else. It is a layer of its
 own, after `tokens`, so a theme that ever needs to restate a palette token
 outranks the default by layer instead of by selector weight.
 
-A ramp step (`--stone-700`) is not a token to style with. Reach for the
-semantic palette (`--color-text-muted`); a bare ramp outside `tokens.css`
-is a last resort.
+A ramp step (`--stone-700`) is not a value to style with — reach for the
+semantic palette (`--color-text-muted`). Naming a themed colour a
+component owns is the one place a ramp is fair game outside `tokens.css`,
+because that is what `light-dark()` needs:
+
+```css
+.chat-form {
+  --submit-bg: light-dark(var(--stone-200), var(--stone-800));
+}
+```
+
+That form is also the answer whenever a component's value differs between
+themes. Never hand-roll the switch with a `[data-theme]` rule plus a
+`prefers-color-scheme` block — it takes six lines to say what
+`light-dark()` says in one, and it is easy to write the pair so that
+pinning a theme stops working. If what varies is not a colour, express it
+as one: an opacity applied to a colour is a colour.
 
 ## Compositions
 

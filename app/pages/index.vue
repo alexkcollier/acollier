@@ -180,7 +180,10 @@ watch(
 @layer block {
   .chat {
     --transition-duration: 200ms;
-    --glow-opacity: 16%;
+    --color-glow: light-dark(
+      color-mix(in srgb, var(--green-700) 16%, transparent),
+      color-mix(in srgb, var(--green-600) 32%, transparent)
+    );
 
     display: flex;
     flex-direction: column;
@@ -188,14 +191,6 @@ watch(
     max-width: 40rem;
     padding: var(--space-12) var(--space-4) var(--space-8);
     width: 100%;
-
-    :root[data-theme='dark'] & {
-      --glow-opacity: 32%;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      --glow-opacity: 32%;
-    }
 
     @media screen and (width > 480px) {
       padding-block-start: var(--space-24);
@@ -209,14 +204,7 @@ watch(
   }
 
   .chat:not(.chat--active) .chat-form {
-    filter: drop-shadow(
-      0 16px 40px
-        color-mix(
-          in srgb,
-          var(--color-bg-primary) var(--glow-opacity),
-          transparent
-        )
-    );
+    filter: drop-shadow(0 16px 40px var(--color-glow));
   }
 
   .chat__greeting {

@@ -160,8 +160,8 @@ watch(
 <style>
 @layer block {
   .chat-form {
-    --submit-bg: var(--stone-200);
-    --submit-color: var(--stone-800);
+    --submit-bg: light-dark(var(--stone-200), var(--stone-800));
+    --submit-color: light-dark(var(--stone-800), var(--stone-100));
 
     background: var(--color-bg-subtle);
     border: 1px solid var(--color-input-border);
@@ -235,18 +235,6 @@ watch(
       background: transparent;
       color: var(--color-text-muted);
       cursor: not-allowed;
-    }
-  }
-
-  :root[data-theme='dark'] .chat-form {
-    --submit-bg: var(--stone-800);
-    --submit-color: var(--stone-100);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) .chat-form {
-      --submit-bg: var(--stone-800);
-      --submit-color: var(--stone-100);
     }
   }
 }

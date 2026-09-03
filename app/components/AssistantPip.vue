@@ -31,21 +31,11 @@ const { t } = useI18n();
 <style>
 @layer block {
   .assistant-pip {
-    --assistant-color: var(--stone-300);
+    --assistant-color: light-dark(var(--stone-300), var(--stone-600));
 
     align-items: center;
     display: flex;
     gap: var(--space-1);
-
-    :root[data-theme='dark'] & {
-      --assistant-color: var(--stone-600);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme='light']) & {
-        --assistant-color: var(--stone-600);
-      }
-    }
   }
 
   .assistant-pip__pulse {
