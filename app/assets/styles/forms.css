@@ -5,8 +5,12 @@
 
   .input {
     background: var(--color-input-bg);
-    border-radius: 0.5em;
+    border-radius: var(--radius-md);
     color: var(--color-input-text);
+
+    /* em, not --space-*: padding/margin track this control's own
+       font-size rather than the root scale, so the control stays
+       proportioned if its font-size ever changes (e.g. a size variant). */
     margin-top: 0.5em;
     padding: 0.5em;
     width: 100%;

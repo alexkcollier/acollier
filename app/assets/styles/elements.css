@@ -6,10 +6,6 @@
     text-decoration: none;
   }
 
-  .link--large {
-    font-size: var(--text-2xl);
-  }
-
   .link--button {
     background-color: var(--color-bg);
     border: 1px solid currentcolor;
@@ -17,7 +13,7 @@
     padding: var(--space-2);
     padding-block: var(--space-1);
     text-decoration: none;
-    transition: background-color 100ms ease;
+    transition: background-color var(--duration-fast) ease;
     white-space: nowrap;
 
     &:active {
@@ -35,11 +31,6 @@
     }
   }
 
-  .link--button:is(.link--large) {
-    padding: var(--space-4);
-    padding-block: var(--space-2);
-  }
-
   .link--arrow {
     position: relative;
 
@@ -55,7 +46,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%) rotate(45deg);
-      transition: all 100ms ease-in;
+      transition: all var(--duration-fast) ease-in;
       width: 0.25em;
     }
 

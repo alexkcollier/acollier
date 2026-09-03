@@ -1,7 +1,7 @@
 @layer block {
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 250ms;
+    transition: opacity var(--duration-slower);
   }
 
   .fade-enter-from,
