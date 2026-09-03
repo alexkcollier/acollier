@@ -1,6 +1,14 @@
 /** @type {import('stylelint').Config} */
 export default {
   plugins: ['stylelint-order'],
+  // The `.css` glob would otherwise pick up generated build output
+  ignoreFiles: [
+    '**/node_modules/**',
+    '.output/**',
+    '.nuxt/**',
+    '.netlify/**',
+    'dist/**',
+  ],
   extends: [
     'stylelint-config-standard',
     'stylelint-config-standard-scss',

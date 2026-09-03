@@ -201,7 +201,7 @@ export default {
 </script>
 
 <style lang="scss">
-@use '~/assets/styles/nuxt-content';
+@import '../../assets/styles/nuxt-content.css';
 
 .reading-progress {
   background-color: var(--color-bg-accent);

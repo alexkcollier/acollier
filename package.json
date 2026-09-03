@@ -10,7 +10,7 @@
     "start": "nuxi start",
     "generate": "nuxi generate",
     "lint": "eslint .",
-    "lint:css": "stylelint ./**/*.{vue,scss}",
+    "lint:css": "stylelint ./**/*.{vue,css}",
     "format": "prettier --write --ignore-unknown ."
   },
   "dependencies": {

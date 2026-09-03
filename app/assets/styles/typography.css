@@ -6,21 +6,19 @@
   --heading-1-bottom-margin: var(--space-12);
 }
 
-.heading {
-  &-1 {
-    font-size: var(--heading-1-font-size);
-    line-height: var(--heading-1-line-height);
-    margin-bottom: var(--heading-1-bottom-margin);
-  }
+.heading-1 {
+  font-size: var(--heading-1-font-size);
+  line-height: var(--heading-1-line-height);
+  margin-bottom: var(--heading-1-bottom-margin);
+}
 
-  &-2 {
-    font-size: var(--heading-2-font-size);
-  }
+.heading-2 {
+  font-size: var(--heading-2-font-size);
+}
 
-  &-1,
-  &-2 {
-    margin-top: var(--heading-top-margin);
-  }
+.heading-1,
+.heading-2 {
+  margin-top: var(--heading-top-margin);
 }
 
 .title {
