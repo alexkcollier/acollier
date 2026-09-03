@@ -41,13 +41,13 @@ const dialogEl = ref<HTMLDialogElement | null>(null);
   </div>
 </template>
 
-<style lang="scss">
+<style>
 html:has(.lightbox[open]) {
   overflow-y: hidden;
 }
 </style>
 
-<style lang="scss" scoped>
+<style scoped>
 .lightbox {
   --transition-time: 300ms;
   --base-transition:

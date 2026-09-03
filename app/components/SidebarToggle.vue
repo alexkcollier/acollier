@@ -20,7 +20,7 @@ const { toggle } = useSidebar();
   </button>
 </template>
 
-<style lang="scss">
+<style>
 .sidebar-toggle {
   transition: color 150ms ease;
 }

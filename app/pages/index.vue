@@ -174,7 +174,7 @@ watch(
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .chat {
   --transition-duration: 200ms;
   --glow-opacity: 16%;

@@ -61,7 +61,7 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .default-layout {
   .content {
     container-type: inline-size;

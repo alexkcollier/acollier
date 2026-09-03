@@ -62,7 +62,7 @@ const formattedDescription = computed(() => {
   </NuxtLink>
 </template>
 
-<style lang="scss">
+<style>
 .work-list-item {
   border-bottom: 1px solid var(--color-border);
   color: var(--color-text);

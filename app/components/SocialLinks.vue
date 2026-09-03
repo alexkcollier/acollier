@@ -27,7 +27,7 @@ import LinkedinIcon from '~/assets/icons/linkedin.svg';
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .social-links {
   display: flex;
   font-size: 2rem;

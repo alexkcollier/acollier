@@ -10,7 +10,7 @@ paths:
 
 Use `<script setup lang="ts">` for all new components. Legacy Options API files exist — leave them as-is, do not migrate opportunistically.
 
-SFC block order: `<script setup>` → `<template>` → `<style lang="scss">`.
+SFC block order: `<script setup>` → `<template>` → `<style>`.
 
 Import Vue composables and Nuxt utilities from `'#imports'`, not `'vue'`:
 

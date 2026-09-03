@@ -116,7 +116,6 @@
   --bp-lg: 960px;
   --bp-xl: 1200px;
   --bp-xxl: 1440px;
-}
 
 /* ── Themes ──────────────────────────────────────── */
 
@@ -129,7 +128,6 @@
  * Tokens whose value is the same in both themes are declared plainly.
  */
 
-:root {
   color-scheme: light dark;
 }
 
@@ -141,6 +139,7 @@
   color-scheme: dark;
 }
 
+/* stylelint-disable-next-line no-duplicate-selectors -- palette kept in its own block */
 :root {
   /* bg */
   --color-bg: light-dark(var(--stone-50), var(--stone-900));

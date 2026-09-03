@@ -244,7 +244,7 @@ onUnmounted(() => {
   </Teleport>
 </template>
 
-<style lang="scss">
+<style>
 .toc__desktop {
   display: none;
 
@@ -270,7 +270,7 @@ onUnmounted(() => {
 
 .toc__item {
   &::before {
-    // sanitize.css adds a pseudo element that causes overflow in our design
+    /* sanitize.css adds a pseudo element that causes overflow in our design */
     display: none;
   }
 
@@ -302,20 +302,6 @@ onUnmounted(() => {
     display: inline-block;
     height: 0.75rem;
     width: 0.25rem;
-  }
-
-  @keyframes toc-marker-in {
-    from {
-      margin-inline-end: 0;
-      opacity: 0;
-      transform: scaleY(0);
-    }
-
-    to {
-      margin-inline-end: var(--space-3);
-      opacity: 1;
-      transform: scaleY(1);
-    }
   }
 }
 
@@ -412,5 +398,19 @@ onUnmounted(() => {
 .toc-sheet-enter-from,
 .toc-sheet-leave-to {
   transform: translateY(100%);
+}
+
+@keyframes toc-marker-in {
+  from {
+    margin-inline-end: 0;
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  to {
+    margin-inline-end: var(--space-3);
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 </style>

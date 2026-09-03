@@ -157,7 +157,7 @@ watch(
   </form>
 </template>
 
-<style lang="scss">
+<style>
 .chat-form {
   --submit-bg: var(--stone-200);
   --submit-color: var(--stone-800);

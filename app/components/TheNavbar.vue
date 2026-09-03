@@ -139,7 +139,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   </nav>
 </template>
 
-<style lang="scss">
+<style>
 .navbar {
   --transition-time: 100ms;
 
@@ -233,7 +233,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 .navbar__menu-button--open {
   &::before,
   &::after {
-    // having unit enables animating this variable properly
+    /* having unit enables animating this variable properly */
     --bar-offset: 0px;
     --transform-transition-delay: var(--transition-time);
     --top-transition-delay: 0ms;

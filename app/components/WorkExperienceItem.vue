@@ -47,7 +47,7 @@ const dateRange = computed(() =>
   </article>
 </template>
 
-<style lang="scss">
+<style>
 .work-experience-item {
   & ~ & {
     border-block-start: 1px solid var(--color-border);

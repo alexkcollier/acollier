@@ -9,17 +9,8 @@ export default {
     '.netlify/**',
     'dist/**',
   ],
-  extends: [
-    'stylelint-config-standard',
-    'stylelint-config-standard-scss',
-    'stylelint-config-recommended-scss',
-    'stylelint-config-recommended-vue/scss',
-  ],
+  extends: ['stylelint-config-standard', 'stylelint-config-recommended-vue'],
   overrides: [
-    {
-      files: ['**/*.scss'],
-      customSyntax: 'postcss-scss',
-    },
     {
       files: ['**/*.vue'],
       customSyntax: 'postcss-html',
@@ -32,40 +23,20 @@ export default {
       {
         except: ['first-nested', 'blockless-after-same-name-blockless'],
         ignore: ['after-comment'],
-        ignoreAtRules: ['else'],
       },
     ],
     // plugin rules
     'order/order': [
       'custom-properties',
-      'dollar-variables',
-      {
-        type: 'at-rule',
-        name: 'function',
-      },
-      {
-        type: 'at-rule',
-        name: 'mixin',
-      },
-      {
-        type: 'at-rule',
-        name: 'extend',
-      },
-      {
-        type: 'at-rule',
-        name: 'include',
-      },
       'declarations',
       'rules',
       {
         type: 'at-rule',
         name: 'media',
       },
-      // exception for breakpoint mixins
       {
         type: 'at-rule',
-        name: 'include',
-        parameter: '(breakpoints?|bp)\\..*',
+        name: 'container',
       },
     ],
     'order/properties-alphabetical-order': true,
@@ -74,7 +45,5 @@ export default {
       { message: 'Expected class selector to be BEM or kebab-case' },
     ],
     'selector-id-pattern': null,
-    'scss/at-else-empty-line-before': 'never',
-    'scss/at-if-closing-brace-newline-after': 'always-last-in-chain',
   },
 };

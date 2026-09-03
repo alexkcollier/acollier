@@ -4,7 +4,7 @@
   </span>
 </template>
 
-<style lang="scss">
+<style>
 .base-chip {
   background-color: var(--color-bg-subtle);
   border-radius: var(--radius-sm);

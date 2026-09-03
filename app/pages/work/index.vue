@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .work-list {
   border-top: 1px solid var(--color-border);
 }

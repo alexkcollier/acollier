@@ -28,7 +28,7 @@ const { t } = useI18n();
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .assistant-pip {
   --assistant-color: var(--stone-300);
 

@@ -157,7 +157,7 @@ watch(
   </aside>
 </template>
 
-<style lang="scss">
+<style>
 .chat-sidebar {
   --transition-duration: 200ms;
 

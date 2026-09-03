@@ -198,7 +198,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .contact-hero {
   --bg-image: url('~/assets/images/acollier.png');
   --bg-size: 55%;

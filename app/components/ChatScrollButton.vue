@@ -58,7 +58,7 @@ watch(
   </Transition>
 </template>
 
-<style lang="scss">
+<style>
 .chat-scroll-btn {
   --transition-duration: 200ms;
 

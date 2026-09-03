@@ -80,7 +80,7 @@ definePageMeta({
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .about-layout {
   /* Matches the reading column on the portfolio pages: 8 of 12 cols at the xl breakpoint */
   margin-inline: auto;

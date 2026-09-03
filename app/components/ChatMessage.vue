@@ -36,7 +36,7 @@ const html = computed(() =>
   </div>
 </template>
 
-<style lang="scss">
+<style>
 .chat-message {
   animation: chat-message-enter 200ms ease both;
   border-radius: var(--radius-md);

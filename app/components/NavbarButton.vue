@@ -17,7 +17,7 @@ defineProps({
   </NuxtLink>
 </template>
 
-<style lang="scss">
+<style>
 .navbar-button {
   color: var(--color-text);
   display: flex;

@@ -9,7 +9,7 @@ npm run dev          # dev server at localhost:3000 (no Netlify functions)
 netlify dev          # dev server at localhost:8888 with Netlify functions (contact form)
 npm run generate     # static site generation (used for production builds)
 npm run lint         # ESLint
-npm run lint:css     # Stylelint (Vue + SCSS)
+npm run lint:css     # Stylelint (Vue + CSS)
 npm run format       # Prettier
 ```
 
@@ -33,7 +33,13 @@ The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mai
 
 ### Styling
 
-Styles use **SCSS with CSS custom properties** — no utility-class framework. The design system is defined in `app/assets/styles/_theme.scss` as CSS custom properties (color ramps, spacing scale, type scale, radius tokens). Dark/light mode is toggled via a `data-theme` attribute on `:root`, with a `prefers-color-scheme` media query fallback. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific at-rule ordering (`@extend` → `@include` → declarations → nested rules → `@media`).
+Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS plugins, and no utility-class framework. Global stylesheets live in `app/assets/styles/*.css` and are listed explicitly in the `css` array in `nuxt.config.ts`; component styles live in the component's own `<style>` block. The design system is defined in `app/assets/styles/theme.css` (color ramps, spacing scale, type scale, radius tokens, breakpoint values).
+
+Both themes are declared once via `light-dark()`, which resolves against `color-scheme`: `:root` is `light dark` (following the OS), and `ColorSwitcher` stamps `data-theme` on `:root` to pin a choice. There is no `prefers-color-scheme` block in the token layer.
+
+Native CSS nesting is used for pseudo-classes, compound selectors, descendants and at-rules, but it cannot concatenate selectors, so BEM elements and modifiers are written out in full at the top level. Media and container query conditions cannot read `var()`, so breakpoints are hardcoded there and kept in sync with the `--bp-*` custom properties by hand. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific ordering (custom properties → declarations → nested rules → `@media` → `@container`).
+
+See `.claude/rules/css.md` for the full conventions.
 
 ### Static Assets (`public/`)
 
