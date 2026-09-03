@@ -40,17 +40,20 @@ export default {
 </script>
 
 <style lang="scss">
-@use '~/assets/styles/utils/mixins';
-
 .tool-list {
   --column-number: 3;
-
-  @include mixins.unstyled-list;
 
   align-items: flex-end;
   display: grid;
   gap: var(--space-8);
   grid-template-columns: repeat(var(--column-number), 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &:not(:last-child) {
+    margin-bottom: inherit;
+  }
 
   &__item {
     text-align: center;

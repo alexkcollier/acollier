@@ -199,18 +199,24 @@ export default {
 </script>
 
 <style lang="scss">
-@use 'sass:math';
-@use '~/assets/styles/utils/mixins';
-
 .contact-hero {
-  @include mixins.face-hero;
+  --bg-image: url('~/assets/images/acollier.png');
+  --bg-size: 55%;
 
   align-items: center;
+  background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
+  display: flex;
+  min-height: 100%;
+  padding-inline: var(--page-side-padding);
+
+  @media screen and (width > 1200px) {
+    --bg-size: auto 90%;
+  }
 }
 
 .contact-form {
   @media screen and (width > 768px) {
-    max-width: math.div(5, 12) * 100%;
+    max-width: calc(5 / 12 * 100%);
   }
 }
 

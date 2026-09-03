@@ -202,7 +202,6 @@ export default {
 
 <style lang="scss">
 @use '~/assets/styles/nuxt-content';
-@use '~/assets/styles/utils/mixins';
 
 .reading-progress {
   background-color: var(--color-bg-accent);
@@ -249,7 +248,13 @@ export default {
 
 .work-links {
   &__list {
-    @include mixins.unstyled-list;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
   }
 
   &__list-item {

@@ -245,7 +245,6 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
-@use '~/assets/styles/utils/mixins';
 
 .toc {
   &__desktop {
@@ -257,7 +256,13 @@ onUnmounted(() => {
   }
 
   &__list {
-    @include mixins.unstyled-list;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
   }
 
   &__list--nested {
