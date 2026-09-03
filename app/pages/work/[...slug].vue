@@ -86,7 +86,7 @@ definePageMeta({
       :style="{ transform: `scaleX(${progress})` }"
     />
 
-    <div class="container">
+    <div class="wrapper">
       <Head>
         <Title>{{ doc?.title }}</Title>
         <Meta
@@ -116,11 +116,8 @@ definePageMeta({
         />
       </Head>
 
-      <div class="content-container two-column">
-        <main
-          class="two-column__wide-col"
-          style="margin-top: -3rem"
-        >
+      <div class="content-container wrapper with-sidebar">
+        <main style="margin-top: -3rem">
           <NuxtLink
             :to="localePath('/work')"
             class="slug-back link"
@@ -148,11 +145,8 @@ definePageMeta({
           </section>
         </main>
 
-        <aside class="two-column__narrow-col sidebar toc-sidebar">
-          <section
-            v-if="doc?.body?.toc?.links?.length"
-            class="sidebar__section"
-          >
+        <aside class="toc-sidebar stack">
+          <section v-if="doc?.body?.toc?.links?.length">
             <h2 class="heading-2">{{ $t('work.onThisPage') }}</h2>
 
             <WorkToc
@@ -163,15 +157,14 @@ definePageMeta({
 
           <section
             v-if="doc?.links && doc.links.length"
-            class="sidebar__section work-links"
+            class="work-links"
           >
             <h2 class="heading-2">{{ $t('work.links') }}</h2>
 
-            <ul class="work-links__list">
+            <ul class="work-links__list stack">
               <li
                 v-for="{ href, title } in doc.links"
                 :key="href"
-                class="work-links__list-item"
               >
                 <a
                   class="link link--arrow"
@@ -218,9 +211,11 @@ export default {
   }
 
   .content-container {
+    --sidebar-content-min: 66%;
+    --sidebar-width: 17rem;
+    --wrapper-max: var(--bp-xl);
+
     margin-block-start: var(--space-4);
-    margin-inline: auto;
-    max-width: var(--bp-xl);
   }
 
   .slug-back {
@@ -230,16 +225,10 @@ export default {
     margin-block: var(--space-3) var(--space-2);
   }
 
-  .slug-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    list-style: none;
-    margin-block-start: 0;
-    padding: 0;
-  }
-
   .toc-sidebar {
+    --stack-space: var(--space-16);
+
+    position: sticky;
     top: 0;
 
     @media screen and (width <= 768px) {
@@ -248,18 +237,14 @@ export default {
   }
 
   .work-links__list {
+    --stack-space: var(--space-6);
+
     list-style: none;
     margin: 0;
     padding: 0;
 
     &:not(:last-child) {
       margin-bottom: inherit;
-    }
-  }
-
-  .work-links__list-item {
-    &:not(:last-child) {
-      margin-bottom: var(--space-6);
     }
   }
 

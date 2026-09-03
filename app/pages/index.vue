@@ -84,7 +84,7 @@ watch(
 </script>
 
 <template>
-  <div class="container chat-container">
+  <div class="chat-container wrapper">
     <main
       :class="['chat', { 'chat--active': messages.length }]"
       :aria-label="t('chat.formLabel')"
@@ -114,7 +114,7 @@ watch(
         >
           <div
             ref="messagesEl"
-            class="chat__messages-body"
+            class="chat__messages-body stack"
             role="log"
           >
             <ChatMessage
@@ -157,7 +157,7 @@ watch(
       >
         <p class="chat__suggestions-label">{{ t('chat.featuredWork') }}</p>
 
-        <div class="chat__suggestions-list">
+        <div class="chat__suggestions-list cluster">
           <WorkListItem
             v-for="(post, index) in featuredWork"
             :key="post.id"
@@ -266,9 +266,8 @@ watch(
   }
 
   .chat__messages-body {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-8);
+    --stack-space: var(--space-8);
+
     height: 100%;
     overflow-y: auto;
     padding-block-end: var(--space-36);
@@ -308,21 +307,19 @@ watch(
   }
 
   .chat__suggestions-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    justify-content: center;
+    --cluster-justify: center;
 
     @media screen and (width > 480px) {
-      gap: var(--space-8);
+      --cluster-space: var(--space-8);
     }
   }
 
   .chat-container {
+    --wrapper-max: var(--bp-lg);
+
     display: flex;
     flex-direction: column;
     height: var(--visual-viewport-height, 100%);
-    max-width: var(--bp-lg);
     padding-top: var(--space-12);
 
     @media screen and (width > 768px) {

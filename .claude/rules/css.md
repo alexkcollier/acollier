@@ -21,7 +21,7 @@ the `css` array in `nuxt.config.ts` and must stay first:
 | `reset`       | `sanitize.css`, imported with `layer(reset)`              |
 | `tokens`      | `tokens.css` — custom properties only, nothing else       |
 | `global`      | `base.css` — bare element styling                         |
-| `composition` | `compositions.css`, `layout.css` — layout primitives      |
+| `composition` | `compositions.css` — layout primitives                    |
 | `utility`     | single-job, token-derived classes (no file yet)           |
 | `block`       | components: global block sheets and every `<style>` block |
 | `exception`   | state and variant overrides (nothing here yet)            |
@@ -70,9 +70,9 @@ Both themes are declared once, via `light-dark()` resolving against
 ## Compositions
 
 `compositions.css` holds layout primitives: `.wrapper`, `.stack`,
-`.cluster`, `.with-sidebar`, `.frame`. A composition arranges whatever is
-placed inside it and decides nothing else — no colour, no type, no
-border, no knowledge of what it contains.
+`.cluster` and `.with-sidebar`. A composition arranges whatever is placed
+inside it and decides nothing else — no colour, no type, no border, no
+knowledge of what it contains.
 
 Each is tuned through the custom properties named in its comment, set by
 the block that uses it or inline:
@@ -88,6 +88,25 @@ Prefer a composition to re-declaring `display: flex` inside a block. Add
 a new primitive only when it has at least two unrelated call sites; if a
 rule would only ever apply to one component, it belongs in that
 component's `<style>` block.
+
+Compositions stack on one element, and the block sets the knobs:
+
+```html
+<main class="about-layout wrapper stack"></main>
+```
+
+```css
+.about-layout {
+  --wrapper-max: calc(var(--bp-xl) * 2 / 3);
+  --stack-space: var(--space-16);
+}
+```
+
+Knobs are custom properties, so they **inherit**. A knob set for one
+composition is visible to every descendant, and a nested composition of
+the same kind picks it up unless it sets its own — `.work-links__list`
+has to restate `--stack-space` because the sticky rail around it already
+set one.
 
 ## Blocks and BEM
 

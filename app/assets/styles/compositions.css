@@ -93,22 +93,4 @@
       min-inline-size: 0;
     }
   }
-
-  /**
-   * Frame — crops its content to a fixed aspect ratio.
-   *
-   * Knobs: `--frame-ratio` (default `16 / 10`), `--frame-fit`
-   * (default `cover`).
-   */
-  .frame {
-    aspect-ratio: var(--frame-ratio, 16 / 10);
-    display: block;
-    overflow: hidden;
-
-    & > * {
-      block-size: 100%;
-      inline-size: 100%;
-      object-fit: var(--frame-fit, cover);
-    }
-  }
 }

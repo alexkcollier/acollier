@@ -43,7 +43,7 @@ const formattedDescription = computed(() => {
       <p class="work-list-item__description">{{ formattedDescription }}</p>
       <ul
         v-if="tags?.length"
-        class="work-list-item__tags"
+        class="work-list-item__tags cluster"
       >
         <li
           v-for="tag in tags"
@@ -120,9 +120,8 @@ const formattedDescription = computed(() => {
   }
 
   .work-list-item__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+    --cluster-space: var(--space-2);
+
     list-style: none;
     margin: var(--space-4) 0 0;
     padding: 0;

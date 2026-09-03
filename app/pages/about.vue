@@ -16,14 +16,14 @@ definePageMeta({
 </script>
 
 <template>
-  <div class="container">
+  <div class="wrapper">
     <Head>
       <Title>
         {{ $t('about.metaTitle') }}
       </Title>
     </Head>
 
-    <main class="about-layout">
+    <main class="about-layout wrapper stack">
       <section class="about-intro">
         <h1 class="heading-1">
           {{ $t('about.mainHeading') }}
@@ -33,7 +33,7 @@ definePageMeta({
           {{ $t('about.blurb') }}
         </p>
 
-        <div class="about-intro__links">
+        <div class="about-intro__links cluster">
           <a
             class="link link--arrow"
             :href="`/docs/${locale === 'en' ? 'alex-collier-resume' : 'cv-alex-collier'}.pdf`"
@@ -45,7 +45,7 @@ definePageMeta({
         </div>
       </section>
 
-      <section class="about-section">
+      <section>
         <h2 class="heading-1">
           {{ $t('about.experienceHeading') }}
         </h2>
@@ -57,7 +57,7 @@ definePageMeta({
         />
       </section>
 
-      <section class="about-section">
+      <section>
         <h2 class="heading-1">
           {{ $t('about.educationHeading') }}
         </h2>
@@ -69,7 +69,7 @@ definePageMeta({
         </p>
       </section>
 
-      <section class="about-section">
+      <section>
         <h2 class="heading-1">
           {{ $t('about.linksHeading') }}
         </h2>
@@ -84,8 +84,8 @@ definePageMeta({
 @layer block {
   .about-layout {
     /* Matches the reading column on the portfolio pages: 8 of 12 cols at the xl breakpoint */
-    margin-inline: auto;
-    max-width: calc(var(--bp-xl) * 2 / 3);
+    --wrapper-max: calc(var(--bp-xl) * 2 / 3);
+    --stack-space: var(--space-16);
   }
 
   .about-intro {
@@ -97,15 +97,7 @@ definePageMeta({
   }
 
   .about-intro__links {
-    align-items: flex-start;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-4);
-    justify-content: flex-start;
-  }
-
-  .about-section {
-    margin-block-start: var(--space-16);
+    --cluster-align: flex-start;
   }
 }
 </style>

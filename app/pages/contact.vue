@@ -12,7 +12,7 @@ definePageMeta({
       <Title>{{ $t('contact.metaTitle') }}</Title>
     </Head>
 
-    <div class="container">
+    <div class="wrapper">
       <Transition
         name="fade"
         mode="out-in"
