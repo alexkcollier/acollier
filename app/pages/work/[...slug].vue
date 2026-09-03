@@ -207,7 +207,7 @@ export default {
     right: 0;
     top: 68px;
     transform-origin: left;
-    z-index: 1;
+    z-index: var(--z-raised);
   }
 
   .content-container {

@@ -269,7 +269,7 @@ onUnmounted(() => {
   .toc__link {
     position: relative;
     text-decoration: none;
-    transition: color 150ms ease-in-out;
+    transition: color var(--duration-base) ease-in-out;
   }
 
   .toc__link:hover {
@@ -287,7 +287,7 @@ onUnmounted(() => {
     background-color: var(--color-scrim-subtle);
     inset: 0;
     position: fixed;
-    z-index: 10;
+    z-index: var(--z-scrim);
   }
 
   .toc-mobile__sheet {
@@ -300,7 +300,7 @@ onUnmounted(() => {
     padding: var(--space-6);
     position: fixed;
     right: 0;
-    z-index: 11;
+    z-index: var(--z-sheet);
   }
 
   .toc-mobile__header {
@@ -326,7 +326,7 @@ onUnmounted(() => {
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-6);
-    box-shadow: 0 2px 12px var(--color-shadow);
+    box-shadow: var(--shadow-md);
     color: var(--color-link);
     cursor: pointer;
     display: flex;
@@ -337,7 +337,7 @@ onUnmounted(() => {
     padding: var(--space-3) var(--space-6);
     position: fixed;
     right: var(--space-8);
-    z-index: 9;
+    z-index: var(--z-sticky);
   }
 
   .toc-mobile__fab-label {
@@ -352,7 +352,7 @@ onUnmounted(() => {
 
   .toc-overlay-enter-active,
   .toc-overlay-leave-active {
-    transition: opacity 200ms ease;
+    transition: opacity var(--duration-slow) ease;
   }
 
   .toc-overlay-enter-from,
@@ -362,7 +362,7 @@ onUnmounted(() => {
 
   .toc-sheet-enter-active,
   .toc-sheet-leave-active {
-    transition: transform 250ms ease;
+    transition: transform var(--duration-slower) ease;
   }
 
   .toc-sheet-enter-from,
@@ -391,7 +391,7 @@ onUnmounted(() => {
     font-weight: var(--font-weight-bold);
 
     &::before {
-      animation: toc-marker-in 150ms ease-out both;
+      animation: toc-marker-in var(--duration-base) ease-out both;
       background-color: currentcolor;
       border-radius: var(--radius-full);
       content: '';
