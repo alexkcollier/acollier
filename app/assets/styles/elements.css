@@ -2,7 +2,7 @@
   .link {
     color: var(--color-link);
     display: inline-block;
-    font-family: var(--font-family-monospaced);
+    font-family: var(--font-mono);
     text-decoration: none;
   }
 
