@@ -114,7 +114,7 @@ onUnmounted(() => {
       >
         <a
           :href="`#${link.id}`"
-          class="link toc__link text-muted"
+          class="toc__link"
           :aria-current="activeId === link.id ? 'location' : 'false'"
           @click="onLinkClick(link.id)"
         >
@@ -132,7 +132,7 @@ onUnmounted(() => {
           >
             <a
               :href="`#${child.id}`"
-              class="link toc__link text-muted"
+              class="toc__link"
               :aria-current="activeId === child.id ? 'location' : 'false'"
               @click="onLinkClick(child.id)"
             >
@@ -183,7 +183,7 @@ onUnmounted(() => {
               >
                 <a
                   :href="`#${link.id}`"
-                  class="link toc__link text-muted"
+                  class="toc__link"
                   :aria-current="activeId === link.id ? 'location' : 'false'"
                   @click="onLinkClick(link.id)"
                 >
@@ -201,7 +201,7 @@ onUnmounted(() => {
                   >
                     <a
                       :href="`#${child.id}`"
-                      class="link toc__link text-muted"
+                      class="toc__link"
                       :aria-current="
                         activeId === child.id ? 'location' : 'false'
                       "
@@ -251,7 +251,7 @@ onUnmounted(() => {
   }
 
   .toc__list--nested {
-    padding-block-start: var(--space-4);
+    padding-block: var(--space-4) var(--space-2);
     padding-inline-start: var(--space-4);
   }
 
@@ -267,6 +267,9 @@ onUnmounted(() => {
   }
 
   .toc__link {
+    color: var(--color-text-muted);
+    display: inline-block;
+    font-family: var(--font-mono);
     position: relative;
     text-decoration: none;
     transition: color var(--duration-base) ease-in-out;

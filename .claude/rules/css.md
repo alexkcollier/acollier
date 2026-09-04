@@ -8,13 +8,34 @@ The organising idea is CUBE CSS: **C**omposition, **U**tility, **B**lock,
 
 ## Cascade layers
 
-Every rule in the project lives in a layer. The order is declared once,
-at the top of `app/assets/styles/reset.css`, which is the first entry in
-the `css` array in `nuxt.config.ts` and must stay first:
+Every rule in the project lives in a layer. The order is declared once, in
+`app/assets/styles/layers.css`, which holds that one statement and nothing
+else:
 
 ```css
 @layer reset, tokens, theme, global, composition, utility, block, exception;
 ```
+
+**That statement has to be the first one the browser parses.** Layer order
+is fixed by first mention, and the bundler — not the `css` array — decides
+which stylesheet reaches the browser first: an SFC's `<style>` chunk can
+arrive ahead of every file in `app/assets/styles`, and when it does `block`
+and `exception` are registered first and no later statement can move them.
+The remaining names are then appended *after* them, which ranks
+`sanitize.css` and every utility *above* every component — the cascade
+quietly inverts.
+
+So `layers.css` reaches the browser two ways, and the file itself is the
+only copy of the order:
+
+- `nuxt.config.ts` reads it and inlines it into `app.head.style` with
+  `tagPriority: -100`, putting it ahead of every stylesheet. This is the
+  one that binds.
+- `reset.css` `@import`s it, so the contract still holds through the
+  normal stylesheet path if the head copy ever goes missing.
+
+Never write the order out a third time — add a layer by editing
+`layers.css`.
 
 | Layer         | Holds                                                                            |
 | ------------- | -------------------------------------------------------------------------------- |

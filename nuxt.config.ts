@@ -1,7 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./node_modules/@nuxtjs/i18n/dist/types.d.mts" />
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { defineNuxtConfig } from 'nuxt/config';
 import pkg from './package.json';
+
+/**
+ * The `@layer` statement from `app/assets/styles/layers.css`, comments
+ * stripped. It is inlined into the head below because layer order is fixed
+ * by the first statement the browser parses, and the bundler — not the
+ * `css` array — decides which stylesheet that is. See that file for why.
+ */
+const layerOrder = readFileSync(
+  fileURLToPath(new URL('./app/assets/styles/layers.css', import.meta.url)),
+  'utf8',
+)
+  .replace(/\/\*[\s\S]*?\*\//g, '')
+  .trim();
 
 export default defineNuxtConfig({
   ssr: true,
@@ -23,6 +38,8 @@ export default defineNuxtConfig({
         { name: 'description', content: pkg.description },
         { name: 'color-scheme', content: 'light dark' },
       ],
+      // Must be the first thing in the head; see `layerOrder` above.
+      style: [{ innerHTML: layerOrder, tagPriority: -100 }],
       script: [
         {
           innerHTML:
@@ -60,8 +77,8 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // Order here is documentation only — the cascade order is fixed by the
-  // `@layer` statement at the top of `reset.css`, which must load first.
+  // Order here is documentation only — the cascade order comes from
+  // `layers.css`, inlined in `app.head.style` above.
   css: [
     '~/assets/styles/reset.css',
     '~/assets/styles/tokens.css',

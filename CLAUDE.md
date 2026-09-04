@@ -35,11 +35,13 @@ The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mai
 
 Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS plugins, and no utility-class framework. The organising idea is **CUBE CSS** (Composition, Utility, Block, Exception) over a shared token set, with **cascade layers** enforcing the order.
 
-The layer order is declared once at the top of `app/assets/styles/reset.css`, which must stay first in the `css` array in `nuxt.config.ts`:
+The layer order is declared once, in `app/assets/styles/layers.css`, which holds that one statement and nothing else:
 
 ```css
 @layer reset, tokens, theme, global, composition, utility, block, exception;
 ```
+
+That statement has to be the first one the browser parses, because layer order is fixed by first mention and the bundler — not the `css` array — decides which stylesheet arrives first. If an SFC's `<style>` chunk gets there first, `block` and `exception` register ahead of everything and no later statement can move them, which silently ranks `reset` and `utility` *above* `block`. So `nuxt.config.ts` reads `layers.css` and inlines it into `app.head.style` ahead of every stylesheet, and `reset.css` `@import`s it as a fallback. Add a layer by editing `layers.css` — never by writing the order out again.
 
 Every rule in the project sits in one of those layers — global stylesheets wrap their whole contents in a single `@layer`, and so does every component `<style>` block (`@layer block { … }`, plus `@layer exception { … }` where a component has states or variants). Unlayered CSS beats every layer, so nothing may be left outside one. A later layer wins regardless of specificity.
 

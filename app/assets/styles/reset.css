@@ -1,23 +1,12 @@
 /**
- * Cascade layers
+ * Reset
  *
- * The order below is the whole cascade contract: a rule in a later layer
- * beats a rule in an earlier one no matter how specific either is. This
- * statement must be the first thing the browser parses, which is why it
- * lives at the top of the first stylesheet in the `css` array in
- * `nuxt.config.ts`.
- *
- *   reset        normalize/opinionated defaults (sanitize.css)
- *   tokens       the design system — custom properties only
- *   theme        the light/dark switch the palette resolves against
- *   global       bare element styling (`base.css`)
- *   composition  layout primitives: flow and relationships, no cosmetics
- *   utility      single-job, token-derived classes
- *   block        components — global stylesheets and `\3c style>` blocks alike
- *   exception    state and variant overrides, keyed off `data-*`
+ * `sanitize.css` and its partials, imported straight into the `reset`
+ * layer. The layer *order* lives in `layers.css` — imported below so the
+ * contract still holds through the normal stylesheet path, and inlined into
+ * the head by `nuxt.config.ts` so it holds before any stylesheet loads.
  */
-@layer reset, tokens, theme, global, composition, utility, block, exception;
-
+@import url('layers.css');
 @import url('sanitize.css') layer(reset);
 @import url('sanitize.css/forms.css') layer(reset);
 @import url('sanitize.css/assets.css') layer(reset);
