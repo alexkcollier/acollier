@@ -174,8 +174,6 @@ watch(
 
     &:has(textarea:focus-visible) {
       border-color: var(--color-input-border-focus);
-      outline: var(--focus-ring-width) solid var(--color-focus);
-      outline-offset: var(--focus-ring-offset);
     }
 
     &:has(.chat-form__input:disabled) {
@@ -215,8 +213,9 @@ watch(
     width: 100%;
 
     &:focus-visible {
-      /* The wrapper draws the ring (see .chat-form:has above) so it isn't
-         clipped by this element's own edges. */
+      /* The wrapper carries the focus treatment (see .chat-form:has above):
+         a border-colour shift on the surface that already draws a border,
+         rather than a ring clipped by this element's own edges. */
       outline: none;
     }
 

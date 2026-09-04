@@ -228,6 +228,10 @@ export default {
   .toc-sidebar {
     --stack-space: var(--space-16);
 
+    /* `.with-sidebar` is a flex row, so this item stretches to the full
+       height of the content column by default and `sticky` has nothing to
+       travel through. */
+    align-self: start;
     position: sticky;
     top: 0;
 

@@ -69,6 +69,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     class="navbar"
   >
     <NavbarButton
+      exact
       :href="localePath('/')"
       class="navbar-brand"
     >
@@ -227,6 +228,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
 
   .navbar-brand__title {
     color: var(--color-text);
+    font-family: var(--font-mono);
     font-weight: var(--font-weight-light);
   }
 

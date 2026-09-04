@@ -146,13 +146,19 @@ ring for the whole site:
 }
 ```
 
+`--color-focus` is deliberately a neutral stone, not brand green: a
+saturated ring read as too loud beside the rest of the palette, and a
+focus indicator only needs 3:1.
+
 Components should not hand-roll their own — no bespoke `outline` or
-`box-shadow` on `:focus-visible` in a block. Where the control itself
-can't carry a legible ring, moving it to a wrapper is the exception, not
-the pattern: `ChatForm` deletes the textarea's own outline and instead
-matches `:has(textarea:focus-visible)` on `.chat-form`, because the
-wrapper already draws the border treatment and isn't clipped by the
-textarea's own edges.
+`box-shadow` on `:focus-visible` in a block. The one carve-out is a
+control whose own edges would clip a ring: `ChatForm` deletes the
+textarea's outline and lets the wrapper carry the treatment instead,
+matching `:has(textarea:focus-visible)` on `.chat-form` to shift the
+border colour it already draws. That is a border shift, *not* a second
+ring — stacking an outline on top of it produced a doubled inner border
+in light mode. Where a wrapper already has a border to work with, moving
+the indicator onto it beats drawing another one.
 
 ## Custom property shadowing
 

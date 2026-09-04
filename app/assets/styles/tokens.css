@@ -91,8 +91,10 @@
     --color-input-border-focus: light-dark(var(--stone-300), var(--stone-500));
     --color-input-text: light-dark(var(--stone-900), var(--stone-50));
 
-    /* focus — 6.59:1 light, 7.29:1 dark, both well over the 3:1 needed */
-    --color-focus: light-dark(var(--green-600), var(--green-300));
+    /* focus — neutral rather than brand green, which read as too loud next
+       to the muted palette. 6.4:1 light, 7.5:1 dark, both over the 3:1
+       a focus indicator needs. */
+    --color-focus: light-dark(var(--stone-600), var(--stone-400));
     --focus-ring-offset: 2px;
     --focus-ring-width: 2px;
 
