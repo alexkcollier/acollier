@@ -120,6 +120,14 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
   },
+  icon: {
+    // The theme glyphs are the only icons that can't be server-rendered —
+    // ColorSwitcher picks one after mount. Ship them in the client bundle so
+    // they don't wait on a fetch to the icon API.
+    clientBundle: {
+      icons: ['lucide:moon', 'lucide:sun'],
+    },
+  },
   gtag: {
     id: 'G-G07YCE0VSK',
     enabled: process.env.NODE_ENV === 'production',

@@ -1,4 +1,17 @@
 @layer block {
+  /*
+   * Nuxt Icon's CSS mode sizes each icon from a per-icon rule it injects.
+   * An icon that wasn't server-rendered (the theme glyph, which only exists
+   * after mount) waits on a client-side fetch for that rule, and until it
+   * lands the span is 0 wide and the navbar reflows. Reserve the box up
+   * front; the injected rule declares the same 1em and takes over.
+   */
+  .iconify {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+  }
+
   .link {
     color: var(--color-link);
     display: inline-block;
