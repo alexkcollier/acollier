@@ -108,7 +108,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       </NavbarButton>
 
       <div
-        class="navbar-divider"
+        class="navbar-divider text-muted"
         aria-hidden
       >
         |
