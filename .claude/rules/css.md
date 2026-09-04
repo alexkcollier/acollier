@@ -16,16 +16,16 @@ the `css` array in `nuxt.config.ts` and must stay first:
 @layer reset, tokens, theme, global, composition, utility, block, exception;
 ```
 
-| Layer         | Holds                                                     |
-| ------------- | --------------------------------------------------------- |
+| Layer         | Holds                                                                            |
+| ------------- | -------------------------------------------------------------------------------- |
 | `reset`       | `sanitize.css` and its `reduce-motion.css` partial, imported with `layer(reset)` |
-| `tokens`      | `tokens.css` — custom properties only, nothing else       |
-| `theme`       | `theme.css` — the light/dark switch, nothing else         |
-| `global`      | `base.css` — bare element styling                         |
-| `composition` | `compositions.css` — layout primitives                    |
-| `utility`     | `utilities.css` — single-job, token-derived classes       |
-| `block`       | components: global block sheets and every `<style>` block |
-| `exception`   | state and variant rules, keyed off `data-*` attributes    |
+| `tokens`      | `tokens.css` — custom properties only, nothing else                              |
+| `theme`       | `theme.css` — the light/dark switch, nothing else                                |
+| `global`      | `base.css` — bare element styling                                                |
+| `composition` | `compositions.css` — layout primitives                                           |
+| `utility`     | `utilities.css` — single-job, token-derived classes                              |
+| `block`       | components: global block sheets and every `<style>` block                        |
+| `exception`   | state and variant rules, keyed off `data-*` attributes                           |
 
 A later layer beats an earlier one **regardless of specificity**, so
 nothing in this project needs `!important` or a selector-weight trick to
@@ -52,11 +52,11 @@ A few consequences to remember:
   `typography.css`'s heading rules keep a `:not(:first-child)` guard on
   their `.nuxt-content` selectors for exactly this reason — without it,
   the block layer would override `base.css`'s `h*:first-child { margin-top:
-  0 }` instead of leaving it alone.
+0 }` instead of leaving it alone.
 - **`prefers-reduced-motion` is handled once, globally, in `reset`.**
   `reduce-motion.css` already covers it for every animation and transition
   in the project — don't add a second `@media (prefers-reduced-motion:
-  reduce)` block anywhere else.
+reduce)` block anywhere else.
 
 ## File conventions
 
@@ -159,7 +159,7 @@ textarea's own edges.
 A custom property resolves by ordinary CSS inheritance, not by cascade
 layer — a property declared on a component's root class always beats one
 inherited from `:root`, whatever layer either rule sits in. Layer order
-only decides between rules that target the *same* property on the *same*
+only decides between rules that target the _same_ property on the _same_
 element; it has no say once a nearer ancestor already supplies a value.
 
 That makes reusing a global token's name inside a component dangerous,
@@ -312,7 +312,7 @@ component, say — stays a modifier class. `.navbar__sidebar-toggle--mobile`
 and `--desktop` are two different elements, not one element in two states.
 
 The same reasoning keeps `.link--button` / `--button-filled` / `--arrow`
-as modifier classes rather than a `data-variant`: they *compose* —
+as modifier classes rather than a `data-variant`: they _compose_ —
 `contact.vue` puts three of them on one element — and a single-valued
 attribute can't express that without reinventing a class list.
 
