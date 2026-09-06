@@ -1,0 +1,77 @@
+@layer global {
+  /**
+   * Globals
+   */
+
+  /* Page */
+  html {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    letter-spacing: var(--letter-spacing-base);
+    overflow-y: scroll;
+  }
+
+  html,
+  body,
+  #__nuxt,
+  #__layout {
+    height: 100%;
+  }
+
+  ::selection {
+    background: rgb(from var(--color-text-muted) r g b / 20%);
+  }
+
+  :focus-visible {
+    outline: var(--focus-ring-width) solid var(--color-focus);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: var(--letter-spacing-bold);
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* bold tags */
+  b,
+  strong {
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-bold);
+  }
+
+  /* lists */
+  li {
+    margin-bottom: var(--space-2);
+  }
+
+  /* Forms */
+  input,
+  select,
+  textarea {
+    border-color: var(--color-border);
+    font-family: var(--font-body);
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  label {
+    font-family: var(--font-mono);
+  }
+}

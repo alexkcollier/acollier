@@ -45,7 +45,7 @@ definePageMeta({
 </script>
 
 <template>
-  <main class="container container--narrow">
+  <main class="work-index wrapper">
     <Head>
       <Title>
         {{ $t('work.metaTitle') }}
@@ -81,8 +81,14 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.work-list {
-  border-top: 1px solid var(--color-border);
+<style>
+@layer block {
+  .work-index {
+    --wrapper-max: var(--bp-xl);
+  }
+
+  .work-list {
+    border-top: 1px solid var(--color-border);
+  }
 }
 </style>

@@ -1,0 +1,13 @@
+/**
+ * Reset
+ *
+ * `sanitize.css` and its partials, imported straight into the `reset`
+ * layer. The layer *order* lives in `layers.css` — imported below so the
+ * contract still holds through the normal stylesheet path, and inlined into
+ * the head by `nuxt.config.ts` so it holds before any stylesheet loads.
+ */
+@import url('layers.css');
+@import url('sanitize.css') layer(reset);
+@import url('sanitize.css/forms.css') layer(reset);
+@import url('sanitize.css/assets.css') layer(reset);
+@import url('sanitize.css/reduce-motion.css') layer(reset);

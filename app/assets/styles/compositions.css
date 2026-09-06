@@ -1,0 +1,96 @@
+/**
+ * Compositions
+ *
+ * Layout primitives. A composition arranges whatever is put inside it and
+ * decides nothing else — no colour, no type, no border. Each one is tuned
+ * through the custom properties named in its comment, set either by the
+ * block that uses it or inline:
+ *
+ *   <ul class="cluster" style="--cluster-space: var(--space-2)">
+ *
+ * They are context-agnostic on purpose. If a rule here would only ever
+ * apply to one component, it belongs in that component's `\3c style>` block
+ * instead.
+ */
+@layer composition {
+  /**
+   * Wrapper — centres a column and caps its width.
+   *
+   * Knobs: `--wrapper-max` (default `--bp-xxl`).
+   *
+   * Horizontal padding is deliberately not included; the page layout owns
+   * it via `--page-side-padding`.
+   */
+  .wrapper {
+    inline-size: 100%;
+    margin-inline: auto;
+    max-inline-size: var(--wrapper-max, var(--bp-xxl));
+  }
+
+  /**
+   * Stack — vertical flow with one consistent gap between children.
+   *
+   * Knobs: `--stack-space` (default `--space-4`).
+   *
+   * Uses adjacent-sibling margins rather than `gap` so that a child can
+   * override the space above itself, and so margins collapse to nothing at
+   * the ends of the stack.
+   */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    & > * {
+      margin-block: 0;
+    }
+
+    & > * + * {
+      margin-block-start: var(--stack-space, var(--space-4));
+    }
+  }
+
+  /**
+   * Cluster — a wrapping row of items with an even gap.
+   *
+   * Knobs: `--cluster-space` (default `--space-4`), `--cluster-align`
+   * (default `center`), `--cluster-justify` (default `flex-start`).
+   */
+  .cluster {
+    align-items: var(--cluster-align, center);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--cluster-space, var(--space-4));
+    justify-content: var(--cluster-justify, flex-start);
+  }
+
+  /**
+   * With-sidebar — a main column and a narrower companion beside it, which
+   * drop to full width once the main column can no longer keep its minimum.
+   *
+   * The first child is the main column, the last child is the sidebar.
+   *
+   * Knobs: `--sidebar-gap` (default `--space-8`), `--sidebar-width`
+   * (default `16rem`), `--sidebar-content-min` (default `60%`).
+   *
+   * The reflow is intrinsic — it responds to the space this element is
+   * actually given, so it needs no media or container query.
+   */
+  .with-sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sidebar-gap, var(--space-8));
+
+    & > :first-child {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: var(--sidebar-content-min, 60%);
+    }
+
+    & > :last-child {
+      flex-basis: var(--sidebar-width, 16rem);
+      flex-grow: 1;
+      min-inline-size: 0;
+    }
+  }
+}

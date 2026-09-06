@@ -1,7 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./node_modules/@nuxtjs/i18n/dist/types.d.mts" />
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { defineNuxtConfig } from 'nuxt/config';
 import pkg from './package.json';
+
+/**
+ * The `@layer` statement from `app/assets/styles/layers.css`, comments
+ * stripped. It is inlined into the head below because layer order is fixed
+ * by the first statement the browser parses, and the bundler — not the
+ * `css` array — decides which stylesheet that is. See that file for why.
+ */
+const layerOrder = readFileSync(
+  fileURLToPath(new URL('./app/assets/styles/layers.css', import.meta.url)),
+  'utf8',
+)
+  .replace(/\/\*[\s\S]*?\*\//g, '')
+  .trim();
 
 export default defineNuxtConfig({
   ssr: true,
@@ -21,6 +36,15 @@ export default defineNuxtConfig({
             'width=device-width, initial-scale=1, interactive-widget=resizes-content',
         },
         { name: 'description', content: pkg.description },
+        { name: 'color-scheme', content: 'light dark' },
+      ],
+      // Must be the first thing in the head; see `layerOrder` above.
+      style: [{ innerHTML: layerOrder, tagPriority: -100 }],
+      script: [
+        {
+          innerHTML:
+            "try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') { document.documentElement.dataset.theme = t; } } catch (e) { /* ignore */ }",
+        },
       ],
       link: [
         {
@@ -53,12 +77,19 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // Order here is documentation only — the cascade order comes from
+  // `layers.css`, inlined in `app.head.style` above.
   css: [
-    'sanitize.css',
-    'sanitize.css/forms.css',
-    'sanitize.css/assets.css',
-    'sanitize.css/reduce-motion.css',
-    '~/assets/styles/styles.scss',
+    '~/assets/styles/reset.css',
+    '~/assets/styles/tokens.css',
+    '~/assets/styles/theme.css',
+    '~/assets/styles/base.css',
+    '~/assets/styles/compositions.css',
+    '~/assets/styles/utilities.css',
+    '~/assets/styles/typography.css',
+    '~/assets/styles/elements.css',
+    '~/assets/styles/forms.css',
+    '~/assets/styles/page-transition.css',
   ],
   modules: [
     '@nuxt/content',
@@ -75,7 +106,12 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ['@vue/devtools-core', '@vue/devtools-kit'],
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'dompurify',
+        'marked',
+      ],
     },
   },
   content: {
@@ -105,6 +141,14 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
+  },
+  icon: {
+    // The theme glyphs are the only icons that can't be server-rendered —
+    // ColorSwitcher picks one after mount. Ship them in the client bundle so
+    // they don't wait on a fetch to the icon API.
+    clientBundle: {
+      icons: ['lucide:moon', 'lucide:sun'],
+    },
   },
   gtag: {
     id: 'G-G07YCE0VSK',

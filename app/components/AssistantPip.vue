@@ -8,7 +8,8 @@ const { t } = useI18n();
 
 <template>
   <div
-    :class="['assistant-pip', { 'assistant-pip--paused': paused }]"
+    class="assistant-pip"
+    :data-paused="paused"
     role="status"
   >
     <span
@@ -21,33 +22,31 @@ const { t } = useI18n();
 
     <span
       v-if="thinking"
-      class="assistant-pip__label"
+      class="assistant-pip__label text-muted"
     >
       {{ t('chat.thinking') }}
     </span>
   </div>
 </template>
 
-<style lang="scss">
-.assistant-pip {
-  --assistant-color: var(--stone-300);
+<style>
+@layer block {
+  .assistant-pip {
+    --assistant-color: light-dark(var(--stone-300), var(--stone-600));
 
-  align-items: center;
-  display: flex;
-  gap: var(--space-1);
-
-  :root[data-theme='dark'] & {
-    --assistant-color: var(--stone-600);
+    align-items: center;
+    display: flex;
+    gap: var(--space-1);
   }
 
-  &__pulse {
+  .assistant-pip__pulse {
     flex-shrink: 0;
     height: var(--space-8);
     position: relative;
     width: var(--space-8);
   }
 
-  &__dot {
+  .assistant-pip__dot {
     animation: assistant-pip-breathe 1900ms ease-in-out infinite;
     background: var(--assistant-color);
     border-radius: var(--radius-full);
@@ -58,7 +57,7 @@ const { t } = useI18n();
     width: var(--space-4);
   }
 
-  &__ring {
+  .assistant-pip__ring {
     animation: assistant-pip-ring 1900ms ease-out infinite;
     border: 1.5px solid var(--assistant-color);
     border-radius: var(--radius-full);
@@ -69,50 +68,45 @@ const { t } = useI18n();
     width: var(--space-4);
   }
 
-  &--paused &__dot {
-    animation: none;
-    opacity: 1;
-    scale: 1.35;
-  }
-
-  &--paused &__ring {
-    animation: none;
-    opacity: 0;
-    scale: 1.8;
-  }
-
-  &__label {
-    color: var(--color-text-muted);
+  .assistant-pip__label {
     font-size: var(--text-sm);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) & {
-      --assistant-color: var(--stone-600);
+  @keyframes assistant-pip-breathe {
+    0%,
+    100% {
+      opacity: 0.75;
+      scale: 1;
+    }
+
+    50% {
+      opacity: 1;
+      scale: 1.35;
+    }
+  }
+
+  @keyframes assistant-pip-ring {
+    0% {
+      opacity: 0.65;
+      scale: 0.6;
+    }
+
+    100% {
+      opacity: 0;
+      scale: 1.8;
     }
   }
 }
 
-@keyframes assistant-pip-breathe {
-  0%,
-  100% {
-    opacity: 0.75;
-    scale: 1;
-  }
-
-  50% {
+@layer exception {
+  .assistant-pip[data-paused='true'] .assistant-pip__dot {
+    animation: none;
     opacity: 1;
     scale: 1.35;
   }
-}
 
-@keyframes assistant-pip-ring {
-  0% {
-    opacity: 0.65;
-    scale: 0.6;
-  }
-
-  100% {
+  .assistant-pip[data-paused='true'] .assistant-pip__ring {
+    animation: none;
     opacity: 0;
     scale: 1.8;
   }

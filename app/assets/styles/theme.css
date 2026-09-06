@@ -1,0 +1,27 @@
+/**
+ * Theme
+ *
+ * The switch the palette resolves against, kept apart from the tokens it
+ * drives. `light-dark()` in `tokens.css` reads whatever `color-scheme` is
+ * in effect: with no `data-theme` set — the pre-hydration state of the
+ * static HTML — `light dark` follows the OS preference, and `ColorSwitcher`
+ * stamps `data-theme` on `:root` to pin a choice.
+ *
+ * This layer sits after `tokens`, so anything here outranks the defaults it
+ * overrides by layer rather than by selector weight. A future theme that
+ * needs to restate a palette token, not just the scheme, belongs here and
+ * will win without a specificity fight.
+ */
+@layer theme {
+  :root {
+    color-scheme: light dark;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+}

@@ -1,0 +1,76 @@
+@layer block {
+  /*
+   * Nuxt Icon's CSS mode sizes each icon from a per-icon rule it injects.
+   * An icon that wasn't server-rendered (the theme glyph, which only exists
+   * after mount) waits on a client-side fetch for that rule, and until it
+   * lands the span is 0 wide and the navbar reflows. Reserve the box up
+   * front; the injected rule declares the same 1em and takes over.
+   */
+  .iconify {
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+  }
+
+  .link {
+    color: var(--color-link);
+    display: inline-block;
+    font-family: var(--font-mono);
+    text-decoration: none;
+  }
+
+  .link--button {
+    background-color: var(--color-bg);
+    border: 1px solid currentcolor;
+    border-radius: var(--radius-md);
+    padding: var(--space-2);
+    padding-block: var(--space-1);
+    text-decoration: none;
+    transition: background-color var(--duration-fast) ease;
+    white-space: nowrap;
+
+    &:active {
+      background-color: rgb(from currentcolor r g b / 10%);
+    }
+  }
+
+  .link--button-filled {
+    background-color: var(--color-bg-primary);
+    border-color: var(--color-bg-primary);
+    color: var(--color-text-on-primary);
+
+    &:active {
+      background-color: hsl(from var(--color-bg-primary) h s calc(l * 0.9));
+    }
+  }
+
+  .link--arrow {
+    position: relative;
+
+    /* arrow */
+    &::after {
+      border: 1px solid var(--color-link);
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      content: '';
+      height: 0.25em;
+      margin-left: 0.25em;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      transition: all var(--duration-fast) ease-in;
+      width: 0.25em;
+    }
+
+    &:hover::after {
+      margin-left: 0.25em;
+      opacity: 1;
+    }
+
+    &:active::after {
+      opacity: 0;
+      transform: translateX(0.5em) translateY(-50%) rotate(45deg);
+    }
+  }
+}

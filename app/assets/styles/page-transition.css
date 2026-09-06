@@ -1,0 +1,11 @@
+@layer block {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity var(--duration-slower);
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}

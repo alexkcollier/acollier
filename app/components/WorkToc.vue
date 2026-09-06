@@ -106,7 +106,7 @@ onUnmounted(() => {
 <template>
   <!-- Desktop: rendered in sidebar -->
   <nav class="toc__desktop">
-    <ul class="toc__list">
+    <ul class="toc__list list-bare">
       <li
         v-for="link in links"
         :key="link.id"
@@ -114,11 +114,8 @@ onUnmounted(() => {
       >
         <a
           :href="`#${link.id}`"
-          :class="[
-            'link',
-            'toc__link',
-            { 'toc__link--active': activeId === link.id },
-          ]"
+          class="toc__link"
+          :aria-current="activeId === link.id ? 'location' : 'false'"
           @click="onLinkClick(link.id)"
         >
           {{ link.text }}
@@ -126,7 +123,7 @@ onUnmounted(() => {
 
         <ul
           v-if="link.children?.length"
-          class="toc__list toc__list--nested"
+          class="toc__list toc__list--nested list-bare"
         >
           <li
             v-for="child in link.children"
@@ -135,11 +132,8 @@ onUnmounted(() => {
           >
             <a
               :href="`#${child.id}`"
-              :class="[
-                'link',
-                'toc__link',
-                { 'toc__link--active': activeId === child.id },
-              ]"
+              class="toc__link"
+              :aria-current="activeId === child.id ? 'location' : 'false'"
               @click="onLinkClick(child.id)"
             >
               {{ child.text }}
@@ -181,7 +175,7 @@ onUnmounted(() => {
           </div>
 
           <nav>
-            <ul class="toc__list">
+            <ul class="toc__list list-bare">
               <li
                 v-for="link in links"
                 :key="link.id"
@@ -189,11 +183,8 @@ onUnmounted(() => {
               >
                 <a
                   :href="`#${link.id}`"
-                  :class="[
-                    'link',
-                    'toc__link',
-                    { 'toc__link--active': activeId === link.id },
-                  ]"
+                  class="toc__link"
+                  :aria-current="activeId === link.id ? 'location' : 'false'"
                   @click="onLinkClick(link.id)"
                 >
                   {{ link.text }}
@@ -201,7 +192,7 @@ onUnmounted(() => {
 
                 <ul
                   v-if="link.children?.length"
-                  class="toc__list toc__list--nested"
+                  class="toc__list toc__list--nested list-bare"
                 >
                   <li
                     v-for="child in link.children"
@@ -210,11 +201,10 @@ onUnmounted(() => {
                   >
                     <a
                       :href="`#${child.id}`"
-                      :class="[
-                        'link',
-                        'toc__link',
-                        { 'toc__link--active': activeId === child.id },
-                      ]"
+                      class="toc__link"
+                      :aria-current="
+                        activeId === child.id ? 'location' : 'false'
+                      "
                       @click="onLinkClick(child.id)"
                     >
                       {{ child.text }}
@@ -228,7 +218,7 @@ onUnmounted(() => {
       </Transition>
 
       <button
-        class="toc-mobile__fab"
+        class="toc-mobile__fab font-mono"
         :aria-label="`Table of contents${activeLink ? `: ${activeLink.text}` : ''}`"
         @click="isDrawerOpen = true"
       >
@@ -244,31 +234,30 @@ onUnmounted(() => {
   </Teleport>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/mixins';
-@use '~/assets/styles/utils/breakpoints' as bp;
-
-.toc {
-  &__desktop {
+<style>
+@layer block {
+  .toc__desktop {
     display: none;
 
-    @include bp.above('md') {
+    @media screen and (width > 768px) {
       display: block;
     }
   }
 
-  &__list {
-    @include mixins.unstyled-list;
+  .toc__list {
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
   }
 
-  &__list--nested {
-    padding-block-start: var(--space-4);
+  .toc__list--nested {
+    padding-block: var(--space-4) var(--space-2);
     padding-inline-start: var(--space-4);
   }
 
-  &__item {
+  .toc__item {
     &::before {
-      // sanitize.css adds a pseudo element that causes overflow in our design
+      /* sanitize.css adds a pseudo element that causes overflow in our design */
       display: none;
     }
 
@@ -277,57 +266,34 @@ onUnmounted(() => {
     }
   }
 
-  &__link {
+  .toc__link {
     color: var(--color-text-muted);
+    display: inline-block;
+    font-family: var(--font-mono);
     position: relative;
     text-decoration: none;
-    transition: color 150ms ease-in-out;
+    transition: color var(--duration-base) ease-in-out;
+  }
 
-    &--active,
-    &:hover {
-      color: var(--color-link);
-    }
+  .toc__link:hover {
+    color: var(--color-link);
+  }
 
-    &--active {
-      font-weight: 700;
-
-      &::before {
-        animation: toc-marker-in 150ms ease-out both;
-        background-color: currentcolor;
-        border-radius: var(--radius-full);
-        content: '';
-        display: inline-block;
-        height: 0.75rem;
-        width: 0.25rem;
-      }
-
-      @keyframes toc-marker-in {
-        from {
-          margin-inline-end: 0;
-          opacity: 0;
-          transform: scaleY(0);
-        }
-
-        to {
-          margin-inline-end: var(--space-3);
-          opacity: 1;
-          transform: scaleY(1);
-        }
-      }
+  .toc-mobile {
+    @media screen and (width > 768px) {
+      display: none;
     }
   }
-}
 
-.toc-mobile {
-  &__overlay {
+  .toc-mobile__overlay {
     backdrop-filter: blur(4px);
-    background-color: rgb(0 0 0 / 20%);
+    background-color: var(--color-scrim-subtle);
     inset: 0;
     position: fixed;
-    z-index: 10;
+    z-index: var(--z-scrim);
   }
 
-  &__sheet {
+  .toc-mobile__sheet {
     background-color: var(--color-bg);
     border-top: 1px solid var(--color-border);
     bottom: 0;
@@ -337,17 +303,17 @@ onUnmounted(() => {
     padding: var(--space-6);
     position: fixed;
     right: 0;
-    z-index: 11;
+    z-index: var(--z-sheet);
   }
 
-  &__header {
+  .toc-mobile__header {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin-block-end: var(--space-6);
   }
 
-  &__close {
+  .toc-mobile__close {
     align-items: center;
     background: none;
     border: none;
@@ -357,59 +323,85 @@ onUnmounted(() => {
     padding: var(--space-3);
   }
 
-  &__fab {
+  .toc-mobile__fab {
     align-items: center;
     background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-6);
-    box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
+    box-shadow: var(--shadow-md);
     color: var(--color-link);
     cursor: pointer;
     display: flex;
-    font-family: var(--font-mono);
     font-size: var(--text-sm);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     gap: var(--space-3);
     max-width: 70vw;
     padding: var(--space-3) var(--space-6);
     position: fixed;
     right: var(--space-8);
-    z-index: 9;
-
-    &-label {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    &-icon {
-      flex-shrink: 0;
-    }
+    z-index: var(--z-sticky);
   }
 
-  @include bp.above('md') {
-    display: none;
+  .toc-mobile__fab-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .toc-mobile__fab-icon {
+    flex-shrink: 0;
+  }
+
+  .toc-overlay-enter-active,
+  .toc-overlay-leave-active {
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  .toc-overlay-enter-from,
+  .toc-overlay-leave-to {
+    opacity: 0;
+  }
+
+  .toc-sheet-enter-active,
+  .toc-sheet-leave-active {
+    transition: transform var(--duration-slower) ease;
+  }
+
+  .toc-sheet-enter-from,
+  .toc-sheet-leave-to {
+    transform: translateY(100%);
+  }
+
+  @keyframes toc-marker-in {
+    from {
+      margin-inline-end: 0;
+      opacity: 0;
+      transform: scaleY(0);
+    }
+
+    to {
+      margin-inline-end: var(--space-3);
+      opacity: 1;
+      transform: scaleY(1);
+    }
   }
 }
 
-.toc-overlay-enter-active,
-.toc-overlay-leave-active {
-  transition: opacity 200ms ease;
-}
+@layer exception {
+  .toc__link[aria-current='location'] {
+    color: var(--color-link);
+    font-weight: var(--font-weight-bold);
 
-.toc-overlay-enter-from,
-.toc-overlay-leave-to {
-  opacity: 0;
-}
-
-.toc-sheet-enter-active,
-.toc-sheet-leave-active {
-  transition: transform 250ms ease;
-}
-
-.toc-sheet-enter-from,
-.toc-sheet-leave-to {
-  transform: translateY(100%);
+    &::before {
+      animation: toc-marker-in var(--duration-base) ease-out both;
+      background-color: currentcolor;
+      border-radius: var(--radius-full);
+      content: '';
+      display: inline-block;
+      height: 0.75rem;
+      width: 0.25rem;
+    }
+  }
 }
 </style>

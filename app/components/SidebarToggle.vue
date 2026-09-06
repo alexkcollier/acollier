@@ -12,7 +12,8 @@ const { toggle } = useSidebar();
 
 <template>
   <button
-    :class="['navbar-button', { 'sidebar-toggle--active': isActive }]"
+    class="navbar-button sidebar-toggle"
+    :aria-pressed="isActive"
     :aria-label="t('chat.sidebarToggle')"
     @click="toggle"
   >
@@ -20,13 +21,19 @@ const { toggle } = useSidebar();
   </button>
 </template>
 
-<style lang="scss">
-.sidebar-toggle {
-  transition: color 150ms ease;
+<style>
+@layer block {
+  .sidebar-toggle {
+    transition: color var(--duration-base) ease;
+  }
+}
 
-  &--active,
-  &--active:hover {
-    color: var(--color-text-primary);
+@layer exception {
+  .sidebar-toggle[aria-pressed='true'] {
+    &,
+    &:hover {
+      color: var(--color-text-primary);
+    }
   }
 }
 </style>

@@ -1,0 +1,46 @@
+/**
+ * Utilities
+ *
+ * One job each, and the value comes from a token. A utility names a
+ * decision that recurs across components with nothing else in common — it
+ * is not a shorthand for an arbitrary declaration, and not a way to
+ * assemble a component out of class names in the template.
+ *
+ * The `utility` layer sits *before* `block`, so a block wins wherever the
+ * two set the same property. That is deliberate, and it is what makes a
+ * utility composable: `.work-list-item__tags` takes `.list-bare` for the
+ * reset and still sets its own top margin in its own stylesheet.
+ */
+@layer utility {
+  /* Available to assistive tech, removed from the visual layout. */
+  .visually-hidden {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  /* A list that carries no list formatting — navigation, tags, card grids.
+     Children get the reset too: base.css puts margin-bottom on every `li`
+     for prose lists, and `utility` outranks `global` by layer, so this is
+     what actually makes a "bare" list bare instead of merely unbulleted. */
+  .list-bare {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      margin-bottom: 0;
+    }
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-muted {
+    color: var(--color-text-muted);
+  }
+}

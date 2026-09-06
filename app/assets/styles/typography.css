@@ -1,0 +1,35 @@
+@layer block {
+  .heading-1,
+  .nuxt-content h1 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+    margin-bottom: var(--space-12);
+  }
+
+  .heading-2,
+  .nuxt-content h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .heading-1,
+  .heading-2 {
+    margin-top: var(--space-8);
+  }
+
+  /* Rendered markdown guards the top margin where the utility classes do
+     not. `block` beats `global`, so an unguarded rule here would override
+     `base.css`'s `h*:first-child { margin-top: 0 }` and push every case
+     study that opens on a heading down by a full `--space-8`. */
+  .nuxt-content h1:not(:first-child),
+  .nuxt-content h2:not(:first-child) {
+    margin-top: var(--space-8);
+  }
+
+  .title {
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    margin-top: 0;
+  }
+}

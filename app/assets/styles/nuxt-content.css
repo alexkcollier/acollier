@@ -1,0 +1,57 @@
+@layer block {
+  .nuxt-content {
+    a {
+      color: var(--color-link);
+      display: inline-block;
+      font-family: var(--font-mono);
+
+      &:hover {
+        color: var(--color-link-hover);
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      scroll-margin-top: var(--space-24);
+
+      a {
+        display: inline-block;
+        font-family: var(--font-body);
+        position: relative;
+        text-decoration: none;
+
+        &,
+        &:visited {
+          color: var(--color-text);
+        }
+
+        &::after {
+          color: var(--color-text-muted);
+          content: '#';
+          font-family: var(--font-mono);
+          margin-inline-start: 0.35em;
+          opacity: 0;
+          transition: opacity var(--duration-base);
+        }
+      }
+
+      &:hover a::after {
+        opacity: 1;
+      }
+    }
+
+    img,
+    video {
+      border-radius: var(--radius-md);
+      display: block;
+      filter: drop-shadow(var(--shadow-sm));
+      height: auto;
+      margin: var(--space-8) auto;
+      max-width: 100%;
+    }
+  }
+}

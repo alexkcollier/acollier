@@ -12,7 +12,7 @@ definePageMeta({
       <Title>{{ $t('contact.metaTitle') }}</Title>
     </Head>
 
-    <div class="container">
+    <div class="wrapper">
       <Transition
         name="fade"
         mode="out-in"
@@ -104,10 +104,8 @@ definePageMeta({
               <!-- submit -->
               <div class="form-field">
                 <button
-                  :class="[
-                    'submit-button link link--button link--button-filled',
-                    { 'is-loading': isSending },
-                  ]"
+                  class="submit-button link link--button link--button-filled"
+                  :disabled="isSending"
                 >
                   {{ $t('contact.send') }}
                 </button>
@@ -118,7 +116,7 @@ definePageMeta({
                 <div
                   v-if="mailError"
                   id="form-error"
-                  class="form-field"
+                  class="form-field contact-form__error"
                   role="alert"
                   aria-live="assertive"
                 >
@@ -198,28 +196,46 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@use 'sass:math';
-@use '~/assets/styles/utils/breakpoints' as bp;
-@use '~/assets/styles/utils/mixins';
+<style>
+@layer block {
+  .contact-hero {
+    --bg-image: url('~/assets/images/acollier.png');
+    --bg-size: 55%;
 
-.contact-hero {
-  @include mixins.face-hero;
+    align-items: center;
+    background: var(--bg-image) 103% bottom / var(--bg-size) no-repeat;
+    display: flex;
+    min-height: 100%;
+    padding-inline: var(--page-side-padding);
 
-  align-items: center;
-}
-
-.contact-form {
-  @include bp.above('md') {
-    max-width: math.div(5, 12) * 100%;
+    @media screen and (width > 1200px) {
+      --bg-size: auto 90%;
+    }
   }
-}
 
-.social-links-contact {
-  margin-block-start: 3rem;
-}
+  .contact-form {
+    @media screen and (width > 768px) {
+      max-width: calc(5 / 12 * 100%);
+    }
+  }
 
-.thank-you-text {
-  font-size: 1.5rem;
+  .contact-form__error {
+    background-color: var(--color-bg-error);
+    border-radius: var(--radius-md);
+    color: var(--color-text-error);
+    padding: var(--space-4);
+  }
+
+  .contact-form__error .link {
+    color: currentcolor;
+  }
+
+  .social-links-contact {
+    margin-block-start: 3rem;
+  }
+
+  .thank-you-text {
+    font-size: 1.5rem;
+  }
 }
 </style>

@@ -94,14 +94,10 @@ watch(
 <template>
   <aside
     ref="sidebarEl"
-    :class="[
-      'chat-sidebar',
-      {
-        'chat-sidebar--collapsed': isCollapsed,
-        'chat-sidebar--mobile-open': isMobileOpen,
-        'chat-sidebar--resizing': isResizing,
-      },
-    ]"
+    class="chat-sidebar"
+    :data-collapsed="isCollapsed"
+    :data-mobile-open="isMobileOpen"
+    :data-resizing="isResizing"
   >
     <div
       class="chat-sidebar__resize-handle"
@@ -110,10 +106,8 @@ watch(
     />
 
     <div
-      :class="[
-        'chat-sidebar__body',
-        { 'chat-sidebar__body--empty': !messages.length },
-      ]"
+      class="chat-sidebar__body"
+      :data-empty="!messages.length"
     >
       <div
         v-if="messages.length"
@@ -157,33 +151,46 @@ watch(
   </aside>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
+<style>
+@layer block {
+  .chat-sidebar {
+    border-left: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+    padding-top: var(--space-20);
+    position: sticky;
+    top: 0;
+    transition: width var(--duration-slow) var(--ease-standard);
+    width: var(--chat-sidebar-width, 24rem);
 
-.chat-sidebar {
-  --transition-duration: 200ms;
+    @media screen and (width <= 960px) {
+      background: var(--color-bg);
+      height: var(--visual-viewport-height, 100dvh);
+      left: 0;
+      opacity: 0;
+      position: fixed;
+      top: var(--visual-viewport-offset-top, 0);
+      transform: translateY(var(--space-4));
+      transition:
+        opacity var(--duration-slow) ease,
+        transform var(--duration-slow) ease,
+        visibility 0s linear var(--duration-slow);
+      visibility: hidden;
+      width: 100%;
+      z-index: var(--z-modal);
+    }
+  }
 
-  $parent: &;
-
-  border-left: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  overflow: hidden;
-  padding-top: var(--space-20);
-  position: sticky;
-  top: 0;
-  transition: width var(--transition-duration) cubic-bezier(0.4, 0, 0.2, 1);
-  width: var(--chat-sidebar-width, 24rem);
-
-  &__resize-handle {
+  .chat-sidebar__resize-handle {
     cursor: col-resize;
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     width: var(--space-2);
-    z-index: 3;
+    z-index: var(--z-mask);
 
     &::after {
       background: var(--color-text-primary);
@@ -193,7 +200,7 @@ watch(
       opacity: 0;
       position: absolute;
       top: 0;
-      transition: opacity 150ms;
+      transition: opacity var(--duration-base);
       width: 2px;
     }
 
@@ -202,33 +209,29 @@ watch(
     }
   }
 
-  &__body {
+  .chat-sidebar__body {
     display: flex;
     flex: 1;
     flex-direction: column;
     min-height: 0;
     padding: 0 var(--space-4) var(--space-4);
-    transition: opacity 150ms;
-
-    &--empty {
-      margin-top: var(--space-2);
-    }
+    transition: opacity var(--duration-base);
   }
 
-  &__tag {
-    color: var(--color-text-subtle);
+  .chat-sidebar__tag {
+    color: var(--color-text-muted);
     font-size: var(--text-xl);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     letter-spacing: -0.016em;
     line-height: var(--leading-snug);
     margin: 0;
   }
 
-  &__highlight {
+  .chat-sidebar__highlight {
     color: var(--color-text-primary);
   }
 
-  &__messages-wrap {
+  .chat-sidebar__messages-wrap {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -236,7 +239,7 @@ watch(
     position: relative;
   }
 
-  &__messages {
+  .chat-sidebar__messages {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -246,59 +249,50 @@ watch(
     padding-block-end: var(--space-12);
   }
 
-  &__error {
+  .chat-sidebar__error {
     color: var(--color-text-accent);
     flex-shrink: 0;
     font-size: var(--text-sm);
   }
+}
 
-  &--resizing {
+@layer exception {
+  .chat-sidebar__body[data-empty='true'] {
+    margin-top: var(--space-2);
+  }
+
+  .chat-sidebar[data-resizing='true'] {
     transition: none;
 
-    #{$parent}__resize-handle::after {
+    .chat-sidebar__resize-handle::after {
       opacity: 0.4;
     }
   }
 
-  &--collapsed {
-    @include bp.above('lg') {
+  .chat-sidebar[data-collapsed='true'] {
+    @media screen and (width > 960px) {
       background: transparent;
       border: none;
       width: 0;
 
-      #{$parent}__resize-handle {
+      .chat-sidebar__resize-handle {
         pointer-events: none;
       }
 
-      #{$parent}__body {
+      .chat-sidebar__body {
         opacity: 0;
         pointer-events: none;
       }
     }
   }
 
-  @include bp.below('lg') {
-    background: var(--color-bg);
-    height: var(--visual-viewport-height, 100dvh);
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    top: var(--visual-viewport-offset-top, 0);
-    transform: translateY(var(--space-4));
-    transition:
-      opacity var(--transition-duration) ease,
-      transform var(--transition-duration) ease,
-      visibility 0s linear var(--transition-duration);
-    visibility: hidden;
-    width: 100%;
-    z-index: 12;
-
-    &--mobile-open {
+  @media screen and (width <= 960px) {
+    .chat-sidebar[data-mobile-open='true'] {
       opacity: 1;
       transform: translateY(0);
       transition:
-        opacity var(--transition-duration) ease,
-        transform var(--transition-duration) ease,
+        opacity var(--duration-slow) ease,
+        transform var(--duration-slow) ease,
         visibility 0s linear 0s;
       visibility: visible;
     }

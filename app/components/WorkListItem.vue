@@ -24,9 +24,12 @@ const formattedDescription = computed(() => {
 <template>
   <NuxtLink
     :to="href"
-    :class="['work-list-item', variant && `work-list-item--${variant}`]"
+    class="work-list-item"
+    :data-variant="variant"
   >
-    <span class="work-list-item__index">{{ formattedIndex }}</span>
+    <span class="work-list-item__index font-mono text-muted">{{
+      formattedIndex
+    }}</span>
 
     <NuxtImg
       v-if="!variant"
@@ -40,10 +43,12 @@ const formattedDescription = computed(() => {
 
     <div class="work-list-item__content">
       <h2 class="work-list-item__title">{{ title }}</h2>
-      <p class="work-list-item__description">{{ formattedDescription }}</p>
+      <p class="work-list-item__description text-muted">
+        {{ formattedDescription }}
+      </p>
       <ul
         v-if="tags?.length"
-        class="work-list-item__tags"
+        class="work-list-item__tags cluster list-bare"
       >
         <li
           v-for="tag in tags"
@@ -55,38 +60,36 @@ const formattedDescription = computed(() => {
     </div>
 
     <span
-      class="work-list-item__arrow"
+      class="work-list-item__arrow font-mono"
       aria-hidden="true"
       >↗</span
     >
   </NuxtLink>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
+<style>
+@layer block {
+  .work-list-item {
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-1);
+    text-decoration: none;
+    transition: transform var(--duration-slow) var(--ease-emphasized);
 
-.work-list-item {
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6) var(--space-1);
-  text-decoration: none;
-  transition: transform 220ms cubic-bezier(0.2, 0.6, 0.2, 1);
-
-  &:hover {
-    transform: translateX(var(--space-4));
+    &:hover {
+      transform: translateX(var(--space-4));
+    }
   }
 
-  &__index {
-    color: var(--color-text-muted);
-    font-family: var(--font-mono);
+  .work-list-item__index {
     font-size: var(--text-xs);
     letter-spacing: 0.1em;
   }
 
-  &__image {
+  .work-list-item__image {
     aspect-ratio: 16 / 10;
     background-color: var(--color-bg-subtle);
     border: 1px solid var(--color-border);
@@ -95,50 +98,69 @@ const formattedDescription = computed(() => {
     width: 100%;
   }
 
-  &__image--placeholder {
+  .work-list-item__image--placeholder {
     filter: blur(8px);
   }
 
-  &__content {
+  .work-list-item__content {
     min-width: 0;
   }
 
-  &__title {
+  .work-list-item__title {
     font-size: var(--text-2xl);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     letter-spacing: -0.016em;
     line-height: var(--leading-snug);
     margin: 0;
   }
 
-  &__description {
-    color: var(--color-text-muted);
+  .work-list-item__description {
     font-size: var(--text-base);
     line-height: var(--leading-normal);
     margin: var(--space-2) 0 0;
     max-width: 56ch;
   }
 
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    list-style: none;
+  .work-list-item__tags {
+    --cluster-space: var(--space-2);
+
     margin: var(--space-4) 0 0;
-    padding: 0;
   }
 
-  &__arrow {
+  .work-list-item__arrow {
     display: none;
   }
 
-  &:is(#{&}--compact, #{&}--mini) {
+  @container (width >= 480px) {
+    .work-list-item__index {
+      align-self: flex-start;
+      flex: none;
+      padding-top: var(--space-1);
+    }
+
+    .work-list-item__image {
+      flex: none;
+      width: 180px;
+    }
+
     .work-list-item__content {
       flex: 1;
     }
   }
 
-  &--compact {
+  @container (width >= 768px) {
+    .work-list-item__image {
+      width: 270px;
+    }
+  }
+}
+
+@layer exception {
+  .work-list-item[data-variant] .work-list-item__content {
+    flex: 1;
+  }
+
+  .work-list-item[data-variant='compact'] {
     align-items: flex-start;
     background: transparent;
     flex-direction: row;
@@ -159,13 +181,12 @@ const formattedDescription = computed(() => {
       color: var(--color-text-primary);
       display: block;
       flex: none;
-      font-family: var(--font-mono);
       font-size: var(--text-base);
       padding-top: 3px;
     }
   }
 
-  &--mini {
+  .work-list-item[data-variant='mini'] {
     align-items: flex-start;
     flex: 1 1 240px;
     flex-direction: row;
@@ -197,49 +218,21 @@ const formattedDescription = computed(() => {
     }
   }
 
-  @container (min-width: #{bp.$sm}) {
-    &:not(#{&}--mini) {
+  @container (width >= 480px) {
+    .work-list-item:not([data-variant='mini']) {
       align-items: center;
       flex-direction: row;
       gap: var(--space-8);
       padding: var(--space-8) var(--space-1);
     }
 
-    &__index {
-      align-self: flex-start;
-      flex: none;
-      padding-top: var(--space-1);
-    }
-
-    &__image {
-      flex: none;
-      width: 180px;
-    }
-
-    &__content {
-      flex: 1;
-    }
-
-    &:not(#{&}--mini) &__arrow {
+    .work-list-item:not([data-variant='mini']) .work-list-item__arrow {
       align-self: flex-start;
       color: var(--color-text-primary);
       display: block;
       flex: none;
-      font-family: var(--font-mono);
       font-size: var(--text-lg);
       padding-top: var(--space-1);
-    }
-  }
-
-  @container (min-width: #{bp.$md}) {
-    &__image {
-      width: 270px;
-    }
-  }
-
-  @container (min-width: #{bp.$xl}) {
-    &__image {
-      display: block;
     }
   }
 }

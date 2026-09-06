@@ -113,7 +113,7 @@ watch(
     @submit.prevent="handleSend"
   >
     <label
-      class="sr-only"
+      class="visually-hidden"
       for="chat-input"
       >{{ t('chat.formLabel') }}</label
     >
@@ -130,7 +130,7 @@ watch(
     />
 
     <div class="chat-form__actions">
-      <span class="chat-form__hint">
+      <span class="chat-form__hint text-muted">
         <kbd v-if="isBusy(status)">Esc</kbd>
       </span>
 
@@ -157,29 +157,31 @@ watch(
   </form>
 </template>
 
-<style lang="scss">
-.chat-form {
-  --submit-bg: var(--stone-200);
-  --submit-color: var(--stone-800);
+<style>
+@layer block {
+  .chat-form {
+    --submit-bg: light-dark(var(--stone-200), var(--stone-800));
+    --submit-color: light-dark(var(--stone-800), var(--stone-100));
 
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-input-border);
-  border-radius: var(--radius-md);
-  cursor: text;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-3);
-  transition: border-color 200ms ease;
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-md);
+    cursor: text;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-3);
+    transition: border-color var(--duration-slow) ease;
 
-  &:has(textarea:focus) {
-    border-color: var(--color-input-border-focus);
+    &:has(textarea:focus-visible) {
+      border-color: var(--color-input-border-focus);
+    }
+
+    &:has(.chat-form__input:disabled) {
+      cursor: not-allowed;
+    }
   }
 
-  &:has(.chat-form__input:disabled) {
-    cursor: not-allowed;
-  }
-
-  &__actions {
+  .chat-form__actions {
     align-items: center;
     display: flex;
     gap: var(--space-2);
@@ -187,8 +189,7 @@ watch(
     margin-block-start: var(--space-2);
   }
 
-  &__hint {
-    color: var(--color-text-muted);
+  .chat-form__hint {
     cursor: default;
     font-size: var(--text-xs);
 
@@ -201,7 +202,7 @@ watch(
     }
   }
 
-  &__input {
+  .chat-form__input {
     background: transparent;
     border: none;
     field-sizing: content;
@@ -211,7 +212,10 @@ watch(
     resize: none;
     width: 100%;
 
-    &:focus {
+    &:focus-visible {
+      /* The wrapper carries the focus treatment (see .chat-form:has above):
+         a border-colour shift on the surface that already draws a border,
+         rather than a ring clipped by this element's own edges. */
       outline: none;
     }
 
@@ -221,7 +225,7 @@ watch(
     }
   }
 
-  &__submit {
+  .chat-form__submit {
     align-items: center;
     background: var(--submit-bg);
     border-radius: var(--radius-md);
@@ -235,18 +239,6 @@ watch(
       color: var(--color-text-muted);
       cursor: not-allowed;
     }
-  }
-}
-
-:root[data-theme='dark'] .chat-form {
-  --submit-bg: var(--stone-800);
-  --submit-color: var(--stone-100);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .chat-form {
-    --submit-bg: var(--stone-800);
-    --submit-color: var(--stone-100);
   }
 }
 </style>

@@ -69,6 +69,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     class="navbar"
   >
     <NavbarButton
+      exact
       :href="localePath('/')"
       class="navbar-brand"
     >
@@ -84,21 +85,18 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       />
 
       <button
-        :class="[
-          'navbar-button',
-          'navbar__menu-button',
-          { 'navbar__menu-button--open': isMenuOpen },
-        ]"
+        class="navbar-button navbar__menu-button"
+        aria-controls="navbar-menu"
+        :aria-expanded="isMenuOpen"
         @click.stop="() => setIsMenuOpen(!isMenuOpen)"
       />
     </div>
 
     <div
+      id="navbar-menu"
       ref="menuRef"
-      :class="[
-        'navbar__button-wrapper',
-        { 'navbar__button-wrapper--open': isMenuOpen },
-      ]"
+      class="navbar__button-wrapper"
+      :data-open="isMenuOpen"
     >
       <NavbarButton
         v-for="{ href, key } in links"
@@ -110,7 +108,7 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       </NavbarButton>
 
       <div
-        class="navbar-divider"
+        class="navbar-divider text-muted"
         aria-hidden
       >
         |
@@ -139,63 +137,54 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
   </nav>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
+<style>
+@layer block {
+  .navbar {
+    align-items: stretch;
+    backdrop-filter: blur(16px);
+    background-color: rgb(from var(--color-bg) r g b / 50%);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: var(--z-nav);
 
-.navbar {
-  --transition-time: 100ms;
+    @media screen and (width > 768px) {
+      padding: 0 var(--space-4);
+    }
+  }
 
-  align-items: stretch;
-  backdrop-filter: blur(16px);
-  background-color: rgb(from var(--color-bg) r g b / 50%);
-  border-bottom: 1px solid var(--color-border);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 99;
-
-  &__button-wrapper {
+  .navbar__button-wrapper {
     align-items: stretch;
     display: none;
     flex-basis: 100%;
     flex-direction: column;
     opacity: 0;
     transition:
-      display var(--transition-time) allow-discrete,
-      opacity var(--transition-time);
-
-    &--open {
-      display: flex;
-      inset: 3.5rem 0 0;
-      opacity: 1;
-      position: static;
-
-      @starting-style {
-        opacity: 0;
-      }
-    }
+      display var(--duration-fast) allow-discrete,
+      opacity var(--duration-fast);
   }
 
-  &__mobile-controls {
+  .navbar__mobile-controls {
     display: flex;
     margin-left: auto;
   }
 
-  &__sidebar-toggle--mobile {
+  .navbar__sidebar-toggle--mobile {
     display: flex;
   }
 
-  &__sidebar-toggle--desktop {
+  .navbar__sidebar-toggle--desktop {
     display: none;
   }
 
-  &__menu-button {
+  .navbar__menu-button {
     --transform-transition-delay: 0ms;
-    --top-transition-delay: var(--transition-time);
+    --top-transition-delay: var(--duration-fast);
     --rotation: 0deg;
 
     display: flex;
@@ -212,9 +201,9 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
       top: calc(50% + var(--bar-offset));
       transform: translate(-50%, -50%) rotate(var(--rotation));
       transition:
-        transform var(--transition-time) ease-in-out
+        transform var(--duration-fast) ease-in-out
           var(--transform-transition-delay),
-        top var(--transition-time) ease-in-out var(--top-transition-delay);
+        top var(--duration-fast) ease-in-out var(--top-transition-delay);
       width: 1rem;
     }
 
@@ -225,88 +214,102 @@ onUnmounted(() => window.removeEventListener('resize', resetMenu));
     &::after {
       --bar-offset: 4px;
     }
-
-    &--open {
-      &::before,
-      &::after {
-        // having unit enables animating this variable properly
-        --bar-offset: 0px;
-        --transform-transition-delay: var(--transition-time);
-        --top-transition-delay: 0ms;
-      }
-
-      &::before {
-        --rotation: 45deg;
-      }
-
-      &::after {
-        --rotation: -45deg;
-      }
-    }
   }
 
-  &__locale-switcher {
+  .navbar__locale-switcher {
     text-transform: uppercase;
   }
 
-  @include bp.above('md') {
-    padding: 0 var(--space-4);
+  .navbar-brand__name {
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+    margin-block-end: var(--space-1);
+  }
 
-    &__button-wrapper {
+  .navbar-brand__title {
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-weight: var(--font-weight-light);
+  }
+
+  .navbar-divider {
+    align-items: center;
+    display: none;
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+    pointer-events: none;
+
+    @media screen and (width > 768px) {
+      display: flex;
+    }
+  }
+
+  .navbar-utils {
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (width > 768px) {
+      justify-content: flex-start;
+    }
+  }
+
+  @media screen and (width > 768px) {
+    .navbar__button-wrapper {
       display: flex;
       flex-basis: auto;
       flex-direction: row;
       opacity: 1;
     }
+  }
 
-    &__menu-button {
+  @media screen and (width > 768px) {
+    .navbar__menu-button {
       display: none;
       margin-left: auto;
     }
+  }
 
-    &__sidebar-toggle--mobile {
+  @media screen and (width > 768px) {
+    .navbar__sidebar-toggle--mobile {
       display: none;
     }
+  }
 
-    &__sidebar-toggle--desktop {
+  @media screen and (width > 768px) {
+    .navbar__sidebar-toggle--desktop {
       display: flex;
     }
   }
 }
 
-.navbar-brand {
-  &__name {
-    color: var(--color-text);
-    font-weight: 700;
-    margin-block-end: var(--space-1);
-  }
-
-  &__title {
-    color: var(--color-text);
-    font-family: var(--font-mono);
-    font-weight: 300;
-  }
-}
-
-.navbar-divider {
-  align-items: center;
-  color: var(--color-text-muted);
-  display: none;
-  padding-left: var(--space-2);
-  padding-right: var(--space-2);
-  pointer-events: none;
-
-  @include bp.above('md') {
+@layer exception {
+  .navbar__button-wrapper[data-open='true'] {
     display: flex;
+    inset: 3.5rem 0 0;
+    opacity: 1;
+    position: static;
+
+    @starting-style {
+      opacity: 0;
+    }
   }
-}
 
-.navbar-utils {
-  display: flex;
-  justify-content: space-between;
+  .navbar__menu-button[aria-expanded='true'] {
+    &::before,
+    &::after {
+      /* having unit enables animating this variable properly */
+      --bar-offset: 0px;
+      --transform-transition-delay: var(--duration-fast);
+      --top-transition-delay: 0ms;
+    }
 
-  @include bp.above('md') {
-    justify-content: flex-start;
+    &::before {
+      --rotation: 45deg;
+    }
+
+    &::after {
+      --rotation: -45deg;
+    }
   }
 }
 </style>

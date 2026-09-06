@@ -86,7 +86,7 @@ definePageMeta({
       :style="{ transform: `scaleX(${progress})` }"
     />
 
-    <div class="container">
+    <div class="wrapper">
       <Head>
         <Title>{{ doc?.title }}</Title>
         <Meta
@@ -116,11 +116,8 @@ definePageMeta({
         />
       </Head>
 
-      <div class="content-container two-column">
-        <main
-          class="two-column__wide-col"
-          style="margin-top: -3rem"
-        >
+      <div class="content-container wrapper with-sidebar">
+        <main style="margin-top: -3rem">
           <NuxtLink
             :to="localePath('/work')"
             class="slug-back link"
@@ -148,11 +145,8 @@ definePageMeta({
           </section>
         </main>
 
-        <aside class="two-column__narrow-col sidebar toc-sidebar">
-          <section
-            v-if="doc?.body?.toc?.links?.length"
-            class="sidebar__section"
-          >
+        <aside class="toc-sidebar stack">
+          <section v-if="doc?.body?.toc?.links?.length">
             <h2 class="heading-2">{{ $t('work.onThisPage') }}</h2>
 
             <WorkToc
@@ -163,15 +157,14 @@ definePageMeta({
 
           <section
             v-if="doc?.links && doc.links.length"
-            class="sidebar__section work-links"
+            class="work-links"
           >
             <h2 class="heading-2">{{ $t('work.links') }}</h2>
 
-            <ul class="work-links__list">
+            <ul class="work-links__list stack list-bare">
               <li
                 v-for="{ href, title } in doc.links"
                 :key="href"
-                class="work-links__list-item"
               >
                 <a
                   class="link link--arrow"
@@ -200,67 +193,63 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@use '~/assets/styles/nuxt-content';
-@use '~/assets/styles/utils/mixins';
-@use '~/assets/styles/utils/breakpoints' as bp;
+<style>
+@import url('../../assets/styles/nuxt-content.css');
 
-.reading-progress {
-  background-color: var(--color-bg-accent);
-  border-bottom-right-radius: var(--radius-full);
-  border-top-right-radius: var(--radius-full);
-  height: 4px;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 68px;
-  transform-origin: left;
-  z-index: 1;
-}
-
-.content-container {
-  margin-block-start: var(--space-4);
-  margin-inline: auto;
-  max-width: bp.$xl;
-}
-
-.slug-back {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--space-2);
-  margin-block: var(--space-3) var(--space-2);
-}
-
-.slug-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  margin-block-start: 0;
-  padding: 0;
-}
-
-.toc-sidebar {
-  top: 0;
-
-  @include bp.below('md') {
-    display: none;
-  }
-}
-
-.work-links {
-  &__list {
-    @include mixins.unstyled-list;
+@layer block {
+  .reading-progress {
+    background-color: var(--color-bg-accent);
+    border-bottom-right-radius: var(--radius-full);
+    border-top-right-radius: var(--radius-full);
+    height: 4px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 68px;
+    transform-origin: left;
+    z-index: var(--z-raised);
   }
 
-  &__list-item {
-    &:not(:last-child) {
-      margin-bottom: var(--space-6);
+  .content-container {
+    --sidebar-content-min: 66%;
+    --sidebar-width: 17rem;
+    --wrapper-max: var(--bp-xl);
+
+    margin-block-start: var(--space-4);
+  }
+
+  .slug-back {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--space-2);
+    margin-block: var(--space-3) var(--space-2);
+  }
+
+  .toc-sidebar {
+    --stack-space: var(--space-16);
+
+    /* `.with-sidebar` is a flex row, so this item stretches to the full
+       height of the content column by default and `sticky` has nothing to
+       travel through. */
+    align-self: start;
+    position: sticky;
+    top: 0;
+
+    @media screen and (width <= 768px) {
+      display: none;
     }
   }
-}
 
-.built-with-section:first-child {
-  margin-top: var(--space-8);
+  .work-links__list {
+    --stack-space: var(--space-6);
+
+    &:not(:last-child) {
+      margin-bottom: inherit;
+    }
+  }
+
+  .built-with-section:first-child {
+    margin-top: var(--space-8);
+  }
 }
 </style>

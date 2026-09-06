@@ -9,7 +9,7 @@ npm run dev          # dev server at localhost:3000 (no Netlify functions)
 netlify dev          # dev server at localhost:8888 with Netlify functions (contact form)
 npm run generate     # static site generation (used for production builds)
 npm run lint         # ESLint
-npm run lint:css     # Stylelint (Vue + SCSS)
+npm run lint:css     # Stylelint (Vue + CSS)
 npm run format       # Prettier
 ```
 
@@ -21,7 +21,7 @@ This is a personal portfolio site (acollier.ca) built with **Nuxt 4** + Vue 3, d
 
 ### Content System
 
-Portfolio case studies are written in Markdown under `content/en/work/`. The `content.config.ts` defines two typed `@nuxt/content` collections — `work_en` and `work_fr` — with a shared Zod schema (required: `title`, `description`, `featureImage`, `tags`, `tools`; optional: `order`, `links`). French translations live under `content/fr/work/` but are incomplete; `work/[...slug].vue` falls back to `work_en` when a French doc is missing.
+Portfolio case studies are written in Markdown, but the content itself does not live in this repo — `content.config.ts` defines two typed `@nuxt/content` collections, `work_en` and `work_fr`, that pull from a remote content repository (`contentRepoConfig`, configured via the `CONTENT_REPO_URL` / `CONTENT_REPO_USER` / `CONTENT_REPO_TOKEN` env vars) at `content/en/**` and `content/fr/**` respectively, sharing one Zod schema (required: `title`, `description`, `featureImage`, `tags`, `tools`; optional: `order`, `links`, `featured`). French translations are incomplete; `work/[...slug].vue` falls back to `work_en` when a French doc is missing.
 
 ### Internationalization
 
@@ -33,7 +33,25 @@ The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mai
 
 ### Styling
 
-Styles use **SCSS with CSS custom properties** — no utility-class framework. The design system is defined in `app/assets/styles/_theme.scss` as CSS custom properties (color ramps, spacing scale, type scale, radius tokens). Dark/light mode is toggled via a `data-theme` attribute on `:root`, with a `prefers-color-scheme` media query fallback. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific at-rule ordering (`@extend` → `@include` → declarations → nested rules → `@media`).
+Styles are **plain CSS with custom properties** — no preprocessor, no PostCSS plugins, and no utility-class framework. The organising idea is **CUBE CSS** (Composition, Utility, Block, Exception) over a shared token set, with **cascade layers** enforcing the order.
+
+The layer order is declared once, in `app/assets/styles/layers.css`, which holds that one statement and nothing else:
+
+```css
+@layer reset, tokens, theme, global, composition, utility, block, exception;
+```
+
+That statement has to be the first one the browser parses, because layer order is fixed by first mention and the bundler — not the `css` array — decides which stylesheet arrives first. If an SFC's `<style>` chunk gets there first, `block` and `exception` register ahead of everything and no later statement can move them, which silently ranks `reset` and `utility` *above* `block`. So `nuxt.config.ts` reads `layers.css` and inlines it into `app.head.style` ahead of every stylesheet, and `reset.css` `@import`s it as a fallback. Add a layer by editing `layers.css` — never by writing the order out again.
+
+Every rule in the project sits in one of those layers — global stylesheets wrap their whole contents in a single `@layer`, and so does every component `<style>` block (`@layer block { … }`, plus `@layer exception { … }` where a component has states or variants). Unlayered CSS beats every layer, so nothing may be left outside one. A later layer wins regardless of specificity.
+
+Global stylesheets live in `app/assets/styles/*.css` and are listed explicitly in the `css` array; component styles live in the component's own `<style>` block. The design system is defined in `app/assets/styles/tokens.css` (color ramps, spacing scale, type scale, radius tokens, breakpoint values, motion and elevation scales, a z-index scale, and page tokens) — the only place custom properties are declared. `app/assets/styles/compositions.css` holds the layout primitives (`.wrapper`, `.stack`, `.cluster`, `.with-sidebar`), each tuned by inherited custom properties that the consuming block sets. `app/assets/styles/utilities.css` holds the single-job, token-derived classes (`.visually-hidden`, `.list-bare`, `.font-mono`, `.text-muted`). Note that `utility` sits before `block`, so a block outranks a utility on the same property — a utility carries the default and the component departs from it. The `exception` layer holds state and variant rules, which live in an `@layer exception { … }` block after the component's `@layer block { … }` and are keyed off attributes rather than `--modifier` classes — a native one where it exists (`[aria-expanded='true']`, `:disabled`), otherwise a `data-*` matched on its value (`[data-variant='mini']`), never on its presence.
+
+Both themes are declared once via `light-dark()`, which resolves against `color-scheme`. The switch itself lives in `app/assets/styles/theme.css` and its own `theme` layer: a blocking inline script in `nuxt.config.ts`'s `app.head.script` reads any theme saved to `localStorage` and stamps `data-theme` on `:root` before first paint, so a visitor with a pinned preference never sees a flash of the OS theme — only a visitor with nothing stored falls through to `:root`'s `light dark` following the OS. `ColorSwitcher` defers rendering its icon until mounted, so it can't render a guess that disagrees with what the script already pinned, then stamps `data-theme` itself when the visitor toggles. There is no `prefers-color-scheme` block in the token layer.
+
+Native CSS nesting is used for pseudo-classes, compound selectors, descendants and at-rules, but it cannot concatenate selectors, so BEM elements and modifiers are written out in full at the top level. Media and container query conditions cannot read `var()`, so breakpoints are hardcoded there and kept in sync with the `--bp-*` custom properties by hand. The `stylelint-order` plugin enforces **alphabetical CSS property ordering** and a specific ordering (custom properties → declarations → nested rules → `@media` → `@container`).
+
+See `.claude/rules/css.md` for the full conventions.
 
 ### Static Assets (`public/`)
 

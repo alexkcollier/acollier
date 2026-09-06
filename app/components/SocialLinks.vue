@@ -4,7 +4,7 @@ import LinkedinIcon from '~/assets/icons/linkedin.svg';
 </script>
 
 <template>
-  <div class="social-links">
+  <div class="social-links cluster">
     <a
       href="https://github.com/alexkcollier"
       class="social-link"
@@ -27,24 +27,26 @@ import LinkedinIcon from '~/assets/icons/linkedin.svg';
   </div>
 </template>
 
-<style lang="scss">
-.social-links {
-  display: flex;
-  font-size: 2rem;
-  gap: 1.5rem;
+<style>
+@layer block {
+  .social-links {
+    --cluster-space: var(--space-6);
 
-  &:not(:last-of-type) {
-    margin-bottom: 3rem;
+    font-size: var(--text-5xl);
+
+    &:not(:last-of-type) {
+      margin-bottom: var(--space-12);
+    }
   }
-}
 
-.social-link {
-  color: var(--color-text);
-  display: flex;
-  text-shadow: none;
-
-  &:hover {
+  .social-link {
     color: var(--color-text);
+    display: flex;
+    text-shadow: none;
+
+    &:hover {
+      color: var(--color-text);
+    }
   }
 }
 </style>

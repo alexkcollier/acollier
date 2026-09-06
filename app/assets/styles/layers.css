@@ -1,0 +1,25 @@
+/**
+ * Cascade layers — the order, and nothing else.
+ *
+ * The whole cascade contract: a rule in a later layer beats a rule in an
+ * earlier one no matter how specific either is.
+ *
+ *   reset        normalize/opinionated defaults (sanitize.css)
+ *   tokens       the design system — custom properties only
+ *   theme        the light/dark switch the palette resolves against
+ *   global       bare element styling (`base.css`)
+ *   composition  layout primitives: flow and relationships, no cosmetics
+ *   utility      single-job, token-derived classes
+ *   block        components — global stylesheets and `\3c style>` blocks alike
+ *   exception    state and variant overrides, keyed off `data-*`
+ *
+ * This file is the single place that order is written. Layer order is fixed
+ * by whichever `@layer` statement the browser parses *first*, and a bundler
+ * is free to hand an SFC's `<style>` chunk over before any stylesheet in the
+ * `css` array — at which point `block` and `exception` are already
+ * registered and no later statement can move them, silently ranking `reset`
+ * and `utility` *above* `block`. So `nuxt.config.ts` reads this file and
+ * inlines it into the head, ahead of every stylesheet. `reset.css` also
+ * imports it, so the order still holds if the head copy ever goes missing.
+ */
+@layer reset, tokens, theme, global, composition, utility, block, exception;

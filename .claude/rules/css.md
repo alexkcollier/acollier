@@ -1,0 +1,397 @@
+# CSS authoring conventions
+
+Styles are plain CSS. There is no preprocessor and no PostCSS plugin —
+what you write is what ships.
+
+The organising idea is CUBE CSS: **C**omposition, **U**tility, **B**lock,
+**E**xception, over a shared set of design tokens.
+
+## Cascade layers
+
+Every rule in the project lives in a layer. The order is declared once, in
+`app/assets/styles/layers.css`, which holds that one statement and nothing
+else:
+
+```css
+@layer reset, tokens, theme, global, composition, utility, block, exception;
+```
+
+**That statement has to be the first one the browser parses.** Layer order
+is fixed by first mention, and the bundler — not the `css` array — decides
+which stylesheet reaches the browser first: an SFC's `<style>` chunk can
+arrive ahead of every file in `app/assets/styles`, and when it does `block`
+and `exception` are registered first and no later statement can move them.
+The remaining names are then appended *after* them, which ranks
+`sanitize.css` and every utility *above* every component — the cascade
+quietly inverts.
+
+So `layers.css` reaches the browser two ways, and the file itself is the
+only copy of the order:
+
+- `nuxt.config.ts` reads it and inlines it into `app.head.style` with
+  `tagPriority: -100`, putting it ahead of every stylesheet. This is the
+  one that binds.
+- `reset.css` `@import`s it, so the contract still holds through the
+  normal stylesheet path if the head copy ever goes missing.
+
+Never write the order out a third time — add a layer by editing
+`layers.css`.
+
+| Layer         | Holds                                                                            |
+| ------------- | -------------------------------------------------------------------------------- |
+| `reset`       | `sanitize.css` and its `reduce-motion.css` partial, imported with `layer(reset)` |
+| `tokens`      | `tokens.css` — custom properties only, nothing else                              |
+| `theme`       | `theme.css` — the light/dark switch, nothing else                                |
+| `global`      | `base.css` — bare element styling                                                |
+| `composition` | `compositions.css` — layout primitives                                           |
+| `utility`     | `utilities.css` — single-job, token-derived classes                              |
+| `block`       | components: global block sheets and every `<style>` block                        |
+| `exception`   | state and variant rules, keyed off `data-*` attributes                           |
+
+A later layer beats an earlier one **regardless of specificity**, so
+nothing in this project needs `!important` or a selector-weight trick to
+win. The order is CUBE's own acronym: compositions arrange, utilities
+carry the default for a recurring decision, blocks specialise it, and
+exceptions override everything.
+
+Note the direction that implies — **a block beats a utility**, not the
+other way round. That is what lets `.work-list-item__tags` take
+`.list-bare` for the reset and still set its own top margin.
+
+A few consequences to remember:
+
+- **Unlayered CSS beats every layer.** Anything you add must be inside a
+  layer or it silently wins over the whole system. Third-party CSS Nuxt
+  injects for its own components (`nuxt-icon`, the error pages, `ProsePre`)
+  is unlayered; leave it alone rather than trying to override it from a
+  layer.
+- **`@import` cannot appear inside `@layer { … }`.** Import into a layer
+  instead — `@import url('x.css') layer(reset)` — or keep the `@import` at
+  the top of the file, above the layer block, when the imported file wraps
+  itself.
+- **A block outranks `global`, so a block must defer on purpose.**
+  `typography.css`'s heading rules keep a `:not(:first-child)` guard on
+  their `.nuxt-content` selectors for exactly this reason — without it,
+  the block layer would override `base.css`'s `h*:first-child { margin-top:
+0 }` instead of leaving it alone.
+- **`prefers-reduced-motion` is handled once, globally, in `reset`.**
+  `reduce-motion.css` already covers it for every animation and transition
+  in the project — don't add a second `@media (prefers-reduced-motion:
+reduce)` block anywhere else.
+
+## File conventions
+
+- Global stylesheets live in `app/assets/styles/*.css`, each wrapping its
+  whole contents in the single `@layer` it belongs to, and each listed
+  explicitly in the `css` array in `nuxt.config.ts`. The array order is
+  documentation; the cascade order comes from the layer statement.
+- Component styles belong in the `<style>` block of the component they
+  style, wrapped in `@layer block { … }`, with an `@layer exception { … }`
+  block after it if the component has states or variants.
+  `app/assets/styles` is only for global and reusable styles.
+  - An exception can be made for global styles with no corresponding
+    component, like `.link`, or overrides for framework components
+    provided by Vue or Nuxt and its modules. Avoid this where possible.
+
+## Design tokens
+
+All colours, spacing, radius, and type values come from the custom
+properties in `tokens.css` — that file is the only place tokens are
+declared. Never hardcode these values; breakpoints in query conditions
+are the one exception, for the reason below.
+
+That list is wider than colour and spacing: `tokens.css` also carries the
+duration/easing pair, font-weight, elevation (`--shadow-sm` /
+`--shadow-md`), a z-index scale (`--z-raised` … `--z-nav`, in steps of
+10), status colour (`--color-bg-error` / `--color-text-error`), and the
+themed focus colour. A bare literal in any of those categories —
+`250ms`, `font-weight: 700`, `z-index: 12` — is a defect now, the same
+way a hardcoded hex value already was.
+
+Two deliberate carve-outs, so nobody "finishes" them later: only the two
+`cubic-bezier()` curves actually in use are tokenised, as `--ease-standard`
+and `--ease-emphasized` — bare `ease` / `ease-out` keywords stay keywords.
+And a few one-off rhythms stay literal because they are not scale steps:
+`AssistantPip`'s `1900ms` idle breathe, the contact form's `0.5s` spinner,
+and `TheNavbar`'s `0ms` JS-toggled delay sentinels.
+
+Both themes are declared once, via `light-dark()` resolving against
+`color-scheme`. To add a token that differs between themes, add a single
+`light-dark(<light>, <dark>)` declaration; do not add a
+`prefers-color-scheme` block.
+
+`theme.css` holds the switch itself — `color-scheme` and the `[data-theme]`
+overrides `ColorSwitcher` stamps — and nothing else. It is a layer of its
+own, after `tokens`, so a theme that ever needs to restate a palette token
+outranks the default by layer instead of by selector weight.
+
+A blocking inline script in `nuxt.config.ts`'s `app.head.script` reads any
+theme saved to `localStorage` and stamps `data-theme` on `:root` before
+first paint, so a visitor with a pinned preference never sees a flash of
+the OS theme — only a visitor with nothing stored falls through to
+`color-scheme: light dark` following the OS. `ColorSwitcher` defers
+rendering its icon until mounted, so the markup it renders can't disagree
+with what the script already pinned.
+
+A ramp step (`--stone-700`) is not a value to style with — reach for the
+semantic palette (`--color-text-muted`). Naming a themed colour a
+component owns is the one place a ramp is fair game outside `tokens.css`,
+because that is what `light-dark()` needs:
+
+```css
+.chat-form {
+  --submit-bg: light-dark(var(--stone-200), var(--stone-800));
+}
+```
+
+That form is also the answer whenever a component's value differs between
+themes. Never hand-roll the switch with a `[data-theme]` rule plus a
+`prefers-color-scheme` block — it takes six lines to say what
+`light-dark()` says in one, and it is easy to write the pair so that
+pinning a theme stops working. If what varies is not a colour, express it
+as one: an opacity applied to a colour is a colour.
+
+A ramp keeps every step even where nothing currently consumes it. A ramp
+is a designed palette, not dead code — an unused step is the next value
+you reach for, not weight to trim.
+
+## Focus
+
+One global rule, in the `global` layer of `base.css`, draws the focus
+ring for the whole site:
+
+```css
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+```
+
+`--color-focus` is deliberately a neutral stone, not brand green: a
+saturated ring read as too loud beside the rest of the palette, and a
+focus indicator only needs 3:1.
+
+Components should not hand-roll their own — no bespoke `outline` or
+`box-shadow` on `:focus-visible` in a block. The one carve-out is a
+control whose own edges would clip a ring: `ChatForm` deletes the
+textarea's outline and lets the wrapper carry the treatment instead,
+matching `:has(textarea:focus-visible)` on `.chat-form` to shift the
+border colour it already draws. That is a border shift, *not* a second
+ring — stacking an outline on top of it produced a doubled inner border
+in light mode. Where a wrapper already has a border to work with, moving
+the indicator onto it beats drawing another one.
+
+## Custom property shadowing
+
+A custom property resolves by ordinary CSS inheritance, not by cascade
+layer — a property declared on a component's root class always beats one
+inherited from `:root`, whatever layer either rule sits in. Layer order
+only decides between rules that target the _same_ property on the _same_
+element; it has no say once a nearer ancestor already supplies a value.
+
+That makes reusing a global token's name inside a component dangerous,
+not just redundant. Five components used to declare a local
+`--transition-duration` or `--transition-time` directly on their root
+class, which would have silently shadowed any global token of that name
+for the component's whole subtree, forever, with no layer able to win it
+back. The rule: a component-local custom property must never share a
+name with a token declared in `tokens.css` — alias it (`--submit-bg:
+light-dark(...)`, above) or give it a name the token set doesn't use;
+never shadow it.
+
+## Compositions
+
+`compositions.css` holds layout primitives: `.wrapper`, `.stack`,
+`.cluster` and `.with-sidebar`. A composition arranges whatever is placed
+inside it and decides nothing else — no colour, no type, no border, no
+knowledge of what it contains.
+
+Each is tuned through the custom properties named in its comment, set by
+the block that uses it or inline:
+
+```html
+<ul
+  class="cluster"
+  style="--cluster-space: var(--space-2)"
+></ul>
+```
+
+Prefer a composition to re-declaring `display: flex` inside a block. Add
+a new primitive only when it has at least two unrelated call sites; if a
+rule would only ever apply to one component, it belongs in that
+component's `<style>` block.
+
+Compositions stack on one element, and the block sets the knobs:
+
+```html
+<main class="about-layout wrapper stack"></main>
+```
+
+```css
+.about-layout {
+  --wrapper-max: calc(var(--bp-xl) * 2 / 3);
+  --stack-space: var(--space-16);
+}
+```
+
+Knobs are custom properties, so they **inherit**. A knob set for one
+composition is visible to every descendant, and a nested composition of
+the same kind picks it up unless it sets its own — `.work-links__list`
+has to restate `--stack-space` because the sticky rail around it already
+set one.
+
+## Utilities
+
+`utilities.css` holds single-job classes whose value comes from a token:
+`.visually-hidden`, `.list-bare`, `.font-mono`, `.text-muted`.
+
+A utility names a decision that recurs across components with nothing
+else in common. It is not a shorthand for an arbitrary declaration, and
+not a way to assemble a component out of class names in the template — if
+you find yourself reaching for four of them on one element, that element
+wants a block.
+
+Because a block outranks a utility, a utility carries the default and the
+component departs from it in its own stylesheet. That also means a
+utility cannot rescue you from a block that sets the same property: fix
+the block instead.
+
+Only reach for a utility where a template can actually carry the class.
+Styling that lands on rendered markdown (`nuxt-content.css`), on a bare
+element (`label`, `code`, `kbd`), or on a pseudo-element stays a
+declaration.
+
+## Blocks and BEM
+
+Blocks use BEM. The block is the component or layout class; elements are
+`__element`, modifiers are `--modifier`. Native nesting cannot concatenate
+a selector, so write element and modifier selectors out in full, at the
+top level:
+
+```css
+@layer block {
+  .post-item { … }
+  .post-item__heading { … }
+  .post-item__link { … }
+
+  .post-item--featured .post-item__heading { … }
+}
+```
+
+A block should hold only what is genuinely idiosyncratic to it. Layout
+relationships go to a composition; repeated single-property values go to
+a utility.
+
+## Exceptions
+
+An exception is a block in a state (`data-open`, `data-active`) or in a
+variant (`data-variant="mini"`, `data-role="user"`). Both live in the
+`exception` layer, which is last, so they beat the block without needing
+to out-specify it:
+
+```css
+@layer block {
+  .work-list-item__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+@layer exception {
+  .work-list-item[data-variant='mini'] .work-list-item__title {
+    font-size: var(--text-sm);
+  }
+}
+```
+
+State and variant are **attributes, not classes** — a `--modifier` class
+would sit in the block layer alongside the thing it is meant to override,
+and would have to win on selector weight. The attribute keeps the block's
+class list stable, and it reads as what it is: markup describing state.
+
+**Reach for a native attribute first.** Most interactive state already has
+one, it is required for assistive tech regardless, and styling off it
+means there is a single source of truth rather than a `data-*` shadowing
+an ARIA state that has to be kept in sync:
+
+| State                     | Attribute       | Selector                    |
+| ------------------------- | --------------- | --------------------------- |
+| a disclosure is open      | `aria-expanded` | `[aria-expanded='true']`    |
+| a toggle button is on     | `aria-pressed`  | `[aria-pressed='true']`     |
+| the current item in a set | `aria-current`  | `[aria-current='location']` |
+| a control is unavailable  | `disabled`      | `:disabled`                 |
+
+Only where nothing native fits — a purely presentational state like
+`data-collapsed` or `data-resizing` — reach for `data-*`.
+
+**Bind the value, never the presence.** `:data-collapsed="isCollapsed"`
+and select `[data-collapsed='true']`. Presence-testing (`[data-collapsed]`)
+looks tidier but forces the binding to erase the attribute when false —
+Vue renders `false` as `data-collapsed="false"`, which is present and
+matches — and that sentinel is easy to drop and never notice, because the
+result is a state that is silently always on.
+
+Where the value is already data, bind it straight through instead of
+composing a class name from it — `:data-role="role"`, not
+`` `chat-message--${role}` ``.
+
+A structural distinction that is not state — two placements of the same
+component, say — stays a modifier class. `.navbar__sidebar-toggle--mobile`
+and `--desktop` are two different elements, not one element in two states.
+
+The same reasoning keeps `.link--button` / `--button-filled` / `--arrow`
+as modifier classes rather than a `data-variant`: they _compose_ —
+`contact.vue` puts three of them on one element — and a single-valued
+attribute can't express that without reinventing a class list.
+
+## Nesting
+
+Native CSS nesting is used for anything that does not need
+concatenation — pseudo-classes, pseudo-elements, compound selectors,
+descendants, and at-rules:
+
+```css
+.post-item__link {
+  color: var(--color-link);
+
+  &:hover { … }
+  &::after { … }
+
+  @media (width > 768px) { … }
+}
+```
+
+Maximum **3 levels** of nesting, not counting the `@layer` wrapper.
+Pseudo-classes and pseudo-elements count as a level.
+
+Note that `&` in native nesting behaves like `:is()` over the parent
+selector list, so with a mixed-specificity parent list the nested rule
+takes the specificity of the _most_ specific parent. Split the rule up
+if that matters.
+
+## Breakpoints
+
+Media and container query conditions cannot read `var()` — custom
+properties resolve per element, and a query has no element to resolve
+against. So query conditions hardcode their value:
+
+```css
+@media screen and (width > 768px) { … }
+@container (width >= 480px) { … }
+```
+
+The canonical set is documented alongside the `--bp-*` custom properties
+in `tokens.css`: sm 480, md 768, lg 960, xl 1200, xxl 1440. Use `--bp-*`
+in declarations (`max-width: var(--bp-xl)`); use the literal in queries,
+and keep the two in sync by hand.
+
+Use range syntax (`width > 768px`), not `min-width` / `max-width`.
+
+Prefer an intrinsic composition to a query where one exists —
+`.with-sidebar` reflows on its own and needs no container query.
+
+## Ordering
+
+The `stylelint-order` plugin enforces alphabetical property order and,
+within each block, custom properties → declarations → nested rules →
+`@media` → `@container`. This now applies inside `@layer` blocks too, so
+a plain rule may not follow an at-rule in the same layer.

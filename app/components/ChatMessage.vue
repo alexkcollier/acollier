@@ -19,10 +19,11 @@ const html = computed(() =>
 
 <template>
   <div
-    :class="['chat-message', `chat-message--${role}`]"
+    class="chat-message"
+    :data-role="role"
     role="article"
   >
-    <span class="sr-only">{{
+    <span class="visually-hidden">{{
       role === 'user' ? t('chat.you') : t('chat.assistant')
     }}</span>
 
@@ -36,23 +37,14 @@ const html = computed(() =>
   </div>
 </template>
 
-<style lang="scss">
-.chat-message {
-  animation: chat-message-enter 200ms ease both;
-  border-radius: var(--radius-md);
-
-  &--user {
-    align-self: flex-end;
-    background: var(--color-bg-subtle);
-    max-width: 90%;
-    padding: var(--space-2) var(--space-4);
+<style>
+@layer block {
+  .chat-message {
+    animation: chat-message-enter var(--duration-slow) ease both;
+    border-radius: var(--radius-md);
   }
 
-  &--assistant {
-    align-self: flex-start;
-  }
-
-  &__content {
+  .chat-message__content {
     line-height: var(--leading-normal);
 
     p {
@@ -63,7 +55,7 @@ const html = computed(() =>
     h2,
     h3,
     h4 {
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
       line-height: var(--leading-snug);
     }
 
@@ -111,7 +103,7 @@ const html = computed(() =>
     }
 
     strong {
-      font-weight: 700;
+      font-weight: var(--font-weight-bold);
     }
 
     em {
@@ -162,12 +154,25 @@ const html = computed(() =>
       margin-block-end: 0;
     }
   }
+
+  @keyframes chat-message-enter {
+    from {
+      opacity: 0;
+      translate: 0 var(--space-2);
+    }
+  }
 }
 
-@keyframes chat-message-enter {
-  from {
-    opacity: 0;
-    translate: 0 var(--space-2);
+@layer exception {
+  .chat-message[data-role='user'] {
+    align-self: flex-end;
+    background: var(--color-bg-subtle);
+    max-width: 90%;
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .chat-message[data-role='assistant'] {
+    align-self: flex-start;
   }
 }
 </style>

@@ -25,7 +25,7 @@ const dateRange = computed(() =>
         {{ company }}
       </h3>
 
-      <p class="work-experience-item__meta">
+      <p class="work-experience-item__meta text-muted">
         <span class="work-experience-item__roles">
           {{ roles.join(' · ') }}
         </span>
@@ -47,29 +47,28 @@ const dateRange = computed(() =>
   </article>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
-
-.work-experience-item {
-  & ~ & {
-    border-block-start: 1px solid var(--color-border);
-    margin-block-start: var(--space-12);
-    padding-block-start: var(--space-12);
+<style>
+@layer block {
+  .work-experience-item {
+    & ~ & {
+      border-block-start: 1px solid var(--color-border);
+      margin-block-start: var(--space-12);
+      padding-block-start: var(--space-12);
+    }
   }
 
-  &__header {
+  .work-experience-item__header {
     margin-block-end: var(--space-6);
   }
 
-  &__meta {
-    color: var(--color-text-muted);
+  .work-experience-item__meta {
     display: flex;
     flex-direction: column;
     font-size: var(--text-sm);
     gap: var(--space-1);
     margin-block: var(--space-2) 0;
 
-    @container (min-width: #{bp.$sm}) {
+    @container (width >= 480px) {
       align-items: baseline;
       flex-direction: row;
       gap: var(--space-4);
@@ -77,11 +76,11 @@ const dateRange = computed(() =>
     }
   }
 
-  &__date {
+  .work-experience-item__date {
     white-space: nowrap;
   }
 
-  &__body {
+  .work-experience-item__body {
     p {
       margin-block: 0;
     }

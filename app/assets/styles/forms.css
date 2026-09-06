@@ -1,0 +1,71 @@
+@layer block {
+  .form-field:not(:last-child) {
+    margin-bottom: 2em;
+  }
+
+  .input {
+    background: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--radius-md);
+    color: var(--color-input-text);
+
+    /* em, not --space-*: padding/margin track this control's own
+       font-size rather than the root scale, so the control stays
+       proportioned if its font-size ever changes (e.g. a size variant). */
+    margin-top: 0.5em;
+    padding: 0.5em;
+    transition: border-color var(--duration-slow) ease;
+    width: 100%;
+
+    &:focus {
+      background: var(--color-input-bg-focus);
+    }
+
+    /* Matches ChatForm: the surface's own border carries focus rather than a
+       ring outside it. Unlike ChatForm this shifts to --color-focus, not
+       --color-input-border-focus — the latter is a 1.2:1 change in light
+       mode, well under the 3:1 a focus indicator owes. */
+    &:focus-visible {
+      border-color: var(--color-focus);
+      outline: none;
+    }
+  }
+
+  @keyframes spin-around {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(359deg);
+    }
+  }
+}
+
+@layer exception {
+  .submit-button:disabled {
+    color: transparent;
+    pointer-events: none;
+    position: relative;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      animation: spin-around 0.5s infinite linear;
+      border: 2px solid var(--color-text);
+      border-radius: var(--radius-full);
+      border-right-color: transparent;
+      border-top-color: transparent;
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 1.25rem;
+      opacity: 1;
+      position: absolute;
+      top: calc(50% - (1em / 2));
+      width: 1.25rem;
+    }
+  }
+}

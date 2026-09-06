@@ -51,7 +51,7 @@ watch(
     ) {
       await nextTick();
 
-      const userMsgs = messagesEl.value.querySelectorAll('.chat-message--user');
+      const userMsgs = messagesEl.value.querySelectorAll('[data-role="user"]');
 
       userMsgs[userMsgs.length - 1]?.scrollIntoView({
         behavior: 'smooth',
@@ -84,9 +84,10 @@ watch(
 </script>
 
 <template>
-  <div class="container chat-container">
+  <div class="chat-container wrapper">
     <main
-      :class="['chat', { 'chat--active': messages.length }]"
+      class="chat"
+      :data-active="messages.length > 0"
       :aria-label="t('chat.formLabel')"
     >
       <Transition name="chat__greeting">
@@ -114,7 +115,7 @@ watch(
         >
           <div
             ref="messagesEl"
-            class="chat__messages-body"
+            class="chat__messages-body stack"
             role="log"
           >
             <ChatMessage
@@ -155,9 +156,11 @@ watch(
         v-if="!messages.length && featuredWork?.length"
         class="chat__suggestions"
       >
-        <p class="chat__suggestions-label">{{ t('chat.featuredWork') }}</p>
+        <p class="chat__suggestions-label text-muted">
+          {{ t('chat.featuredWork') }}
+        </p>
 
-        <div class="chat__suggestions-list">
+        <div class="chat__suggestions-list cluster">
           <WorkListItem
             v-for="(post, index) in featuredWork"
             :key="post.id"
@@ -174,161 +177,146 @@ watch(
   </div>
 </template>
 
-<style lang="scss">
-@use '~/assets/styles/utils/breakpoints' as bp;
+<style>
+@layer block {
+  .chat {
+    --color-glow: light-dark(
+      color-mix(in srgb, var(--green-700) 16%, transparent),
+      color-mix(in srgb, var(--green-600) 32%, transparent)
+    );
 
-.chat {
-  --transition-duration: 200ms;
-  --glow-opacity: 16%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 40rem;
+    padding: var(--space-12) var(--space-4) var(--space-8);
+    width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 40rem;
-  padding: var(--space-12) var(--space-4) var(--space-8);
-  width: 100%;
-
-  :root[data-theme='dark'] & {
-    --glow-opacity: 32%;
+    @media screen and (width > 480px) {
+      padding-block-start: var(--space-24);
+    }
   }
 
-  &--active {
+  .chat__greeting {
+    margin-block-end: var(--space-8);
+    text-align: center;
+  }
+
+  .chat__greeting-tag {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.016em;
+    line-height: var(--leading-snug);
+    margin: 0 0 var(--space-3);
+
+    @media screen and (width > 480px) {
+      font-size: var(--text-4xl);
+    }
+  }
+
+  .chat__greeting-highlight {
+    color: var(--color-text-primary);
+  }
+
+  .chat__greeting-enter-active,
+  .chat__greeting-leave-active {
+    transition:
+      opacity var(--duration-slow) ease,
+      translate var(--duration-slow) ease;
+  }
+
+  .chat__greeting-enter-from,
+  .chat__greeting-leave-to {
+    opacity: 0;
+    translate: 0 var(--space-2);
+  }
+
+  .chat__messages {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+  }
+
+  .chat__messages-enter-active {
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  .chat__messages-enter-from {
+    opacity: 0;
+  }
+
+  .chat__messages-body {
+    --stack-space: var(--space-8);
+
+    height: 100%;
+    overflow-y: auto;
+    padding-block-end: var(--space-36);
+    padding-inline: var(--space-4);
+  }
+
+  .chat__error {
+    color: var(--color-text-accent);
+    font-size: var(--text-sm);
+  }
+
+  .chat__suggestions {
+    padding-inline: var(--page-side-padding);
+  }
+
+  .chat__suggestions-enter-active,
+  .chat__suggestions-leave-active {
+    transition:
+      opacity var(--duration-slow) ease,
+      translate var(--duration-slow) ease;
+  }
+
+  .chat__suggestions-enter-from,
+  .chat__suggestions-leave-to {
+    opacity: 0;
+    translate: 0 calc(-1 * var(--space-2));
+  }
+
+  .chat__suggestions-label {
+    margin-block: var(--space-8) var(--space-4);
+    text-align: center;
+
+    @media screen and (width > 480px) {
+      margin-block-start: var(--space-24);
+    }
+  }
+
+  .chat__suggestions-list {
+    --cluster-justify: center;
+
+    @media screen and (width > 480px) {
+      --cluster-space: var(--space-8);
+    }
+  }
+
+  .chat-container {
+    --wrapper-max: var(--bp-lg);
+
+    display: flex;
+    flex-direction: column;
+    height: var(--visual-viewport-height, 100%);
+    padding-top: var(--space-12);
+
+    @media screen and (width > 768px) {
+      justify-content: center;
+      padding-top: 0;
+    }
+  }
+}
+
+@layer exception {
+  .chat[data-active='true'] {
     flex: 1;
     justify-content: flex-start;
     min-height: 0;
   }
 
-  &:not(#{&}--active) .chat-form {
-    filter: drop-shadow(
-      0 16px 40px
-        color-mix(
-          in srgb,
-          var(--color-bg-primary) var(--glow-opacity),
-          transparent
-        )
-    );
-  }
-
-  &__greeting {
-    margin-block-end: var(--space-8);
-    text-align: center;
-
-    &-tag {
-      font-size: var(--text-3xl);
-      font-weight: 700;
-      letter-spacing: -0.016em;
-      line-height: var(--leading-snug);
-      margin: 0 0 var(--space-3);
-
-      @include bp.above('sm') {
-        font-size: var(--text-4xl);
-      }
-    }
-
-    &-highlight {
-      color: var(--color-text-primary);
-    }
-
-    &-enter-active,
-    &-leave-active {
-      transition:
-        opacity var(--transition-duration) ease,
-        translate var(--transition-duration) ease;
-    }
-
-    &-enter-from,
-    &-leave-to {
-      opacity: 0;
-      translate: 0 var(--space-2);
-    }
-  }
-
-  &__messages {
-    flex: 1;
-    min-height: 0;
-    position: relative;
-
-    &-enter-active {
-      transition: opacity var(--transition-duration) ease;
-    }
-
-    &-enter-from {
-      opacity: 0;
-    }
-
-    &-body {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-8);
-      height: 100%;
-      overflow-y: auto;
-      padding-block-end: var(--space-36);
-      padding-inline: var(--space-4);
-    }
-  }
-
-  &__error {
-    color: var(--color-text-accent);
-    font-size: var(--text-sm);
-  }
-
-  &__suggestions {
-    padding-inline: var(--page-side-padding);
-
-    &-enter-active,
-    &-leave-active {
-      transition:
-        opacity var(--transition-duration) ease,
-        translate var(--transition-duration) ease;
-    }
-
-    &-enter-from,
-    &-leave-to {
-      opacity: 0;
-      translate: 0 calc(-1 * var(--space-2));
-    }
-
-    &-label {
-      color: var(--color-text-muted);
-      margin-block: var(--space-8) var(--space-4);
-      text-align: center;
-
-      @include bp.above('sm') {
-        margin-block-start: var(--space-24);
-      }
-    }
-
-    &-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-4);
-      justify-content: center;
-
-      @include bp.above('sm') {
-        gap: var(--space-8);
-      }
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    --glow-opacity: 32%;
-  }
-
-  @include bp.above('sm') {
-    padding-block-start: var(--space-24);
-  }
-}
-
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: var(--visual-viewport-height, 100%);
-  max-width: bp.$lg;
-  padding-top: var(--space-12);
-
-  @include bp.above('md') {
-    justify-content: center;
-    padding-top: 0;
+  .chat:not([data-active='true']) .chat-form {
+    filter: drop-shadow(0 16px 40px var(--color-glow));
   }
 }
 </style>
