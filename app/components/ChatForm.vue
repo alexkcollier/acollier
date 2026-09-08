@@ -163,8 +163,8 @@ watch(
     --submit-bg: light-dark(var(--stone-200), var(--stone-800));
     --submit-color: light-dark(var(--stone-800), var(--stone-100));
 
-    background: var(--color-bg-subtle);
-    border: 1px solid var(--color-input-border);
+    background: var(--color-surface-sunken);
+    border: 1px solid var(--color-border-input);
     border-radius: var(--radius-md);
     cursor: text;
     display: flex;
@@ -173,7 +173,7 @@ watch(
     transition: border-color var(--duration-slow) ease;
 
     &:has(textarea:focus-visible) {
-      border-color: var(--color-input-border-focus);
+      border-color: var(--color-border-input-focus);
     }
 
     &:has(.chat-form__input:disabled) {
@@ -194,7 +194,7 @@ watch(
     font-size: var(--text-xs);
 
     kbd {
-      border: 1px solid var(--color-input-border);
+      border: 1px solid var(--color-border-input);
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: var(--text-xs);

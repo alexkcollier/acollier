@@ -1,19 +1,93 @@
 /**
- * Theme
+ * The whole `--color-*` namespace, and the `color-scheme` it resolves
+ * against. Split from `tokens.css` by kind, not subject: these are not
+ * constants but functions of runtime state, inert without the switch
+ * below. Ramps and dimensional scales stay there — including `--shadow-*`
+ * and `--focus-ring-*`, which reach back across for their colour.
  *
- * The switch the palette resolves against, kept apart from the tokens it
- * drives. `light-dark()` in `tokens.css` reads whatever `color-scheme` is
- * in effect: with no `data-theme` set — the pre-hydration state of the
- * static HTML — `light dark` follows the OS preference, and `ColorSwitcher`
- * stamps `data-theme` on `:root` to pin a choice.
- *
- * This layer sits after `tokens`, so anything here outranks the defaults it
- * overrides by layer rather than by selector weight. A future theme that
- * needs to restate a palette token, not just the scheme, belongs here and
- * will win without a specificity fight.
+ * Unset `data-theme` is the pre-hydration state and follows the OS;
+ * `ColorSwitcher` stamps `:root` to pin a choice.
  */
 @layer theme {
   :root {
+    /* ── Surface scale ──────────────────────────────────────────────
+     *
+     * Depth, not elevation: each step moves away from the page, which is
+     * darker in light and lighter in dark. Steps are paired across themes
+     * by measured contrast, never by ramp step count — mirroring the count
+     * is what once put a surface and its border on the same stone.
+     *
+     * Three is the maximum, not a starting point: at `--color-surface-2`
+     * the weakest text is 4.61:1 (muted, light) and 4.63:1 (primary,
+     * dark). A fourth step drops text under 4.5:1. */
+    --color-surface: light-dark(var(--stone-50), var(--stone-900));
+    --color-surface-1: light-dark(var(--stone-100), var(--stone-800));
+    --color-surface-2: light-dark(var(--stone-200), var(--stone-700));
+
+    /* ── Surface roles ──────────────────────────────────────────────
+     *
+     * Vocabulary over the scale; components consume these, never the
+     * numbered steps. Panels sit level with the page and separate by
+     * border and shadow — in light there is nowhere lighter to go without
+     * adding white to the ramp. Lifting them in dark is one line here. */
+    --color-surface-panel: var(--color-surface);
+    --color-surface-sunken: var(--color-surface-1);
+    --color-surface-hover: var(--color-surface-2);
+    --color-surface-inset: var(--color-surface-2);
+    --color-surface-input: var(--color-surface-sunken);
+    --color-surface-input-focus: var(--color-surface);
+
+    /* filled — foregrounds are the `on-*` pair below */
+    --color-surface-primary: light-dark(var(--green-700), var(--green-600));
+    --color-surface-accent: var(--amber-500);
+    --color-surface-error: light-dark(var(--red-100), var(--red-800));
+
+    /* ── Borders ────────────────────────────────────────────────────
+     *
+     * Ratio-matched to their surface at hairline weight (~1.6:1).
+     * `--color-border` covers `--color-surface` and `-1`; anything on
+     * `-2` needs `--color-border-strong` or it collides with its own fill
+     * in dark. That includes a block whose `:hover` lifts it to `-2`. */
+    --color-border: light-dark(var(--stone-300), var(--stone-700));
+    --color-border-strong: light-dark(var(--stone-400), var(--stone-600));
+
+    /* Inputs sit on `-1`, so they take the standard border; focus steps
+       one further, 2.14:1 in both themes. */
+    --color-border-input: var(--color-border);
+    --color-border-input-focus: light-dark(var(--stone-400), var(--stone-600));
+
+    /* ── Text ───────────────────────────────────────────────────────
+     *
+     * By emphasis, not by surface: every token here clears 4.5:1 on all
+     * three neutral surfaces in both themes, so there is no `on-surface`
+     * family to keep in sync. Only filled surfaces need `on-*`. */
+    --color-text: light-dark(var(--stone-900), var(--stone-50));
+    --color-text-muted: light-dark(var(--stone-600), var(--stone-300));
+    --color-text-primary: light-dark(var(--green-700), var(--green-300));
+    --color-text-accent: light-dark(var(--amber-700), var(--amber-200));
+    --color-text-error: light-dark(var(--red-600), var(--red-300));
+    --color-text-on-primary: var(--stone-50);
+    --color-text-on-accent: var(--stone-900);
+
+    /* Hover *increases* contrast in both themes rather than lightening in
+       one. Most links here are undecorated, so colour carries the whole
+       signal and a hover that dims on a raised surface is a real failure. */
+    --color-link: var(--color-text-primary);
+    --color-link-hover: light-dark(var(--green-900), var(--green-100));
+
+    /* heavier in dark, where a soft black barely reads on a near-black
+       surface */
+    --color-shadow: light-dark(rgb(0 0 0 / 20%), rgb(0 0 0 / 60%));
+
+    /* Same in both themes: a scrim dims what is behind it rather than
+       reading against it. */
+    --color-scrim: rgb(0 0 0 / 50%);
+    --color-scrim-subtle: rgb(0 0 0 / 20%);
+
+    /* Neutral, not brand green, which read too loud beside the palette.
+       6.4:1 light, 7.5:1 dark, over the 3:1 a focus indicator needs. */
+    --color-focus: light-dark(var(--stone-600), var(--stone-400));
+
     color-scheme: light dark;
   }
 

@@ -220,7 +220,7 @@ export default {
   }
 
   .contact-form__error {
-    background-color: var(--color-bg-error);
+    background-color: var(--color-surface-error);
     border-radius: var(--radius-md);
     color: var(--color-text-error);
     padding: var(--space-4);

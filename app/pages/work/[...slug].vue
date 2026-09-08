@@ -198,7 +198,7 @@ export default {
 
 @layer block {
   .reading-progress {
-    background-color: var(--color-bg-accent);
+    background-color: var(--color-surface-accent);
     border-bottom-right-radius: var(--radius-full);
     border-top-right-radius: var(--radius-full);
     height: 4px;

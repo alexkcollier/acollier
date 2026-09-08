@@ -91,7 +91,7 @@ const formattedDescription = computed(() => {
 
   .work-list-item__image {
     aspect-ratio: 16 / 10;
-    background-color: var(--color-bg-subtle);
+    background-color: var(--color-surface-sunken);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     object-fit: cover;

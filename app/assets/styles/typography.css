@@ -16,10 +16,9 @@
     margin-top: var(--space-8);
   }
 
-  /* Rendered markdown guards the top margin where the utility classes do
-     not. `block` beats `global`, so an unguarded rule here would override
-     `base.css`'s `h*:first-child { margin-top: 0 }` and push every case
-     study that opens on a heading down by a full `--space-8`. */
+  /* Guarded because `block` beats `global`: unguarded, this would override
+     `base.css`'s `h*:first-child { margin-top: 0 }` and indent every case
+     study that opens on a heading. */
   .nuxt-content h1:not(:first-child),
   .nuxt-content h2:not(:first-child) {
     margin-top: var(--space-8);

@@ -61,8 +61,11 @@ watch(
 <style>
 @layer block {
   .chat-scroll-btn {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
+    background: var(--color-surface-panel);
+
+    /* strong: :hover lifts the fill to --color-surface-2, where the
+       standard border shares a stone with the fill in dark. */
+    border: 1px solid var(--color-border-strong);
     border-radius: var(--radius-full);
     bottom: var(--space-4);
     box-shadow: var(--shadow-sm);
@@ -78,7 +81,7 @@ watch(
       box-shadow var(--duration-slow) ease;
 
     &:hover {
-      background: var(--color-bg-subtle);
+      background: var(--color-surface-hover);
     }
   }
 

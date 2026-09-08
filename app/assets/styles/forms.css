@@ -4,27 +4,25 @@
   }
 
   .input {
-    background: var(--color-input-bg);
-    border: 1px solid var(--color-input-border);
+    background: var(--color-surface-input);
+    border: 1px solid var(--color-border-input);
     border-radius: var(--radius-md);
-    color: var(--color-input-text);
+    color: var(--color-text);
 
-    /* em, not --space-*: padding/margin track this control's own
-       font-size rather than the root scale, so the control stays
-       proportioned if its font-size ever changes (e.g. a size variant). */
+    /* em, not --space-*: track this control's font-size, not the root
+       scale, so a size variant stays proportioned. */
     margin-top: 0.5em;
     padding: 0.5em;
     transition: border-color var(--duration-slow) ease;
     width: 100%;
 
     &:focus {
-      background: var(--color-input-bg-focus);
+      background: var(--color-surface-input-focus);
     }
 
-    /* Matches ChatForm: the surface's own border carries focus rather than a
-       ring outside it. Unlike ChatForm this shifts to --color-focus, not
-       --color-input-border-focus — the latter is a 1.2:1 change in light
-       mode, well under the 3:1 a focus indicator owes. */
+    /* Like ChatForm, the border carries focus instead of a ring. Shifts to
+       --color-focus, not --color-border-input-focus: that one is 2.1:1
+       against the field, under the 3:1 a focus indicator owes. */
     &:focus-visible {
       border-color: var(--color-focus);
       outline: none;

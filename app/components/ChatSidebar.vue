@@ -166,7 +166,7 @@ watch(
     width: var(--chat-sidebar-width, 24rem);
 
     @media screen and (width <= 960px) {
-      background: var(--color-bg);
+      background: var(--color-surface-panel);
       height: var(--visual-viewport-height, 100dvh);
       left: 0;
       opacity: 0;

@@ -294,7 +294,7 @@ onUnmounted(() => {
   }
 
   .toc-mobile__sheet {
-    background-color: var(--color-bg);
+    background-color: var(--color-surface-panel);
     border-top: 1px solid var(--color-border);
     bottom: 0;
     left: 0;
@@ -325,7 +325,7 @@ onUnmounted(() => {
 
   .toc-mobile__fab {
     align-items: center;
-    background-color: var(--color-bg);
+    background-color: var(--color-surface-panel);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
     bottom: var(--space-6);

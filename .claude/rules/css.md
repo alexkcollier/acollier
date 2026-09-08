@@ -21,8 +21,8 @@ is fixed by first mention, and the bundler — not the `css` array — decides
 which stylesheet reaches the browser first: an SFC's `<style>` chunk can
 arrive ahead of every file in `app/assets/styles`, and when it does `block`
 and `exception` are registered first and no later statement can move them.
-The remaining names are then appended *after* them, which ranks
-`sanitize.css` and every utility *above* every component — the cascade
+The remaining names are then appended _after_ them, which ranks
+`sanitize.css` and every utility _above_ every component — the cascade
 quietly inverts.
 
 So `layers.css` reaches the browser two ways, and the file itself is the
@@ -40,8 +40,8 @@ Never write the order out a third time — add a layer by editing
 | Layer         | Holds                                                                            |
 | ------------- | -------------------------------------------------------------------------------- |
 | `reset`       | `sanitize.css` and its `reduce-motion.css` partial, imported with `layer(reset)` |
-| `tokens`      | `tokens.css` — custom properties only, nothing else                              |
-| `theme`       | `theme.css` — the light/dark switch, nothing else                                |
+| `tokens`      | `tokens.css` — the ramps and every dimensional scale                             |
+| `theme`       | `theme.css` — the `--color-*` palette and the light/dark switch                  |
 | `global`      | `base.css` — bare element styling                                                |
 | `composition` | `compositions.css` — layout primitives                                           |
 | `utility`     | `utilities.css` — single-job, token-derived classes                              |
@@ -95,15 +95,16 @@ reduce)` block anywhere else.
 
 ## Design tokens
 
-All colours, spacing, radius, and type values come from the custom
-properties in `tokens.css` — that file is the only place tokens are
-declared. Never hardcode these values; breakpoints in query conditions
-are the one exception, for the reason below.
+All colours, spacing, radius, and type values come from custom
+properties declared in `tokens.css` and `theme.css` — those two files are
+the only place tokens are declared, split as described below. Never
+hardcode these values; breakpoints in query conditions are the one
+exception, for the reason below.
 
 That list is wider than colour and spacing: `tokens.css` also carries the
 duration/easing pair, font-weight, elevation (`--shadow-sm` /
 `--shadow-md`), a z-index scale (`--z-raised` … `--z-nav`, in steps of
-10), status colour (`--color-bg-error` / `--color-text-error`), and the
+10), status colour (`--color-surface-error` / `--color-text-error`), and the
 themed focus colour. A bare literal in any of those categories —
 `250ms`, `font-weight: 700`, `z-index: 12` — is a defect now, the same
 way a hardcoded hex value already was.
@@ -120,10 +121,31 @@ Both themes are declared once, via `light-dark()` resolving against
 `light-dark(<light>, <dark>)` declaration; do not add a
 `prefers-color-scheme` block.
 
-`theme.css` holds the switch itself — `color-scheme` and the `[data-theme]`
-overrides `ColorSwitcher` stamps — and nothing else. It is a layer of its
-own, after `tokens`, so a theme that ever needs to restate a palette token
-outranks the default by layer instead of by selector weight.
+`theme.css` holds every value that depends on which theme is in effect:
+the whole `--color-*` namespace, plus the `color-scheme` switch and the
+`[data-theme]` overrides `ColorSwitcher` stamps. It is a layer of its own,
+after `tokens`, so a theme that restates a palette token outranks the
+default by layer as well as by selector weight.
+
+**The split is by kind, not by subject.** `tokens.css` holds constants —
+`--space-4: 1rem` means the same thing in either theme. A palette token
+is not a constant: it is a function of runtime state, and inert without
+the `color-scheme` in `theme.css`. That dependency is what separates the
+two files, and the existing naming already draws the line — every
+semantic token is `--color-*` and no ramp step is.
+
+The ramps stay in `tokens.css`, because a ramp step _is_ a constant;
+`theme.css` reaches across for them, which is what `light-dark()` needs.
+Two tokens straddle the line and the namespace decides: `--shadow-sm` /
+`--shadow-md` and `--focus-ring-width` / `--focus-ring-offset` are
+dimensions, so they stay in `tokens.css` and reference `--color-shadow`
+and `--color-focus` from `theme.css`.
+
+Do not split a token family across the two files. The surface _roles_
+(`--color-surface-sunken`) carry no `light-dark()` of their own, but they
+are the vocabulary over the scale and travel with it — as do the
+theme-invariant members of the palette like `--color-text-on-primary` and
+`--color-scrim`.
 
 A blocking inline script in `nuxt.config.ts`'s `app.head.script` reads any
 theme saved to `localStorage` and stamps `data-theme` on `:root` before
@@ -155,6 +177,94 @@ A ramp keeps every step even where nothing currently consumes it. A ramp
 is a designed palette, not dead code — an unused step is the next value
 you reach for, not weight to trim.
 
+## Surfaces
+
+Surfaces are two layers, both in `tokens.css`: a **scale** that defines
+values and a **role vocabulary** that names them. Components consume
+roles and never the numbered steps — the same discipline that keeps a
+ramp step out of a component, moved up one layer.
+
+```css
+/* scale — three steps, each moving away from the page */
+--color-surface: light-dark(var(--stone-50), var(--stone-900));
+--color-surface-1: light-dark(var(--stone-100), var(--stone-800));
+--color-surface-2: light-dark(var(--stone-200), var(--stone-700));
+
+/* roles — one line each, no new values */
+--color-surface-sunken: var(--color-surface-1);
+--color-surface-hover: var(--color-surface-2);
+```
+
+It is a **depth** scale, not an elevation scale. Each step moves _away
+from the page_, which is darker in light and lighter in dark; the page
+sits at the end of the ramp in both themes, so the direction flips and
+`light-dark()` carries it.
+
+**Three steps is the ceiling, not a starting point.** At
+`--color-surface-2` the weakest body text measures 4.61:1
+(`--color-text-muted`, light) and 4.63:1 (`--color-text-primary`, dark).
+A fourth step drops text under 4.5:1 and would force per-surface text
+tokens, which is exactly the maintenance burden this shape avoids.
+
+The two halves have very different costs, and that asymmetry is the
+whole point:
+
+- Adding a **step** is expensive. It needs a contrast check against its
+  neighbours, against every text token, and against its border.
+- Adding a **role** is one line reusing an already-verified value.
+
+So keep the scale minimal and let the vocabulary grow. And unlike a
+ramp, roles are _not_ a designed set — an unused role is dead weight,
+not the next value you reach for. Delete them freely.
+
+Panels (`--color-surface-panel`) deliberately sit level with the page
+and separate by border and shadow. In light there is nowhere lighter to
+go without adding white to the ramp, which would give the scale two
+directions in light and one in dark. Lifting them in dark later is a
+one-line change to that role.
+
+### Borders pair with their surface
+
+A border is matched to the surface it sits on **by measured contrast
+ratio, not by ramp step count**. Mirroring the step count is what
+originally put `--color-bg-subtle` and `--color-border` on the same
+stone in dark, where a border on a raised surface disappeared into its
+own fill.
+
+| Surface                 | Border                  |
+| ----------------------- | ----------------------- |
+| `--color-surface`, `-1` | `--color-border`        |
+| `--color-surface-2`     | `--color-border-strong` |
+| `--color-surface-input` | `--color-border-input`  |
+
+A block whose `:hover` lifts its fill to `--color-surface-2` needs
+`--color-border-strong` at rest — `ChatScrollButton` is the live
+example.
+
+### Text is named by emphasis, not by surface
+
+`--color-text`, `--color-text-muted`, `--color-text-primary`,
+`--color-text-accent` and `--color-text-error` all clear 4.5:1 on all
+three neutral surfaces in both themes. That is a checked invariant, and
+it is why there is no `on-surface-1` family to keep in sync. Only
+_filled_ surfaces carry an `on-*` pair: `--color-text-on-primary`,
+`--color-text-on-accent`.
+
+Link hover **increases** contrast in both themes rather than lightening
+in one and darkening in the other, matching the filled button's
+`:active`. Most links here are undecorated, so colour carries the whole
+signal and a hover that loses contrast on a raised surface is a real
+failure, not a cosmetic one.
+
+### Do not re-declare a value under a second name
+
+`--color-input-bg` and `--color-bg-subtle` were once byte-identical, as
+were `--color-input-text` / `--color-text` and `--color-link` /
+`--color-text-primary` — three pairs free to drift apart silently. When
+two roles legitimately share a value, alias one to the other
+(`--color-surface-input: var(--color-surface-sunken)`) so the sameness
+is enforced and a future divergence is a one-line edit.
+
 ## Focus
 
 One global rule, in the `global` layer of `base.css`, draws the focus
@@ -176,7 +286,7 @@ Components should not hand-roll their own — no bespoke `outline` or
 control whose own edges would clip a ring: `ChatForm` deletes the
 textarea's outline and lets the wrapper carry the treatment instead,
 matching `:has(textarea:focus-visible)` on `.chat-form` to shift the
-border colour it already draws. That is a border shift, *not* a second
+border colour it already draws. That is a border shift, _not_ a second
 ring — stacking an outline on top of it produced a doubled inner border
 in light mode. Where a wrapper already has a border to work with, moving
 the indicator onto it beats drawing another one.

@@ -1,11 +1,8 @@
 @layer block {
-  /*
-   * Nuxt Icon's CSS mode sizes each icon from a per-icon rule it injects.
-   * An icon that wasn't server-rendered (the theme glyph, which only exists
-   * after mount) waits on a client-side fetch for that rule, and until it
-   * lands the span is 0 wide and the navbar reflows. Reserve the box up
-   * front; the injected rule declares the same 1em and takes over.
-   */
+  /* Nuxt Icon injects a per-icon sizing rule. An icon that wasn't
+     server-rendered (the theme glyph) waits on a client fetch for it, and
+     until it lands the span is 0 wide and the navbar reflows. Reserve the
+     box; the injected rule declares the same 1em and takes over. */
   .iconify {
     display: inline-block;
     height: 1em;
@@ -20,7 +17,7 @@
   }
 
   .link--button {
-    background-color: var(--color-bg);
+    background-color: var(--color-surface-panel);
     border: 1px solid currentcolor;
     border-radius: var(--radius-md);
     padding: var(--space-2);
@@ -35,19 +32,20 @@
   }
 
   .link--button-filled {
-    background-color: var(--color-bg-primary);
-    border-color: var(--color-bg-primary);
+    background-color: var(--color-surface-primary);
+    border-color: var(--color-surface-primary);
     color: var(--color-text-on-primary);
 
     &:active {
-      background-color: hsl(from var(--color-bg-primary) h s calc(l * 0.9));
+      background-color: hsl(
+        from var(--color-surface-primary) h s calc(l * 0.9)
+      );
     }
   }
 
   .link--arrow {
     position: relative;
 
-    /* arrow */
     &::after {
       border: 1px solid var(--color-link);
       border-bottom-color: transparent;

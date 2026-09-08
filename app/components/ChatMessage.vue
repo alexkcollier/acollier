@@ -111,7 +111,7 @@ const html = computed(() =>
     }
 
     code {
-      background: var(--color-bg-subtle);
+      background: var(--color-surface-inset);
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
       font-size: 0.9em;
@@ -119,7 +119,7 @@ const html = computed(() =>
     }
 
     pre {
-      background: var(--color-bg-subtle);
+      background: var(--color-surface-inset);
       border-radius: var(--radius-md);
       overflow-x: auto;
       padding: var(--space-3) var(--space-4);
@@ -166,7 +166,7 @@ const html = computed(() =>
 @layer exception {
   .chat-message[data-role='user'] {
     align-self: flex-end;
-    background: var(--color-bg-subtle);
+    background: var(--color-surface-sunken);
     max-width: 90%;
     padding: var(--space-2) var(--space-4);
   }

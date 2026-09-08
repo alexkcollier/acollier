@@ -7,7 +7,7 @@
 <style>
 @layer block {
   .base-chip {
-    background-color: var(--color-bg-subtle);
+    background-color: var(--color-surface-sunken);
     border-radius: var(--radius-sm);
     font-size: var(--text-sm);
     line-height: 1;

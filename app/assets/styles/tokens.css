@@ -1,16 +1,15 @@
 /**
- * Design tokens
+ * The constants: ramps and every dimensional scale. Values that vary by
+ * theme are the `--color-*` palette in `theme.css`.
  *
- * The only place custom properties are declared. Colour ramps feed a
- * semantic palette, and the palette is what the rest of the codebase should
- * reach for — a bare ramp step outside this file is a last resort. The
- * light/dark switch the palette resolves against lives in `theme.css`.
+ * A ramp step is not a value to style with — reach for the palette. Ramps
+ * keep every step even when nothing consumes it; a designed palette is not
+ * dead code.
  */
 @layer tokens {
   :root {
     /* ── Colour ramps ───────────────────────────────────────────────── */
 
-    /* green — 600 is primary */
     --green-50: #eaf4e8;
     --green-100: #b6ddb1;
     --green-200: #96cc90;
@@ -21,8 +20,6 @@
     --green-700: #245720;
     --green-800: #1a4317;
     --green-900: #13300f;
-
-    /* stone */
     --stone-50: #fafaf8;
     --stone-100: #edede8;
     --stone-200: #d6d6cf;
@@ -33,86 +30,27 @@
     --stone-700: #3c3c38;
     --stone-800: #2a2a27;
     --stone-900: #1a1a18;
-
-    /* amber — 700 is accent */
     --amber-50: #fbf2e0;
     --amber-200: #f5d48a;
     --amber-500: #c28a1a;
     --amber-700: #7a5310;
-
-    /* red — 600 is error */
     --red-100: #f7d9d6;
     --red-300: #e59a93;
     --red-600: #a3241b;
     --red-800: #5e120c;
 
-    /* ── Semantic palette ───────────────────────────────────────────── */
-
-    /* Declared once via `light-dark()`, which resolves against the
-       `color-scheme` set in `theme.css`. Tokens whose value is the same in
-       both themes are declared plainly. */
-
-    /* bg */
-    --color-bg: light-dark(var(--stone-50), var(--stone-900));
-    --color-bg-subtle: light-dark(var(--stone-100), var(--stone-700));
-    --color-bg-primary: light-dark(var(--green-700), var(--green-600));
-    --color-bg-accent: var(--amber-500);
-
-    /* text */
-    --color-text: light-dark(var(--stone-900), var(--stone-50));
-    --color-text-muted: light-dark(var(--stone-600), var(--stone-300));
-    --color-text-primary: light-dark(var(--green-700), var(--green-300));
-    --color-text-accent: light-dark(var(--amber-700), var(--amber-200));
-    --color-text-on-primary: var(--stone-50);
-
-    /* pairs the accent background that had no foreground token — 5.76:1 */
-    --color-text-on-accent: var(--stone-900);
-
-    /* border */
-    --color-border: light-dark(var(--stone-300), var(--stone-700));
-
-    /* shadow — heavier in dark, where a soft black barely reads against
-       a near-black surface */
-    --color-shadow: light-dark(rgb(0 0 0 / 20%), rgb(0 0 0 / 60%));
-
-    /* scrim — the dimming behind a modal or a sheet. Same in both themes:
-       a scrim dims what is behind it rather than reading against it. */
-    --color-scrim: rgb(0 0 0 / 50%);
-    --color-scrim-subtle: rgb(0 0 0 / 20%);
-
-    /* links */
-    --color-link: light-dark(var(--green-700), var(--green-300));
-    --color-link-hover: light-dark(var(--green-500), var(--green-100));
-
-    /* inputs */
-    --color-input-bg: light-dark(var(--stone-100), var(--stone-700));
-    --color-input-bg-focus: light-dark(var(--stone-50), var(--stone-600));
-    --color-input-border: light-dark(var(--stone-200), var(--stone-600));
-    --color-input-border-focus: light-dark(var(--stone-300), var(--stone-500));
-    --color-input-text: light-dark(var(--stone-900), var(--stone-50));
-
-    /* focus — neutral rather than brand green, which read as too loud next
-       to the muted palette. 6.4:1 light, 7.5:1 dark, both over the 3:1
-       a focus indicator needs. */
-    --color-focus: light-dark(var(--stone-600), var(--stone-400));
+    /* ── Focus ring ── dimensions; `--color-focus` is in `theme.css` ── */
     --focus-ring-offset: 2px;
     --focus-ring-width: 2px;
 
-    /* status */
-    --color-bg-error: light-dark(var(--red-100), var(--red-800));
-    --color-text-error: light-dark(var(--red-600), var(--red-300));
-
     /* ── Typography ─────────────────────────────────────────────────── */
 
-    /* roles */
     --font-body:
       'Inter', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, oxygen,
       ubuntu, cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --font-mono:
       'JetBrains Mono', menlo, monaco, consolas, 'Liberation Mono',
       'Courier New', monospace;
-
-    /* scale */
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
     --text-base: 1rem;
@@ -122,17 +60,11 @@
     --text-3xl: 1.875rem;
     --text-4xl: 2.25rem;
     --text-5xl: 3rem;
-
-    /* line heights */
     --leading-tight: 1.2;
     --leading-snug: 1.4;
     --leading-normal: 1.6;
-
-    /* letter spacing */
     --letter-spacing-base: 0.02em;
     --letter-spacing-bold: 0.03em;
-
-    /* weight */
     --font-weight-light: 300;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
@@ -159,13 +91,10 @@
     --shadow-sm: 0 2px 8px var(--color-shadow);
     --shadow-md: 0 2px 12px var(--color-shadow);
 
-    /**
-     * ── Motion ──────────────────────────────────────────────────────
+    /* ── Motion ─────────────────────────────────────────────────────
      *
-     * Only the two cubic-beziers already in use across the codebase are
-     * tokenised here. Bare `ease` / `ease-out` keywords stay as keywords —
-     * do not "finish the set" by adding tokens for curves nothing uses.
-     */
+     * Only the two curves actually in use are tokenised. Bare `ease` /
+     * `ease-out` stay keywords — do not finish the set. */
     --duration-fast: 100ms;
     --duration-base: 150ms;
     --duration-slow: 200ms;
@@ -174,37 +103,25 @@
     --ease-emphasized: cubic-bezier(0.2, 0.6, 0.2, 1);
     --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 
-    /**
-     * ── Breakpoints ─────────────────────────────────────────────────
+    /* ── Breakpoints ────────────────────────────────────────────────
      *
-     * These custom properties are usable in declarations only. Media and
-     * container query *conditions* cannot read `var()` — the spec resolves
-     * custom properties per element, and a query has no element to resolve
-     * against — so query conditions hardcode the same values. Keep the two
-     * in sync by hand; the literals below are the canonical set.
-     */
+     * Usable in declarations only: a query condition cannot read `var()`,
+     * having no element to resolve against, so queries hardcode these
+     * literals. Keep the two in sync by hand. */
     --bp-sm: 480px;
     --bp-md: 768px;
     --bp-lg: 960px;
     --bp-xl: 1200px;
     --bp-xxl: 1440px;
 
-    /* ── Component tokens ───────────────────────────────────────────── */
-
-    /* Shared by more than one stylesheet, which is why they are here and
-       not in the component that reads them. */
-
-    /* page */
+    /* ── Component tokens ── here because more than one sheet reads them ── */
     --page-top-padding: var(--space-24);
     --page-side-padding: var(--space-8);
 
-    /**
-     * ── Stacking ──────────────────────────────────────────────────────
+    /* ── Stacking ───────────────────────────────────────────────────
      *
-     * One scale, in steps of 10, in the order the old ad hoc numbers
-     * already implied. The navbar is deliberately the top layer — it has
-     * to stay visible above any sheet, modal, or scrim under it.
-     */
+     * The navbar is deliberately top — it stays visible above any sheet,
+     * modal or scrim under it. */
     --z-raised: 10;
     --z-mask: 20;
     --z-sticky: 30;
