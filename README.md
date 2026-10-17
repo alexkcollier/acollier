@@ -20,6 +20,8 @@ The Node version is pinned in `.nvmrc`. mise only reads it once enabled:
 mise settings add idiomatic_version_file_enable_tools node
 ```
 
+Dependencies are managed with pnpm, pinned via `packageManager` in `package.json`. Install it with `mise use -g pnpm`. Packages allowed to run build scripts are listed under `allowBuilds` in `pnpm-workspace.yaml`.
+
 ## Build Setup
 
 ```bash
@@ -27,16 +29,16 @@ mise settings add idiomatic_version_file_enable_tools node
 mise install
 
 # install dependencies
-npm install
+pnpm install
 
 # dev server at localhost:3000 (no Netlify functions)
-npm run dev
+pnpm dev
 
 # dev server at localhost:8888 with Netlify env vars and functions (contact form, chat)
 netlify dev
 
 # generate static project
-npm run generate
+pnpm generate
 ```
 
 Requires `netlify-cli` installed globally for `netlify dev`.

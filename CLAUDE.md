@@ -5,12 +5,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev          # dev server at localhost:3000 (no Netlify functions)
+pnpm dev             # dev server at localhost:3000 (no Netlify functions)
 netlify dev          # dev server at localhost:8888 with Netlify functions (contact form)
-npm run generate     # static site generation (used for production builds)
-npm run lint         # ESLint
-npm run lint:css     # Stylelint (Vue + CSS)
-npm run format       # Prettier
+pnpm generate        # static site generation (used for production builds)
+pnpm lint            # ESLint
+pnpm lint:css        # Stylelint (Vue + CSS)
+pnpm format          # Prettier
 ```
 
 There are no tests.

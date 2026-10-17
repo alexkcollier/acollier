@@ -1,0 +1,13 @@
+overrides:
+  vite-plugin-checker: 0.13.0
+
+allowBuilds:
+  '@parcel/watcher': true
+  better-sqlite3: true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true
+  '@google/genai': false
+  netlify-cli: false
+  protobufjs: false
+  unix-dgram: false
