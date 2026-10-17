@@ -14,18 +14,19 @@ Changes to `main` (protected) trigger production deploys. PRs will open branch d
 - netlify cli
 - ollama (for local chat, `qwen2.5:1.5b` is a good small model for testing)
 
-The Node version is pinned in `.nvmrc`. mise only reads it once enabled:
+The Node version is pinned in `.nvmrc` and the pnpm version in `package.json`'s `packageManager` field. mise only reads them once enabled:
 
 ```bash
 mise settings add idiomatic_version_file_enable_tools node
+mise settings add idiomatic_version_file_enable_tools pnpm
 ```
 
-Dependencies are managed with pnpm, pinned via `packageManager` in `package.json`. Install it with `mise use -g pnpm`. Packages allowed to run build scripts are listed under `allowBuilds` in `pnpm-workspace.yaml`.
+Packages allowed to run build scripts are listed under `allowBuilds` in `pnpm-workspace.yaml`.
 
 ## Build Setup
 
 ```bash
-# install the pinned Node version
+# install the pinned Node and pnpm versions
 mise install
 
 # install dependencies
