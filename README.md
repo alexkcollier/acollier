@@ -11,7 +11,6 @@ Changes to `main` (protected) trigger production deploys. PRs will open branch d
 ## Requirements
 
 - [mise](https://mise.jdx.dev) (or any Node version manager that reads `.nvmrc`)
-- netlify cli
 - ollama (for local chat, `qwen2.5:1.5b` is a good small model for testing)
 
 The Node version is pinned in `.nvmrc` and the pnpm version in `package.json`'s `packageManager` field. mise only reads them once enabled:
@@ -32,17 +31,14 @@ mise install
 # install dependencies
 pnpm install
 
-# dev server at localhost:3000 (no Netlify functions)
+# dev server at localhost:3000, including Netlify functions (contact form, chat)
 pnpm dev
-
-# dev server at localhost:8888 with Netlify env vars and functions (contact form, chat)
-netlify dev
 
 # generate static project
 pnpm generate
 ```
 
-Requires `netlify-cli` installed globally for `netlify dev`.
+`@netlify/nuxt` runs the Netlify functions inside the Nuxt dev server and loads `.env` (plus the linked site's env vars, if the project is linked). For other Netlify CLI tasks, use the project's copy: `pnpm exec netlify <command>`.
 
 ### Chat / LLM
 

@@ -5,8 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-pnpm dev             # dev server at localhost:3000 (no Netlify functions)
-netlify dev          # dev server at localhost:8888 with Netlify functions (contact form)
+pnpm dev             # dev server at localhost:3000, including Netlify functions
 pnpm generate        # static site generation (used for production builds)
 pnpm lint            # ESLint
 pnpm lint:css        # Stylelint (Vue + CSS)
@@ -29,7 +28,7 @@ Portfolio case studies are written in Markdown, but the content itself does not 
 
 ### Contact Form
 
-The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mail` Netlify Function (`functions/mail.js`), which sends email via Mailgun. The function requires env vars `MG_API_KEY`, `MG_DOMAIN`, and `MG_RECIPIENT`. Errors are reported to Sentry via `SENTRY_DSN`. Running `netlify dev` is required to test this locally.
+The contact form (`app/pages/contact.vue`) posts to the `/.netlify/functions/mail` Netlify Function (`functions/mail.mts`), which sends email via Mailgun. The function requires env vars `MG_API_KEY`, `MG_DOMAIN`, and `MG_RECIPIENT`. Errors are reported to Sentry via `SENTRY_DSN`. `@netlify/nuxt` runs the function inside `pnpm dev`, so it can be tested locally without the Netlify CLI.
 
 ### Styling
 
