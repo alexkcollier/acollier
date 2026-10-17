@@ -10,13 +10,22 @@ Changes to `main` (protected) trigger production deploys. PRs will open branch d
 
 ## Requirements
 
-- nodejs 24+
+- [mise](https://mise.jdx.dev) (or any Node version manager that reads `.nvmrc`)
 - netlify cli
 - ollama (for local chat, `qwen2.5:1.5b` is a good small model for testing)
+
+The Node version is pinned in `.nvmrc`. mise only reads it once enabled:
+
+```bash
+mise settings add idiomatic_version_file_enable_tools node
+```
 
 ## Build Setup
 
 ```bash
+# install the pinned Node version
+mise install
+
 # install dependencies
 npm install
 
